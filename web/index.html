@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LAXFORGE Evidence Console</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="dashboard_data.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">LAXFORGE</p>
+          <h1>Evidence Console</h1>
+        </div>
+        <div class="top-actions">
+          <a class="report-link" href="research_report.html">Research report</a>
+          <div class="run-strip" id="run-strip"></div>
+        </div>
+      </header>
+
+      <nav class="tabbar" id="tabbar" aria-label="Evidence console sections">
+        <button class="active" data-tab="overview" type="button">Overview</button>
+        <button data-tab="candidates" type="button">Candidates</button>
+        <button data-tab="frontier" type="button">Frontier</button>
+        <button data-tab="procedures" type="button">Procedures</button>
+        <button data-tab="gates" type="button">Gates</button>
+        <button data-tab="artifacts" type="button">Artifacts</button>
+        <button data-tab="collisions" type="button">Collisions</button>
+      </nav>
+
+      <main>
+        <section class="filter-strip" aria-label="Dashboard filters">
+          <label class="search-box">
+            <span>Search</span>
+            <input id="search-input" type="search" autocomplete="off" />
+          </label>
+          <label>
+            <span>Lane</span>
+            <select id="lane-filter"></select>
+          </label>
+          <label>
+            <span>Disposition</span>
+            <select id="recommendation-filter"></select>
+          </label>
+          <label>
+            <span>Gate</span>
+            <select id="gate-filter">
+              <option value="all">All gate states</option>
+              <option value="pass">Has pass</option>
+              <option value="warn">Has warn</option>
+              <option value="fail">Has fail</option>
+            </select>
+          </label>
+          <label>
+            <span>Sort</span>
+            <select id="sort-select">
+              <option value="surprisal">Surprisal</option>
+              <option value="lane">Lane</option>
+              <option value="order">Order</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="tab-panel active" id="tab-overview" data-tab-panel="overview">
+          <section class="plain-summary" id="plain-summary" aria-label="Plain-language summary"></section>
+          <section class="metric-grid" id="metric-cards" aria-label="Dashboard metrics"></section>
+          <section class="visual-grid" aria-label="Visual metrics">
+            <div class="tool-panel">
+              <div class="panel-heading">
+                <h2>Audit Surprisal</h2>
+                <span>transparent triage</span>
+              </div>
+              <div id="surprisal-chart" class="chart-slot"></div>
+            </div>
+            <div class="tool-panel">
+              <div class="panel-heading">
+                <h2>Gate Heatmap</h2>
+                <span>current filters</span>
+              </div>
+              <div id="overview-gate-heatmap" class="heatmap-slot"></div>
+            </div>
+            <div class="tool-panel">
+              <div class="panel-heading">
+                <h2>Disposition Mix</h2>
+                <span>evidence state</span>
+              </div>
+              <div id="recommendation-chart" class="chart-slot compact"></div>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="tab-candidates" data-tab-panel="candidates">
+          <section class="workspace">
+            <div class="board-panel" id="candidate-board" aria-label="Candidate board"></div>
+            <aside class="detail-panel" id="candidate-detail-panel" aria-label="Selected item"></aside>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="tab-frontier" data-tab-panel="frontier">
+          <section class="split-view">
+            <div class="tool-panel">
+              <div class="panel-heading">
+                <h2>Discovery Frontier</h2>
+                <span>queued next tests</span>
+              </div>
+              <div id="frontier-list" class="frontier-list"></div>
+            </div>
+            <aside class="detail-panel" id="frontier-detail-panel" aria-label="Frontier detail"></aside>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="tab-procedures" data-tab-panel="procedures">
+          <section class="split-view">
+            <div class="tool-panel">
+              <div class="panel-heading">
+                <h2>Procedure Audit</h2>
+                <span>formal gates</span>
+              </div>
+              <div id="procedure-list" class="procedure-list"></div>
+            </div>
+            <aside class="detail-panel" id="procedure-detail-panel" aria-label="Procedure detail"></aside>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="tab-gates" data-tab-panel="gates">
+          <section class="split-view">
+            <div class="tool-panel">
+              <div class="panel-heading">
+                <h2>Gate Heatmap</h2>
+                <span>pass, warn, fail</span>
+              </div>
+              <div id="gate-heatmap" class="heatmap-slot"></div>
+            </div>
+            <aside class="detail-panel" id="gate-detail-panel" aria-label="Gate detail"></aside>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="tab-artifacts" data-tab-panel="artifacts">
+          <section class="split-view">
+            <div class="tool-panel">
+              <div class="panel-heading">
+                <h2>Artifacts</h2>
+                <span>explicit writer ready</span>
+              </div>
+              <div id="artifact-list" class="artifact-list"></div>
+            </div>
+            <aside class="detail-panel" id="artifact-detail-panel" aria-label="Artifact detail"></aside>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="tab-collisions" data-tab-panel="collisions">
+          <section class="split-view">
+            <div class="tool-panel">
+              <div class="panel-heading">
+                <h2>Collision Families</h2>
+                <span>known-family warnings</span>
+              </div>
+              <div id="collision-map" class="collision-map"></div>
+            </div>
+            <aside class="detail-panel" id="collision-detail-panel" aria-label="Collision detail"></aside>
+          </section>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LAXFORGE Research Progress Report</title>
+    <link rel="stylesheet" href="research_report.css?v=3" />
+    <script src="dashboard_data.js" defer></script>
+    <script src="research_report.js?v=3" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#report-main">Skip to report</a>
+    <header class="report-hero">
+      <nav class="report-nav" aria-label="Report navigation">
+        <a href="index.html">Evidence Console</a>
+        <span id="schema-pill">Schema</span>
+      </nav>
+      <section class="hero-grid" aria-label="Report overview">
+        <div class="hero-copy">
+          <p class="eyebrow">LAXFORGE Research Report</p>
+          <h1>Where LAXFORGE stands after the first controlled search cycle</h1>
+          <p id="hero-lede">
+            This report explains what has actually been established, what was discarded,
+            what is blocked by current tooling, and which candidate remains next in the
+            evidence queue. The goal is clarity over ceremony: no promotion claims, just
+            a readable account of the surviving structure.
+          </p>
+          <div class="hero-actions" aria-label="Related views">
+            <a href="index.html">Open console</a>
+            <a href="#report-readout">Readout</a>
+            <a href="#technical-ledger">Technical ledger</a>
+          </div>
+        </div>
+        <aside class="hero-instrument" aria-label="Evidence instrument">
+          <div class="instrument-ring" id="instrument-ring"></div>
+          <div class="instrument-caption">
+            <span>Audit posture</span>
+            <strong>generate, solve, reduce, falsify, extract structure</strong>
+          </div>
+        </aside>
+      </section>
+      <section class="metric-strip" id="report-metrics" aria-label="Report metrics"></section>
+    </header>
+
+    <main id="report-main" class="report-shell">
+      <section class="summary-band" id="report-summary" aria-label="Plain-language summary"></section>
+
+      <section class="narrative-section" id="report-readout" aria-label="Executive research readout">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Executive Readout</p>
+            <h2>The current state in plain research language</h2>
+          </div>
+          <span class="section-mark">evidence first</span>
+        </div>
+        <div id="report-readout-copy" class="readout-copy"></div>
+      </section>
+
+      <section class="report-grid narrative-grid" aria-label="Research interpretation">
+        <article class="report-panel prose-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Research Question</p>
+              <h2>What are we trying to separate?</h2>
+            </div>
+          </div>
+          <div id="report-question" class="prose-copy"></div>
+        </article>
+        <article class="report-panel prose-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Method</p>
+              <h2>How a candidate earns continued attention</h2>
+            </div>
+          </div>
+          <div id="report-methods" class="prose-copy"></div>
+        </article>
+      </section>
+
+      <section class="dossier-section" aria-label="Evidence dossiers">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Evidence Dossiers</p>
+            <h2>The progress story by lane</h2>
+          </div>
+          <span class="section-mark">structured narrative</span>
+        </div>
+        <div id="report-dossiers" class="dossier-grid"></div>
+      </section>
+
+      <section class="report-grid two-column" aria-label="Current evidence picture">
+        <article class="report-panel wide">
+          <div class="panel-heading">
+            <p class="eyebrow">Evidence Map</p>
+            <h2>What has survived the gates so far</h2>
+          </div>
+          <div class="timeline" id="report-timeline"></div>
+        </article>
+        <article class="report-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Disposition Mix</p>
+            <h2>Conservative outcomes only</h2>
+          </div>
+          <div id="report-disposition" class="bar-stack"></div>
+        </article>
+      </section>
+
+      <section class="report-grid two-column" aria-label="Gate and frontier evidence">
+        <article class="report-panel wide">
+          <div class="panel-heading">
+            <p class="eyebrow">Gate Matrix</p>
+            <h2>Pass, warning, and fail states by item</h2>
+          </div>
+          <div id="report-gates" class="gate-matrix"></div>
+        </article>
+        <article class="report-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Audit Surprisal</p>
+            <h2>Visible drivers, not a score of worth</h2>
+          </div>
+          <div id="report-surprisal" class="surprisal-stack"></div>
+        </article>
+      </section>
+
+      <section class="frontier-band" aria-label="Frontier state">
+        <div class="section-title">
+          <p class="eyebrow">ITER-001</p>
+          <h2>Frontier queue after Serious Cycle 001</h2>
+        </div>
+        <div id="report-frontier" class="frontier-cards"></div>
+      </section>
+
+      <section class="report-grid two-column" aria-label="Serious cycle and procedures">
+        <article class="report-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">SERIOUS-001</p>
+            <h2>Attempted third-order sphere ansatz</h2>
+          </div>
+          <div id="report-cycle" class="cycle-panel"></div>
+        </article>
+        <article class="report-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">PROC-001</p>
+            <h2>Procedure audit</h2>
+          </div>
+          <div id="report-procedure" class="procedure-panel"></div>
+        </article>
+      </section>
+
+      <section class="report-grid two-column" aria-label="Artifacts and collisions">
+        <article class="report-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">M0 Artifact</p>
+            <h2>Pure-gauge residual grid</h2>
+          </div>
+          <div id="report-artifacts" class="artifact-panel"></div>
+          <div id="report-residual" class="residual-grid"></div>
+        </article>
+        <article class="report-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Prior-Art Guard</p>
+            <h2>Collision-family map</h2>
+          </div>
+          <div id="report-collisions" class="collision-radar"></div>
+        </article>
+      </section>
+
+      <section class="ledger-section" id="technical-ledger" aria-label="Technical ledger">
+        <div class="section-title">
+          <p class="eyebrow">Technical Ledger</p>
+          <h2>Tracked items and current gate evidence</h2>
+        </div>
+        <div id="report-ledger" class="ledger-table"></div>
+      </section>
+
+      <section class="claim-guard" aria-label="Claim guard">
+        <strong>Claim guard:</strong>
+        <span>
+          This report records evidence states only. The allowed outcomes here are audit,
+          calibration, discard, needs human review, known-family collision, or blocked.
+          Stronger interpretation is outside this automated report.
+        </span>
+      </section>
+    </main>
+  </body>
+</html>
