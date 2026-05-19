@@ -12,6 +12,11 @@ from pathlib import Path
 from typing import Any
 
 from laxforge.search.bulk import run_scaled_candidate_search
+from laxforge.search.run_matrix import (
+    run_cohomological_deformation_search,
+    run_density_matrix_search,
+    run_nonlocal_covering_search,
+)
 from laxforge.search.semidirect import run_semidirect_deformation_search
 from laxforge.search.sphere import SphereSearchConfig, run_sphere_low_order_search
 
@@ -25,6 +30,9 @@ class DiscoveryIterationConfig:
     include_dis001: bool = True
     include_dis002: bool = True
     include_dis003: bool = True
+    include_dis004: bool = True
+    include_dis005: bool = True
+    include_dis006: bool = True
     attempt_sxxx_ansatz: bool = True
 
 
@@ -258,6 +266,73 @@ def _candidate_record(candidate: Any, lane: str, iteration: int) -> FrontierCand
         )
 
     if lane == "DIS-003" and recommendation == "needs_human_review":
+        priority = int(getattr(candidate, "priority_score", 34))
+        return FrontierCandidate(
+            item_id=_slug(name),
+            name=name,
+            lane=lane,
+            iteration=iteration,
+            recommendation=recommendation,
+            classification=classification,
+            connection_status=connection_status,
+            process_disposition="frontier",
+            potential_status="density_matrix_pending",
+            priority=priority,
+            next_action=(
+                "Attempt density-matrix ZCR construction, then run isospectral and trace "
+                "invariant gates."
+            ),
+            gate_gaps=tuple(candidate.failure_reasons),
+            evidence_summary=(
+                "density-matrix lane restored to DIS-003",
+                "matrix pair and invariant gates remain open",
+                "candidate remains review-only until solver gates run",
+            ),
+        )
+
+    if lane == "DIS-004" and recommendation == "needs_human_review":
+        priority = int(getattr(candidate, "priority_score", 28))
+        return FrontierCandidate(
+            item_id=_slug(name),
+            name=name,
+            lane=lane,
+            iteration=iteration,
+            recommendation=recommendation,
+            classification=classification,
+            connection_status=connection_status,
+            process_disposition="frontier",
+            potential_status="nonlocal_covering_pending",
+            priority=priority,
+            next_action="Construct the smallest pseudopotential ZCR ansatz and record nonlocal gates.",
+            gate_gaps=tuple(candidate.failure_reasons),
+            evidence_summary=(
+                "nonlocal covering lane records explicit open gates",
+                "pseudopotential compatibility remains unproved",
+            ),
+        )
+
+    if lane == "DIS-005" and recommendation == "needs_human_review":
+        priority = int(getattr(candidate, "priority_score", 30))
+        return FrontierCandidate(
+            item_id=_slug(name),
+            name=name,
+            lane=lane,
+            iteration=iteration,
+            recommendation=recommendation,
+            classification=classification,
+            connection_status=connection_status,
+            process_disposition="frontier",
+            potential_status="cohomology_pending",
+            priority=priority,
+            next_action="Separate cocycle evidence from gauge coboundaries before any stronger gate.",
+            gate_gaps=tuple(candidate.failure_reasons),
+            evidence_summary=(
+                "cohomological deformation lane records cocycle/coboundary risk",
+                "gauge quotient evidence remains open",
+            ),
+        )
+
+    if lane == "DIS-006" and recommendation == "needs_human_review":
         priority = int(getattr(candidate, "priority_score", 30))
         return FrontierCandidate(
             item_id=_slug(name),
@@ -276,7 +351,7 @@ def _candidate_record(candidate: Any, lane: str, iteration: int) -> FrontierCand
             ),
             gate_gaps=tuple(candidate.failure_reasons),
             evidence_summary=(
-                "scaled DIS-003 descriptor is tangent by construction",
+                "scaled DIS-006 descriptor is tangent by construction",
                 "matrix pair is not constructed in the batch pass",
                 "candidate remains review-only until solver gates run",
             ),
@@ -317,6 +392,12 @@ def run_iterative_discovery(
             )
         )
     if config.include_dis003:
+        lane_reports.append(run_density_matrix_search())
+    if config.include_dis004:
+        lane_reports.append(run_nonlocal_covering_search())
+    if config.include_dis005:
+        lane_reports.append(run_cohomological_deformation_search())
+    if config.include_dis006:
         lane_reports.append(run_scaled_candidate_search())
 
     all_records: list[FrontierCandidate] = []

@@ -15,7 +15,7 @@ FORBIDDEN_PROMOTION_TERMS = ("novel", "publishable", "publication")
 def test_scaled_candidate_search_generates_minimum_batch():
     report = run_scaled_candidate_search()
 
-    assert report.run_id == "DIS-003"
+    assert report.run_id == "DIS-006"
     assert len(report.candidates) == 128
     assert report.candidates[0].name == "scaled sphere zero-flow zero-connection control"
     assert len({candidate.name for candidate in report.candidates}) == len(report.candidates)
@@ -81,16 +81,16 @@ def test_scaled_search_avoids_promotion_language():
 
 def test_write_scaled_candidate_search_emits_json_and_markdown(tmp_path):
     report = run_scaled_candidate_search()
-    output_dir = tmp_path / "dis003"
+    output_dir = tmp_path / "dis006"
 
     written_path = write_scaled_candidate_search(report, output_dir)
 
     assert written_path == output_dir
     run_json = json.loads((output_dir / "run.json").read_text(encoding="utf-8"))
-    assert run_json["run_id"] == "DIS-003"
+    assert run_json["run_id"] == "DIS-006"
     assert len(run_json["candidates"]) == 128
     assert (output_dir / "run.md").read_text(encoding="utf-8").startswith(
-        "# Discovery Run DIS-003"
+        "# Discovery Run DIS-006"
     )
     assert len(list((output_dir / "candidates").glob("*.json"))) == 128
     assert len(list((output_dir / "candidates").glob("*.md"))) == 128
@@ -98,7 +98,7 @@ def test_write_scaled_candidate_search_emits_json_and_markdown(tmp_path):
 
 def test_write_scaled_candidate_search_refuses_overwrite_when_requested(tmp_path):
     report = run_scaled_candidate_search()
-    output_dir = tmp_path / "dis003"
+    output_dir = tmp_path / "dis006"
     write_scaled_candidate_search(report, output_dir)
 
     try:

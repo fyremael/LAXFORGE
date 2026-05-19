@@ -430,3 +430,537 @@ mobile: readout visible, 7 dossier cards, 138 ledger rows
 $ browser smoke for http://127.0.0.1:8765/index.html?v=3
 dashboard: 13 metric cards, 7 run pills, 138 candidate cards, 1656 gate cells
 ```
+
+## FULL-001 Full-Scale Search Cycle
+
+Added a conservative full-scale orchestration layer over the current discovery lanes. The run evaluates
+136 discovery candidates across DIS-001, DIS-002, and DIS-003, keeps 130 candidates in the active
+frontier, and records a 25-item solver action queue. The result is a process state, not a stronger
+interpretation: every candidate remains discard, needs-human-review, or blocked according to the
+documented gates.
+
+```text
+$ python scripts\run_full_scale_search.py
+LAXFORGE full-scale search
+Run: FULL-001
+Status: frontier_active
+Generated candidates: 136
+Frontier: 130
+Discarded: 6
+Lane counts: {'DIS-001': 4, 'DIS-002': 4, 'DIS-003': 128}
+Recommendations: {'blocked': 1, 'discard': 6, 'needs_human_review': 129}
+Action queue: 25 records retained for candidate-specific solver work
+```
+
+```text
+$ python scripts\run_prompt_pack_validation.py
+LAXFORGE prompt-pack validation
+Scaled discovery phase: DIS-003, 128 candidates, 1 discard, 127 review
+Iterative discovery frontier: ITER-001, frontier_active, 130 queued records
+Procedure audit: PROC-001, pass, 8 checks, 0 failures, 0 warnings
+Serious cycle: SERIOUS-001, blocked, target sphere-s-cross-s-xxx-exploratory-candidate
+Full-scale search: FULL-001, frontier_active, 136 generated candidates, 130 frontier records, 25 action-queue records
+```
+
+```text
+$ python scripts\run_procedure_audit.py
+LAXFORGE procedure audit
+Procedure: PROC-001 v1
+Status: pass
+Summary: 130 frontier records, 6 discard records, 0 failures, 0 warnings
+```
+
+```text
+$ python scripts\run_serious_cycle_001.py
+LAXFORGE serious cycle
+Cycle: SERIOUS-001
+Target: sphere s_cross_s_xxx exploratory candidate
+Result: blocked
+Baseline status: promising_potential
+Refreshed status: blocked_by_ansatz_obstruction
+Procedure audit: pass
+```
+
+```text
+$ python -m ruff check .
+All checks passed!
+```
+
+```text
+$ python -m pytest -q
+........................................................................ [ 64%]
+.......................................                                  [100%]
+111 passed in 127.47s (0:02:07)
+```
+
+```text
+$ python scripts\run_mkdv_validation.py
+All symbolic checks passed.
+```
+
+```text
+$ python scripts\run_discovery_search.py
+DIS-001: 4 candidates
+DIS-002: 4 candidates
+DIS-003: 128 candidates, 116 summarized after the first 12 displayed
+ITER-001: frontier_active, 130 active frontier records
+```
+
+```text
+$ python scripts\run_scaled_candidate_search.py
+LAXFORGE DIS-003 scaled candidate triage
+Run: DIS-003
+Candidates: 128
+Recommendations: {'discard': 1, 'needs_human_review': 127}
+Families: {'control': 1, 'single_factor_cross': 60, 'two_atom_blend': 67}
+```
+
+```text
+$ python scripts\build_dashboard_data.py
+Wrote dashboard data: F:\_codex\LAXFORGE\web\dashboard_data.js
+```
+
+```text
+$ node --check web\app.js
+$ node --check web\research_report.js
+```
+
+```text
+$ browser smoke for http://127.0.0.1:8765/research_report.html?v=4#report-readout
+desktop: 8 metric tiles, 8 dossier cards, 828 gate cells, 138 ledger rows, readout visible
+mobile: readout visible, 8 dossier cards, 138 ledger rows, text wraps without obvious overlap
+```
+
+```text
+$ browser smoke for http://127.0.0.1:8765/index.html?v=4
+dashboard: 14 metric cards, 8 run pills, 138 candidate cards, 5 board columns, 1656 gate cells
+mobile: filters stack, run pills wrap, candidate board remains scrollable
+```
+
+## OVERNIGHT-001 Wide Candidate Evidence Run
+
+Added and executed a wide deterministic overnight-style search over sphere-tangent descriptors. The
+run generated 1024 candidate records, all conservative: 1023 remain `needs_human_review`, and the
+single zero-flow control is `discard`. The batch is intentionally broad but shallow. It verifies
+tangent construction for the generated descriptors, records prior-family collision pressure, and leaves
+matrix-pair, spectral, gauge, cyclic, conservation, and Hamiltonian gates open until candidate-specific
+solver passes are run.
+
+```text
+$ python scripts\run_overnight_search.py
+LAXFORGE overnight candidate search
+Run: OVERNIGHT-001
+Status: frontier_active
+Candidates: 1024
+Action queue: 80
+Families: {'control': 1, 'cross_atom_blend': 386, 'scalar_weighted_cross': 385, 'two_atom_blend': 252}
+Orders: {'0': 1, '2': 4, '3': 14, '4': 30, '5': 78, '6': 268, '7': 629}
+Recommendations: {'discard': 1, 'needs_human_review': 1023}
+```
+
+```text
+$ python scripts\build_overnight_report_data.py
+Wrote overnight report data: F:\_codex\LAXFORGE\web\overnight_data.js
+```
+
+```text
+$ python scripts\run_prompt_pack_validation.py
+Overnight search:
+{'action_queue': 80,
+ 'candidate_count': 1024,
+ 'recommendations': {'discard': 1, 'needs_human_review': 1023},
+ 'run_id': 'OVERNIGHT-001',
+ 'status': 'frontier_active'}
+```
+
+```text
+$ python -m ruff check .
+All checks passed!
+```
+
+```text
+$ python -m pytest -q
+........................................................................ [ 60%]
+................................................                         [100%]
+120 passed in 129.61s (0:02:09)
+```
+
+```text
+$ python scripts\run_mkdv_validation.py
+All symbolic checks passed.
+```
+
+```text
+$ python scripts\run_discovery_search.py
+DIS-001: 4 candidates
+DIS-002: 4 candidates
+DIS-003: 128 candidates, 116 summarized after the first 12 displayed
+ITER-001: frontier_active, 130 active frontier records
+```
+
+```text
+$ python scripts\run_procedure_audit.py
+LAXFORGE procedure audit
+Procedure: PROC-001 v1
+Status: pass
+Summary: 130 frontier records, 6 discard records, 0 failures, 0 warnings
+```
+
+```text
+$ python scripts\run_serious_cycle_001.py
+LAXFORGE serious cycle
+Cycle: SERIOUS-001
+Target: sphere s_cross_s_xxx exploratory candidate
+Result: blocked
+Procedure audit: pass
+```
+
+```text
+$ python scripts\run_full_scale_search.py
+LAXFORGE full-scale search
+Run: FULL-001
+Status: frontier_active
+Generated candidates: 136
+Frontier: 130
+Discarded: 6
+```
+
+```text
+$ python scripts\build_dashboard_data.py
+Wrote dashboard data: F:\_codex\LAXFORGE\web\dashboard_data.js
+```
+
+```text
+$ node --check web\app.js
+$ node --check web\research_report.js
+$ node --check web\overnight_report.js
+```
+
+```text
+$ browser smoke for http://127.0.0.1:8765/overnight_report.html?v=3
+desktop: 12 metric cards, 4 family bars, 7 order bars, 7 gate tiles, 24 queue cards, 180 table rows
+mobile: readout wraps cleanly, 12 metric cards, 24 queue cards, 180 table rows
+```
+
+## SOLVER-CAMPAIGN-001 24-Hour Campaign Launch
+
+Added a checkpointed solver campaign runner for the current supported sphere ZCR machinery. The
+campaign repeatedly expands the overnight action queue by derivative order, records every attempted
+candidate gate, and stops only on wall-clock expiry or an automated survivor requiring human prior-art
+review. The stop condition is not an automated novelty claim.
+
+Initial smoke evidence before launch:
+
+```text
+$ python scripts\run_solver_campaign.py --hours 0.01 --target-count 600 --max-derivative-order 5 --action-queue-limit 30
+LAXFORGE solver campaign
+Run: SOLVER-CAMPAIGN-001
+Status: candidate_queue_exhausted_without_survivor
+Attempts: 33 / 33
+Automated survivor: none
+```
+
+The smoke campaign rediscovered the known Heisenberg case as `validated_known_collision`, kept
+`unit times sxxx` as `blocked_current_ansatz_family`, and marked `unit times sx` as
+`blocked_first_potential_gate`.
+
+24-hour campaign launched explicitly:
+
+```text
+Process ID: 9380
+Output directory: F:\_codex\LAXFORGE\runs\solver_campaign_24h_20260517_034143
+Started: 2026-05-17T03:41:43.4898003-07:00
+```
+
+Early checkpoint:
+
+```text
+attempt_count: 8600
+candidate_count: 8623
+rounds_completed: 16
+status: running
+survivor: null
+updated_at: 2026-05-17T03:42:04.888001-07:00
+```
+
+Validation after adding the campaign runner:
+
+```text
+$ python -m ruff check .
+All checks passed!
+```
+
+```text
+$ python -m pytest -q
+........................................................................ [ 58%]
+...................................................                      [100%]
+123 passed in 136.45s (0:02:16)
+```
+
+## Expanded Formal Ansatz Solver Remediation
+
+The first 24-hour campaign exposed a real solver limitation: high-order sphere candidates were being
+queued because the implemented solver only covered the hand-built low-order `U = lambda*hat(s)` cases.
+Remediation added a formal local-vector ansatz layer for sphere-valued flows. The new layer represents
+sphere derivative atoms, scalar invariants `<s_i,s_j>`, cross atoms, unit-sphere reductions for
+`<s,s_k>`, and coefficient splitting for polynomial-in-lambda local-vector ansatzes.
+
+New campaign launched with the expanded formal solver:
+
+```text
+Process ID: 40372
+Output directory: F:\_codex\LAXFORGE\runs\solver_campaign_24h_expanded_20260517_035240
+Started: 2026-05-17T03:52:40-07:00
+Solver: formal_sphere_ansatz_v1_fsync
+```
+
+Early expanded-solver checkpoint:
+
+```text
+attempt_count: 300
+candidate_count: 515
+rounds_completed: 0
+status: running
+survivor: null
+attempt statuses:
+  formal_ansatz_obstruction_or_gap: 297
+  blocked_current_ansatz_family: 1
+  blocked_first_potential_gate: 1
+  validated_known_collision: 1
+formal ansatz statuses:
+  no_formal_solution: 297
+```
+
+Validation after remediation:
+
+```text
+$ python -m ruff check .
+All checks passed!
+```
+
+```text
+$ python -m pytest -q
+........................................................................ [ 57%]
+......................................................                   [100%]
+126 passed in 140.86s (0:02:20)
+```
+
+## Bounded Solver Campaign Scheduler Restart
+
+The expanded formal-solver campaign did not reach the 24-hour wall-clock budget. It stopped after
+35,759 JSONL attempts when the next high-order overnight candidate batch exhausted memory while
+materializing blend descriptors. No automated survivor was recorded before the stop.
+
+Crash snapshot:
+
+```text
+Process ID: 40372
+Output directory: F:\_codex\LAXFORGE\runs\solver_campaign_24h_expanded_20260517_035240
+Last checkpoint: 2026-05-17T09:04:39.828268-07:00
+attempt_count: 35750
+attempts_jsonl_count: 35759
+rounds_completed: 69
+survivor: null
+attempt statuses:
+  formal_ansatz_obstruction_or_gap: 35756
+  blocked_current_ansatz_family: 1
+  blocked_first_potential_gate: 1
+  validated_known_collision: 1
+formal ansatz statuses:
+  skipped_too_many_unknowns: 32256
+  no_formal_solution: 3500
+```
+
+The scheduler was remediated to use bounded deterministic frontier pools instead of materializing the
+entire high-order descriptor universe each round. The ansatz gates and conservative classifications
+are unchanged.
+
+Validation after bounded-scheduler remediation:
+
+```text
+$ python -m ruff check src\laxforge\search\solver_campaign.py scripts\run_solver_campaign.py tests\test_solver_campaign.py
+All checks passed!
+```
+
+```text
+$ python -m pytest tests\test_solver_campaign.py -q
+....                                                                     [100%]
+4 passed in 5.35s
+```
+
+Replacement 24-hour campaign launched explicitly:
+
+```text
+Process ID: 13884
+Output directory: F:\_codex\LAXFORGE\runs\solver_campaign_24h_bounded_20260518_004842
+Started: 2026-05-18T00:48:42-07:00
+Solver: formal_sphere_ansatz_v1_bounded_frontier
+```
+
+Early bounded-scheduler checkpoint:
+
+```text
+attempt_count: 50
+candidate_count: 515
+rounds_completed: 0
+status: running
+survivor: null
+attempt statuses:
+  formal_ansatz_obstruction_or_gap: 53
+  blocked_current_ansatz_family: 1
+  blocked_first_potential_gate: 1
+  validated_known_collision: 1
+formal ansatz statuses:
+  no_formal_solution: 53
+```
+
+## Monitored Solver Campaign Restart
+
+The bounded scheduler was extended with a compact live-monitor snapshot writer. The monitor writes
+`web/campaign_monitor_data.json` at checkpoint cadence and the static page
+`web/campaign_monitor.html` polls that file from the local web server.
+
+Validation after monitor integration:
+
+```text
+$ python -m ruff check src\laxforge\search\solver_campaign.py scripts\run_solver_campaign.py tests\test_solver_campaign.py
+All checks passed!
+```
+
+```text
+$ python -m pytest tests\test_solver_campaign.py -q
+.....                                                                    [100%]
+5 passed in 7.10s
+```
+
+```text
+$ node --check web\campaign_monitor.js
+```
+
+Monitored 24-hour campaign launched explicitly:
+
+```text
+Process ID: 38032
+Output directory: F:\_codex\LAXFORGE\runs\solver_campaign_24h_monitored_20260518_005647
+Monitor URL: http://127.0.0.1:8765/campaign_monitor.html
+Monitor snapshot: F:\_codex\LAXFORGE\web\campaign_monitor_data.json
+Started: 2026-05-18T00:56:47-07:00
+Solver: formal_sphere_ansatz_v1_bounded_frontier_monitored
+Checkpoint cadence: 10 attempts
+```
+
+Browser smoke check:
+
+```text
+status: running
+attempts: 170
+candidates seen: 515
+survivors: 0
+known collisions: 1
+validated ZCR: 1
+```
+
+## Fresh Overnight Campaign Reset
+
+The monitored lane was reset on user request. Prior monitored/bounded campaign processes were stopped,
+the monitor snapshot was cleared, and a fresh 24-hour campaign was launched from the initial low-order
+sphere candidates.
+
+Fresh monitored campaign:
+
+```text
+Process ID: 39244
+Output directory: F:\_codex\LAXFORGE\runs\solver_campaign_overnight_fresh_20260518_013445
+Monitor URL: http://127.0.0.1:8765/campaign_monitor.html
+Monitor snapshot: F:\_codex\LAXFORGE\web\campaign_monitor_data.json
+Started: 2026-05-18T01:34:45-07:00
+Solver: formal_sphere_ansatz_v1_bounded_frontier_monitored
+Session: fresh_overnight_from_first_candidates
+```
+
+First-candidate verification:
+
+```text
+attempt 1: overnight sphere unit times sxxx -> blocked_current_ansatz_family
+attempt 2: overnight sphere unit times sxx -> validated_known_collision
+attempt 3: overnight sphere unit times sx -> blocked_first_potential_gate
+```
+
+Browser smoke check after reset:
+
+```text
+status: running
+attempts: 110
+candidates seen: 515
+survivors: 0
+known collisions: 1
+validated ZCR: 1
+```
+
+## Full-Spec Remediation Closure
+
+Implemented canonical Pydantic evidence models, complete candidate dossier serialization,
+explicit candidate artifact bundles, strategy-based symbolic constraint solving, expanded
+gauge/invariant/conservation/Hamiltonian evidence reports, broadened prior-art coverage,
+and the functional-completeness audit command.
+
+Run-matrix parity was restored: DIS-003 is now the density-matrix lane, DIS-004 covers
+nonlocal coverings, DIS-005 covers cohomological deformations, and the scaled sphere
+triage lane is now DIS-006. FULL-001 now evaluates 143 discovery candidates across
+DIS-001 through DIS-006, with 134 frontier records and 9 discard records.
+
+Monitor snapshot writes now use best-effort atomic temp-file replacement, so live-monitor
+filesystem failures do not abort solver campaigns.
+
+```text
+$ python -m ruff check .
+All checks passed!
+```
+
+```text
+$ python -m pytest -q
+........................................................................ [ 50%]
+......................................................................   [100%]
+142 passed in 142.75s (0:02:22)
+```
+
+```text
+$ python scripts/run_prompt_pack_validation.py
+Restored run-matrix discovery lanes:
+{'cohomology': ('DIS-005', 2),
+ 'density': ('DIS-003', 3),
+ 'nonlocal': ('DIS-004', 2)}
+Scaled discovery phase:
+{'candidate_count': 128,
+ 'discard_count': 1,
+ 'review_count': 127,
+ 'run_id': 'DIS-006'}
+Iterative discovery frontier: ITER-001, frontier_active, 134 queued records
+Procedure audit: PROC-001, pass, 8 checks, 0 failures, 0 warnings
+Full-scale search: FULL-001, frontier_active, 143 generated candidates, 134 frontier records
+```
+
+```text
+$ python scripts/run_functional_completeness_audit.py
+Functional Completeness Audit FUNC-COMP-001
+Status: pass
+FC-001 canonical dossier model: pass
+FC-002 dossier JSON serialization: pass
+FC-003 artifact bundle filenames: pass
+FC-004 run-matrix parity: pass
+FC-005 density and scaled lane split: pass
+FC-006 prior-art registry breadth: pass
+FC-007 runtime language guard: pass
+```
+
+```text
+$ python scripts/build_dashboard_data.py
+Wrote dashboard data: F:\_codex\LAXFORGE\web\dashboard_data.js
+```
+
+```text
+$ node --check web\app.js
+$ node --check web\research_report.js
+$ node --check web\campaign_monitor.js
+$ node --check web\overnight_report.js
+```

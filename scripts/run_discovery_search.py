@@ -5,6 +5,11 @@ from __future__ import annotations
 
 from laxforge.search.bulk import run_scaled_candidate_search
 from laxforge.search.iterative import run_iterative_discovery
+from laxforge.search.run_matrix import (
+    run_cohomological_deformation_search,
+    run_density_matrix_search,
+    run_nonlocal_covering_search,
+)
 from laxforge.search.semidirect import run_semidirect_deformation_search
 from laxforge.search.sphere import run_sphere_low_order_search
 
@@ -30,6 +35,9 @@ def main() -> None:
     print("No automatic discovery conclusions are emitted.")
     _print_run_summary(run_semidirect_deformation_search())
     _print_run_summary(run_sphere_low_order_search())
+    _print_run_summary(run_density_matrix_search())
+    _print_run_summary(run_nonlocal_covering_search())
+    _print_run_summary(run_cohomological_deformation_search())
     _print_run_summary(run_scaled_candidate_search(), limit=12)
     iterative = run_iterative_discovery()
     print(f"{iterative.run_id}: iterative discovery frontier")

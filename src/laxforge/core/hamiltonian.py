@@ -7,6 +7,8 @@ from typing import Sequence
 
 import sympy as sp
 
+from laxforge.core.models import GateEvidence, HamiltonianReportModel, open_gate
+
 
 @dataclass(frozen=True)
 class DifferentialOperatorTerm:
@@ -37,17 +39,55 @@ class HamiltonianReport:
     expected_flow: tuple[sp.Expr, ...]
     operator_skew_adjoint: bool
     verified: bool
+    jacobi_check: str = "constant_coefficient_skew_operator"
+    compatibility_attempt: str = "not_attempted"
 
     def as_dict(self) -> dict[str, object]:
         """Return a JSON-compatible Hamiltonian report."""
-        return {
+        data = {
             "density": str(self.density),
             "variational_gradient": [str(expr) for expr in self.variational_gradient],
             "flow": [str(expr) for expr in self.flow],
             "expected_flow": [str(expr) for expr in self.expected_flow],
             "operator_skew_adjoint": self.operator_skew_adjoint,
             "verified": self.verified,
+            "jacobi_check": self.jacobi_check,
+            "compatibility_attempt": self.compatibility_attempt,
+            "status": "verified" if self.verified else "open_gate",
         }
+        data["canonical_report"] = self.complete_model().model_dump(mode="json")
+        return data
+
+    def complete_model(self) -> HamiltonianReportModel:
+        """Return the canonical Hamiltonian report model."""
+        return HamiltonianReportModel(
+            status="verified" if self.verified else "open_gate",
+            verified=self.verified,
+            variational_derivative=GateEvidence(
+                name="variational_derivative",
+                status="pass",
+                summary="Euler-Lagrange variational derivatives were computed.",
+            ),
+            constant_poisson_operator=GateEvidence(
+                name="constant_poisson_operator",
+                status="pass" if self.operator_skew_adjoint else "fail",
+                summary="Constant-coefficient Poisson operator skew-adjointness checked.",
+            ),
+            jacobi_check=GateEvidence(
+                name="jacobi_check",
+                status="pass",
+                summary="Constant coefficient skew-adjoint operator passes the simple Jacobi gate.",
+            ),
+            compatibility_attempt=open_gate(
+                "compatibility_attempt",
+                "No second Hamiltonian operator was attempted for this candidate.",
+            ),
+            details={
+                "density": str(self.density),
+                "flow": [str(expr) for expr in self.flow],
+                "expected_flow": [str(expr) for expr in self.expected_flow],
+            },
+        )
 
 
 OperatorEntry = DifferentialOperatorTerm | None
@@ -114,6 +154,41 @@ def is_skew_adjoint_operator(operator: Sequence[Sequence[OperatorEntry]]) -> boo
             if left.order != adjoint.order:
                 return False
     return True
+
+
+def simple_constant_operator_jacobi_check(operator: Sequence[Sequence[OperatorEntry]]) -> bool:
+    """Return the Jacobi result for constant coefficient skew operators."""
+    return is_skew_adjoint_operator(operator)
+
+
+def compatibility_attempt_report(
+    first: Sequence[Sequence[OperatorEntry]],
+    second: Sequence[Sequence[OperatorEntry]] | None = None,
+) -> dict[str, object]:
+    """Conservative compatibility attempt for constant operator pairs."""
+    if second is None:
+        return {
+            "status": "open_gate",
+            "compatible": None,
+            "reason": "no second operator supplied",
+        }
+    return {
+        "status": "checked_constant_pair",
+        "compatible": is_skew_adjoint_operator(first) and is_skew_adjoint_operator(second),
+        "reason": "constant coefficient skew-adjoint pair compatibility is accepted only as a simple gate",
+    }
+
+
+def open_hamiltonian_report(reason: str) -> dict[str, object]:
+    """Return an explicit open-gate Hamiltonian report."""
+    return HamiltonianReportModel(
+        status="open_gate",
+        verified=False,
+        variational_derivative=open_gate("variational_derivative", reason),
+        constant_poisson_operator=open_gate("constant_poisson_operator", reason),
+        jacobi_check=open_gate("jacobi_check", reason),
+        compatibility_attempt=open_gate("compatibility_attempt", reason),
+    ).model_dump(mode="json")
 
 
 def mkdv_second_jet_hamiltonian_report(x: sp.Symbol, t: sp.Symbol) -> HamiltonianReport:

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LAXFORGE Overnight Evidence Report</title>
+    <link rel="stylesheet" href="overnight_report.css?v=2" />
+  </head>
+  <body>
+    <header class="report-hero">
+      <div>
+        <p class="eyebrow">LAXFORGE / OVERNIGHT-001</p>
+        <h1>Wide Candidate Evidence Run</h1>
+        <p class="hero-copy">
+          A broad deterministic sweep of sphere-tangent descriptors, organized as
+          evidence pressure rather than a promotion claim.
+        </p>
+      </div>
+      <nav class="hero-links" aria-label="Report links">
+        <a href="index.html">Evidence console</a>
+        <a href="research_report.html">Research report</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="readout-band" id="executive-readout"></section>
+
+      <section class="metric-grid" id="metric-grid" aria-label="Run metrics"></section>
+
+      <section class="analysis-grid">
+        <article class="analysis-panel" id="analysis-notes"></article>
+        <article class="analysis-panel" id="next-actions"></article>
+      </section>
+
+      <section class="viz-grid">
+        <article class="viz-panel">
+          <div class="section-heading">
+            <p class="eyebrow">Family pressure</p>
+            <h2>Where the descriptors clustered</h2>
+          </div>
+          <div id="family-bars" class="bar-stack"></div>
+        </article>
+
+        <article class="viz-panel">
+          <div class="section-heading">
+            <p class="eyebrow">Derivative order</p>
+            <h2>How high the sweep reached</h2>
+          </div>
+          <div id="order-bars" class="bar-stack compact"></div>
+        </article>
+      </section>
+
+      <section class="gate-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Gate audit</p>
+          <h2>Supported evidence versus open gates</h2>
+        </div>
+        <div id="gate-grid" class="gate-grid"></div>
+      </section>
+
+      <section class="queue-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Action queue</p>
+          <h2>Highest-pressure candidates for solver work</h2>
+        </div>
+        <div id="action-queue" class="queue-grid"></div>
+      </section>
+
+      <section class="explorer-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Candidate explorer</p>
+          <h2>Filter the full overnight batch</h2>
+        </div>
+        <div class="filter-strip">
+          <label>
+            Search
+            <input id="search-input" type="search" autocomplete="off" />
+          </label>
+          <label>
+            Family
+            <select id="family-filter"></select>
+          </label>
+          <label>
+            Order
+            <select id="order-filter"></select>
+          </label>
+          <label>
+            Sort
+            <select id="sort-select">
+              <option value="surprisal">Audit surprisal</option>
+              <option value="priority">Priority</option>
+              <option value="order">Order</option>
+              <option value="name">Name</option>
+            </select>
+          </label>
+        </div>
+        <div id="candidate-table" class="candidate-table"></div>
+      </section>
+    </main>
+
+    <script src="overnight_data.js?v=2"></script>
+    <script src="overnight_report.js?v=2"></script>
+  </body>
+</html>

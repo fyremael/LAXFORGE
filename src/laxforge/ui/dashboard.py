@@ -16,7 +16,14 @@ from laxforge.core.procedures import ProcedureAuditReport
 from laxforge.core.solver import recover_scalar_mkdv_v_coefficients
 from laxforge.core.zero_curvature import curvature_proof_artifact, zero_curvature
 from laxforge.search.bulk import BulkTriageCandidate, run_scaled_candidate_search
+from laxforge.search.full_scale import run_full_scale_search
 from laxforge.search.iterative import FrontierCandidate
+from laxforge.search.run_matrix import (
+    RunMatrixCandidate,
+    run_cohomological_deformation_search,
+    run_density_matrix_search,
+    run_nonlocal_covering_search,
+)
 from laxforge.search.semidirect import SemidirectDeformationCandidate, run_semidirect_deformation_search
 from laxforge.search.serious_cycle import run_serious_cycle_001
 from laxforge.search.sphere import SphereFlowCandidate, run_sphere_low_order_search
@@ -30,6 +37,8 @@ COLLISION_FAMILY_LABELS = {
     "Integrable couplings via semidirect products": "semidirect coupling",
     "KdV and mKdV scalar hierarchies": "scalar hierarchy",
     "Nilpotent and perturbation extensions": "nilpotent / perturbation",
+    "Principal chiral model and Heisenberg ferromagnet families": "Heisenberg / symmetric-space",
+    "Coadjoint-orbit and symmetric-space hierarchies": "coadjoint / symmetric-space",
 }
 
 
@@ -503,7 +512,7 @@ def _bulk_record(candidate: BulkTriageCandidate) -> dict[str, Any]:
     record: dict[str, Any] = {
         "id": _slug(candidate.name),
         "item_type": "candidate",
-        "lane": "DIS-003",
+        "lane": "DIS-006",
         "name": candidate.name,
         "short_name": candidate.name.replace("scaled sphere ", ""),
         "order": candidate.order,
@@ -518,6 +527,90 @@ def _bulk_record(candidate: BulkTriageCandidate) -> dict[str, Any]:
         "curvature_terms_total": curvature_summary.get("curvature_terms_total", 0),
         "curvature_terms_nonzero": curvature_summary.get("curvature_terms_nonzero"),
         "gauge_risk_score": gauge_risk_score,
+        "spectral_status": spectral_status,
+        "conservation_count": 0,
+        "hamiltonian_verified": False,
+        "collision_count": len(collisions),
+        "collisions": collisions,
+        "collision_families": _collision_families(collisions),
+        "failure_reasons": list(candidate.failure_reasons),
+        "gates": gates,
+        "gate_summary": _gate_summary(gates),
+        "zcr_validated": False,
+        "zcr_solution": None,
+        "zcr_constraints": [],
+        "zcr_obstruction_basis": [],
+        "cyclic_fingerprint": None,
+        "residual_grid": curvature_summary.get("entry_status_grid"),
+        "proof_summary": None,
+        "bulk_descriptor": candidate.descriptor,
+        "bulk_family": candidate.family,
+        "priority_score": candidate.priority_score,
+        "detail": {
+            "summary": candidate.failure_reasons[0] if candidate.failure_reasons else "",
+            "descriptor": candidate.descriptor,
+            "family": candidate.family,
+            "priority_score": candidate.priority_score,
+        },
+    }
+    record["surprisal"] = _audit_surprisal(record)
+    return record
+
+
+def _run_matrix_record(candidate: RunMatrixCandidate, lane: str) -> dict[str, Any]:
+    dossier = candidate.dossier
+    collision_report = dossier.collision_report
+    curvature_summary = dossier.curvature_summary
+    classification = dossier.classification.value
+    collisions = list(collision_report.get("collisions", ()))
+    spectral_status = str(candidate.gate_summary.get("spectral_parameter_status", "unknown"))
+    residual_zero = bool(curvature_summary.get("curvature_residual_zero"))
+    gates = [
+        _gate(
+            "tangent",
+            "Tangent",
+            "pass" if candidate.tangent_status in {"tangent", "zero_control"} else "warn",
+            candidate.tangent_status,
+        ),
+        _gate(
+            "curvature",
+            "Curvature",
+            _curvature_gate(candidate.connection_status, residual_zero),
+            candidate.connection_status,
+        ),
+        _gate("gauge", "Gauge", "warn", "open gate"),
+        _gate("spectral", "Spectral", _spectral_gate(spectral_status), spectral_status),
+        _gate("conservation", "Conservation", "warn", 0),
+        _gate(
+            "collision",
+            "Collision",
+            _collision_gate(classification),
+            _classification_label(classification),
+        ),
+    ]
+    short_name = (
+        candidate.name.replace("density matrix ", "")
+        .replace("nonlocal ", "")
+        .replace("cohomological ", "")
+    )
+    record: dict[str, Any] = {
+        "id": _slug(candidate.name),
+        "item_type": "candidate",
+        "lane": lane,
+        "name": candidate.name,
+        "short_name": short_name,
+        "order": candidate.order,
+        "classification": classification,
+        "classification_label": _classification_label(classification),
+        "recommendation": dossier.recommendation,
+        "disposition": dossier.recommendation,
+        "tangent_status": candidate.tangent_status,
+        "connection_status": candidate.connection_status,
+        "curvature_residual_zero": residual_zero,
+        "curvature_status": curvature_summary.get("status", candidate.connection_status),
+        "curvature_terms_total": curvature_summary.get("curvature_terms_total", 0),
+        "curvature_terms_nonzero": curvature_summary.get("curvature_terms_nonzero"),
+        "gauge_risk_score": None,
         "spectral_status": spectral_status,
         "conservation_count": 0,
         "hamiltonian_verified": False,
@@ -680,6 +773,7 @@ def _metric_cards(
     frontier_count: int,
     procedure_audit: ProcedureAuditReport,
     serious_cycle: Mapping[str, Any],
+    full_scale: Mapping[str, Any],
 ) -> list[dict[str, object]]:
     discovery_records = [record for record in records if record["item_type"] == "candidate"]
     validated_zcr = sum(1 for record in discovery_records if record.get("zcr_validated"))
@@ -776,6 +870,12 @@ def _metric_cards(
             "tone": "pass" if solve_succeeded else "warn",
         },
         {
+            "label": "Full-scale",
+            "value": full_scale.get("status", "unknown"),
+            "detail": f"{full_scale.get('generated_candidate_count', 0)} generated candidates",
+            "tone": "inspect",
+        },
+        {
             "label": "Serious cycle",
             "value": serious_cycle.get("result_status", "unknown"),
             "detail": str(serious_cycle.get("cycle_id", "SERIOUS-001")),
@@ -789,9 +889,13 @@ def _plain_summary(
     frontier_records: tuple[FrontierCandidate, ...],
 ) -> dict[str, object]:
     discovery_records = [record for record in records if record["item_type"] == "candidate"]
+    full_scale_count = len(discovery_records)
     dis001_records = [record for record in discovery_records if record["lane"] == "DIS-001"]
     dis002_records = [record for record in records if record["lane"] == "DIS-002"]
     dis003_records = [record for record in records if record["lane"] == "DIS-003"]
+    dis004_records = [record for record in records if record["lane"] == "DIS-004"]
+    dis005_records = [record for record in records if record["lane"] == "DIS-005"]
+    dis006_records = [record for record in records if record["lane"] == "DIS-006"]
     proof_ready = sum(
         1
         for record in records
@@ -834,8 +938,13 @@ def _plain_summary(
                 "case is validated but known-family collision evidence keeps it in discard."
             ),
             (
-                f"DIS-003 adds {len(dis003_records)} scaled sphere-tangent triage candidates; "
-                "the batch records descriptors and open gates without constructing ZCR matrices."
+                f"DIS-003 through DIS-005 add {len(dis003_records)} density-matrix, "
+                f"{len(dis004_records)} nonlocal-covering, and {len(dis005_records)} "
+                "cohomology probes with explicit open gates."
+            ),
+            (
+                f"DIS-006 adds {len(dis006_records)} scaled sphere-tangent triage candidates; "
+                "the batch records descriptors without constructing ZCR matrices."
             ),
             (
                 f"The frontier has {promising_count} promising-potential candidate and "
@@ -845,10 +954,14 @@ def _plain_summary(
                 f"SERIOUS-001 leaves {blocked_candidate_count} candidate blocked by a documented "
                 "ansatz-family obstruction."
             ),
-            (
-                f"{validated_known} controlled candidates have validated ZCR evidence; "
-                f"{review_count} need review and {discard_count} are discard-path."
-            ),
+        (
+            f"{validated_known} controlled candidates have validated ZCR evidence; "
+            f"{review_count} need review and {discard_count} are discard-path."
+        ),
+        (
+            f"FULL-001 evaluates {full_scale_count} discovery candidates and keeps the "
+            "solver action queue separate from stronger interpretation."
+        ),
         ],
         "bottom_line": "Use this as a process console: generate, gate, discard, and queue the next honest test.",
     }
@@ -867,14 +980,30 @@ def build_dashboard_payload() -> dict[str, Any]:
     calibration = build_mkdv_second_jet_dossier()
     semidirect_discovery = run_semidirect_deformation_search()
     discovery = run_sphere_low_order_search()
+    density_discovery = run_density_matrix_search()
+    nonlocal_discovery = run_nonlocal_covering_search()
+    cohomology_discovery = run_cohomological_deformation_search()
     scaled_discovery = run_scaled_candidate_search()
     serious_cycle = run_serious_cycle_001()
+    full_scale = run_full_scale_search()
     iterative = serious_cycle.refreshed_process
     procedure_audit = serious_cycle.refreshed_procedure
 
     items = [_pure_gauge_artifact_record(), _calibration_record(calibration)]
     items.extend(_semidirect_record(candidate) for candidate in semidirect_discovery.candidates)
     items.extend(_sphere_record(candidate) for candidate in discovery.candidates)
+    items.extend(
+        _run_matrix_record(candidate, density_discovery.run_id)
+        for candidate in density_discovery.candidates
+    )
+    items.extend(
+        _run_matrix_record(candidate, nonlocal_discovery.run_id)
+        for candidate in nonlocal_discovery.candidates
+    )
+    items.extend(
+        _run_matrix_record(candidate, cohomology_discovery.run_id)
+        for candidate in cohomology_discovery.candidates
+    )
     items.extend(_bulk_record(candidate) for candidate in scaled_discovery.candidates)
     _attach_frontier_status(items, iterative.frontier)
     proof_items = [item for item in items if item["item_type"] == "proof_artifact"]
@@ -894,7 +1023,7 @@ def build_dashboard_payload() -> dict[str, Any]:
     )
 
     payload: dict[str, Any] = {
-        "schema_version": 5,
+        "schema_version": 7,
         "title": "LAXFORGE Evidence Console",
         "posture": "generate, solve, reduce, falsify, extract structure",
         "run_ids": [
@@ -902,10 +1031,14 @@ def build_dashboard_payload() -> dict[str, Any]:
             "PROMPT-PACK",
             semidirect_discovery.run_id,
             discovery.run_id,
+            density_discovery.run_id,
+            nonlocal_discovery.run_id,
+            cohomology_discovery.run_id,
             scaled_discovery.run_id,
             iterative.run_id,
             procedure_audit.procedure_id,
             serious_cycle.cycle_id,
+            full_scale.run_id,
         ],
         "lanes": [
             {"id": "m0", "name": "M0 zero-curvature reports", "items": len(proof_items)},
@@ -918,6 +1051,21 @@ def build_dashboard_payload() -> dict[str, Any]:
             {"id": "dis-002", "name": discovery.run_id, "items": len(discovery.candidates)},
             {
                 "id": "dis-003",
+                "name": density_discovery.run_id,
+                "items": len(density_discovery.candidates),
+            },
+            {
+                "id": "dis-004",
+                "name": nonlocal_discovery.run_id,
+                "items": len(nonlocal_discovery.candidates),
+            },
+            {
+                "id": "dis-005",
+                "name": cohomology_discovery.run_id,
+                "items": len(cohomology_discovery.candidates),
+            },
+            {
+                "id": "dis-006",
                 "name": scaled_discovery.run_id,
                 "items": len(scaled_discovery.candidates),
             },
@@ -927,6 +1075,7 @@ def build_dashboard_payload() -> dict[str, Any]:
                 "items": len(procedure_audit.checks),
             },
             {"id": "serious-001", "name": serious_cycle.cycle_id, "items": 1},
+            {"id": "full-001", "name": full_scale.run_id, "items": len(full_scale.action_queue)},
         ],
         "gate_order": list(GATE_ORDER),
         "plain_summary": _plain_summary(items, iterative.frontier),
@@ -936,22 +1085,30 @@ def build_dashboard_payload() -> dict[str, Any]:
             len(iterative.frontier),
             procedure_audit,
             serious_cycle.as_dict(),
+            full_scale.as_dict(),
         ),
         "iterative_process": iterative.as_dict(),
         "procedure_audit": procedure_audit.as_dict(),
         "serious_cycle": serious_cycle.as_dict(),
+        "full_scale_search": full_scale.as_dict(),
         "metrics": {
             "tracked_items_total": len(items),
             "proof_artifact_count": len(proof_items),
             "discovery_candidate_count": len(candidate_items),
             "dis001_candidate_count": len(semidirect_discovery.candidates),
             "dis002_candidate_count": len(discovery.candidates),
-            "dis003_candidate_count": len(scaled_discovery.candidates),
+            "dis003_candidate_count": len(density_discovery.candidates),
+            "dis004_candidate_count": len(nonlocal_discovery.candidates),
+            "dis005_candidate_count": len(cohomology_discovery.candidates),
+            "dis006_candidate_count": len(scaled_discovery.candidates),
             "frontier_count": len(iterative.frontier),
             "promising_potential_count": promising_count,
             "blocked_frontier_count": blocked_count,
             "ansatz_blocked_count": ansatz_blocked_count,
             "serious_cycle_status": serious_cycle.result_status,
+            "full_scale_status": full_scale.status,
+            "full_scale_candidate_count": full_scale.generated_candidate_count,
+            "full_scale_action_queue_count": len(full_scale.action_queue),
             "procedure_audit_status": procedure_audit.status,
             "procedure_check_count": len(procedure_audit.checks),
             "procedure_failure_count": procedure_audit.failure_count,

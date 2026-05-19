@@ -235,10 +235,10 @@ def _candidate_specs(config: BulkSearchConfig) -> list[tuple[str, str, str, int,
 
 
 def run_scaled_candidate_search(config: BulkSearchConfig | None = None) -> DiscoveryRunReport:
-    """Run DIS-003 as a deterministic 100+ candidate triage batch."""
+    """Run DIS-006 as a deterministic 100+ candidate triage batch."""
     config = config or BulkSearchConfig()
     if config.target_count < 100:
-        raise ValueError("DIS-003 scaled candidate search requires at least 100 candidates")
+        raise ValueError("DIS-006 scaled candidate search requires at least 100 candidates")
 
     candidates: list[BulkTriageCandidate] = []
     if config.include_zero_control:
@@ -268,11 +268,11 @@ def run_scaled_candidate_search(config: BulkSearchConfig | None = None) -> Disco
 
     if len(candidates) < config.target_count:
         raise RuntimeError(
-            f"DIS-003 generated only {len(candidates)} candidates; requested {config.target_count}"
+            f"DIS-006 generated only {len(candidates)} candidates; requested {config.target_count}"
         )
 
     return DiscoveryRunReport(
-        run_id="DIS-003",
+        run_id="DIS-006",
         arena="scaled deterministic sphere-tangent triage search",
         candidates=tuple(candidates),
     )
@@ -304,10 +304,10 @@ def _run_markdown(report: DiscoveryRunReport) -> str:
 def write_scaled_candidate_search(
     report: DiscoveryRunReport, output_dir: str | Path, overwrite: bool = True
 ) -> Path:
-    """Write DIS-003 JSON and Markdown only when explicitly requested."""
+    """Write DIS-006 JSON and Markdown only when explicitly requested."""
     output_path = Path(output_dir)
     if output_path.exists() and any(output_path.iterdir()) and not overwrite:
-        raise FileExistsError(f"Refusing to overwrite existing DIS-003 output: {output_path}")
+        raise FileExistsError(f"Refusing to overwrite existing DIS-006 output: {output_path}")
     output_path.mkdir(parents=True, exist_ok=True)
     (output_path / "run.json").write_text(
         json.dumps(report.as_dict(), indent=2, sort_keys=True) + "\n",

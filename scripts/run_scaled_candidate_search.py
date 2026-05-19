@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Run DIS-003 scaled candidate triage without writing artifacts."""
+"""Run DIS-006 scaled candidate triage without writing artifacts."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ def main() -> None:
     report = run_scaled_candidate_search()
     recommendations = Counter(candidate.dossier.recommendation for candidate in report.candidates)
     families = Counter(candidate.family for candidate in report.candidates)
-    print("LAXFORGE DIS-003 scaled candidate triage")
+    print("LAXFORGE DIS-006 scaled candidate triage")
     print(f"Run: {report.run_id}")
     print(f"Arena: {report.arena}")
     print(f"Candidates: {len(report.candidates)}")

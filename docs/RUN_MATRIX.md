@@ -27,6 +27,7 @@
 | DIS-003 | density-matrix field | commutator + dissipative tangent terms | identify isospectral or constrained flows |
 | DIS-004 | nonlocal covering | one pseudopotential variable | test for nonlocal Lax representations |
 | DIS-005 | cohomological deformation | first-order deformation of known pair | classify nontrivial cocycles modulo gauge |
+| DIS-006 | scaled sphere-tangent triage | deterministic 100+ descriptor batch | keep breadth candidates review-only until solver gates run |
 
 ## Acceptance gates
 
@@ -37,4 +38,3 @@ A discovery run is successful only if at least one candidate has:
 3. Essential spectral parameter.
 4. At least preliminary conserved quantities.
 5. Collision report showing no immediate known equivalence.
-

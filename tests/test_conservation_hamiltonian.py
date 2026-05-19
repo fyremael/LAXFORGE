@@ -1,10 +1,17 @@
 import sympy as sp
 
-from laxforge.core.conservation import inherited_mkdv_conservation_laws
+from laxforge.core.conservation import (
+    inherited_mkdv_conservation_laws,
+    inherited_mkdv_conservation_report,
+    open_conservation_report,
+)
 from laxforge.core.hamiltonian import (
     DX,
+    compatibility_attempt_report,
     is_skew_adjoint_operator,
     mkdv_second_jet_hamiltonian_report,
+    open_hamiltonian_report,
+    simple_constant_operator_jacobi_check,
     variational_derivative,
 )
 
@@ -39,3 +46,32 @@ def test_inherited_conservation_law_expansion_returns_at_least_three_laws():
 
     assert len(laws) >= 3
     assert laws[0].name == "Q:eps^0"
+
+
+def test_conservation_report_records_method_level_evidence():
+    x, t = sp.symbols("x t")
+    report = inherited_mkdv_conservation_report(x, t)
+    model = report.complete_model()
+
+    assert model.status == "inherited_hierarchy_evidence"
+    assert "inherited_scalar_hierarchy" in model.method_evidence
+    assert model.method_evidence["trace_monodromy"].status == "open"
+    assert model.num_conservation_laws_found >= 3
+
+
+def test_open_conservation_and_hamiltonian_reports_are_explicit():
+    conservation = open_conservation_report("no matrix pair")
+    hamiltonian = open_hamiltonian_report("no variational form")
+
+    assert conservation.complete_model().status == "open_gate"
+    assert hamiltonian["status"] == "open_gate"
+    assert not hamiltonian["verified"]
+
+
+def test_constant_poisson_jacobi_and_compatibility_attempts_are_structured():
+    operator = ((None, DX), (DX, None))
+    jacobi = simple_constant_operator_jacobi_check(operator)
+    compatibility = compatibility_attempt_report(operator)
+
+    assert jacobi is True
+    assert compatibility["status"] == "open_gate"

@@ -18,18 +18,24 @@ def _item(payload, item_id):
 def test_dashboard_payload_tracks_m0_calibration_and_discovery_items():
     payload = build_dashboard_payload()
 
-    assert payload["schema_version"] == 5
-    assert payload["metrics"]["tracked_items_total"] == 138
+    assert payload["schema_version"] == 7
+    assert payload["metrics"]["tracked_items_total"] == 145
     assert payload["metrics"]["proof_artifact_count"] == 1
-    assert payload["metrics"]["discovery_candidate_count"] == 136
+    assert payload["metrics"]["discovery_candidate_count"] == 143
     assert payload["metrics"]["dis001_candidate_count"] == 4
     assert payload["metrics"]["dis002_candidate_count"] == 4
-    assert payload["metrics"]["dis003_candidate_count"] == 128
-    assert payload["metrics"]["frontier_count"] == 130
+    assert payload["metrics"]["dis003_candidate_count"] == 3
+    assert payload["metrics"]["dis004_candidate_count"] == 2
+    assert payload["metrics"]["dis005_candidate_count"] == 2
+    assert payload["metrics"]["dis006_candidate_count"] == 128
+    assert payload["metrics"]["frontier_count"] == 134
     assert payload["metrics"]["promising_potential_count"] == 1
     assert payload["metrics"]["blocked_frontier_count"] == 2
     assert payload["metrics"]["ansatz_blocked_count"] == 1
     assert payload["metrics"]["serious_cycle_status"] == "blocked"
+    assert payload["metrics"]["full_scale_status"] == "frontier_active"
+    assert payload["metrics"]["full_scale_candidate_count"] == 143
+    assert payload["metrics"]["full_scale_action_queue_count"] == 25
     assert payload["metrics"]["procedure_audit_status"] == "pass"
     assert payload["metrics"]["procedure_check_count"] == 8
     assert payload["metrics"]["procedure_failure_count"] == 0
@@ -37,6 +43,7 @@ def test_dashboard_payload_tracks_m0_calibration_and_discovery_items():
     assert payload["iterative_process"]["run_id"] == "ITER-001"
     assert payload["procedure_audit"]["procedure_id"] == "PROC-001"
     assert payload["serious_cycle"]["cycle_id"] == "SERIOUS-001"
+    assert payload["full_scale_search"]["run_id"] == "FULL-001"
     assert [item["id"] for item in payload["items"][:10]] == [
         "m0-pure-gauge-flatness-audit",
         "second-jet-nilpotent-mkdv",
@@ -49,8 +56,8 @@ def test_dashboard_payload_tracks_m0_calibration_and_discovery_items():
         "sphere-s-cross-s-xx-heisenberg-shaped-candidate",
         "sphere-s-cross-s-xxx-exploratory-candidate",
     ]
-    assert payload["items"][10]["id"] == "scaled-sphere-zero-flow-zero-connection-control"
-    assert payload["items"][-1]["lane"] == "DIS-003"
+    assert payload["items"][10]["id"] == "density-matrix-zero-commutator-control"
+    assert payload["items"][-1]["lane"] == "DIS-006"
 
 
 def test_every_dashboard_item_has_normalized_audit_fields():
@@ -78,14 +85,16 @@ def test_dashboard_payload_includes_plain_lay_summary():
     summary = payload["plain_summary"]
 
     assert "active evidence search" in summary["headline"]
-    assert "auditing 138 items" in summary["lede"]
-    assert "active frontier has 130 queued candidates" in summary["lede"]
-    assert len(summary["bullets"]) == 8
+    assert "auditing 145 items" in summary["lede"]
+    assert "active frontier has 134 queued candidates" in summary["lede"]
+    assert len(summary["bullets"]) == 10
     assert "pure-gauge proof artifact passes" in summary["bullets"][0]
     assert "formal procedure audit passes" in summary["bullets"][1]
     assert "DIS-001 has 4 semidirect probes" in summary["bullets"][2]
-    assert "DIS-003 adds 128 scaled sphere-tangent triage candidates" in summary["bullets"][4]
-    assert "SERIOUS-001 leaves 1 candidate blocked" in summary["bullets"][6]
+    assert "DIS-003 through DIS-005 add 3 density-matrix" in summary["bullets"][4]
+    assert "DIS-006 adds 128 scaled sphere-tangent triage candidates" in summary["bullets"][5]
+    assert "SERIOUS-001 leaves 1 candidate blocked" in summary["bullets"][7]
+    assert "FULL-001 evaluates 143 discovery candidates" in summary["bullets"][-1]
     assert "process console" in summary["bottom_line"]
 
 
@@ -140,8 +149,9 @@ def test_dashboard_frontier_process_tracks_queued_next_actions():
         "sphere-s-cross-s-x-tangent-candidate",
         "sphere-s-cross-s-xxx-exploratory-candidate",
     } <= frontier_ids
-    assert len(frontier) == 130
+    assert len(frontier) == 134
     assert any(record["lane"] == "DIS-003" for record in frontier)
+    assert any(record["lane"] == "DIS-006" for record in frontier)
     assert all(record["next_action"] for record in frontier)
     assert _item(payload, "sphere-s-cross-s-xxx-exploratory-candidate")[
         "frontier_status"
@@ -201,7 +211,7 @@ def test_dashboard_writer_emits_json_and_static_js(tmp_path):
     json_path = write_dashboard_data(tmp_path / "dashboard.json", payload=payload)
     js_path = write_dashboard_data_js(tmp_path / "dashboard_data.js", payload=payload)
 
-    assert json.loads(json_path.read_text(encoding="utf-8"))["schema_version"] == 5
+    assert json.loads(json_path.read_text(encoding="utf-8"))["schema_version"] == 7
     js_text = js_path.read_text(encoding="utf-8")
     assert js_text.startswith("window.LAXFORGE_DASHBOARD_DATA = ")
     assert '"LAXFORGE Evidence Console"' in js_text

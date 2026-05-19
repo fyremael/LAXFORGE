@@ -15,6 +15,9 @@ FRONTIER_STATUSES = {
     "blocked_by_missing_capability",
     "blocked_by_ansatz_obstruction",
     "needs_review",
+    "density_matrix_pending",
+    "nonlocal_covering_pending",
+    "cohomology_pending",
     "batch_triage_pending",
 }
 FRONTIER_RECOMMENDATIONS = {"needs_human_review", "blocked"}
