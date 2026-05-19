@@ -132,7 +132,8 @@ Provides coefficient algebras:
 - semidirect product algebras,
 - loop-algebra helpers.
 
-Initial implementation only needs `TruncatedPoly`.
+Current implementation includes `TruncatedPoly` and finite structure-constant
+algebra support for the DIS-001 non-split product probe.
 
 ### 5.2 `core.zero_curvature`
 
@@ -276,4 +277,3 @@ A candidate reaches publication consideration only if it has:
 - a known-hierarchy collision report,
 - a clear mathematical interpretation,
 - a concise falsifiability statement.
-

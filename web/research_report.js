@@ -241,11 +241,11 @@ function renderDossiers() {
     }),
     dossierCard({
       eyebrow: "DIS-001",
-      title: "Semidirect search is gated by coefficient algebra",
+      title: "Semidirect search has crossed the algebra gate",
       tone: "warn",
       paragraphs: [
-        "The semidirect lane has useful controls and a known split nilpotent lift, but its non-split product deformation probe cannot move until the coefficient multiplication model exists.",
-        "The blocked state is explicit: no matrix pair has been constructed, and the zero-curvature, gauge, and cyclic checks cannot honestly run until the algebra layer supports the product.",
+        "The semidirect lane has useful controls, a known split nilpotent lift, and now an associative non-split product table for the deformation probe.",
+        "The blocker moved forward: the matrix pair and curvature split are constructed, while the residual solve, gauge-preserving reductions, and structure evidence remain open gates.",
       ],
       stats: [
         ["DIS-001 items", candidateCountByLane("DIS-001")],

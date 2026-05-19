@@ -936,7 +936,7 @@ def _plain_summary(
             "The formal procedure audit passes for the current frontier and discard records.",
             (
                 f"DIS-001 has {len(dis001_records)} semidirect probes; validated controls stay "
-                "in discard and the non-split product probe remains queued for review."
+                "in discard and the non-split product probe now has constructed residual evidence."
             ),
             (
                 f"DIS-002 has {len(dis002_records)} sphere-flow candidates; the Heisenberg-shaped "

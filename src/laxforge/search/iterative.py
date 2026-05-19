@@ -255,6 +255,30 @@ def _candidate_record(candidate: Any, lane: str, iteration: int) -> FrontierCand
             ),
         )
 
+    if lane == "DIS-001" and solve_status == "residuals_unresolved_non_split_product":
+        return FrontierCandidate(
+            item_id=_slug(name),
+            name=name,
+            lane=lane,
+            iteration=iteration,
+            recommendation=recommendation,
+            classification=classification,
+            connection_status=connection_status,
+            process_disposition="frontier",
+            potential_status="needs_review",
+            priority=40,
+            next_action=(
+                "Apply a bounded coefficient solver to the constructed non-split curvature "
+                "residuals, then rerun gauge-preserving reductions."
+            ),
+            gate_gaps=tuple(candidate.failure_reasons),
+            evidence_summary=(
+                "non-split coefficient multiplication is now implemented for the probe",
+                "zero-curvature residuals are constructed and unresolved",
+                "collision checks keep integrable-coupling families active",
+            ),
+        )
+
     if lane == "DIS-002" and connection_status == "no_validated_zcr":
         order = int(getattr(candidate, "order", 99))
         priority = 68 if order == 3 else 58

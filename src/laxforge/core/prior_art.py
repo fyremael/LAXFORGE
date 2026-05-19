@@ -203,8 +203,8 @@ def classify_candidate(
             classification=CandidateClassification.NEEDS_HUMAN_REVIEW,
             collisions=tuple(dict.fromkeys(collisions)),
             checklist=(
-                "Non-split product data is not supported by the current coefficient algebra.",
-                "Do not promote without an implemented non-split algebra and zero-curvature proof.",
+                "Non-split product data must be checked against integrable-coupling families.",
+                "Do not promote without a solved zero-curvature proof and structure evidence.",
                 "Known integrable-coupling and perturbation families are collision zones.",
             ),
             novelty_status="needs_human_review",

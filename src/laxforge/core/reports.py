@@ -4,9 +4,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 import sympy as sp
 
+from laxforge.algebra.finite import FiniteAlgebraElement
 from laxforge.algebra.truncated_poly import TruncatedPoly
 
 
@@ -249,7 +251,23 @@ class CurvatureProofArtifact:
         return output_path
 
 
-def build_curvature_report(mat: list[list[TruncatedPoly]]) -> CurvatureReport:
+def _entry_basis(entry: Any) -> tuple[str, ...]:
+    if isinstance(entry, TruncatedPoly):
+        return coefficient_basis(entry.order, entry.symbol_name)
+    if isinstance(entry, FiniteAlgebraElement):
+        return entry.basis_labels
+    raise TypeError("Curvature matrix entries must be supported coefficient-algebra elements")
+
+
+def _entry_basis_key(entry: Any) -> object:
+    if isinstance(entry, TruncatedPoly):
+        return ("truncated", entry.order, entry.symbol_name)
+    if isinstance(entry, FiniteAlgebraElement):
+        return ("finite", entry.algebra)
+    raise TypeError("Curvature matrix entries must be supported coefficient-algebra elements")
+
+
+def build_curvature_report(mat: list[list[Any]]) -> CurvatureReport:
     """Build a structured report from a zero-curvature matrix."""
     if not mat or not mat[0]:
         raise ValueError("Curvature matrix must be non-empty")
@@ -257,19 +275,15 @@ def build_curvature_report(mat: list[list[TruncatedPoly]]) -> CurvatureReport:
     rows = len(mat)
     cols = len(mat[0])
     first = mat[0][0]
-    if not isinstance(first, TruncatedPoly):
-        raise TypeError("Curvature matrix entries must be TruncatedPoly instances")
-
-    basis = coefficient_basis(first.order, first.symbol_name)
+    basis = _entry_basis(first)
+    basis_key = _entry_basis_key(first)
     entries: dict[str, MatrixEntryReport] = {}
 
     for i, row in enumerate(mat):
         if len(row) != cols:
             raise ValueError("Curvature matrix must be rectangular")
         for j, entry in enumerate(row):
-            if not isinstance(entry, TruncatedPoly):
-                raise TypeError("Curvature matrix entries must be TruncatedPoly instances")
-            if entry.order != first.order or entry.symbol_name != first.symbol_name:
+            if _entry_basis_key(entry) != basis_key:
                 raise ValueError("Curvature matrix entries must share one coefficient basis")
 
             terms = []
