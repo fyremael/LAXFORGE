@@ -22,7 +22,11 @@ from laxforge.search.overnight import (
     _vector_atoms,
     run_overnight_search,
 )
-from laxforge.search.sphere_zcr import solve_heisenberg_zcr_ansatz, solve_sxxx_zcr_ansatz
+from laxforge.search.sphere_zcr import (
+    solve_heisenberg_zcr_ansatz,
+    solve_sx_zcr_ansatz,
+    solve_sxxx_zcr_ansatz,
+)
 
 
 SURVIVOR_STATUSES = {"automated_survivor_needs_human_prior_art_review"}
@@ -422,16 +426,16 @@ def _attempt_candidate(candidate: OvernightCandidate) -> SolverAttemptRecord:
                 "this is not a global falsification of all possible ZCRs",
             )
         elif candidate.vector_atom == "sx":
+            report = solve_sx_zcr_ansatz().as_dict()
+            gauge_report = report["gauge_report"]
+            cyclic_report = report["cyclic_report"]
+            spectral_status = _extract_spectral_status(gauge_report)
+            gauge_risk_score = _extract_gauge_risk(gauge_report)
+            cyclic_fingerprint = str(cyclic_report.get("fingerprint"))
             attempt_status = "blocked_first_potential_gate"
             recommendation = "blocked"
-            obstruction_basis = (
-                "coefficient lambda^1 requires a local vector potential W with D_x(W) = s cross s_x",
-                "current local basis does not provide such a potential",
-            )
-            failure_reasons = (
-                "first vector-potential gate failed for the supported U=lambda*hat(s) family",
-                "broader nonlocal or different-U ansatz families remain untested",
-            )
+            obstruction_basis = tuple(str(item) for item in report["obstruction_basis"])
+            failure_reasons = tuple(str(item) for item in report["obstruction_basis"])
     elif candidate.family in {"cross_atom_blend", "two_atom_blend", "scalar_weighted_cross"}:
         formal_report = solve_formal_sphere_ansatz(candidate, degree=3)
         formal_ansatz_status = formal_report.status

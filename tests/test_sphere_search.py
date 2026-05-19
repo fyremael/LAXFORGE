@@ -75,6 +75,17 @@ def test_heisenberg_shaped_candidate_records_collision_warnings():
     assert any("AKNS" in collision for collision in collisions)
 
 
+def test_sx_candidate_records_first_potential_gate_obstruction():
+    candidate = run_sphere_low_order_search().candidates[1]
+
+    assert candidate.dossier.recommendation == "blocked"
+    assert candidate.connection_status == "blocked_first_potential_gate"
+    assert candidate.zcr_report["validated"] is False
+    assert candidate.zcr_report["obstruction_basis"]
+    assert candidate.gate_summary["zcr_obstruction_basis"]
+    assert any("D_x(W)" in reason for reason in candidate.failure_reasons)
+
+
 def test_sxxx_candidate_records_blocked_ansatz_obstruction():
     candidate = run_sphere_low_order_search().candidates[3]
 
@@ -98,6 +109,17 @@ def test_sphere_search_config_can_limit_orders():
     report = run_sphere_low_order_search(SphereSearchConfig(max_order=1))
 
     assert tuple(candidate.order for candidate in report.candidates) == (0, 1)
+    assert report.candidates[1].connection_status == "blocked_first_potential_gate"
+
+
+def test_sphere_search_config_can_freeze_sx_before_attempt():
+    candidate = run_sphere_low_order_search(
+        SphereSearchConfig(max_order=1, attempt_sx_ansatz=False)
+    ).candidates[1]
+
+    assert candidate.dossier.recommendation == "needs_human_review"
+    assert candidate.connection_status == "no_validated_zcr"
+    assert candidate.zcr_report is None
 
 
 def test_sphere_search_config_can_freeze_sxxx_before_attempt():

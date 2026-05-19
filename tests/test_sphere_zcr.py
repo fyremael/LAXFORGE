@@ -3,6 +3,7 @@ import sympy as sp
 from laxforge.search.sphere_zcr import (
     cross_product_matrix,
     solve_heisenberg_zcr_ansatz,
+    solve_sx_zcr_ansatz,
     solve_sxxx_zcr_ansatz,
 )
 
@@ -47,6 +48,16 @@ def test_heisenberg_zcr_records_cyclic_fingerprint_and_known_collision():
     assert any("Heisenberg" in collision for collision in report.collision_report["collisions"])
 
 
+def test_sx_zcr_ansatz_records_first_potential_obstruction():
+    report = solve_sx_zcr_ansatz()
+
+    assert report.validated is False
+    assert report.formal_status == "no_formal_solution"
+    assert report.obstruction_basis
+    assert any("D_x(W)" in term for term in report.obstruction_basis)
+    assert report.cyclic_report["fingerprint"]
+
+
 def test_sxxx_zcr_ansatz_records_current_family_obstruction():
     report = solve_sxxx_zcr_ansatz()
 
@@ -62,10 +73,11 @@ def test_sxxx_zcr_ansatz_records_current_family_obstruction():
 
 
 def test_sxxx_zcr_attempt_carries_audit_evidence_without_promotion_language():
-    report = solve_sxxx_zcr_ansatz()
-    rendered = str(report.as_dict()).lower()
+    reports = (solve_sx_zcr_ansatz(), solve_sxxx_zcr_ansatz())
 
-    assert report.gauge_report
-    assert report.cyclic_report["fingerprint"]
-    assert report.collision_report["classification"] == "needs_human_review"
-    assert all(term not in rendered for term in ("novel", "publishable", "publication"))
+    for report in reports:
+        rendered = str(report.as_dict()).lower()
+        assert report.gauge_report
+        assert report.cyclic_report["fingerprint"]
+        assert report.collision_report["classification"] == "needs_human_review"
+        assert all(term not in rendered for term in ("novel", "publishable", "publication"))

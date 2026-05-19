@@ -824,38 +824,42 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "collisions": [
         "Principal chiral model and Heisenberg ferromagnet families"
       ],
-      "connection_status": "no_validated_zcr",
+      "connection_status": "blocked_first_potential_gate",
       "conservation_count": 0,
       "curvature_residual_zero": false,
-      "curvature_status": "not_constructed",
-      "curvature_terms_nonzero": null,
-      "curvature_terms_total": 0,
-      "cyclic_fingerprint": null,
+      "curvature_status": "blocked_first_potential_gate",
+      "curvature_terms_nonzero": 4,
+      "curvature_terms_total": 54,
+      "cyclic_fingerprint": "dim=1;closure_order=1;lambda_dependent=False;coeffs=(('c0', '0'),)",
       "detail": {
-        "obstruction_basis": [],
-        "summary": "no nontrivial zero-curvature representation validated",
+        "obstruction_basis": [
+          "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
+          "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
+          "current local-vector ansatz has no such local potential W",
+          "nonlocal potentials or different spatial matrices remain untested"
+        ],
+        "summary": "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
         "tangent_condition": "0"
       },
-      "disposition": "needs_human_review",
+      "disposition": "blocked",
       "failure_reasons": [
-        "no nontrivial zero-curvature representation validated",
-        "spectral parameter status unresolved",
-        "conservation and Hamiltonian evidence not mined for this candidate"
+        "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+        "current local-vector ansatz has no local potential W for that gate",
+        "nonlocal potentials or different spatial matrices remain untested"
       ],
-      "frontier_priority": 58,
-      "frontier_status": "promising_potential",
+      "frontier_priority": 42,
+      "frontier_status": "blocked_by_first_potential_gate",
       "gate_gaps": [
-        "no nontrivial zero-curvature representation validated",
-        "spectral parameter status unresolved",
-        "conservation and Hamiltonian evidence not mined",
-        "known sphere-family collision checks remain active"
+        "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+        "current local-vector ansatz has no local potential W for that gate",
+        "nonlocal potentials or different spatial matrices remain untested"
       ],
       "gate_summary": {
         "collision": "needs human review",
         "conservation": 0,
-        "curvature": "no_validated_zcr",
-        "gauge": 1.0,
-        "spectral": "absent",
+        "curvature": "blocked_first_potential_gate",
+        "gauge": 0.0,
+        "spectral": "unresolved",
         "tangent": "tangent"
       },
       "gates": [
@@ -868,20 +872,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
         {
           "key": "curvature",
           "label": "Curvature",
-          "status": "warn",
-          "value": "no_validated_zcr"
+          "status": "fail",
+          "value": "blocked_first_potential_gate"
         },
         {
           "key": "gauge",
           "label": "Gauge",
-          "status": "fail",
-          "value": 1.0
+          "status": "pass",
+          "value": 0.0
         },
         {
           "key": "spectral",
           "label": "Spectral",
-          "status": "fail",
-          "value": "absent"
+          "status": "warn",
+          "value": "unresolved"
         },
         {
           "key": "conservation",
@@ -896,32 +900,42 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "value": "needs human review"
         }
       ],
-      "gauge_risk_score": 1.0,
+      "gauge_risk_score": 0.0,
       "hamiltonian_verified": false,
       "id": "sphere-s-cross-s-x-tangent-candidate",
       "item_type": "candidate",
       "lane": "DIS-002",
       "name": "sphere s_cross_s_x tangent candidate",
-      "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
+      "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect blocker is addressed.",
       "order": 1,
       "proof_summary": null,
-      "recommendation": "needs_human_review",
+      "recommendation": "blocked",
       "residual_grid": null,
       "short_name": "s_cross_s_x",
-      "spectral_status": "absent",
+      "spectral_status": "unresolved",
       "surprisal": {
-        "band": "baseline",
+        "band": "inspect",
         "drivers": [
           "tangent constraint passed",
-          "no spectral data",
-          "high gauge risk",
-          "human review required"
+          "spectral parameter unresolved",
+          "low gauge risk"
         ],
-        "score": 13
+        "score": 45
       },
       "tangent_status": "tangent",
-      "zcr_constraints": [],
-      "zcr_obstruction_basis": [],
+      "zcr_constraints": [
+        "s_t = s cross s_x",
+        "s dot s = 1",
+        "s dot s_x = 0",
+        "[hat(a), hat(b)] = hat(a cross b)",
+        "formal local-vector basis over sphere derivative atoms and scalar invariants"
+      ],
+      "zcr_obstruction_basis": [
+        "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
+        "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
+        "current local-vector ansatz has no such local potential W",
+        "nonlocal potentials or different spatial matrices remain untested"
+      ],
       "zcr_solution": null,
       "zcr_validated": false
     },
@@ -16888,30 +16902,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "action_queue": [
       {
         "classification": "needs_human_review",
-        "connection_status": "no_validated_zcr",
-        "evidence_summary": [
-          "sphere constraint tangent condition passed",
-          "candidate is deterministic and low order",
-          "not discarded because a ZCR attempt has not yet falsified it"
-        ],
-        "gate_gaps": [
-          "no nontrivial zero-curvature representation validated",
-          "spectral parameter status unresolved",
-          "conservation and Hamiltonian evidence not mined",
-          "known sphere-family collision checks remain active"
-        ],
-        "item_id": "sphere-s-cross-s-x-tangent-candidate",
-        "iteration": 1,
-        "lane": "DIS-002",
-        "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-        "potential_status": "promising_potential",
-        "priority": 58,
-        "process_disposition": "frontier",
-        "recommendation": "needs_human_review"
-      },
-      {
-        "classification": "needs_human_review",
         "connection_status": "not_constructed",
         "evidence_summary": [
           "semidirect deformation probe remains structurally interesting",
@@ -16931,6 +16921,29 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "priority": 54,
         "process_disposition": "frontier",
         "recommendation": "needs_human_review"
+      },
+      {
+        "classification": "needs_human_review",
+        "connection_status": "blocked_first_potential_gate",
+        "evidence_summary": [
+          "first local-vector potential gate is obstructed",
+          "D_x(W) = s cross s_x has no current local-basis witness",
+          "nonlocal and different-U families remain open"
+        ],
+        "gate_gaps": [
+          "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+          "current local-vector ansatz has no local potential W for that gate",
+          "nonlocal potentials or different spatial matrices remain untested"
+        ],
+        "item_id": "sphere-s-cross-s-x-tangent-candidate",
+        "iteration": 1,
+        "lane": "DIS-002",
+        "name": "sphere s_cross_s_x tangent candidate",
+        "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect blocker is addressed.",
+        "potential_status": "blocked_by_first_potential_gate",
+        "priority": 42,
+        "process_disposition": "frontier",
+        "recommendation": "blocked"
       },
       {
         "classification": "needs_human_review",
@@ -17608,27 +17621,26 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "no_validated_zcr",
+          "connection_status": "blocked_first_potential_gate",
           "evidence_summary": [
-            "sphere constraint tangent condition passed",
-            "candidate is deterministic and low order",
-            "not discarded because a ZCR attempt has not yet falsified it"
+            "first local-vector potential gate is obstructed",
+            "D_x(W) = s cross s_x has no current local-basis witness",
+            "nonlocal and different-U families remain open"
           ],
           "gate_gaps": [
-            "no nontrivial zero-curvature representation validated",
-            "spectral parameter status unresolved",
-            "conservation and Hamiltonian evidence not mined",
-            "known sphere-family collision checks remain active"
+            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+            "current local-vector ansatz has no local potential W for that gate",
+            "nonlocal potentials or different spatial matrices remain untested"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-          "potential_status": "promising_potential",
-          "priority": 58,
+          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect blocker is addressed.",
+          "potential_status": "blocked_by_first_potential_gate",
+          "priority": 42,
           "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
+          "recommendation": "blocked"
         },
         {
           "classification": "known",
@@ -21090,30 +21102,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "frontier": [
         {
           "classification": "needs_human_review",
-          "connection_status": "no_validated_zcr",
-          "evidence_summary": [
-            "sphere constraint tangent condition passed",
-            "candidate is deterministic and low order",
-            "not discarded because a ZCR attempt has not yet falsified it"
-          ],
-          "gate_gaps": [
-            "no nontrivial zero-curvature representation validated",
-            "spectral parameter status unresolved",
-            "conservation and Hamiltonian evidence not mined",
-            "known sphere-family collision checks remain active"
-          ],
-          "item_id": "sphere-s-cross-s-x-tangent-candidate",
-          "iteration": 1,
-          "lane": "DIS-002",
-          "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-          "potential_status": "promising_potential",
-          "priority": 58,
-          "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
-        },
-        {
-          "classification": "needs_human_review",
           "connection_status": "not_constructed",
           "evidence_summary": [
             "semidirect deformation probe remains structurally interesting",
@@ -21133,6 +21121,29 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "priority": 54,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
+        },
+        {
+          "classification": "needs_human_review",
+          "connection_status": "blocked_first_potential_gate",
+          "evidence_summary": [
+            "first local-vector potential gate is obstructed",
+            "D_x(W) = s cross s_x has no current local-basis witness",
+            "nonlocal and different-U families remain open"
+          ],
+          "gate_gaps": [
+            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+            "current local-vector ansatz has no local potential W for that gate",
+            "nonlocal potentials or different spatial matrices remain untested"
+          ],
+          "item_id": "sphere-s-cross-s-x-tangent-candidate",
+          "iteration": 1,
+          "lane": "DIS-002",
+          "name": "sphere s_cross_s_x tangent candidate",
+          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect blocker is addressed.",
+          "potential_status": "blocked_by_first_potential_gate",
+          "priority": 42,
+          "process_disposition": "frontier",
+          "recommendation": "blocked"
         },
         {
           "classification": "needs_human_review",
@@ -24450,8 +24461,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-zero-flow-zero-connection-control"
           ],
           "frontier_ids": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -24601,8 +24612,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "candidates_seen": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -24738,8 +24749,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
           ],
           "discarded_ids": [],
           "frontier_ids": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -25669,9 +25680,9 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "warning_count": 0
     },
     "recommendation_counts": {
-      "blocked": 1,
+      "blocked": 2,
       "discard": 9,
-      "needs_human_review": 133
+      "needs_human_review": 132
     },
     "run_id": "FULL-001",
     "status": "frontier_active",
@@ -26519,38 +26530,42 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "collisions": [
         "Principal chiral model and Heisenberg ferromagnet families"
       ],
-      "connection_status": "no_validated_zcr",
+      "connection_status": "blocked_first_potential_gate",
       "conservation_count": 0,
       "curvature_residual_zero": false,
-      "curvature_status": "not_constructed",
-      "curvature_terms_nonzero": null,
-      "curvature_terms_total": 0,
-      "cyclic_fingerprint": null,
+      "curvature_status": "blocked_first_potential_gate",
+      "curvature_terms_nonzero": 4,
+      "curvature_terms_total": 54,
+      "cyclic_fingerprint": "dim=1;closure_order=1;lambda_dependent=False;coeffs=(('c0', '0'),)",
       "detail": {
-        "obstruction_basis": [],
-        "summary": "no nontrivial zero-curvature representation validated",
+        "obstruction_basis": [
+          "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
+          "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
+          "current local-vector ansatz has no such local potential W",
+          "nonlocal potentials or different spatial matrices remain untested"
+        ],
+        "summary": "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
         "tangent_condition": "0"
       },
-      "disposition": "needs_human_review",
+      "disposition": "blocked",
       "failure_reasons": [
-        "no nontrivial zero-curvature representation validated",
-        "spectral parameter status unresolved",
-        "conservation and Hamiltonian evidence not mined for this candidate"
+        "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+        "current local-vector ansatz has no local potential W for that gate",
+        "nonlocal potentials or different spatial matrices remain untested"
       ],
-      "frontier_priority": 58,
-      "frontier_status": "promising_potential",
+      "frontier_priority": 42,
+      "frontier_status": "blocked_by_first_potential_gate",
       "gate_gaps": [
-        "no nontrivial zero-curvature representation validated",
-        "spectral parameter status unresolved",
-        "conservation and Hamiltonian evidence not mined",
-        "known sphere-family collision checks remain active"
+        "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+        "current local-vector ansatz has no local potential W for that gate",
+        "nonlocal potentials or different spatial matrices remain untested"
       ],
       "gate_summary": {
         "collision": "needs human review",
         "conservation": 0,
-        "curvature": "no_validated_zcr",
-        "gauge": 1.0,
-        "spectral": "absent",
+        "curvature": "blocked_first_potential_gate",
+        "gauge": 0.0,
+        "spectral": "unresolved",
         "tangent": "tangent"
       },
       "gates": [
@@ -26563,20 +26578,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
         {
           "key": "curvature",
           "label": "Curvature",
-          "status": "warn",
-          "value": "no_validated_zcr"
+          "status": "fail",
+          "value": "blocked_first_potential_gate"
         },
         {
           "key": "gauge",
           "label": "Gauge",
-          "status": "fail",
-          "value": 1.0
+          "status": "pass",
+          "value": 0.0
         },
         {
           "key": "spectral",
           "label": "Spectral",
-          "status": "fail",
-          "value": "absent"
+          "status": "warn",
+          "value": "unresolved"
         },
         {
           "key": "conservation",
@@ -26591,32 +26606,42 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "value": "needs human review"
         }
       ],
-      "gauge_risk_score": 1.0,
+      "gauge_risk_score": 0.0,
       "hamiltonian_verified": false,
       "id": "sphere-s-cross-s-x-tangent-candidate",
       "item_type": "candidate",
       "lane": "DIS-002",
       "name": "sphere s_cross_s_x tangent candidate",
-      "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
+      "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect blocker is addressed.",
       "order": 1,
       "proof_summary": null,
-      "recommendation": "needs_human_review",
+      "recommendation": "blocked",
       "residual_grid": null,
       "short_name": "s_cross_s_x",
-      "spectral_status": "absent",
+      "spectral_status": "unresolved",
       "surprisal": {
-        "band": "baseline",
+        "band": "inspect",
         "drivers": [
           "tangent constraint passed",
-          "no spectral data",
-          "high gauge risk",
-          "human review required"
+          "spectral parameter unresolved",
+          "low gauge risk"
         ],
-        "score": 13
+        "score": 45
       },
       "tangent_status": "tangent",
-      "zcr_constraints": [],
-      "zcr_obstruction_basis": [],
+      "zcr_constraints": [
+        "s_t = s cross s_x",
+        "s dot s = 1",
+        "s dot s_x = 0",
+        "[hat(a), hat(b)] = hat(a cross b)",
+        "formal local-vector basis over sphere derivative atoms and scalar invariants"
+      ],
+      "zcr_obstruction_basis": [
+        "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
+        "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
+        "current local-vector ansatz has no such local potential W",
+        "nonlocal potentials or different spatial matrices remain untested"
+      ],
       "zcr_solution": null,
       "zcr_validated": false
     },
@@ -42468,27 +42493,26 @@ window.LAXFORGE_DASHBOARD_DATA = {
       },
       {
         "classification": "needs_human_review",
-        "connection_status": "no_validated_zcr",
+        "connection_status": "blocked_first_potential_gate",
         "evidence_summary": [
-          "sphere constraint tangent condition passed",
-          "candidate is deterministic and low order",
-          "not discarded because a ZCR attempt has not yet falsified it"
+          "first local-vector potential gate is obstructed",
+          "D_x(W) = s cross s_x has no current local-basis witness",
+          "nonlocal and different-U families remain open"
         ],
         "gate_gaps": [
-          "no nontrivial zero-curvature representation validated",
-          "spectral parameter status unresolved",
-          "conservation and Hamiltonian evidence not mined",
-          "known sphere-family collision checks remain active"
+          "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+          "current local-vector ansatz has no local potential W for that gate",
+          "nonlocal potentials or different spatial matrices remain untested"
         ],
         "item_id": "sphere-s-cross-s-x-tangent-candidate",
         "iteration": 1,
         "lane": "DIS-002",
         "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-        "potential_status": "promising_potential",
-        "priority": 58,
+        "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect blocker is addressed.",
+        "potential_status": "blocked_by_first_potential_gate",
+        "priority": 42,
         "process_disposition": "frontier",
-        "recommendation": "needs_human_review"
+        "recommendation": "blocked"
       },
       {
         "classification": "known",
@@ -45950,30 +45974,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "frontier": [
       {
         "classification": "needs_human_review",
-        "connection_status": "no_validated_zcr",
-        "evidence_summary": [
-          "sphere constraint tangent condition passed",
-          "candidate is deterministic and low order",
-          "not discarded because a ZCR attempt has not yet falsified it"
-        ],
-        "gate_gaps": [
-          "no nontrivial zero-curvature representation validated",
-          "spectral parameter status unresolved",
-          "conservation and Hamiltonian evidence not mined",
-          "known sphere-family collision checks remain active"
-        ],
-        "item_id": "sphere-s-cross-s-x-tangent-candidate",
-        "iteration": 1,
-        "lane": "DIS-002",
-        "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-        "potential_status": "promising_potential",
-        "priority": 58,
-        "process_disposition": "frontier",
-        "recommendation": "needs_human_review"
-      },
-      {
-        "classification": "needs_human_review",
         "connection_status": "not_constructed",
         "evidence_summary": [
           "semidirect deformation probe remains structurally interesting",
@@ -45993,6 +45993,29 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "priority": 54,
         "process_disposition": "frontier",
         "recommendation": "needs_human_review"
+      },
+      {
+        "classification": "needs_human_review",
+        "connection_status": "blocked_first_potential_gate",
+        "evidence_summary": [
+          "first local-vector potential gate is obstructed",
+          "D_x(W) = s cross s_x has no current local-basis witness",
+          "nonlocal and different-U families remain open"
+        ],
+        "gate_gaps": [
+          "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+          "current local-vector ansatz has no local potential W for that gate",
+          "nonlocal potentials or different spatial matrices remain untested"
+        ],
+        "item_id": "sphere-s-cross-s-x-tangent-candidate",
+        "iteration": 1,
+        "lane": "DIS-002",
+        "name": "sphere s_cross_s_x tangent candidate",
+        "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect blocker is addressed.",
+        "potential_status": "blocked_by_first_potential_gate",
+        "priority": 42,
+        "process_disposition": "frontier",
+        "recommendation": "blocked"
       },
       {
         "classification": "needs_human_review",
@@ -49310,8 +49333,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "scaled-sphere-zero-flow-zero-connection-control"
         ],
         "frontier_ids": [
-          "sphere-s-cross-s-x-tangent-candidate",
           "semidirect-non-split-product-deformation-probe",
+          "sphere-s-cross-s-x-tangent-candidate",
           "scaled-sphere-unit-times-sxxxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -49461,8 +49484,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
       },
       {
         "candidates_seen": [
-          "sphere-s-cross-s-x-tangent-candidate",
           "semidirect-non-split-product-deformation-probe",
+          "sphere-s-cross-s-x-tangent-candidate",
           "scaled-sphere-unit-times-sxxxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -49598,8 +49621,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
         ],
         "discarded_ids": [],
         "frontier_ids": [
-          "sphere-s-cross-s-x-tangent-candidate",
           "semidirect-non-split-product-deformation-probe",
+          "sphere-s-cross-s-x-tangent-candidate",
           "scaled-sphere-unit-times-sxxxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -49821,7 +49844,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": "open candidate dossiers",
       "label": "Needs review",
       "tone": "warn",
-      "value": 133
+      "value": 132
     },
     {
       "detail": "promising potential queue",
@@ -49833,7 +49856,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": "documented obstructions",
       "label": "Blocked",
       "tone": "warn",
-      "value": 1
+      "value": 2
     },
     {
       "detail": "0 fail / 0 warn",
@@ -49893,7 +49916,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
   "metrics": {
     "ansatz_blocked_count": 1,
     "ansatz_solver_status": "solved",
-    "blocked_frontier_count": 2,
+    "blocked_frontier_count": 3,
     "classification_counts": {
       "fake": 7,
       "known collision": 1,
@@ -49924,19 +49947,19 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "warn": 144
       },
       "curvature": {
-        "fail": 134,
+        "fail": 135,
         "pass": 10,
-        "warn": 1
+        "warn": 0
       },
       "gauge": {
-        "fail": 3,
-        "pass": 4,
+        "fail": 2,
+        "pass": 5,
         "warn": 138
       },
       "spectral": {
-        "fail": 3,
+        "fail": 2,
         "pass": 0,
-        "warn": 142
+        "warn": 143
       },
       "tangent": {
         "fail": 0,
@@ -49954,14 +49977,14 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "procedure_check_count": 8,
     "procedure_failure_count": 0,
     "procedure_warning_count": 0,
-    "promising_potential_count": 1,
+    "promising_potential_count": 0,
     "proof_artifact_count": 1,
     "recommendation_counts": {
       "audit": 1,
-      "blocked": 1,
+      "blocked": 2,
       "calibration": 1,
       "discard": 9,
-      "needs_human_review": 133
+      "needs_human_review": 132
     },
     "serious_cycle_status": "blocked",
     "tracked_items_total": 145,
@@ -49976,9 +49999,9 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "DIS-002 has 4 sphere-flow candidates; the Heisenberg-shaped case is validated but known-family collision evidence keeps it in discard.",
       "DIS-003 through DIS-005 add 3 density-matrix, 2 nonlocal-covering, and 2 cohomology probes with explicit open gates.",
       "DIS-006 adds 128 scaled sphere-tangent triage candidates; the batch records descriptors without constructing ZCR matrices.",
-      "The frontier has 1 promising-potential candidate and 2 blocked candidates.",
-      "SERIOUS-001 leaves 1 candidate blocked by a documented ansatz-family obstruction.",
-      "2 controlled candidates have validated ZCR evidence; 133 need review and 9 are discard-path.",
+      "The frontier has 0 promising-potential candidates and 3 blocked candidates.",
+      "SERIOUS-001 leaves 1 third-order candidate blocked by a documented ansatz-family obstruction; the broader discovery state has 2 blocked candidates total.",
+      "2 controlled candidates have validated ZCR evidence; 132 need review and 9 are discard-path.",
       "FULL-001 evaluates 143 discovery candidates and keeps the solver action queue separate from stronger interpretation."
     ],
     "headline": "Current readout: this is an active evidence search with a bounded frontier.",
@@ -51799,27 +51822,26 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "no_validated_zcr",
+          "connection_status": "blocked_first_potential_gate",
           "evidence_summary": [
-            "sphere constraint tangent condition passed",
-            "candidate is deterministic and low order",
-            "not discarded because a ZCR attempt has not yet falsified it"
+            "first local-vector potential gate is obstructed",
+            "D_x(W) = s cross s_x has no current local-basis witness",
+            "nonlocal and different-U families remain open"
           ],
           "gate_gaps": [
-            "no nontrivial zero-curvature representation validated",
-            "spectral parameter status unresolved",
-            "conservation and Hamiltonian evidence not mined",
-            "known sphere-family collision checks remain active"
+            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+            "current local-vector ansatz has no local potential W for that gate",
+            "nonlocal potentials or different spatial matrices remain untested"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-          "potential_status": "promising_potential",
-          "priority": 58,
+          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect blocker is addressed.",
+          "potential_status": "blocked_by_first_potential_gate",
+          "priority": 42,
           "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
+          "recommendation": "blocked"
         },
         {
           "classification": "known",
@@ -55307,30 +55329,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "no_validated_zcr",
-          "evidence_summary": [
-            "sphere constraint tangent condition passed",
-            "candidate is deterministic and low order",
-            "not discarded because a ZCR attempt has not yet falsified it"
-          ],
-          "gate_gaps": [
-            "no nontrivial zero-curvature representation validated",
-            "spectral parameter status unresolved",
-            "conservation and Hamiltonian evidence not mined",
-            "known sphere-family collision checks remain active"
-          ],
-          "item_id": "sphere-s-cross-s-x-tangent-candidate",
-          "iteration": 1,
-          "lane": "DIS-002",
-          "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-          "potential_status": "promising_potential",
-          "priority": 58,
-          "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
-        },
-        {
-          "classification": "needs_human_review",
           "connection_status": "not_constructed",
           "evidence_summary": [
             "semidirect deformation probe remains structurally interesting",
@@ -55350,6 +55348,29 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "priority": 54,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
+        },
+        {
+          "classification": "needs_human_review",
+          "connection_status": "blocked_first_potential_gate",
+          "evidence_summary": [
+            "first local-vector potential gate is obstructed",
+            "D_x(W) = s cross s_x has no current local-basis witness",
+            "nonlocal and different-U families remain open"
+          ],
+          "gate_gaps": [
+            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+            "current local-vector ansatz has no local potential W for that gate",
+            "nonlocal potentials or different spatial matrices remain untested"
+          ],
+          "item_id": "sphere-s-cross-s-x-tangent-candidate",
+          "iteration": 1,
+          "lane": "DIS-002",
+          "name": "sphere s_cross_s_x tangent candidate",
+          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect blocker is addressed.",
+          "potential_status": "blocked_by_first_potential_gate",
+          "priority": 42,
+          "process_disposition": "frontier",
+          "recommendation": "blocked"
         },
         {
           "classification": "needs_human_review",
@@ -58646,8 +58667,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
           ],
           "frontier_ids": [
             "sphere-s-cross-s-xxx-exploratory-candidate",
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -58797,8 +58818,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
         {
           "candidates_seen": [
             "sphere-s-cross-s-xxx-exploratory-candidate",
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -58934,8 +58955,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "discarded_ids": [],
           "frontier_ids": [
             "sphere-s-cross-s-xxx-exploratory-candidate",
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -59962,27 +59983,26 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "no_validated_zcr",
+          "connection_status": "blocked_first_potential_gate",
           "evidence_summary": [
-            "sphere constraint tangent condition passed",
-            "candidate is deterministic and low order",
-            "not discarded because a ZCR attempt has not yet falsified it"
+            "first local-vector potential gate is obstructed",
+            "D_x(W) = s cross s_x has no current local-basis witness",
+            "nonlocal and different-U families remain open"
           ],
           "gate_gaps": [
-            "no nontrivial zero-curvature representation validated",
-            "spectral parameter status unresolved",
-            "conservation and Hamiltonian evidence not mined",
-            "known sphere-family collision checks remain active"
+            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+            "current local-vector ansatz has no local potential W for that gate",
+            "nonlocal potentials or different spatial matrices remain untested"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-          "potential_status": "promising_potential",
-          "priority": 58,
+          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect blocker is addressed.",
+          "potential_status": "blocked_by_first_potential_gate",
+          "priority": 42,
           "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
+          "recommendation": "blocked"
         },
         {
           "classification": "known",
@@ -63444,30 +63464,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "frontier": [
         {
           "classification": "needs_human_review",
-          "connection_status": "no_validated_zcr",
-          "evidence_summary": [
-            "sphere constraint tangent condition passed",
-            "candidate is deterministic and low order",
-            "not discarded because a ZCR attempt has not yet falsified it"
-          ],
-          "gate_gaps": [
-            "no nontrivial zero-curvature representation validated",
-            "spectral parameter status unresolved",
-            "conservation and Hamiltonian evidence not mined",
-            "known sphere-family collision checks remain active"
-          ],
-          "item_id": "sphere-s-cross-s-x-tangent-candidate",
-          "iteration": 1,
-          "lane": "DIS-002",
-          "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-          "potential_status": "promising_potential",
-          "priority": 58,
-          "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
-        },
-        {
-          "classification": "needs_human_review",
           "connection_status": "not_constructed",
           "evidence_summary": [
             "semidirect deformation probe remains structurally interesting",
@@ -63487,6 +63483,29 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "priority": 54,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
+        },
+        {
+          "classification": "needs_human_review",
+          "connection_status": "blocked_first_potential_gate",
+          "evidence_summary": [
+            "first local-vector potential gate is obstructed",
+            "D_x(W) = s cross s_x has no current local-basis witness",
+            "nonlocal and different-U families remain open"
+          ],
+          "gate_gaps": [
+            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+            "current local-vector ansatz has no local potential W for that gate",
+            "nonlocal potentials or different spatial matrices remain untested"
+          ],
+          "item_id": "sphere-s-cross-s-x-tangent-candidate",
+          "iteration": 1,
+          "lane": "DIS-002",
+          "name": "sphere s_cross_s_x tangent candidate",
+          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect blocker is addressed.",
+          "potential_status": "blocked_by_first_potential_gate",
+          "priority": 42,
+          "process_disposition": "frontier",
+          "recommendation": "blocked"
         },
         {
           "classification": "needs_human_review",
@@ -66804,8 +66823,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-zero-flow-zero-connection-control"
           ],
           "frontier_ids": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -66955,8 +66974,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "candidates_seen": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -67092,8 +67111,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
           ],
           "discarded_ids": [],
           "frontier_ids": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
