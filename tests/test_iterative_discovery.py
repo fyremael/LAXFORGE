@@ -21,8 +21,8 @@ def test_iterative_discovery_builds_repeatable_frontier():
         "semidirect-non-split-product-deformation-probe",
         "scaled-sphere-unit-times-sxxxxx",
     ]
-    assert len(report.all_records) == 136
-    assert len(report.frontier) == 130
+    assert len(report.all_records) == 143
+    assert len(report.frontier) == 134
 
 
 def test_iterative_discovery_discards_controls_and_known_collisions():
@@ -49,6 +49,9 @@ def test_iterative_frontier_records_next_gate_gaps():
             "promising_potential",
             "blocked_by_missing_capability",
             "blocked_by_ansatz_obstruction",
+            "density_matrix_pending",
+            "nonlocal_covering_pending",
+            "cohomology_pending",
             "batch_triage_pending",
         }
 
@@ -72,11 +75,19 @@ def test_iterative_serious_attempt_blocks_sxxx_and_advances_next_candidate():
     assert sxxx.recommendation == "blocked"
     assert sxxx.potential_status == "blocked_by_ansatz_obstruction"
     assert any(record.lane == "DIS-003" for record in report.frontier)
+    assert any(record.lane == "DIS-006" for record in report.frontier)
 
 
 def test_iterative_config_can_disable_one_lane_and_limit_iterations():
     report = run_iterative_discovery(
-        DiscoveryIterationConfig(max_iterations=1, include_dis001=False, include_dis003=False)
+        DiscoveryIterationConfig(
+            max_iterations=1,
+            include_dis001=False,
+            include_dis003=False,
+            include_dis004=False,
+            include_dis005=False,
+            include_dis006=False,
+        )
     )
 
     assert len(report.iterations) == 1

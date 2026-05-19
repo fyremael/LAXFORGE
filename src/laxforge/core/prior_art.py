@@ -53,12 +53,71 @@ class PriorArtCollisionReport:
 def default_prior_art_registry() -> tuple[PriorArtFamily, ...]:
     """Return the built-in conservative known-family registry."""
     return (
-        PriorArtFamily("AKNS / Zakharov-Shabat", ("akns", "sl2", "spectral-parameter"), "standard source of mKdV/NLS pairs"),
-        PriorArtFamily("KdV and mKdV scalar hierarchies", ("mkdv", "kdv", "scalar-hierarchy"), "direct hierarchy collision zone"),
-        PriorArtFamily("Heisenberg ferromagnet and symmetric-space systems", ("heisenberg", "sphere", "symmetric-space"), "sphere-valued cross-product flows are a known collision zone"),
-        PriorArtFamily("Nilpotent and perturbation extensions", ("nilpotent-lift", "jet-extension"), "known mechanism for coupled perturbation systems"),
-        PriorArtFamily("Integrable couplings via semidirect products", ("integrable-coupling", "semidirect"), "common source of triangular or perturbative lifts"),
-        PriorArtFamily("Vector and matrix mKdV systems", ("vector-mkdv", "matrix-mkdv"), "possible multicomponent collision zone"),
+        PriorArtFamily(
+            "AKNS / Zakharov-Shabat",
+            ("akns", "sl2", "spectral-parameter"),
+            "standard source of mKdV/NLS pairs",
+        ),
+        PriorArtFamily(
+            "KdV and mKdV scalar hierarchies",
+            ("mkdv", "kdv", "scalar-hierarchy"),
+            "direct hierarchy collision zone",
+        ),
+        PriorArtFamily(
+            "Nonlinear Schrodinger hierarchy",
+            ("nls", "akns", "schrodinger"),
+            "AKNS reduction collision zone",
+        ),
+        PriorArtFamily(
+            "sine-Gordon and affine Toda systems",
+            ("sine-gordon", "toda", "affine-toda"),
+            "standard zero-curvature hierarchy collision zone",
+        ),
+        PriorArtFamily(
+            "KP and Gelfand-Dickey hierarchies",
+            ("kp", "gelfand-dickey", "pseudo-differential"),
+            "scalar operator hierarchy collision zone",
+        ),
+        PriorArtFamily(
+            "Drinfeld-Sokolov reductions",
+            ("drinfeld-sokolov", "ds-reduction"),
+            "graded Lie algebra reduction collision zone",
+        ),
+        PriorArtFamily(
+            "Vector and matrix mKdV systems",
+            ("vector-mkdv", "matrix-mkdv"),
+            "possible multicomponent collision zone",
+        ),
+        PriorArtFamily(
+            "Integrable couplings via semidirect products",
+            ("integrable-coupling", "semidirect"),
+            "common source of triangular or perturbative lifts",
+        ),
+        PriorArtFamily(
+            "Nilpotent and perturbation extensions",
+            ("nilpotent-lift", "jet-extension"),
+            "known mechanism for coupled perturbation systems",
+        ),
+        PriorArtFamily(
+            "Supersymmetric and graded extensions",
+            ("supersymmetric", "graded", "super"),
+            "graded extension collision zone",
+        ),
+        PriorArtFamily(
+            "Nonlocal coverings and pseudopotentials",
+            ("nonlocal", "covering", "pseudopotential"),
+            "nonlocal Lax representation collision zone",
+        ),
+        PriorArtFamily(
+            "Principal chiral model and Heisenberg ferromagnet families",
+            ("principal-chiral", "heisenberg", "sphere"),
+            "sphere and chiral-model collision zone",
+        ),
+        PriorArtFamily(
+            "Coadjoint-orbit and symmetric-space hierarchies",
+            ("coadjoint-orbit", "symmetric-space", "stiefel"),
+            "geometry-constrained hierarchy collision zone",
+        ),
     )
 
 
@@ -69,7 +128,7 @@ def nilpotent_collision_checklist() -> tuple[str, ...]:
         "Construction is a nilpotent or jet lift of a known pair.",
         "Field content includes perturbation equations around the scalar flow.",
         "Spectral curve may repeat known scalar data.",
-        "Gauge and cyclic-basis checks remain required before any publication claim.",
+        "Gauge and cyclic-basis checks remain required before any external claim.",
     )
 
 
@@ -177,6 +236,60 @@ def classify_candidate(
                 "Known Heisenberg ferromagnet and symmetric-space collisions must be checked.",
                 "No nontrivial zero-curvature representation has been validated here.",
                 "Do not promote without gauge, spectral, conservation, and collision evidence.",
+            ),
+            novelty_status="needs_human_review",
+        )
+
+    if metadata.get("density_matrix_flow"):
+        collisions.extend(
+            family.name
+            for family in registry
+            if "coadjoint-orbit" in family.fingerprints
+            or "symmetric-space" in family.fingerprints
+            or "nls" in family.fingerprints
+        )
+        return PriorArtCollisionReport(
+            candidate_name=candidate_name,
+            classification=CandidateClassification.NEEDS_HUMAN_REVIEW,
+            collisions=tuple(dict.fromkeys(collisions)),
+            checklist=(
+                "Density-matrix commutator flows may collide with coadjoint-orbit systems.",
+                "Isospectral and dissipative tangent terms require separate invariant checks.",
+                "No external mathematical claim is available without full gate evidence.",
+            ),
+            novelty_status="needs_human_review",
+        )
+
+    if metadata.get("nonlocal_covering"):
+        collisions.extend(family.name for family in registry if "nonlocal" in family.fingerprints)
+        return PriorArtCollisionReport(
+            candidate_name=candidate_name,
+            classification=CandidateClassification.NEEDS_HUMAN_REVIEW,
+            collisions=tuple(dict.fromkeys(collisions)),
+            checklist=(
+                "Nonlocal covering and pseudopotential collision zones must be checked.",
+                "Local projection and gauge-removal evidence remain required.",
+                "No nonlocal ZCR validation has been completed for this probe.",
+            ),
+            novelty_status="needs_human_review",
+        )
+
+    if metadata.get("cohomological_deformation"):
+        collisions.extend(
+            family.name
+            for family in registry
+            if "drinfeld-sokolov" in family.fingerprints
+            or "integrable-coupling" in family.fingerprints
+            or "akns" in family.fingerprints
+        )
+        return PriorArtCollisionReport(
+            candidate_name=candidate_name,
+            classification=CandidateClassification.NEEDS_HUMAN_REVIEW,
+            collisions=tuple(dict.fromkeys(collisions)),
+            checklist=(
+                "Gauge coboundary and cocycle representatives must be separated.",
+                "Known deformation and reduction families are active collision zones.",
+                "No cohomology quotient computation has validated this probe.",
             ),
             novelty_status="needs_human_review",
         )

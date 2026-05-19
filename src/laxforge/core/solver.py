@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Sequence
+from typing import Mapping, Sequence
 
 import sympy as sp
 
@@ -31,6 +31,43 @@ class LinearSolveReport:
             "residuals": [str(residual) for residual in self.residuals],
             "solved": self.solved,
             "status": self.status,
+        }
+
+
+@dataclass(frozen=True)
+class ConstraintSolveConfig:
+    """Safety limits for symbolic constraint solving."""
+
+    max_equations: int = 64
+    max_unknowns: int = 16
+    groebner_max_equations: int = 8
+    groebner_max_unknowns: int = 4
+    allow_nonlinear: bool = True
+    allow_groebner: bool = True
+
+
+@dataclass(frozen=True)
+class ConstraintSolveReport:
+    """Serializable strategy-based symbolic solve result."""
+
+    unknowns: tuple[sp.Symbol, ...]
+    equations: tuple[sp.Expr, ...]
+    solution: dict[sp.Symbol, sp.Expr]
+    residuals: tuple[sp.Expr, ...]
+    solved: bool
+    status: str
+    strategy: str
+
+    def as_dict(self) -> dict[str, object]:
+        """Return a JSON-compatible solve summary."""
+        return {
+            "unknowns": [str(unknown) for unknown in self.unknowns],
+            "equations": [str(equation) for equation in self.equations],
+            "solution": {str(key): str(value) for key, value in self.solution.items()},
+            "residuals": [str(residual) for residual in self.residuals],
+            "solved": self.solved,
+            "status": self.status,
+            "strategy": self.strategy,
         }
 
 
@@ -87,6 +124,141 @@ def solve_linear_constraints(
         residuals=residuals,
         solved=solved,
         status="solved" if solved else "residuals_remain",
+    )
+
+
+def _is_linear_in_unknowns(expr: sp.Expr, unknowns: Sequence[sp.Symbol]) -> bool:
+    try:
+        poly = sp.Poly(sp.expand(expr), *unknowns)
+    except sp.PolynomialError:
+        return False
+    return poly.total_degree() <= 1
+
+
+def _residuals(
+    equations: Sequence[sp.Expr], solution: Mapping[sp.Symbol, sp.Expr]
+) -> tuple[sp.Expr, ...]:
+    return tuple(sp.simplify(equation.subs(solution)) for equation in equations)
+
+
+def _report_from_solution(
+    *,
+    equations: tuple[sp.Expr, ...],
+    unknowns: tuple[sp.Symbol, ...],
+    solutions: list[dict[sp.Symbol, sp.Expr]],
+    strategy: str,
+) -> ConstraintSolveReport | None:
+    if not solutions:
+        return None
+    solution = dict(solutions[0])
+    residuals = _residuals(equations, solution)
+    solved = all(residual == 0 for residual in residuals)
+    return ConstraintSolveReport(
+        unknowns=unknowns,
+        equations=equations,
+        solution=solution,
+        residuals=residuals,
+        solved=solved,
+        status="solved" if solved else "residuals_remain",
+        strategy=strategy,
+    )
+
+
+def solve_symbolic_constraints(
+    equations: Sequence[sp.Expr],
+    unknowns: Sequence[sp.Symbol],
+    config: ConstraintSolveConfig | None = None,
+) -> ConstraintSolveReport:
+    """Solve constraints with linear, nonlinear, then bounded Gröbner strategies."""
+    config = config or ConstraintSolveConfig()
+    unknowns_tuple = tuple(unknowns)
+    simplified = tuple(sp.simplify(equation) for equation in equations)
+    nonzero = tuple(equation for equation in simplified if equation != 0)
+
+    if len(nonzero) > config.max_equations or len(unknowns_tuple) > config.max_unknowns:
+        return ConstraintSolveReport(
+            unknowns=unknowns_tuple,
+            equations=simplified,
+            solution={},
+            residuals=nonzero,
+            solved=False,
+            status="skipped_size_limit",
+            strategy="size_guard",
+        )
+    if not nonzero:
+        return ConstraintSolveReport(
+            unknowns=unknowns_tuple,
+            equations=simplified,
+            solution={},
+            residuals=(),
+            solved=True,
+            status="solved",
+            strategy="empty_system",
+        )
+    if all(_is_linear_in_unknowns(equation, unknowns_tuple) for equation in nonzero):
+        linear = solve_linear_constraints(nonzero, unknowns_tuple)
+        if linear.solved:
+            return ConstraintSolveReport(
+                unknowns=linear.unknowns,
+                equations=simplified,
+                solution=linear.solution,
+                residuals=linear.residuals,
+                solved=True,
+                status="solved",
+                strategy="linear",
+            )
+
+    if config.allow_nonlinear:
+        try:
+            nonlinear = sp.solve(nonzero, unknowns_tuple, dict=True, simplify=True)
+        except (NotImplementedError, TypeError, ValueError):
+            nonlinear = []
+        nonlinear_report = _report_from_solution(
+            equations=simplified,
+            unknowns=unknowns_tuple,
+            solutions=nonlinear,
+            strategy="nonlinear",
+        )
+        if nonlinear_report and nonlinear_report.solved:
+            return nonlinear_report
+
+    if (
+        config.allow_groebner
+        and len(nonzero) <= config.groebner_max_equations
+        and len(unknowns_tuple) <= config.groebner_max_unknowns
+    ):
+        try:
+            basis = sp.groebner(nonzero, *unknowns_tuple)
+            if len(basis.polys) == 1 and sp.simplify(basis.polys[0].as_expr() - 1) == 0:
+                return ConstraintSolveReport(
+                    unknowns=unknowns_tuple,
+                    equations=simplified,
+                    solution={},
+                    residuals=nonzero,
+                    solved=False,
+                    status="no_solution",
+                    strategy="groebner",
+                )
+            groebner_solutions = sp.solve([poly.as_expr() for poly in basis.polys], unknowns_tuple, dict=True)
+        except (sp.PolynomialError, NotImplementedError, TypeError, ValueError):
+            groebner_solutions = []
+        groebner_report = _report_from_solution(
+            equations=simplified,
+            unknowns=unknowns_tuple,
+            solutions=groebner_solutions,
+            strategy="groebner",
+        )
+        if groebner_report and groebner_report.solved:
+            return groebner_report
+
+    return ConstraintSolveReport(
+        unknowns=unknowns_tuple,
+        equations=simplified,
+        solution={},
+        residuals=nonzero,
+        solved=False,
+        status="no_solution",
+        strategy="exhausted",
     )
 
 

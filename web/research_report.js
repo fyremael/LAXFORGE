@@ -78,12 +78,15 @@ function renderReadout() {
   const sxxx = itemById("sphere-s-cross-s-xxx-exploratory-candidate");
   const heisenberg = itemById("sphere-s-cross-s-xx-heisenberg-shaped-candidate");
   const dis003Count = candidateCountByLane("DIS-003");
+  const dis006Count = candidateCountByLane("DIS-006");
+  const fullScale = reportData.full_scale_search || {};
   const readout = [
-    `LAXFORGE is now operating as a controlled evidence machine rather than a collection of isolated symbolic demonstrations. The current payload tracks ${metricValue("tracked_items_total")} normalized records, including a DIS-003 scaled triage batch of ${dis003Count} sphere-tangent candidates.`,
+    `LAXFORGE is now operating as a controlled evidence machine rather than a collection of isolated symbolic demonstrations. The current payload tracks ${metricValue("tracked_items_total")} normalized records, including ${dis003Count} DIS-003 density probes and a DIS-006 scaled triage batch of ${dis006Count} sphere-tangent candidates.`,
+    `FULL-001 has now carried out the full current search loop across ${fullScale.generated_candidate_count || metricValue("discovery_candidate_count")} discovery candidates. The result is an active frontier, not a conclusion: the action queue records which candidates should receive solver effort first.`,
     `The strongest mathematical infrastructure result is M0: the zero-curvature reporting layer can certify an exact pure-gauge flatness case with the convention U_t - V_x + [U,V], matrix shape, coefficient basis, residual-zero status, and per-entry residual grid exposed for audit.`,
     `The strongest calibration result is the second-jet nilpotent mKdV lane. It recovers a known mechanism, verifies Hamiltonian structure, and records ${itemById("second-jet-nilpotent-mkdv")?.conservation_count ?? 0} conservation-law signals. That gives the search process a working reference target before frontier candidates are judged.`,
     `The first serious cycle did not produce a validated third-order sphere ZCR. It changed the state of s_cross_s_xxx from open frontier to blocked by the current low-order so(3) ansatz family. That is useful: it narrows the next search without pretending to rule out broader families.`,
-    `The next phase is deliberately broader: DIS-003 records 100+ deterministic tangent-flow descriptors, verifies their tangent construction, and leaves ZCR, spectral, gauge, cyclic, conservation, and collision evidence open until candidate-specific solver passes run.`,
+    `The next phase is deliberately broader: DIS-006 records 100+ deterministic tangent-flow descriptors, verifies their tangent construction, and leaves ZCR, spectral, gauge, cyclic, conservation, and collision evidence open until candidate-specific solver passes run.`,
     `The most actionable next item is ${sphereNext?.name || "the first sphere tangent candidate"}. It remains in needs-human-review territory because tangency is established but the ZCR, spectral, gauge, cyclic, and conservation gates are not yet closed.`,
     `Known-family discipline is active. The ${heisenberg?.short_name || "Heisenberg-shaped"} candidate has validated ZCR evidence, but it is classified as a known-family collision and recommended discard. This is the intended behavior: validation alone is not enough to keep a candidate alive.`,
   ];
@@ -153,7 +156,8 @@ function renderDossiers() {
   const sxxx = itemById("sphere-s-cross-s-xxx-exploratory-candidate");
   const semidirectProbe = itemById("semidirect-non-split-product-deformation-probe");
   const frontier = reportData.iterative_process?.frontier || [];
-  const dis003Count = candidateCountByLane("DIS-003");
+  const dis006Count = candidateCountByLane("DIS-006");
+  const fullScale = reportData.full_scale_search || {};
 
   const cards = [
     dossierCard({
@@ -183,6 +187,19 @@ function renderDossiers() {
       ],
     }),
     dossierCard({
+      eyebrow: "FULL-001",
+      title: "Full-scale pass has been carried out",
+      tone: "warn",
+      paragraphs: [
+        "The full-scale pass runs every current discovery lane through the supported gates, audits the partition into discard and frontier records, and exposes a prioritized action queue for solver work.",
+        "The result is deliberately conservative. DIS-006 provides breadth, while FULL-001 records that no scaled batch candidate has a constructed ZCR matrix pair yet.",
+      ],
+      stats: [
+        ["Candidates", fullScale.generated_candidate_count || 0],
+        ["Queue", fullScale.action_queue?.length || 0],
+      ],
+    }),
+    dossierCard({
       eyebrow: "DIS-002",
       title: "Sphere-valued search has one active next test",
       tone: "warn",
@@ -196,7 +213,7 @@ function renderDossiers() {
       ],
     }),
     dossierCard({
-      eyebrow: "DIS-003",
+      eyebrow: "DIS-006",
       title: "Scaled triage now carries 100+ candidates",
       tone: "warn",
       paragraphs: [
@@ -204,7 +221,7 @@ function renderDossiers() {
         "The batch does not claim a ZCR. Its value is coverage: each record is now visible to the dashboard, procedure audit, collision guard, and frontier queue so solver work can be selected systematically.",
       ],
       stats: [
-        ["Batch size", dis003Count],
+        ["Batch size", dis006Count],
         ["Default", "review"],
       ],
     }),
@@ -329,7 +346,7 @@ function renderReportMetrics() {
     {
       label: "Candidates",
       value: metricValue("discovery_candidate_count"),
-      detail: "DIS-001 to DIS-003",
+      detail: "DIS-001 to DIS-006",
       tone: "pass",
     },
     {
@@ -413,10 +430,14 @@ function renderTimeline() {
     "PROMPT-PACK": "mKdV calibration recovers a known mechanism and verifies conservation evidence.",
     "DIS-001": "Semidirect lane contains controls, a known mechanism lift, and one blocked algebra frontier.",
     "DIS-002": "Sphere lane keeps tangent candidates conservative and marks the Heisenberg case as known.",
-    "DIS-003": "Scaled sphere-tangent triage adds 100+ descriptors with open solver gates.",
+    "DIS-003": "Density-matrix lane records commutator and dissipative tangent probes.",
+    "DIS-004": "Nonlocal covering lane records pseudopotential probes with open gates.",
+    "DIS-005": "Cohomology lane records cocycle and coboundary separation work.",
+    "DIS-006": "Scaled sphere-tangent triage adds 100+ descriptors with open solver gates.",
     "ITER-001": "Frontier process queues the next actionable candidates with explicit gate gaps.",
     "PROC-001": "Procedure audit verifies the run discipline and claim guard.",
     "SERIOUS-001": "Third-order sphere ansatz attempt is blocked by the current low-order family.",
+    "FULL-001": "Full-scale pass ranks the current action queue after supported gates.",
   };
 
   const nodes = (reportData.run_ids || []).map((runId) => {

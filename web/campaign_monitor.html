@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LAXFORGE Campaign Monitor</title>
+    <link rel="stylesheet" href="campaign_monitor.css" />
+    <script src="campaign_monitor.js" defer></script>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">LAXFORGE LIVE</p>
+          <h1>Solver Campaign Monitor</h1>
+          <p class="lede">
+            A real-time evidence console for the active ansatz search. It tracks attempts,
+            obstructions, known-family collisions, and any automated survivor that still needs
+            human mathematical and prior-art review.
+          </p>
+        </div>
+        <div class="status-panel">
+          <span id="connection-pill" class="pill warn">connecting</span>
+          <span id="updated-at">waiting for snapshot</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="metric-grid" aria-label="Campaign metrics">
+          <article class="metric">
+            <span>Attempts</span>
+            <strong id="metric-attempts">0</strong>
+          </article>
+          <article class="metric">
+            <span>Candidates Seen</span>
+            <strong id="metric-candidates">0</strong>
+          </article>
+          <article class="metric">
+            <span>Rounds</span>
+            <strong id="metric-rounds">0</strong>
+          </article>
+          <article class="metric">
+            <span>Survivors</span>
+            <strong id="metric-survivors">0</strong>
+          </article>
+          <article class="metric">
+            <span>Known Collisions</span>
+            <strong id="metric-collisions">0</strong>
+          </article>
+          <article class="metric">
+            <span>Validated ZCR</span>
+            <strong id="metric-validated">0</strong>
+          </article>
+        </section>
+
+        <section class="live-grid">
+          <section class="panel wide">
+            <div class="panel-heading">
+              <div>
+                <h2>Attempt Mix</h2>
+                <p id="run-status">No snapshot loaded yet.</p>
+              </div>
+              <code id="run-id">run pending</code>
+            </div>
+            <div id="status-bars" class="bar-list"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Formal Ansatz</h2>
+                <p>Solver-level outcomes.</p>
+              </div>
+            </div>
+            <div id="formal-bars" class="bar-list compact"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Family Pressure</h2>
+                <p>Candidate families under test.</p>
+              </div>
+            </div>
+            <div id="family-bars" class="bar-list compact"></div>
+          </section>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Recent Attempt Stream</h2>
+              <p>Newest checkpoint window from the running campaign.</p>
+            </div>
+          </div>
+          <div id="attempt-stream" class="attempt-stream"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Evidence Guard</h2>
+              <p id="guard-note">Awaiting current guard note.</p>
+            </div>
+          </div>
+          <pre id="output-dir" class="path-readout"></pre>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

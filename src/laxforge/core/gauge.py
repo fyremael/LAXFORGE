@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from itertools import combinations
 from typing import Sequence
 
 import sympy as sp
@@ -15,6 +16,7 @@ class BlockReducibilityReport:
     block_reducible: bool
     split_index: int | None
     reason: str
+    permutation: tuple[int, ...] | None = None
 
     def as_dict(self) -> dict[str, object]:
         """Return a JSON-compatible block-reducibility summary."""
@@ -22,6 +24,7 @@ class BlockReducibilityReport:
             "block_reducible": self.block_reducible,
             "split_index": self.split_index,
             "reason": self.reason,
+            "permutation": list(self.permutation) if self.permutation else None,
         }
 
 
@@ -54,6 +57,10 @@ class GaugeReport:
     spectral_report: SpectralParameterReport | None
     gauge_risk_score: float
     novelty_status: str = "unassessed"
+    gauge_choices: tuple[str, ...] = ("identity gauge baseline",)
+    finite_matrix_gauge_supported: bool = True
+    algebra_preserving_gauge_supported: bool = False
+    lambda_removal_attempts: tuple[str, ...] = ()
 
     def as_dict(self) -> dict[str, object]:
         """Return a JSON-compatible gauge report."""
@@ -62,6 +69,10 @@ class GaugeReport:
             "spectral_report": self.spectral_report.as_dict() if self.spectral_report else None,
             "gauge_risk_score": self.gauge_risk_score,
             "novelty_status": self.novelty_status,
+            "gauge_choices": list(self.gauge_choices),
+            "finite_matrix_gauge_supported": self.finite_matrix_gauge_supported,
+            "algebra_preserving_gauge_supported": self.algebra_preserving_gauge_supported,
+            "lambda_removal_attempts": list(self.lambda_removal_attempts),
         }
 
 
@@ -103,7 +114,7 @@ def gauge_transform(
 
 
 def detect_block_reducibility(matrices: Sequence[sp.MatrixBase]) -> BlockReducibilityReport:
-    """Detect an explicit common contiguous block decomposition."""
+    """Detect an explicit common coordinate block decomposition."""
     if not matrices:
         return BlockReducibilityReport(False, None, "no matrices supplied")
 
@@ -118,6 +129,25 @@ def detect_block_reducibility(matrices: Sequence[sp.MatrixBase]) -> BlockReducib
             off_block_entries.extend(matrix[split:, :split])
         if all(sp.simplify(entry) == 0 for entry in off_block_entries):
             return BlockReducibilityReport(True, split, "common contiguous block split detected")
+
+    indices = tuple(range(size))
+    for subset_size in range(1, size):
+        for subset in combinations(indices, subset_size):
+            if subset == tuple(range(subset_size)):
+                continue
+            complement = tuple(index for index in indices if index not in subset)
+            off_block_entries = []
+            for matrix in matrices:
+                off_block_entries.extend(matrix[i, j] for i in subset for j in complement)
+                off_block_entries.extend(matrix[i, j] for i in complement for j in subset)
+            if all(sp.simplify(entry) == 0 for entry in off_block_entries):
+                permutation = subset + complement
+                return BlockReducibilityReport(
+                    True,
+                    subset_size,
+                    "common permuted coordinate block split detected",
+                    permutation=permutation,
+                )
 
     return BlockReducibilityReport(False, None, "no common contiguous block split detected")
 
@@ -186,8 +216,16 @@ def analyze_gauge_risk(
         risk += 0.5
     if matrix_is_zero(U) and matrix_is_zero(V):
         risk = 1.0
+    lambda_attempts = ()
+    if spectral_report:
+        lambda_attempts = (
+            spectral_report.status,
+            spectral_report.reason,
+            "non-scalar lambda remains non-essential until a stronger invariant test passes",
+        )
     return GaugeReport(
         block_report=block_report,
         spectral_report=spectral_report,
         gauge_risk_score=min(1.0, risk),
+        lambda_removal_attempts=lambda_attempts,
     )

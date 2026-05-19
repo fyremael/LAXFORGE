@@ -49,8 +49,8 @@ def test_procedure_audit_tracks_frontier_and_discard_partition():
 
     assert partition_check.status == "pass"
     assert len(partition_check.item_ids) == len(iterative.all_records)
-    assert len(iterative.frontier) == 130
-    assert len(iterative.discarded) == 6
+    assert len(iterative.frontier) == 134
+    assert len(iterative.discarded) == 9
 
 
 def test_procedure_audit_markdown_and_json_avoid_promotion_language():

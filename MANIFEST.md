@@ -43,18 +43,37 @@
 
 - `src/laxforge/algebra/truncated_poly.py`
 - `src/laxforge/core/zero_curvature.py`
+- `src/laxforge/core/models.py`
+- `src/laxforge/core/artifacts.py`
+- `src/laxforge/core/completeness.py`
 - `src/laxforge/core/procedures.py`
 - `src/laxforge/search/bulk.py`
+- `src/laxforge/search/full_scale.py`
+- `src/laxforge/search/formal_sphere_ansatz.py`
+- `src/laxforge/search/overnight.py`
+- `src/laxforge/search/run_matrix.py`
 - `src/laxforge/search/serious_cycle.py`
+- `src/laxforge/search/solver_campaign.py`
 - `src/laxforge/examples/mkdv_second_jet.py`
 
 ## Tests and scripts
 
 - `tests/test_mkdv_second_jet.py`
 - `tests/test_bulk_search.py`
+- `tests/test_full_scale_search.py`
+- `tests/test_formal_sphere_ansatz.py`
+- `tests/test_overnight_report_ui.py`
+- `tests/test_overnight_search.py`
 - `tests/test_procedures.py`
+- `tests/test_solver_campaign.py`
 - `tests/test_research_report_ui.py`
+- `tests/test_functional_completeness.py`
 - `scripts/run_mkdv_validation.py`
+- `scripts/run_functional_completeness_audit.py`
 - `scripts/run_procedure_audit.py`
+- `scripts/run_full_scale_search.py`
+- `scripts/run_overnight_search.py`
+- `scripts/build_overnight_report_data.py`
+- `scripts/run_solver_campaign.py`
 - `scripts/run_scaled_candidate_search.py`
 - `scripts/run_serious_cycle_001.py`

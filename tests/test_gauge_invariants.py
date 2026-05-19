@@ -37,6 +37,17 @@ def test_detects_direct_block_sum_reducibility():
     assert report.split_index == 1
 
 
+def test_detects_permuted_block_sum_reducibility():
+    U = sp.Matrix([[1, 0, 2], [0, 3, 0], [4, 0, 5]])
+    V = sp.Matrix([[6, 0, 7], [0, 8, 0], [9, 0, 10]])
+
+    report = detect_block_reducibility((U, V))
+
+    assert report.block_reducible
+    assert report.split_index == 1
+    assert report.permutation == (1, 0, 2)
+
+
 def test_flags_fake_scalar_identity_lambda():
     lam = sp.Symbol("lambda")
     U = lam * sp.eye(2)
@@ -68,3 +79,16 @@ def test_matrix_pair_invariant_fingerprint_is_stable():
     assert report.block_reducible
     assert report.spectral_parameter_present
     assert "lambda=True" in report.fingerprint
+
+
+def test_invariant_report_records_extended_signatures():
+    lam = sp.Symbol("lambda")
+    U = sp.diag(lam, -lam)
+    V = sp.zeros(2)
+
+    report = matrix_pair_invariants((U, V), lambda_symbol=lam)
+    model = report.complete_model()
+
+    assert model.spectral_parameter_essentiality == "untested"
+    assert model.block_decomposition_signature.startswith("coordinate_block:")
+    assert model.generated_pde_canonical_form == "untested"

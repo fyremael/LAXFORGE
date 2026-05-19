@@ -19,14 +19,20 @@ def test_research_report_payload_supports_progress_digest():
         "DIS-001",
         "DIS-002",
         "DIS-003",
+        "DIS-004",
+        "DIS-005",
+        "DIS-006",
         "ITER-001",
         "PROC-001",
         "SERIOUS-001",
+        "FULL-001",
     ]
-    assert payload["metrics"]["tracked_items_total"] == 138
-    assert payload["metrics"]["dis003_candidate_count"] == 128
+    assert payload["metrics"]["tracked_items_total"] == 145
+    assert payload["metrics"]["dis003_candidate_count"] == 3
+    assert payload["metrics"]["dis006_candidate_count"] == 128
     assert payload["metrics"]["validated_zcr_count"] == 2
     assert payload["metrics"]["serious_cycle_status"] == "blocked"
+    assert payload["metrics"]["full_scale_status"] == "frontier_active"
     assert payload["procedure_audit"]["status"] == "pass"
     assert target["recommendation"] == "blocked"
     assert target["zcr_obstruction_basis"]
@@ -108,6 +114,7 @@ def test_static_research_report_assets_cover_visual_report_sections():
         "the progress story by lane",
         "blocked is a valid outcome",
         "scaled triage now carries 100+ candidates",
+        "full-scale pass has been carried out",
     ):
         assert narrative_phrase in combined
 
