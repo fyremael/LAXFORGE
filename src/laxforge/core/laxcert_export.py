@@ -63,6 +63,7 @@ def build_laxcert_calibration_candidate(
 
     return {
         "schema_version": LAXCERT_SCHEMA_VERSION,
+        "laxcert_schema_version": LAXCERT_SCHEMA_VERSION,
         "candidate_id": candidate_id,
         "laxforge_version": f"laxforge:{_package_version()}",
         "laxcert_target_version": LAXCERT_TARGET_VERSION,

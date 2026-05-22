@@ -18,6 +18,7 @@ def test_laxcert_calibration_candidate_uses_ast_certificate_shape() -> None:
     candidate = build_laxcert_calibration_candidate()
 
     assert candidate["candidate_id"] == "LaxforgeCalibration2x2Zero"
+    assert candidate["laxcert_schema_version"] == candidate["schema_version"]
     assert candidate["scalar_ring"] == "rat_differential_polynomial"
     assert candidate["directions"] == {"space": ["x"], "time": "t"}
     assert candidate["fields"] == ["p", "q"]
