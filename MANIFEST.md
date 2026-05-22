@@ -45,6 +45,7 @@
 - `src/laxforge/core/zero_curvature.py`
 - `src/laxforge/core/models.py`
 - `src/laxforge/core/artifacts.py`
+- `src/laxforge/core/laxcert_export.py`
 - `src/laxforge/core/completeness.py`
 - `src/laxforge/core/procedures.py`
 - `src/laxforge/search/bulk.py`
@@ -68,6 +69,8 @@
 - `tests/test_solver_campaign.py`
 - `tests/test_research_report_ui.py`
 - `tests/test_functional_completeness.py`
+- `tests/test_laxcert_export.py`
+- `scripts/export_laxcert_calibration.py`
 - `scripts/run_mkdv_validation.py`
 - `scripts/run_functional_completeness_audit.py`
 - `scripts/run_procedure_audit.py`
