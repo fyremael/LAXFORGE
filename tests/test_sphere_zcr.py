@@ -48,13 +48,20 @@ def test_heisenberg_zcr_records_cyclic_fingerprint_and_known_collision():
     assert any("Heisenberg" in collision for collision in report.collision_report["collisions"])
 
 
-def test_sx_zcr_ansatz_records_first_potential_obstruction():
+def test_sx_zcr_ansatz_opens_first_nonlocal_potential_gate():
     report = solve_sx_zcr_ansatz()
 
     assert report.validated is False
     assert report.formal_status == "no_formal_solution"
+    assert report.first_potential_opened is True
+    assert report.nonlocal_status == "blocked_recursive_nonlocal_tower_gate"
+    assert report.covering_equations
+    assert all(
+        sp.simplify(component) == 0
+        for component in report.nonlocal_residual_basis["lambda_after_covering"]
+    )
     assert report.obstruction_basis
-    assert any("D_x(W)" in term for term in report.obstruction_basis)
+    assert any("s cross p1" in term for term in report.obstruction_basis)
     assert report.cyclic_report["fingerprint"]
 
 

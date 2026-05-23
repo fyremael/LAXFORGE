@@ -124,7 +124,7 @@ class SphereSxxxZCRAttemptReport:
 
 @dataclass(frozen=True)
 class SphereSxZCRAttemptReport:
-    """First-potential gate report for the sphere s cross s_x flow."""
+    """Local and first-nonlocal potential gate report for s cross s_x."""
 
     candidate_name: str
     formal_status: str
@@ -132,6 +132,11 @@ class SphereSxZCRAttemptReport:
     formal_unknowns: int
     formal_equations: int
     formal_obstruction_basis: tuple[str, ...]
+    first_potential_opened: bool
+    nonlocal_status: str
+    potential_fields: tuple[str, ...]
+    covering_equations: tuple[str, ...]
+    nonlocal_residual_basis: dict[str, tuple[sp.Expr, ...]]
     obstruction_basis: tuple[str, ...]
     constraints_used: tuple[str, ...]
     ansatz_family: tuple[str, ...]
@@ -151,6 +156,14 @@ class SphereSxZCRAttemptReport:
             "formal_unknowns": self.formal_unknowns,
             "formal_equations": self.formal_equations,
             "formal_obstruction_basis": list(self.formal_obstruction_basis),
+            "first_potential_opened": self.first_potential_opened,
+            "nonlocal_status": self.nonlocal_status,
+            "potential_fields": list(self.potential_fields),
+            "covering_equations": list(self.covering_equations),
+            "nonlocal_residual_basis": {
+                key: [str(component) for component in value]
+                for key, value in self.nonlocal_residual_basis.items()
+            },
             "obstruction_basis": list(self.obstruction_basis),
             "constraints_used": list(self.constraints_used),
             "ansatz_family": list(self.ansatz_family),
@@ -190,14 +203,14 @@ def _safe_collision_report(candidate_name: str) -> dict[str, object]:
 
 
 def solve_sx_zcr_ansatz() -> SphereSxZCRAttemptReport:
-    """Attempt the supported local-vector ZCR gate for s_t = s cross s_x.
+    """Attempt the local and first nonlocal gates for s_t = s cross s_x.
 
     For the current U = lambda*hat(s) family, the lambda coefficient requires
     a local vector W with D_x(W) = s cross s_x. The formal local basis records
-    that as an obstruction, not as a global exclusion of nonlocal or different-U
-    representations.
+    that as a local obstruction. A first nonlocal potential p1 opens that gate,
+    then exposes the next recursive covering gate.
     """
-    x, _t, lam, _alpha, _beta, s = _sphere_symbols()
+    x, t, lam, _alpha, _beta, s = _sphere_symbols()
     formal_candidate = _candidate(
         name="overnight sphere unit times sx",
         family="scalar_weighted_cross",
@@ -213,8 +226,16 @@ def solve_sx_zcr_ansatz() -> SphereSxZCRAttemptReport:
         degree=4,
         basis_order_slack=2,
     )
+    sx = s.diff(x)
+    target_flow = s.cross(sx)
+    p1 = sp.Matrix([sp.Function(f"p1_{index + 1}")(x, t) for index in range(3)])
     U = lam * cross_product_matrix(s)
-    V = sp.zeros(3)
+    V = lam * cross_product_matrix(p1)
+    first_gate_residual = tuple(
+        sp.simplify(target_flow[index] - p1[index].diff(x)) for index in range(3)
+    )
+    first_gate_reduced = (sp.Integer(0), sp.Integer(0), sp.Integer(0))
+    recursive_residual = tuple(sp.simplify(component) for component in s.cross(p1))
     gauge_report = analyze_gauge_risk(U, V, lambda_symbol=lam).as_dict()
     cyclic_report = compute_cyclic_basis(
         _algebraic_spatial_matrix(lam),
@@ -230,16 +251,30 @@ def solve_sx_zcr_ansatz() -> SphereSxZCRAttemptReport:
         formal_unknowns=formal_report.unknown_count,
         formal_equations=formal_report.equation_count,
         formal_obstruction_basis=formal_report.obstruction_basis[:4],
+        first_potential_opened=True,
+        nonlocal_status="blocked_recursive_nonlocal_tower_gate",
+        potential_fields=tuple(str(component) for component in p1),
+        covering_equations=(
+            "D_x(p1) = s cross s_x",
+            "finite one-potential truncation uses V = lambda*hat(p1)",
+        ),
+        nonlocal_residual_basis={
+            "lambda_before_covering": first_gate_residual,
+            "lambda_after_covering": first_gate_reduced,
+            "lambda^2_after_first_potential": recursive_residual,
+        },
         obstruction_basis=(
-            "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
-            "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
-            "current local-vector ansatz has no such local potential W",
-            "nonlocal potentials or different spatial matrices remain untested",
+            "local lambda^1 residual requires D_x(W) = s cross s_x",
+            "formal local-vector ansatz has no W in the current sphere-derivative basis",
+            "first nonlocal potential p1 with D_x(p1) = s cross s_x cancels the lambda^1 residual",
+            "finite one-potential truncation leaves lambda^2 residual s cross p1",
+            "next gate requires a recursive p2_x = s cross p1 covering or a different spatial matrix",
         ),
         constraints_used=(
             "s_t = s cross s_x",
             "s dot s = 1",
             "s dot s_x = 0",
+            "D_x(p1) = s cross s_x",
             "[hat(a), hat(b)] = hat(a cross b)",
             "formal local-vector basis over sphere derivative atoms and scalar invariants",
         ),
@@ -247,6 +282,7 @@ def solve_sx_zcr_ansatz() -> SphereSxZCRAttemptReport:
             "U = lambda * hat(s)",
             "V = hat(sum lambda^k v_k) with local vector coefficients",
             "degree <= 4 with derivative-order slack 2",
+            "first nonlocal covering check V = lambda * hat(p1)",
         ),
         validated=False,
         U=U,

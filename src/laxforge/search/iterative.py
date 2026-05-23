@@ -186,6 +186,29 @@ def _candidate_record(candidate: Any, lane: str, iteration: int) -> FrontierCand
         )
 
     if recommendation == "blocked":
+        if connection_status == "blocked_recursive_nonlocal_tower_gate":
+            return FrontierCandidate(
+                item_id=_slug(name),
+                name=name,
+                lane=lane,
+                iteration=iteration,
+                recommendation=recommendation,
+                classification=classification,
+                connection_status=connection_status,
+                process_disposition="frontier",
+                potential_status="blocked_by_recursive_nonlocal_tower",
+                priority=42,
+                next_action=(
+                    "Construct a recursive nonlocal tower closure or try an alternate "
+                    "spatial matrix for the s_cross_s_x flow."
+                ),
+                gate_gaps=tuple(candidate.failure_reasons),
+                evidence_summary=(
+                    "local first-potential gate has no local-basis witness",
+                    "first nonlocal potential p1_x = s cross s_x is explicit",
+                    "one-potential truncation leaves lambda^2 residual s cross p1",
+                ),
+            )
         if connection_status == "blocked_first_potential_gate":
             return FrontierCandidate(
                 item_id=_slug(name),
