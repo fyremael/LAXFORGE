@@ -910,6 +910,11 @@ def _plain_summary(
     blocked_candidate_count = sum(
         1 for record in discovery_records if record["recommendation"] == "blocked"
     )
+    ansatz_blocked_count = sum(
+        1
+        for record in discovery_records
+        if record.get("connection_status") == "ansatz_obstruction_current_family"
+    )
     promising_count = sum(
         1 for record in frontier_records if record.potential_status == "promising_potential"
     )
@@ -931,7 +936,7 @@ def _plain_summary(
             "The formal procedure audit passes for the current frontier and discard records.",
             (
                 f"DIS-001 has {len(dis001_records)} semidirect probes; validated controls stay "
-                "in discard and the non-split product probe remains queued for review."
+                "in discard and the non-split product probe now has constructed residual evidence."
             ),
             (
                 f"DIS-002 has {len(dis002_records)} sphere-flow candidates; the Heisenberg-shaped "
@@ -947,12 +952,13 @@ def _plain_summary(
                 "the batch records descriptors without constructing ZCR matrices."
             ),
             (
-                f"The frontier has {promising_count} promising-potential candidate and "
+                f"The frontier has {promising_count} promising-potential candidates and "
                 f"{blocked_count} blocked candidates."
             ),
             (
-                f"SERIOUS-001 leaves {blocked_candidate_count} candidate blocked by a documented "
-                "ansatz-family obstruction."
+                f"SERIOUS-001 leaves {ansatz_blocked_count} third-order candidate blocked by a "
+                "documented ansatz-family obstruction; the broader discovery state has "
+                f"{blocked_candidate_count} blocked candidates total."
             ),
         (
             f"{validated_known} controlled candidates have validated ZCR evidence; "

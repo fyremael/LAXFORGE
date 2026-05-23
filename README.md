@@ -1,5 +1,9 @@
 # LAXFORGE Codex Pack
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Python >=3.10](https://img.shields.io/badge/python-%3E%3D3.10-blue)
+![Version 0.1.0](https://img.shields.io/badge/version-0.1.0-informational)
+
 **LAXFORGE** is a gauge-aware discovery engine for zero-curvature representations and Lax pairs. Its purpose is not to generate decorative symbolic coincidences, but to produce candidates that survive algebraic validation, gauge/fake-pair reduction, invariant comparison, hierarchy extraction, and prior-art collision checks.
 
 This repository scaffold is designed for incremental implementation by Codex-style coding agents. It includes:
@@ -50,7 +54,7 @@ with the AKNS/mKdV pair lifted into the truncated algebra \(\mathbb{R}[\epsilon]
 
 ```text
 src/laxforge/
-  algebra/              # coefficient algebras, truncated polynomial arithmetic
+  algebra/              # coefficient algebras, truncated and finite-table arithmetic
   core/                 # curvature, ansatz, gauge, cyclic basis, invariants
   examples/             # verified examples and calibration targets
 tests/                  # pytest suite

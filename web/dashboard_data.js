@@ -602,37 +602,37 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "Integrable couplings via semidirect products",
         "Nilpotent and perturbation extensions"
       ],
-      "connection_status": "not_constructed",
+      "connection_status": "constructed_non_split_curvature",
       "conservation_count": 0,
       "curvature_residual_zero": false,
-      "curvature_status": "not_constructed",
-      "curvature_terms_nonzero": null,
-      "curvature_terms_total": 0,
+      "curvature_status": "constructed_non_split_curvature",
+      "curvature_terms_nonzero": 8,
+      "curvature_terms_total": 12,
       "cyclic_fingerprint": null,
       "detail": {
-        "algebra": "non-split semidirect product probe",
-        "solve_status": "unsupported_non_split_product",
-        "summary": "non-split multiplication is not implemented in the current coefficient algebra"
+        "algebra": "upper-triangular non-split semidirect algebra",
+        "solve_status": "residuals_unresolved_non_split_product",
+        "summary": "non-split multiplication table is implemented and associative for this probe"
       },
       "disposition": "needs_human_review",
       "failure_reasons": [
-        "non-split multiplication is not implemented in the current coefficient algebra",
-        "zero-curvature equations were not constructed for this probe",
-        "candidate remains a queued algebra task rather than validated evidence"
+        "non-split multiplication table is implemented and associative for this probe",
+        "zero-curvature equations are constructed but residual terms remain unresolved",
+        "bounded solver, gauge-preserving reductions, and structure evidence remain open"
       ],
-      "frontier_priority": 54,
-      "frontier_status": "blocked_by_missing_capability",
+      "frontier_priority": 40,
+      "frontier_status": "needs_review",
       "gate_gaps": [
-        "coefficient algebra does not yet support the requested product",
-        "zero-curvature residual not constructed",
-        "gauge and cyclic checks cannot run until a matrix pair exists"
+        "non-split multiplication table is implemented and associative for this probe",
+        "zero-curvature equations are constructed but residual terms remain unresolved",
+        "bounded solver, gauge-preserving reductions, and structure evidence remain open"
       ],
       "gate_summary": {
         "collision": "needs human review",
         "conservation": 0,
-        "curvature": "not_constructed",
-        "gauge": null,
-        "spectral": "unknown",
+        "curvature": "constructed_non_split_curvature",
+        "gauge": 0.0,
+        "spectral": "unresolved",
         "tangent": "not applicable"
       },
       "gates": [
@@ -646,19 +646,19 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "key": "curvature",
           "label": "Curvature",
           "status": "fail",
-          "value": "not_constructed"
+          "value": "constructed_non_split_curvature"
         },
         {
           "key": "gauge",
           "label": "Gauge",
-          "status": "warn",
-          "value": null
+          "status": "pass",
+          "value": 0.0
         },
         {
           "key": "spectral",
           "label": "Spectral",
           "status": "warn",
-          "value": "unknown"
+          "value": "unresolved"
         },
         {
           "key": "conservation",
@@ -673,26 +673,37 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "value": "needs human review"
         }
       ],
-      "gauge_risk_score": null,
+      "gauge_risk_score": 0.0,
       "hamiltonian_verified": false,
       "id": "semidirect-non-split-product-deformation-probe",
       "item_type": "candidate",
       "lane": "DIS-001",
       "name": "semidirect non-split product deformation probe",
-      "next_action": "Implement non-split coefficient multiplication, then construct zero-curvature equations.",
+      "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
       "order": 2,
       "proof_summary": null,
       "recommendation": "needs_human_review",
-      "residual_grid": null,
+      "residual_grid": [
+        [
+          "NONZERO(1)",
+          "NONZERO(3)"
+        ],
+        [
+          "NONZERO(3)",
+          "NONZERO(1)"
+        ]
+      ],
       "short_name": "non-split product deformation probe",
-      "spectral_status": "unknown",
+      "spectral_status": "unresolved",
       "surprisal": {
-        "band": "baseline",
+        "band": "watch",
         "drivers": [
+          "spectral parameter unresolved",
+          "low gauge risk",
           "multiple known-family collisions",
           "human review required"
         ],
-        "score": 13
+        "score": 35
       },
       "tangent_status": "not_applicable",
       "zcr_constraints": [],
@@ -824,38 +835,42 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "collisions": [
         "Principal chiral model and Heisenberg ferromagnet families"
       ],
-      "connection_status": "no_validated_zcr",
+      "connection_status": "blocked_first_potential_gate",
       "conservation_count": 0,
       "curvature_residual_zero": false,
-      "curvature_status": "not_constructed",
-      "curvature_terms_nonzero": null,
-      "curvature_terms_total": 0,
-      "cyclic_fingerprint": null,
+      "curvature_status": "blocked_first_potential_gate",
+      "curvature_terms_nonzero": 4,
+      "curvature_terms_total": 54,
+      "cyclic_fingerprint": "dim=1;closure_order=1;lambda_dependent=False;coeffs=(('c0', '0'),)",
       "detail": {
-        "obstruction_basis": [],
-        "summary": "no nontrivial zero-curvature representation validated",
+        "obstruction_basis": [
+          "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
+          "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
+          "current local-vector ansatz has no such local potential W",
+          "nonlocal potentials or different spatial matrices remain untested"
+        ],
+        "summary": "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
         "tangent_condition": "0"
       },
-      "disposition": "needs_human_review",
+      "disposition": "blocked",
       "failure_reasons": [
-        "no nontrivial zero-curvature representation validated",
-        "spectral parameter status unresolved",
-        "conservation and Hamiltonian evidence not mined for this candidate"
+        "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+        "current local-vector ansatz has no local potential W for that gate",
+        "nonlocal potentials or different spatial matrices remain untested"
       ],
-      "frontier_priority": 58,
-      "frontier_status": "promising_potential",
+      "frontier_priority": 42,
+      "frontier_status": "blocked_by_first_potential_gate",
       "gate_gaps": [
-        "no nontrivial zero-curvature representation validated",
-        "spectral parameter status unresolved",
-        "conservation and Hamiltonian evidence not mined",
-        "known sphere-family collision checks remain active"
+        "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+        "current local-vector ansatz has no local potential W for that gate",
+        "nonlocal potentials or different spatial matrices remain untested"
       ],
       "gate_summary": {
         "collision": "needs human review",
         "conservation": 0,
-        "curvature": "no_validated_zcr",
-        "gauge": 1.0,
-        "spectral": "absent",
+        "curvature": "blocked_first_potential_gate",
+        "gauge": 0.0,
+        "spectral": "unresolved",
         "tangent": "tangent"
       },
       "gates": [
@@ -868,20 +883,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
         {
           "key": "curvature",
           "label": "Curvature",
-          "status": "warn",
-          "value": "no_validated_zcr"
+          "status": "fail",
+          "value": "blocked_first_potential_gate"
         },
         {
           "key": "gauge",
           "label": "Gauge",
-          "status": "fail",
-          "value": 1.0
+          "status": "pass",
+          "value": 0.0
         },
         {
           "key": "spectral",
           "label": "Spectral",
-          "status": "fail",
-          "value": "absent"
+          "status": "warn",
+          "value": "unresolved"
         },
         {
           "key": "conservation",
@@ -896,32 +911,42 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "value": "needs human review"
         }
       ],
-      "gauge_risk_score": 1.0,
+      "gauge_risk_score": 0.0,
       "hamiltonian_verified": false,
       "id": "sphere-s-cross-s-x-tangent-candidate",
       "item_type": "candidate",
       "lane": "DIS-002",
       "name": "sphere s_cross_s_x tangent candidate",
-      "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
+      "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
       "order": 1,
       "proof_summary": null,
-      "recommendation": "needs_human_review",
+      "recommendation": "blocked",
       "residual_grid": null,
       "short_name": "s_cross_s_x",
-      "spectral_status": "absent",
+      "spectral_status": "unresolved",
       "surprisal": {
-        "band": "baseline",
+        "band": "inspect",
         "drivers": [
           "tangent constraint passed",
-          "no spectral data",
-          "high gauge risk",
-          "human review required"
+          "spectral parameter unresolved",
+          "low gauge risk"
         ],
-        "score": 13
+        "score": 45
       },
       "tangent_status": "tangent",
-      "zcr_constraints": [],
-      "zcr_obstruction_basis": [],
+      "zcr_constraints": [
+        "s_t = s cross s_x",
+        "s dot s = 1",
+        "s dot s_x = 0",
+        "[hat(a), hat(b)] = hat(a cross b)",
+        "formal local-vector basis over sphere derivative atoms and scalar invariants"
+      ],
+      "zcr_obstruction_basis": [
+        "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
+        "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
+        "current local-vector ansatz has no such local potential W",
+        "nonlocal potentials or different spatial matrices remain untested"
+      ],
       "zcr_solution": null,
       "zcr_validated": false
     },
@@ -16888,47 +16913,47 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "action_queue": [
       {
         "classification": "needs_human_review",
-        "connection_status": "no_validated_zcr",
+        "connection_status": "blocked_first_potential_gate",
         "evidence_summary": [
-          "sphere constraint tangent condition passed",
-          "candidate is deterministic and low order",
-          "not discarded because a ZCR attempt has not yet falsified it"
+          "first local-vector potential gate is obstructed",
+          "D_x(W) = s cross s_x has no current local-basis witness",
+          "nonlocal and different-U families remain open"
         ],
         "gate_gaps": [
-          "no nontrivial zero-curvature representation validated",
-          "spectral parameter status unresolved",
-          "conservation and Hamiltonian evidence not mined",
-          "known sphere-family collision checks remain active"
+          "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+          "current local-vector ansatz has no local potential W for that gate",
+          "nonlocal potentials or different spatial matrices remain untested"
         ],
         "item_id": "sphere-s-cross-s-x-tangent-candidate",
         "iteration": 1,
         "lane": "DIS-002",
         "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-        "potential_status": "promising_potential",
-        "priority": 58,
+        "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
+        "potential_status": "blocked_by_first_potential_gate",
+        "priority": 42,
         "process_disposition": "frontier",
-        "recommendation": "needs_human_review"
+        "recommendation": "blocked"
       },
       {
         "classification": "needs_human_review",
-        "connection_status": "not_constructed",
+        "connection_status": "constructed_non_split_curvature",
         "evidence_summary": [
-          "semidirect deformation probe remains structurally interesting",
-          "current gate evidence is incomplete"
+          "non-split coefficient multiplication is now implemented for the probe",
+          "zero-curvature residuals are constructed and unresolved",
+          "collision checks keep integrable-coupling families active"
         ],
         "gate_gaps": [
-          "coefficient algebra does not yet support the requested product",
-          "zero-curvature residual not constructed",
-          "gauge and cyclic checks cannot run until a matrix pair exists"
+          "non-split multiplication table is implemented and associative for this probe",
+          "zero-curvature equations are constructed but residual terms remain unresolved",
+          "bounded solver, gauge-preserving reductions, and structure evidence remain open"
         ],
         "item_id": "semidirect-non-split-product-deformation-probe",
         "iteration": 1,
         "lane": "DIS-001",
         "name": "semidirect non-split product deformation probe",
-        "next_action": "Implement non-split coefficient multiplication, then construct zero-curvature equations.",
-        "potential_status": "blocked_by_missing_capability",
-        "priority": 54,
+        "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
+        "potential_status": "needs_review",
+        "priority": 40,
         "process_disposition": "frontier",
         "recommendation": "needs_human_review"
       },
@@ -17489,7 +17514,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "DIS-003 density-matrix ZCR matrices are not constructed in this pass",
       "DIS-004 nonlocal-covering ZCR matrices are not constructed in this pass",
       "DIS-005 cohomology quotient gates are scaffolded but not solved in this pass",
-      "non-split semidirect coefficient multiplication remains unsupported",
+      "non-split semidirect residual solving remains open after curvature construction",
       "s_cross_s_xxx is blocked only for the current low-order so(3) ansatz family",
       "conservation and Hamiltonian mining are not yet run for DIS-006 scaled descriptors"
     ],
@@ -17564,23 +17589,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "not_constructed",
+          "connection_status": "constructed_non_split_curvature",
           "evidence_summary": [
-            "semidirect deformation probe remains structurally interesting",
-            "current gate evidence is incomplete"
+            "non-split coefficient multiplication is now implemented for the probe",
+            "zero-curvature residuals are constructed and unresolved",
+            "collision checks keep integrable-coupling families active"
           ],
           "gate_gaps": [
-            "coefficient algebra does not yet support the requested product",
-            "zero-curvature residual not constructed",
-            "gauge and cyclic checks cannot run until a matrix pair exists"
+            "non-split multiplication table is implemented and associative for this probe",
+            "zero-curvature equations are constructed but residual terms remain unresolved",
+            "bounded solver, gauge-preserving reductions, and structure evidence remain open"
           ],
           "item_id": "semidirect-non-split-product-deformation-probe",
           "iteration": 1,
           "lane": "DIS-001",
           "name": "semidirect non-split product deformation probe",
-          "next_action": "Implement non-split coefficient multiplication, then construct zero-curvature equations.",
-          "potential_status": "blocked_by_missing_capability",
-          "priority": 54,
+          "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
+          "potential_status": "needs_review",
+          "priority": 40,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -17608,27 +17634,26 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "no_validated_zcr",
+          "connection_status": "blocked_first_potential_gate",
           "evidence_summary": [
-            "sphere constraint tangent condition passed",
-            "candidate is deterministic and low order",
-            "not discarded because a ZCR attempt has not yet falsified it"
+            "first local-vector potential gate is obstructed",
+            "D_x(W) = s cross s_x has no current local-basis witness",
+            "nonlocal and different-U families remain open"
           ],
           "gate_gaps": [
-            "no nontrivial zero-curvature representation validated",
-            "spectral parameter status unresolved",
-            "conservation and Hamiltonian evidence not mined",
-            "known sphere-family collision checks remain active"
+            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+            "current local-vector ansatz has no local potential W for that gate",
+            "nonlocal potentials or different spatial matrices remain untested"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-          "potential_status": "promising_potential",
-          "priority": 58,
+          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
+          "potential_status": "blocked_by_first_potential_gate",
+          "priority": 42,
           "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
+          "recommendation": "blocked"
         },
         {
           "classification": "known",
@@ -21090,47 +21115,47 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "frontier": [
         {
           "classification": "needs_human_review",
-          "connection_status": "no_validated_zcr",
+          "connection_status": "blocked_first_potential_gate",
           "evidence_summary": [
-            "sphere constraint tangent condition passed",
-            "candidate is deterministic and low order",
-            "not discarded because a ZCR attempt has not yet falsified it"
+            "first local-vector potential gate is obstructed",
+            "D_x(W) = s cross s_x has no current local-basis witness",
+            "nonlocal and different-U families remain open"
           ],
           "gate_gaps": [
-            "no nontrivial zero-curvature representation validated",
-            "spectral parameter status unresolved",
-            "conservation and Hamiltonian evidence not mined",
-            "known sphere-family collision checks remain active"
+            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+            "current local-vector ansatz has no local potential W for that gate",
+            "nonlocal potentials or different spatial matrices remain untested"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-          "potential_status": "promising_potential",
-          "priority": 58,
+          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
+          "potential_status": "blocked_by_first_potential_gate",
+          "priority": 42,
           "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
+          "recommendation": "blocked"
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "not_constructed",
+          "connection_status": "constructed_non_split_curvature",
           "evidence_summary": [
-            "semidirect deformation probe remains structurally interesting",
-            "current gate evidence is incomplete"
+            "non-split coefficient multiplication is now implemented for the probe",
+            "zero-curvature residuals are constructed and unresolved",
+            "collision checks keep integrable-coupling families active"
           ],
           "gate_gaps": [
-            "coefficient algebra does not yet support the requested product",
-            "zero-curvature residual not constructed",
-            "gauge and cyclic checks cannot run until a matrix pair exists"
+            "non-split multiplication table is implemented and associative for this probe",
+            "zero-curvature equations are constructed but residual terms remain unresolved",
+            "bounded solver, gauge-preserving reductions, and structure evidence remain open"
           ],
           "item_id": "semidirect-non-split-product-deformation-probe",
           "iteration": 1,
           "lane": "DIS-001",
           "name": "semidirect non-split product deformation probe",
-          "next_action": "Implement non-split coefficient multiplication, then construct zero-curvature equations.",
-          "potential_status": "blocked_by_missing_capability",
-          "priority": 54,
+          "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
+          "potential_status": "needs_review",
+          "priority": 40,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -24898,6 +24923,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "outcome_summary": [
       "Full-scale pass evaluated 143 candidate records across 6 discovery lanes.",
       "DIS-003 contributes 3 density-matrix probes.",
+      "DIS-001 now constructs the non-split semidirect product residuals instead of blocking on missing multiplication.",
       "DIS-006 contributes 128 scaled sphere-tangent descriptors.",
       "The active frontier contains 134 records; 9 records are discarded controls or known-family collisions.",
       "No DIS-006 scaled batch candidate has a constructed ZCR matrix pair in this pass.",
@@ -25669,9 +25695,9 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "warning_count": 0
     },
     "recommendation_counts": {
-      "blocked": 1,
+      "blocked": 2,
       "discard": 9,
-      "needs_human_review": 133
+      "needs_human_review": 132
     },
     "run_id": "FULL-001",
     "status": "frontier_active",
@@ -25679,6 +25705,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "deterministic candidate generation",
       "sphere tangent construction",
       "zero-control discard check",
+      "finite non-split coefficient multiplication",
       "known Heisenberg ZCR collision check",
       "s_cross_s_xxx low-order ansatz obstruction",
       "prior-art collision registry",
@@ -26297,37 +26324,37 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "Integrable couplings via semidirect products",
         "Nilpotent and perturbation extensions"
       ],
-      "connection_status": "not_constructed",
+      "connection_status": "constructed_non_split_curvature",
       "conservation_count": 0,
       "curvature_residual_zero": false,
-      "curvature_status": "not_constructed",
-      "curvature_terms_nonzero": null,
-      "curvature_terms_total": 0,
+      "curvature_status": "constructed_non_split_curvature",
+      "curvature_terms_nonzero": 8,
+      "curvature_terms_total": 12,
       "cyclic_fingerprint": null,
       "detail": {
-        "algebra": "non-split semidirect product probe",
-        "solve_status": "unsupported_non_split_product",
-        "summary": "non-split multiplication is not implemented in the current coefficient algebra"
+        "algebra": "upper-triangular non-split semidirect algebra",
+        "solve_status": "residuals_unresolved_non_split_product",
+        "summary": "non-split multiplication table is implemented and associative for this probe"
       },
       "disposition": "needs_human_review",
       "failure_reasons": [
-        "non-split multiplication is not implemented in the current coefficient algebra",
-        "zero-curvature equations were not constructed for this probe",
-        "candidate remains a queued algebra task rather than validated evidence"
+        "non-split multiplication table is implemented and associative for this probe",
+        "zero-curvature equations are constructed but residual terms remain unresolved",
+        "bounded solver, gauge-preserving reductions, and structure evidence remain open"
       ],
-      "frontier_priority": 54,
-      "frontier_status": "blocked_by_missing_capability",
+      "frontier_priority": 40,
+      "frontier_status": "needs_review",
       "gate_gaps": [
-        "coefficient algebra does not yet support the requested product",
-        "zero-curvature residual not constructed",
-        "gauge and cyclic checks cannot run until a matrix pair exists"
+        "non-split multiplication table is implemented and associative for this probe",
+        "zero-curvature equations are constructed but residual terms remain unresolved",
+        "bounded solver, gauge-preserving reductions, and structure evidence remain open"
       ],
       "gate_summary": {
         "collision": "needs human review",
         "conservation": 0,
-        "curvature": "not_constructed",
-        "gauge": null,
-        "spectral": "unknown",
+        "curvature": "constructed_non_split_curvature",
+        "gauge": 0.0,
+        "spectral": "unresolved",
         "tangent": "not applicable"
       },
       "gates": [
@@ -26341,19 +26368,19 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "key": "curvature",
           "label": "Curvature",
           "status": "fail",
-          "value": "not_constructed"
+          "value": "constructed_non_split_curvature"
         },
         {
           "key": "gauge",
           "label": "Gauge",
-          "status": "warn",
-          "value": null
+          "status": "pass",
+          "value": 0.0
         },
         {
           "key": "spectral",
           "label": "Spectral",
           "status": "warn",
-          "value": "unknown"
+          "value": "unresolved"
         },
         {
           "key": "conservation",
@@ -26368,26 +26395,37 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "value": "needs human review"
         }
       ],
-      "gauge_risk_score": null,
+      "gauge_risk_score": 0.0,
       "hamiltonian_verified": false,
       "id": "semidirect-non-split-product-deformation-probe",
       "item_type": "candidate",
       "lane": "DIS-001",
       "name": "semidirect non-split product deformation probe",
-      "next_action": "Implement non-split coefficient multiplication, then construct zero-curvature equations.",
+      "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
       "order": 2,
       "proof_summary": null,
       "recommendation": "needs_human_review",
-      "residual_grid": null,
+      "residual_grid": [
+        [
+          "NONZERO(1)",
+          "NONZERO(3)"
+        ],
+        [
+          "NONZERO(3)",
+          "NONZERO(1)"
+        ]
+      ],
       "short_name": "non-split product deformation probe",
-      "spectral_status": "unknown",
+      "spectral_status": "unresolved",
       "surprisal": {
-        "band": "baseline",
+        "band": "watch",
         "drivers": [
+          "spectral parameter unresolved",
+          "low gauge risk",
           "multiple known-family collisions",
           "human review required"
         ],
-        "score": 13
+        "score": 35
       },
       "tangent_status": "not_applicable",
       "zcr_constraints": [],
@@ -26519,38 +26557,42 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "collisions": [
         "Principal chiral model and Heisenberg ferromagnet families"
       ],
-      "connection_status": "no_validated_zcr",
+      "connection_status": "blocked_first_potential_gate",
       "conservation_count": 0,
       "curvature_residual_zero": false,
-      "curvature_status": "not_constructed",
-      "curvature_terms_nonzero": null,
-      "curvature_terms_total": 0,
-      "cyclic_fingerprint": null,
+      "curvature_status": "blocked_first_potential_gate",
+      "curvature_terms_nonzero": 4,
+      "curvature_terms_total": 54,
+      "cyclic_fingerprint": "dim=1;closure_order=1;lambda_dependent=False;coeffs=(('c0', '0'),)",
       "detail": {
-        "obstruction_basis": [],
-        "summary": "no nontrivial zero-curvature representation validated",
+        "obstruction_basis": [
+          "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
+          "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
+          "current local-vector ansatz has no such local potential W",
+          "nonlocal potentials or different spatial matrices remain untested"
+        ],
+        "summary": "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
         "tangent_condition": "0"
       },
-      "disposition": "needs_human_review",
+      "disposition": "blocked",
       "failure_reasons": [
-        "no nontrivial zero-curvature representation validated",
-        "spectral parameter status unresolved",
-        "conservation and Hamiltonian evidence not mined for this candidate"
+        "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+        "current local-vector ansatz has no local potential W for that gate",
+        "nonlocal potentials or different spatial matrices remain untested"
       ],
-      "frontier_priority": 58,
-      "frontier_status": "promising_potential",
+      "frontier_priority": 42,
+      "frontier_status": "blocked_by_first_potential_gate",
       "gate_gaps": [
-        "no nontrivial zero-curvature representation validated",
-        "spectral parameter status unresolved",
-        "conservation and Hamiltonian evidence not mined",
-        "known sphere-family collision checks remain active"
+        "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+        "current local-vector ansatz has no local potential W for that gate",
+        "nonlocal potentials or different spatial matrices remain untested"
       ],
       "gate_summary": {
         "collision": "needs human review",
         "conservation": 0,
-        "curvature": "no_validated_zcr",
-        "gauge": 1.0,
-        "spectral": "absent",
+        "curvature": "blocked_first_potential_gate",
+        "gauge": 0.0,
+        "spectral": "unresolved",
         "tangent": "tangent"
       },
       "gates": [
@@ -26563,20 +26605,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
         {
           "key": "curvature",
           "label": "Curvature",
-          "status": "warn",
-          "value": "no_validated_zcr"
+          "status": "fail",
+          "value": "blocked_first_potential_gate"
         },
         {
           "key": "gauge",
           "label": "Gauge",
-          "status": "fail",
-          "value": 1.0
+          "status": "pass",
+          "value": 0.0
         },
         {
           "key": "spectral",
           "label": "Spectral",
-          "status": "fail",
-          "value": "absent"
+          "status": "warn",
+          "value": "unresolved"
         },
         {
           "key": "conservation",
@@ -26591,32 +26633,42 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "value": "needs human review"
         }
       ],
-      "gauge_risk_score": 1.0,
+      "gauge_risk_score": 0.0,
       "hamiltonian_verified": false,
       "id": "sphere-s-cross-s-x-tangent-candidate",
       "item_type": "candidate",
       "lane": "DIS-002",
       "name": "sphere s_cross_s_x tangent candidate",
-      "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
+      "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
       "order": 1,
       "proof_summary": null,
-      "recommendation": "needs_human_review",
+      "recommendation": "blocked",
       "residual_grid": null,
       "short_name": "s_cross_s_x",
-      "spectral_status": "absent",
+      "spectral_status": "unresolved",
       "surprisal": {
-        "band": "baseline",
+        "band": "inspect",
         "drivers": [
           "tangent constraint passed",
-          "no spectral data",
-          "high gauge risk",
-          "human review required"
+          "spectral parameter unresolved",
+          "low gauge risk"
         ],
-        "score": 13
+        "score": 45
       },
       "tangent_status": "tangent",
-      "zcr_constraints": [],
-      "zcr_obstruction_basis": [],
+      "zcr_constraints": [
+        "s_t = s cross s_x",
+        "s dot s = 1",
+        "s dot s_x = 0",
+        "[hat(a), hat(b)] = hat(a cross b)",
+        "formal local-vector basis over sphere derivative atoms and scalar invariants"
+      ],
+      "zcr_obstruction_basis": [
+        "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
+        "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
+        "current local-vector ansatz has no such local potential W",
+        "nonlocal potentials or different spatial matrices remain untested"
+      ],
       "zcr_solution": null,
       "zcr_validated": false
     },
@@ -42424,23 +42476,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
       },
       {
         "classification": "needs_human_review",
-        "connection_status": "not_constructed",
+        "connection_status": "constructed_non_split_curvature",
         "evidence_summary": [
-          "semidirect deformation probe remains structurally interesting",
-          "current gate evidence is incomplete"
+          "non-split coefficient multiplication is now implemented for the probe",
+          "zero-curvature residuals are constructed and unresolved",
+          "collision checks keep integrable-coupling families active"
         ],
         "gate_gaps": [
-          "coefficient algebra does not yet support the requested product",
-          "zero-curvature residual not constructed",
-          "gauge and cyclic checks cannot run until a matrix pair exists"
+          "non-split multiplication table is implemented and associative for this probe",
+          "zero-curvature equations are constructed but residual terms remain unresolved",
+          "bounded solver, gauge-preserving reductions, and structure evidence remain open"
         ],
         "item_id": "semidirect-non-split-product-deformation-probe",
         "iteration": 1,
         "lane": "DIS-001",
         "name": "semidirect non-split product deformation probe",
-        "next_action": "Implement non-split coefficient multiplication, then construct zero-curvature equations.",
-        "potential_status": "blocked_by_missing_capability",
-        "priority": 54,
+        "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
+        "potential_status": "needs_review",
+        "priority": 40,
         "process_disposition": "frontier",
         "recommendation": "needs_human_review"
       },
@@ -42468,27 +42521,26 @@ window.LAXFORGE_DASHBOARD_DATA = {
       },
       {
         "classification": "needs_human_review",
-        "connection_status": "no_validated_zcr",
+        "connection_status": "blocked_first_potential_gate",
         "evidence_summary": [
-          "sphere constraint tangent condition passed",
-          "candidate is deterministic and low order",
-          "not discarded because a ZCR attempt has not yet falsified it"
+          "first local-vector potential gate is obstructed",
+          "D_x(W) = s cross s_x has no current local-basis witness",
+          "nonlocal and different-U families remain open"
         ],
         "gate_gaps": [
-          "no nontrivial zero-curvature representation validated",
-          "spectral parameter status unresolved",
-          "conservation and Hamiltonian evidence not mined",
-          "known sphere-family collision checks remain active"
+          "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+          "current local-vector ansatz has no local potential W for that gate",
+          "nonlocal potentials or different spatial matrices remain untested"
         ],
         "item_id": "sphere-s-cross-s-x-tangent-candidate",
         "iteration": 1,
         "lane": "DIS-002",
         "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-        "potential_status": "promising_potential",
-        "priority": 58,
+        "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
+        "potential_status": "blocked_by_first_potential_gate",
+        "priority": 42,
         "process_disposition": "frontier",
-        "recommendation": "needs_human_review"
+        "recommendation": "blocked"
       },
       {
         "classification": "known",
@@ -45950,47 +46002,47 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "frontier": [
       {
         "classification": "needs_human_review",
-        "connection_status": "no_validated_zcr",
+        "connection_status": "blocked_first_potential_gate",
         "evidence_summary": [
-          "sphere constraint tangent condition passed",
-          "candidate is deterministic and low order",
-          "not discarded because a ZCR attempt has not yet falsified it"
+          "first local-vector potential gate is obstructed",
+          "D_x(W) = s cross s_x has no current local-basis witness",
+          "nonlocal and different-U families remain open"
         ],
         "gate_gaps": [
-          "no nontrivial zero-curvature representation validated",
-          "spectral parameter status unresolved",
-          "conservation and Hamiltonian evidence not mined",
-          "known sphere-family collision checks remain active"
+          "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+          "current local-vector ansatz has no local potential W for that gate",
+          "nonlocal potentials or different spatial matrices remain untested"
         ],
         "item_id": "sphere-s-cross-s-x-tangent-candidate",
         "iteration": 1,
         "lane": "DIS-002",
         "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-        "potential_status": "promising_potential",
-        "priority": 58,
+        "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
+        "potential_status": "blocked_by_first_potential_gate",
+        "priority": 42,
         "process_disposition": "frontier",
-        "recommendation": "needs_human_review"
+        "recommendation": "blocked"
       },
       {
         "classification": "needs_human_review",
-        "connection_status": "not_constructed",
+        "connection_status": "constructed_non_split_curvature",
         "evidence_summary": [
-          "semidirect deformation probe remains structurally interesting",
-          "current gate evidence is incomplete"
+          "non-split coefficient multiplication is now implemented for the probe",
+          "zero-curvature residuals are constructed and unresolved",
+          "collision checks keep integrable-coupling families active"
         ],
         "gate_gaps": [
-          "coefficient algebra does not yet support the requested product",
-          "zero-curvature residual not constructed",
-          "gauge and cyclic checks cannot run until a matrix pair exists"
+          "non-split multiplication table is implemented and associative for this probe",
+          "zero-curvature equations are constructed but residual terms remain unresolved",
+          "bounded solver, gauge-preserving reductions, and structure evidence remain open"
         ],
         "item_id": "semidirect-non-split-product-deformation-probe",
         "iteration": 1,
         "lane": "DIS-001",
         "name": "semidirect non-split product deformation probe",
-        "next_action": "Implement non-split coefficient multiplication, then construct zero-curvature equations.",
-        "potential_status": "blocked_by_missing_capability",
-        "priority": 54,
+        "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
+        "potential_status": "needs_review",
+        "priority": 40,
         "process_disposition": "frontier",
         "recommendation": "needs_human_review"
       },
@@ -49821,7 +49873,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": "open candidate dossiers",
       "label": "Needs review",
       "tone": "warn",
-      "value": 133
+      "value": 132
     },
     {
       "detail": "promising potential queue",
@@ -49833,7 +49885,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": "documented obstructions",
       "label": "Blocked",
       "tone": "warn",
-      "value": 1
+      "value": 2
     },
     {
       "detail": "0 fail / 0 warn",
@@ -49851,7 +49903,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": "warn-status evidence cells",
       "label": "Unresolved gates",
       "tone": "warn",
-      "value": 573
+      "value": 572
     },
     {
       "detail": "ready for explicit writer",
@@ -49924,19 +49976,19 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "warn": 144
       },
       "curvature": {
-        "fail": 134,
+        "fail": 135,
         "pass": 10,
-        "warn": 1
+        "warn": 0
       },
       "gauge": {
-        "fail": 3,
-        "pass": 4,
-        "warn": 138
+        "fail": 2,
+        "pass": 6,
+        "warn": 137
       },
       "spectral": {
-        "fail": 3,
+        "fail": 2,
         "pass": 0,
-        "warn": 142
+        "warn": 143
       },
       "tangent": {
         "fail": 0,
@@ -49954,14 +50006,14 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "procedure_check_count": 8,
     "procedure_failure_count": 0,
     "procedure_warning_count": 0,
-    "promising_potential_count": 1,
+    "promising_potential_count": 0,
     "proof_artifact_count": 1,
     "recommendation_counts": {
       "audit": 1,
-      "blocked": 1,
+      "blocked": 2,
       "calibration": 1,
       "discard": 9,
-      "needs_human_review": 133
+      "needs_human_review": 132
     },
     "serious_cycle_status": "blocked",
     "tracked_items_total": 145,
@@ -49972,13 +50024,13 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "bullets": [
       "The pure-gauge proof artifact passes: its curvature residual is zero.",
       "The formal procedure audit passes for the current frontier and discard records.",
-      "DIS-001 has 4 semidirect probes; validated controls stay in discard and the non-split product probe remains queued for review.",
+      "DIS-001 has 4 semidirect probes; validated controls stay in discard and the non-split product probe now has constructed residual evidence.",
       "DIS-002 has 4 sphere-flow candidates; the Heisenberg-shaped case is validated but known-family collision evidence keeps it in discard.",
       "DIS-003 through DIS-005 add 3 density-matrix, 2 nonlocal-covering, and 2 cohomology probes with explicit open gates.",
       "DIS-006 adds 128 scaled sphere-tangent triage candidates; the batch records descriptors without constructing ZCR matrices.",
-      "The frontier has 1 promising-potential candidate and 2 blocked candidates.",
-      "SERIOUS-001 leaves 1 candidate blocked by a documented ansatz-family obstruction.",
-      "2 controlled candidates have validated ZCR evidence; 133 need review and 9 are discard-path.",
+      "The frontier has 0 promising-potential candidates and 2 blocked candidates.",
+      "SERIOUS-001 leaves 1 third-order candidate blocked by a documented ansatz-family obstruction; the broader discovery state has 2 blocked candidates total.",
+      "2 controlled candidates have validated ZCR evidence; 132 need review and 9 are discard-path.",
       "FULL-001 evaluates 143 discovery candidates and keeps the solver action queue separate from stronger interpretation."
     ],
     "headline": "Current readout: this is an active evidence search with a bounded frontier.",
@@ -51755,23 +51807,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "not_constructed",
+          "connection_status": "constructed_non_split_curvature",
           "evidence_summary": [
-            "semidirect deformation probe remains structurally interesting",
-            "current gate evidence is incomplete"
+            "non-split coefficient multiplication is now implemented for the probe",
+            "zero-curvature residuals are constructed and unresolved",
+            "collision checks keep integrable-coupling families active"
           ],
           "gate_gaps": [
-            "coefficient algebra does not yet support the requested product",
-            "zero-curvature residual not constructed",
-            "gauge and cyclic checks cannot run until a matrix pair exists"
+            "non-split multiplication table is implemented and associative for this probe",
+            "zero-curvature equations are constructed but residual terms remain unresolved",
+            "bounded solver, gauge-preserving reductions, and structure evidence remain open"
           ],
           "item_id": "semidirect-non-split-product-deformation-probe",
           "iteration": 1,
           "lane": "DIS-001",
           "name": "semidirect non-split product deformation probe",
-          "next_action": "Implement non-split coefficient multiplication, then construct zero-curvature equations.",
-          "potential_status": "blocked_by_missing_capability",
-          "priority": 54,
+          "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
+          "potential_status": "needs_review",
+          "priority": 40,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -51799,27 +51852,26 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "no_validated_zcr",
+          "connection_status": "blocked_first_potential_gate",
           "evidence_summary": [
-            "sphere constraint tangent condition passed",
-            "candidate is deterministic and low order",
-            "not discarded because a ZCR attempt has not yet falsified it"
+            "first local-vector potential gate is obstructed",
+            "D_x(W) = s cross s_x has no current local-basis witness",
+            "nonlocal and different-U families remain open"
           ],
           "gate_gaps": [
-            "no nontrivial zero-curvature representation validated",
-            "spectral parameter status unresolved",
-            "conservation and Hamiltonian evidence not mined",
-            "known sphere-family collision checks remain active"
+            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+            "current local-vector ansatz has no local potential W for that gate",
+            "nonlocal potentials or different spatial matrices remain untested"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-          "potential_status": "promising_potential",
-          "priority": 58,
+          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
+          "potential_status": "blocked_by_first_potential_gate",
+          "priority": 42,
           "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
+          "recommendation": "blocked"
         },
         {
           "classification": "known",
@@ -55307,47 +55359,47 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "no_validated_zcr",
+          "connection_status": "blocked_first_potential_gate",
           "evidence_summary": [
-            "sphere constraint tangent condition passed",
-            "candidate is deterministic and low order",
-            "not discarded because a ZCR attempt has not yet falsified it"
+            "first local-vector potential gate is obstructed",
+            "D_x(W) = s cross s_x has no current local-basis witness",
+            "nonlocal and different-U families remain open"
           ],
           "gate_gaps": [
-            "no nontrivial zero-curvature representation validated",
-            "spectral parameter status unresolved",
-            "conservation and Hamiltonian evidence not mined",
-            "known sphere-family collision checks remain active"
+            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+            "current local-vector ansatz has no local potential W for that gate",
+            "nonlocal potentials or different spatial matrices remain untested"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-          "potential_status": "promising_potential",
-          "priority": 58,
+          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
+          "potential_status": "blocked_by_first_potential_gate",
+          "priority": 42,
           "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
+          "recommendation": "blocked"
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "not_constructed",
+          "connection_status": "constructed_non_split_curvature",
           "evidence_summary": [
-            "semidirect deformation probe remains structurally interesting",
-            "current gate evidence is incomplete"
+            "non-split coefficient multiplication is now implemented for the probe",
+            "zero-curvature residuals are constructed and unresolved",
+            "collision checks keep integrable-coupling families active"
           ],
           "gate_gaps": [
-            "coefficient algebra does not yet support the requested product",
-            "zero-curvature residual not constructed",
-            "gauge and cyclic checks cannot run until a matrix pair exists"
+            "non-split multiplication table is implemented and associative for this probe",
+            "zero-curvature equations are constructed but residual terms remain unresolved",
+            "bounded solver, gauge-preserving reductions, and structure evidence remain open"
           ],
           "item_id": "semidirect-non-split-product-deformation-probe",
           "iteration": 1,
           "lane": "DIS-001",
           "name": "semidirect non-split product deformation probe",
-          "next_action": "Implement non-split coefficient multiplication, then construct zero-curvature equations.",
-          "potential_status": "blocked_by_missing_capability",
-          "priority": 54,
+          "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
+          "potential_status": "needs_review",
+          "priority": 40,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -59918,23 +59970,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "not_constructed",
+          "connection_status": "constructed_non_split_curvature",
           "evidence_summary": [
-            "semidirect deformation probe remains structurally interesting",
-            "current gate evidence is incomplete"
+            "non-split coefficient multiplication is now implemented for the probe",
+            "zero-curvature residuals are constructed and unresolved",
+            "collision checks keep integrable-coupling families active"
           ],
           "gate_gaps": [
-            "coefficient algebra does not yet support the requested product",
-            "zero-curvature residual not constructed",
-            "gauge and cyclic checks cannot run until a matrix pair exists"
+            "non-split multiplication table is implemented and associative for this probe",
+            "zero-curvature equations are constructed but residual terms remain unresolved",
+            "bounded solver, gauge-preserving reductions, and structure evidence remain open"
           ],
           "item_id": "semidirect-non-split-product-deformation-probe",
           "iteration": 1,
           "lane": "DIS-001",
           "name": "semidirect non-split product deformation probe",
-          "next_action": "Implement non-split coefficient multiplication, then construct zero-curvature equations.",
-          "potential_status": "blocked_by_missing_capability",
-          "priority": 54,
+          "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
+          "potential_status": "needs_review",
+          "priority": 40,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -59962,27 +60015,26 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "no_validated_zcr",
+          "connection_status": "blocked_first_potential_gate",
           "evidence_summary": [
-            "sphere constraint tangent condition passed",
-            "candidate is deterministic and low order",
-            "not discarded because a ZCR attempt has not yet falsified it"
+            "first local-vector potential gate is obstructed",
+            "D_x(W) = s cross s_x has no current local-basis witness",
+            "nonlocal and different-U families remain open"
           ],
           "gate_gaps": [
-            "no nontrivial zero-curvature representation validated",
-            "spectral parameter status unresolved",
-            "conservation and Hamiltonian evidence not mined",
-            "known sphere-family collision checks remain active"
+            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+            "current local-vector ansatz has no local potential W for that gate",
+            "nonlocal potentials or different spatial matrices remain untested"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-          "potential_status": "promising_potential",
-          "priority": 58,
+          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
+          "potential_status": "blocked_by_first_potential_gate",
+          "priority": 42,
           "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
+          "recommendation": "blocked"
         },
         {
           "classification": "known",
@@ -63444,47 +63496,47 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "frontier": [
         {
           "classification": "needs_human_review",
-          "connection_status": "no_validated_zcr",
+          "connection_status": "blocked_first_potential_gate",
           "evidence_summary": [
-            "sphere constraint tangent condition passed",
-            "candidate is deterministic and low order",
-            "not discarded because a ZCR attempt has not yet falsified it"
+            "first local-vector potential gate is obstructed",
+            "D_x(W) = s cross s_x has no current local-basis witness",
+            "nonlocal and different-U families remain open"
           ],
           "gate_gaps": [
-            "no nontrivial zero-curvature representation validated",
-            "spectral parameter status unresolved",
-            "conservation and Hamiltonian evidence not mined",
-            "known sphere-family collision checks remain active"
+            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+            "current local-vector ansatz has no local potential W for that gate",
+            "nonlocal potentials or different spatial matrices remain untested"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run a minimal so(3) ansatz falsification pass with spectral and gauge checks.",
-          "potential_status": "promising_potential",
-          "priority": 58,
+          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
+          "potential_status": "blocked_by_first_potential_gate",
+          "priority": 42,
           "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
+          "recommendation": "blocked"
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "not_constructed",
+          "connection_status": "constructed_non_split_curvature",
           "evidence_summary": [
-            "semidirect deformation probe remains structurally interesting",
-            "current gate evidence is incomplete"
+            "non-split coefficient multiplication is now implemented for the probe",
+            "zero-curvature residuals are constructed and unresolved",
+            "collision checks keep integrable-coupling families active"
           ],
           "gate_gaps": [
-            "coefficient algebra does not yet support the requested product",
-            "zero-curvature residual not constructed",
-            "gauge and cyclic checks cannot run until a matrix pair exists"
+            "non-split multiplication table is implemented and associative for this probe",
+            "zero-curvature equations are constructed but residual terms remain unresolved",
+            "bounded solver, gauge-preserving reductions, and structure evidence remain open"
           ],
           "item_id": "semidirect-non-split-product-deformation-probe",
           "iteration": 1,
           "lane": "DIS-001",
           "name": "semidirect non-split product deformation probe",
-          "next_action": "Implement non-split coefficient multiplication, then construct zero-curvature equations.",
-          "potential_status": "blocked_by_missing_capability",
-          "priority": 54,
+          "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
+          "potential_status": "needs_review",
+          "priority": 40,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },

@@ -1,0 +1,32 @@
+name: Manifest Check
+
+on:
+  push:
+    paths:
+      - "docs/**"
+      - "src/**"
+      - "scripts/**"
+      - "MANIFEST.md"
+      - ".github/workflows/manifest-check.yml"
+  pull_request:
+    paths:
+      - "docs/**"
+      - "src/**"
+      - "scripts/**"
+      - "MANIFEST.md"
+      - ".github/workflows/manifest-check.yml"
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate MANIFEST.md structure
+        run: python scripts/check_manifest.py

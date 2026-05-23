@@ -29,7 +29,7 @@ def test_dashboard_payload_tracks_m0_calibration_and_discovery_items():
     assert payload["metrics"]["dis005_candidate_count"] == 2
     assert payload["metrics"]["dis006_candidate_count"] == 128
     assert payload["metrics"]["frontier_count"] == 134
-    assert payload["metrics"]["promising_potential_count"] == 1
+    assert payload["metrics"]["promising_potential_count"] == 0
     assert payload["metrics"]["blocked_frontier_count"] == 2
     assert payload["metrics"]["ansatz_blocked_count"] == 1
     assert payload["metrics"]["serious_cycle_status"] == "blocked"
@@ -90,10 +90,10 @@ def test_dashboard_payload_includes_plain_lay_summary():
     assert len(summary["bullets"]) == 10
     assert "pure-gauge proof artifact passes" in summary["bullets"][0]
     assert "formal procedure audit passes" in summary["bullets"][1]
-    assert "DIS-001 has 4 semidirect probes" in summary["bullets"][2]
+    assert "non-split product probe now has constructed residual evidence" in summary["bullets"][2]
     assert "DIS-003 through DIS-005 add 3 density-matrix" in summary["bullets"][4]
     assert "DIS-006 adds 128 scaled sphere-tangent triage candidates" in summary["bullets"][5]
-    assert "SERIOUS-001 leaves 1 candidate blocked" in summary["bullets"][7]
+    assert "SERIOUS-001 leaves 1 third-order candidate blocked" in summary["bullets"][7]
     assert "FULL-001 evaluates 143 discovery candidates" in summary["bullets"][-1]
     assert "process console" in summary["bottom_line"]
 
@@ -135,8 +135,9 @@ def test_dashboard_semidirect_search_surfaces_started_dis001_lane():
     assert split_control["recommendation"] == "discard"
     assert "semidirect coupling" in split_control["collision_families"]
     assert non_split_probe["recommendation"] == "needs_human_review"
-    assert non_split_probe["connection_status"] == "not_constructed"
-    assert non_split_probe["frontier_status"] == "blocked_by_missing_capability"
+    assert non_split_probe["connection_status"] == "constructed_non_split_curvature"
+    assert non_split_probe["frontier_status"] == "needs_review"
+    assert non_split_probe["curvature_terms_nonzero"] == 8
 
 
 def test_dashboard_frontier_process_tracks_queued_next_actions():
@@ -153,6 +154,9 @@ def test_dashboard_frontier_process_tracks_queued_next_actions():
     assert any(record["lane"] == "DIS-003" for record in frontier)
     assert any(record["lane"] == "DIS-006" for record in frontier)
     assert all(record["next_action"] for record in frontier)
+    assert _item(payload, "sphere-s-cross-s-x-tangent-candidate")[
+        "frontier_status"
+    ] == "blocked_by_first_potential_gate"
     assert _item(payload, "sphere-s-cross-s-xxx-exploratory-candidate")[
         "frontier_status"
     ] == "blocked_by_ansatz_obstruction"

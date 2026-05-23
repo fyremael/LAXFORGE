@@ -15,7 +15,11 @@ from laxforge.core.gauge import analyze_gauge_risk
 from laxforge.core.prior_art import CandidateClassification, classify_candidate
 from laxforge.core.zero_curvature import curvature_report
 from laxforge.search.controlled import DiscoveryRunReport
-from laxforge.search.sphere_zcr import solve_heisenberg_zcr_ansatz, solve_sxxx_zcr_ansatz
+from laxforge.search.sphere_zcr import (
+    solve_heisenberg_zcr_ansatz,
+    solve_sx_zcr_ansatz,
+    solve_sxxx_zcr_ansatz,
+)
 
 
 @dataclass(frozen=True)
@@ -25,6 +29,7 @@ class SphereSearchConfig:
     max_order: int = 3
     include_zero_control: bool = True
     include_heisenberg_template: bool = True
+    attempt_sx_ansatz: bool = True
     attempt_sxxx_ansatz: bool = True
 
 
@@ -156,6 +161,7 @@ def _build_candidate(
     lambda_symbol: sp.Symbol,
     fake_pair: bool = False,
     heisenberg_template: bool = False,
+    sx_ansatz_attempt: bool = False,
     sxxx_ansatz_attempt: bool = False,
 ) -> SphereFlowCandidate:
     tangent_condition = sp.simplify(s.dot(flow_vector))
@@ -175,6 +181,11 @@ def _build_candidate(
         if heisenberg_report.validated:
             metadata["known_heisenberg_zcr"] = True
             gauge_report = heisenberg_report.gauge_report
+    if sx_ansatz_attempt:
+        sx_report = solve_sx_zcr_ansatz()
+        zcr_report = sx_report.as_dict()
+        metadata["sx_potential_obstruction"] = not sx_report.validated
+        gauge_report = sx_report.gauge_report
     if sxxx_ansatz_attempt:
         sxxx_report = solve_sxxx_zcr_ansatz()
         zcr_report = sxxx_report.as_dict()
@@ -184,6 +195,8 @@ def _build_candidate(
     collision_report = classify_candidate(name, metadata=metadata)
     if fake_pair or metadata.get("known_heisenberg_zcr"):
         recommendation = "discard"
+    elif metadata.get("sx_potential_obstruction"):
+        recommendation = "blocked"
     elif metadata.get("sxxx_ansatz_obstruction"):
         recommendation = "blocked"
     else:
@@ -200,6 +213,17 @@ def _build_candidate(
             "basis_split_complete": True,
             "status": "validated_mod_constraints",
             "constraints_used": zcr_report["constraints_used"] if zcr_report else [],
+        }
+    elif metadata.get("sx_potential_obstruction"):
+        connection_status = "blocked_first_potential_gate"
+        curvature_summary = {
+            "curvature_residual_zero": False,
+            "curvature_terms_total": int((zcr_report or {}).get("formal_equations", 0)),
+            "curvature_terms_nonzero": len((zcr_report or {}).get("obstruction_basis", [])),
+            "basis_split_complete": True,
+            "status": "blocked_first_potential_gate",
+            "constraints_used": zcr_report["constraints_used"] if zcr_report else [],
+            "obstruction_basis": zcr_report["obstruction_basis"] if zcr_report else [],
         }
     elif metadata.get("sxxx_ansatz_obstruction"):
         connection_status = "ansatz_obstruction_current_family"
@@ -231,6 +255,12 @@ def _build_candidate(
             "validated ZCR matches a Heisenberg/symmetric-space known-family template",
             "candidate is discarded for DIS-002 discovery purposes",
             "conservation and Hamiltonian evidence not mined for this candidate",
+        )
+    elif metadata.get("sx_potential_obstruction"):
+        failure_reasons = (
+            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+            "current local-vector ansatz has no local potential W for that gate",
+            "nonlocal potentials or different spatial matrices remain untested",
         )
     elif metadata.get("sxxx_ansatz_obstruction"):
         failure_reasons = (
@@ -333,6 +363,7 @@ def run_sphere_low_order_search(config: SphereSearchConfig | None = None) -> Dis
                     s=s,
                     lambda_symbol=lambda_symbol,
                     heisenberg_template=heisenberg_template,
+                    sx_ansatz_attempt=order == 1 and config.attempt_sx_ansatz,
                     sxxx_ansatz_attempt=order == 3 and config.attempt_sxxx_ansatz,
                 )
             )

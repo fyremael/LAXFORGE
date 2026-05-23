@@ -63,14 +63,18 @@ def test_rescaled_parameter_control_is_discarded_as_fake():
     assert candidate.evidence["rescaling_parameter_status"] == "removable"
 
 
-def test_non_split_probe_is_queued_for_human_review():
+def test_non_split_probe_constructs_non_split_curvature_evidence():
     candidate = run_semidirect_deformation_search().candidates[3]
 
     assert candidate.dossier.classification == CandidateClassification.NEEDS_HUMAN_REVIEW
     assert candidate.dossier.recommendation == "needs_human_review"
-    assert candidate.connection_status == "not_constructed"
-    assert candidate.solve_status == "unsupported_non_split_product"
-    assert "non-split multiplication" in candidate.failure_reasons[0]
+    assert candidate.connection_status == "constructed_non_split_curvature"
+    assert candidate.solve_status == "residuals_unresolved_non_split_product"
+    assert candidate.evidence["matrix_pair_constructed"] is True
+    assert candidate.evidence["associative"] is True
+    assert candidate.dossier.curvature_summary["basis_split_complete"] is True
+    assert candidate.dossier.curvature_summary["curvature_terms_nonzero"] > 0
+    assert "non-split multiplication table is implemented" in candidate.failure_reasons[0]
 
 
 def test_semidirect_search_config_can_limit_orders():

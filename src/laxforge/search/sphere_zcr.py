@@ -10,6 +10,8 @@ import sympy as sp
 from laxforge.core.cyclic_basis import compute_cyclic_basis
 from laxforge.core.gauge import analyze_gauge_risk
 from laxforge.core.prior_art import classify_candidate
+from laxforge.search.formal_sphere_ansatz import solve_formal_sphere_ansatz
+from laxforge.search.overnight import _candidate
 
 
 def cross_product_matrix(vector: sp.MatrixBase) -> sp.Matrix:
@@ -120,6 +122,47 @@ class SphereSxxxZCRAttemptReport:
         }
 
 
+@dataclass(frozen=True)
+class SphereSxZCRAttemptReport:
+    """First-potential gate report for the sphere s cross s_x flow."""
+
+    candidate_name: str
+    formal_status: str
+    formal_degree: int
+    formal_unknowns: int
+    formal_equations: int
+    formal_obstruction_basis: tuple[str, ...]
+    obstruction_basis: tuple[str, ...]
+    constraints_used: tuple[str, ...]
+    ansatz_family: tuple[str, ...]
+    validated: bool
+    U: sp.Matrix
+    V: sp.Matrix
+    gauge_report: dict[str, object]
+    cyclic_report: dict[str, object]
+    collision_report: dict[str, object]
+
+    def as_dict(self) -> dict[str, Any]:
+        """Return a JSON-compatible first-potential gate report."""
+        return {
+            "candidate_name": self.candidate_name,
+            "formal_status": self.formal_status,
+            "formal_degree": self.formal_degree,
+            "formal_unknowns": self.formal_unknowns,
+            "formal_equations": self.formal_equations,
+            "formal_obstruction_basis": list(self.formal_obstruction_basis),
+            "obstruction_basis": list(self.obstruction_basis),
+            "constraints_used": list(self.constraints_used),
+            "ansatz_family": list(self.ansatz_family),
+            "validated": self.validated,
+            "U": _matrix_as_strings(self.U),
+            "V": _matrix_as_strings(self.V),
+            "gauge_report": _without_promotion_status(self.gauge_report),
+            "cyclic_report": self.cyclic_report,
+            "collision_report": self.collision_report,
+        }
+
+
 def _sphere_symbols() -> tuple[sp.Symbol, sp.Symbol, sp.Symbol, sp.Symbol, sp.Symbol, sp.Matrix]:
     x, t, lam = sp.symbols("x t lambda")
     alpha, beta = sp.symbols("alpha beta")
@@ -144,6 +187,68 @@ def _safe_collision_report(candidate_name: str) -> dict[str, object]:
         for key, value in collision_report.items()
         if key != "novelty_status"
     }
+
+
+def solve_sx_zcr_ansatz() -> SphereSxZCRAttemptReport:
+    """Attempt the supported local-vector ZCR gate for s_t = s cross s_x."""
+    x, _t, lam, _alpha, _beta, s = _sphere_symbols()
+    formal_candidate = _candidate(
+        name="overnight sphere unit times sx",
+        family="scalar_weighted_cross",
+        descriptor="s x s_x",
+        order=1,
+        scalar_factor="unit",
+        vector_atom="sx",
+        derivative_span=(1,),
+        priority_score=1,
+    )
+    formal_report = solve_formal_sphere_ansatz(
+        formal_candidate,
+        degree=4,
+        basis_order_slack=2,
+    )
+    U = lam * cross_product_matrix(s)
+    V = sp.zeros(3)
+    gauge_report = analyze_gauge_risk(U, V, lambda_symbol=lam).as_dict()
+    cyclic_report = compute_cyclic_basis(
+        _algebraic_spatial_matrix(lam),
+        sp.Symbol("q1"),
+        x,
+        lambda_symbol=lam,
+        max_steps=4,
+    ).as_dict()
+    return SphereSxZCRAttemptReport(
+        candidate_name="sphere s_cross_s_x tangent candidate",
+        formal_status=formal_report.status,
+        formal_degree=formal_report.degree,
+        formal_unknowns=formal_report.unknown_count,
+        formal_equations=formal_report.equation_count,
+        formal_obstruction_basis=formal_report.obstruction_basis[:4],
+        obstruction_basis=(
+            "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
+            "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
+            "current local-vector ansatz has no such local potential W",
+            "nonlocal potentials or different spatial matrices remain untested",
+        ),
+        constraints_used=(
+            "s_t = s cross s_x",
+            "s dot s = 1",
+            "s dot s_x = 0",
+            "[hat(a), hat(b)] = hat(a cross b)",
+            "formal local-vector basis over sphere derivative atoms and scalar invariants",
+        ),
+        ansatz_family=(
+            "U = lambda * hat(s)",
+            "V = hat(sum lambda^k v_k) with local vector coefficients",
+            "degree <= 4 with derivative-order slack 2",
+        ),
+        validated=False,
+        U=U,
+        V=V,
+        gauge_report=gauge_report,
+        cyclic_report=cyclic_report,
+        collision_report=_safe_collision_report("sphere s_cross_s_x tangent candidate"),
+    )
 
 
 def solve_sxxx_zcr_ansatz() -> SphereSxxxZCRAttemptReport:

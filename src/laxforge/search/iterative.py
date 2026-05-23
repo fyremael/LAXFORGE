@@ -186,6 +186,29 @@ def _candidate_record(candidate: Any, lane: str, iteration: int) -> FrontierCand
         )
 
     if recommendation == "blocked":
+        if connection_status == "blocked_first_potential_gate":
+            return FrontierCandidate(
+                item_id=_slug(name),
+                name=name,
+                lane=lane,
+                iteration=iteration,
+                recommendation=recommendation,
+                classification=classification,
+                connection_status=connection_status,
+                process_disposition="frontier",
+                potential_status="blocked_by_first_potential_gate",
+                priority=42,
+                next_action=(
+                    "Route to a nonlocal-potential or alternate-U ansatz after the "
+                    "non-split semidirect residual pass."
+                ),
+                gate_gaps=tuple(candidate.failure_reasons),
+                evidence_summary=(
+                    "first local-vector potential gate is obstructed",
+                    "D_x(W) = s cross s_x has no current local-basis witness",
+                    "nonlocal and different-U families remain open",
+                ),
+            )
         return FrontierCandidate(
             item_id=_slug(name),
             name=name,
@@ -229,6 +252,30 @@ def _candidate_record(candidate: Any, lane: str, iteration: int) -> FrontierCand
             evidence_summary=(
                 "semidirect deformation probe remains structurally interesting",
                 "current gate evidence is incomplete",
+            ),
+        )
+
+    if lane == "DIS-001" and solve_status == "residuals_unresolved_non_split_product":
+        return FrontierCandidate(
+            item_id=_slug(name),
+            name=name,
+            lane=lane,
+            iteration=iteration,
+            recommendation=recommendation,
+            classification=classification,
+            connection_status=connection_status,
+            process_disposition="frontier",
+            potential_status="needs_review",
+            priority=40,
+            next_action=(
+                "Apply a bounded coefficient solver to the constructed non-split curvature "
+                "residuals, then rerun gauge-preserving reductions."
+            ),
+            gate_gaps=tuple(candidate.failure_reasons),
+            evidence_summary=(
+                "non-split coefficient multiplication is now implemented for the probe",
+                "zero-curvature residuals are constructed and unresolved",
+                "collision checks keep integrable-coupling families active",
             ),
         )
 
