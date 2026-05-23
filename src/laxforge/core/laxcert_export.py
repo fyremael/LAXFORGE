@@ -43,6 +43,10 @@ def _jet(field: str, order: int) -> dict[str, Any]:
     return {"kind": "jet", "field": field, "order": order}
 
 
+def _neg(expr: dict[str, Any]) -> dict[str, Any]:
+    return {"kind": "neg", "arg": expr}
+
+
 def _diffop(order: int, coeff: dict[str, Any]) -> dict[str, Any]:
     return {"terms": [{"order": order, "coeff": coeff}]}
 
@@ -52,13 +56,18 @@ def _zero_op() -> dict[str, Any]:
 
 
 def build_laxcert_calibration_candidate(
-    candidate_id: str = "LaxforgeCalibration2x2Zero",
+    candidate_id: str = "LaxforgeAKNSD2TransportZero",
 ) -> dict[str, Any]:
-    """Build the current LAXCERT-compatible 2x2 calibration candidate.
+    """Build the current LAXCERT-compatible section-10 calibration candidate.
 
-    This is intentionally conservative: it exercises matrix differential
-    operators, evolution-derived `L_t`, operator commutator cancellation, and
-    adjoint claims while staying inside LAXCERT's current MVP schema.
+    This uses the LAXCERT `SPEC.md` section-10 operator shape
+
+        [[D_x^2, -q], [p, -D_x^2]]
+
+    with the transport evolution `p_t = p_x`, `q_t = q_x` and `P = D_x I`.
+    It exercises second-order diagonal operators, paired-field off-diagonal
+    entries, evolution-derived `L_t`, higher-order commutator cancellation,
+    and a skew-adjoint `P` claim while staying inside LAXCERT's current schema.
     """
 
     return {
@@ -77,8 +86,8 @@ def build_laxcert_calibration_candidate(
         "operators": {
             "L": {
                 "rows": [
-                    [_diffop(0, _jet("p", 0)), _zero_op()],
-                    [_zero_op(), _diffop(0, _jet("q", 0))],
+                    [_diffop(2, _const(1)), _diffop(0, _neg(_jet("q", 0)))],
+                    [_diffop(0, _jet("p", 0)), _diffop(2, _const(-1))],
                 ]
             },
             "P": {
@@ -90,17 +99,18 @@ def build_laxcert_calibration_candidate(
         },
         "claims": [
             {"type": "lax_equation", "proof_strategy": "coefficient_certificate"},
-            {"type": "self_adjoint_L", "proof_strategy": "coefficient_certificate"},
             {"type": "skew_adjoint_P", "proof_strategy": "coefficient_certificate"},
         ],
         "assumptions": [
             "formal differential operators over commuting scalar coefficients",
             "formal adjoint ignores boundary terms",
+            "section-10 transport calibration does not assert self-adjoint L because p = -q is not part of the MVP schema",
         ],
         "provenance": {
             "source": "laxforge",
             "exporter": EXPORTER_NAME,
-            "calibration_target": "2x2 formal differential-operator smoke calibration",
+            "calibration_target": "section-10 2x2 D_x^2 transport calibration",
+            "spec_reference": "LAXCERT SPEC.md section 10",
         },
     }
 
@@ -115,7 +125,7 @@ def _write_json(path: Path, data: dict[str, Any], overwrite: bool) -> None:
 def write_laxcert_calibration_artifact(
     output_dir: str | Path,
     *,
-    candidate_id: str = "LaxforgeCalibration2x2Zero",
+    candidate_id: str = "LaxforgeAKNSD2TransportZero",
     overwrite: bool = False,
 ) -> Path:
     """Write a LAXCERT-ingestable LAXFORGE calibration artifact directory."""
@@ -140,8 +150,8 @@ def write_laxcert_calibration_artifact(
         "candidate_id": candidate_id,
         "candidate_hash": candidate_hash,
         "summary": (
-            "LAXFORGE emitted an AST-based formal differential-operator "
-            "candidate for LAXCERT MVP calibration."
+            "LAXFORGE emitted an AST-based section-10 formal "
+            "differential-operator candidate for LAXCERT calibration."
         ),
         "trust_boundary": "LAXFORGE proposes candidate JSON; LAXCERT validates and proves it.",
     }

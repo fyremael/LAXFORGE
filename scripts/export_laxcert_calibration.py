@@ -12,7 +12,7 @@ from laxforge.core.laxcert_export import write_laxcert_calibration_artifact
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("output_dir", type=Path)
-    parser.add_argument("--candidate-id", default="LaxforgeCalibration2x2Zero")
+    parser.add_argument("--candidate-id", default="LaxforgeAKNSD2TransportZero")
     parser.add_argument("--overwrite", action="store_true")
     args = parser.parse_args()
 

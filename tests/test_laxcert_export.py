@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
+import sys
+from pathlib import Path
 
 from laxforge.core.laxcert_export import (
     build_laxcert_calibration_candidate,
@@ -17,16 +20,32 @@ def _canonical_hash(data: dict[str, object]) -> str:
 def test_laxcert_calibration_candidate_uses_ast_certificate_shape() -> None:
     candidate = build_laxcert_calibration_candidate()
 
-    assert candidate["candidate_id"] == "LaxforgeCalibration2x2Zero"
+    assert candidate["candidate_id"] == "LaxforgeAKNSD2TransportZero"
     assert candidate["laxcert_schema_version"] == candidate["schema_version"]
     assert candidate["scalar_ring"] == "rat_differential_polynomial"
     assert candidate["directions"] == {"space": ["x"], "time": "t"}
     assert candidate["fields"] == ["p", "q"]
     assert candidate["evolution"]["p"] == {"kind": "jet", "field": "p", "order": 1}
+    assert candidate["evolution"]["q"] == {"kind": "jet", "field": "q", "order": 1}
     assert candidate["operators"]["L"]["rows"][0][0]["terms"][0]["coeff"] == {
-        "kind": "jet",
-        "field": "p",
+        "kind": "const",
+        "value": 1,
+    }
+    assert candidate["operators"]["L"]["rows"][0][0]["terms"][0]["order"] == 2
+    assert candidate["operators"]["L"]["rows"][0][1]["terms"][0] == {
         "order": 0,
+        "coeff": {
+            "kind": "neg",
+            "arg": {"kind": "jet", "field": "q", "order": 0},
+        },
+    }
+    assert candidate["operators"]["L"]["rows"][1][0]["terms"][0] == {
+        "order": 0,
+        "coeff": {"kind": "jet", "field": "p", "order": 0},
+    }
+    assert candidate["operators"]["L"]["rows"][1][1]["terms"][0] == {
+        "order": 2,
+        "coeff": {"kind": "const", "value": -1},
     }
     assert candidate["operators"]["P"]["rows"][0][0]["terms"][0] == {
         "order": 1,
@@ -34,10 +53,10 @@ def test_laxcert_calibration_candidate_uses_ast_certificate_shape() -> None:
     }
     assert {claim["type"] for claim in candidate["claims"]} == {
         "lax_equation",
-        "self_adjoint_L",
         "skew_adjoint_P",
     }
     assert candidate["provenance"]["source"] == "laxforge"
+    assert candidate["provenance"]["spec_reference"] == "LAXCERT SPEC.md section 10"
 
 
 def test_laxcert_calibration_artifact_writes_manifest_and_candidate(tmp_path) -> None:
@@ -59,3 +78,24 @@ def test_laxcert_calibration_artifact_writes_manifest_and_candidate(tmp_path) ->
     assert manifest["candidate_hash"] == _canonical_hash(candidate)
     assert manifest["candidate_id"] == candidate["candidate_id"]
     assert source_report["candidate_hash"] == manifest["candidate_hash"]
+
+
+def test_laxcert_calibration_cli_uses_section10_default(tmp_path) -> None:
+    output_dir = tmp_path / "laxcert_cli_export"
+    proc = subprocess.run(
+        [
+            sys.executable,
+            "scripts/export_laxcert_calibration.py",
+            str(output_dir),
+            "--overwrite",
+        ],
+        check=False,
+        cwd=Path(__file__).resolve().parents[1],
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+    )
+
+    assert proc.returncode == 0, proc.stdout
+    candidate = json.loads((output_dir / "candidate.json").read_text(encoding="utf-8"))
+    assert candidate["candidate_id"] == "LaxforgeAKNSD2TransportZero"

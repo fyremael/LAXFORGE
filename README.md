@@ -31,7 +31,10 @@ python scripts/export_laxcert_calibration.py runs/laxcert_calibration --overwrit
 ```
 
 The output directory contains `laxforge_manifest.json`, `candidate.json`, and
-`source_report.json`. LAXCERT can certify that directory directly.
+`source_report.json`. The default candidate is the LAXCERT section-10
+`LaxforgeAKNSD2TransportZero` calibration with second-order diagonal operators
+and paired-field off-diagonal entries. LAXCERT can certify that directory
+directly.
 
 ## First milestone
 
