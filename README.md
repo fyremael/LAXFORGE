@@ -77,4 +77,3 @@ LAXFORGE should act like a mathematical clean room. Every candidate receives a s
 8. Hamiltonian/bi-Hamiltonian attempts.
 9. Known-hierarchy collision search.
 10. Publishability classification.
-

@@ -277,4 +277,3 @@ A candidate reaches publication consideration only if it has:
 - a known-hierarchy collision report,
 - a clear mathematical interpretation,
 - a concise falsifiability statement.
-

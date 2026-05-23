@@ -190,7 +190,13 @@ def _safe_collision_report(candidate_name: str) -> dict[str, object]:
 
 
 def solve_sx_zcr_ansatz() -> SphereSxZCRAttemptReport:
-    """Attempt the supported local-vector ZCR gate for s_t = s cross s_x."""
+    """Attempt the supported local-vector ZCR gate for s_t = s cross s_x.
+
+    For the current U = lambda*hat(s) family, the lambda coefficient requires
+    a local vector W with D_x(W) = s cross s_x. The formal local basis records
+    that as an obstruction, not as a global exclusion of nonlocal or different-U
+    representations.
+    """
     x, _t, lam, _alpha, _beta, s = _sphere_symbols()
     formal_candidate = _candidate(
         name="overnight sphere unit times sx",
