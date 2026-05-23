@@ -17,8 +17,8 @@ def test_iterative_discovery_builds_repeatable_frontier():
     assert report.process_status == "frontier_active"
     assert [iteration.index for iteration in report.iterations] == [1, 2]
     assert [record.item_id for record in report.frontier[:3]] == [
-        "sphere-s-cross-s-x-tangent-candidate",
         "semidirect-non-split-product-deformation-probe",
+        "sphere-s-cross-s-x-tangent-candidate",
         "scaled-sphere-unit-times-sxxxxx",
     ]
     assert len(report.all_records) == 143
@@ -47,6 +47,7 @@ def test_iterative_frontier_records_next_gate_gaps():
         assert record.evidence_summary
         assert record.potential_status in {
             "promising_potential",
+            "blocked_by_first_potential_gate",
             "blocked_by_missing_capability",
             "blocked_by_ansatz_obstruction",
             "density_matrix_pending",
@@ -66,12 +67,19 @@ def test_iterative_baseline_freeze_can_leave_sxxx_as_promising_potential():
 def test_iterative_serious_attempt_blocks_sxxx_and_advances_next_candidate():
     report = run_iterative_discovery()
 
-    assert report.frontier[0].item_id == "sphere-s-cross-s-x-tangent-candidate"
+    assert report.frontier[0].item_id == "semidirect-non-split-product-deformation-probe"
+    sx = next(
+        record
+        for record in report.frontier
+        if record.item_id == "sphere-s-cross-s-x-tangent-candidate"
+    )
     sxxx = next(
         record
         for record in report.frontier
         if record.item_id == "sphere-s-cross-s-xxx-exploratory-candidate"
     )
+    assert sx.recommendation == "blocked"
+    assert sx.potential_status == "blocked_by_first_potential_gate"
     assert sxxx.recommendation == "blocked"
     assert sxxx.potential_status == "blocked_by_ansatz_obstruction"
     assert any(record.lane == "DIS-003" for record in report.frontier)

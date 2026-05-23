@@ -186,6 +186,29 @@ def _candidate_record(candidate: Any, lane: str, iteration: int) -> FrontierCand
         )
 
     if recommendation == "blocked":
+        if connection_status == "blocked_first_potential_gate":
+            return FrontierCandidate(
+                item_id=_slug(name),
+                name=name,
+                lane=lane,
+                iteration=iteration,
+                recommendation=recommendation,
+                classification=classification,
+                connection_status=connection_status,
+                process_disposition="frontier",
+                potential_status="blocked_by_first_potential_gate",
+                priority=42,
+                next_action=(
+                    "Route to a nonlocal-potential or alternate-U ansatz after the "
+                    "non-split semidirect blocker is addressed."
+                ),
+                gate_gaps=tuple(candidate.failure_reasons),
+                evidence_summary=(
+                    "first local-vector potential gate is obstructed",
+                    "D_x(W) = s cross s_x has no current local-basis witness",
+                    "nonlocal and different-U families remain open",
+                ),
+            )
         return FrontierCandidate(
             item_id=_slug(name),
             name=name,

@@ -74,7 +74,8 @@ function recommendationCount(name) {
 function renderReadout() {
   const slot = document.getElementById("report-readout-copy");
   const frontier = reportData.iterative_process?.frontier || [];
-  const sphereNext = frontier.find((record) => record.item_id === "sphere-s-cross-s-x-tangent-candidate");
+  const firstFrontier = frontier[0];
+  const sphereSx = frontier.find((record) => record.item_id === "sphere-s-cross-s-x-tangent-candidate");
   const sxxx = itemById("sphere-s-cross-s-xxx-exploratory-candidate");
   const heisenberg = itemById("sphere-s-cross-s-xx-heisenberg-shaped-candidate");
   const dis003Count = candidateCountByLane("DIS-003");
@@ -87,7 +88,7 @@ function renderReadout() {
     `The strongest calibration result is the second-jet nilpotent mKdV lane. It recovers a known mechanism, verifies Hamiltonian structure, and records ${itemById("second-jet-nilpotent-mkdv")?.conservation_count ?? 0} conservation-law signals. That gives the search process a working reference target before frontier candidates are judged.`,
     `The first serious cycle did not produce a validated third-order sphere ZCR. It changed the state of s_cross_s_xxx from open frontier to blocked by the current low-order so(3) ansatz family. That is useful: it narrows the next search without pretending to rule out broader families.`,
     `The next phase is deliberately broader: DIS-006 records 100+ deterministic tangent-flow descriptors, verifies their tangent construction, and leaves ZCR, spectral, gauge, cyclic, conservation, and collision evidence open until candidate-specific solver passes run.`,
-    `The most actionable next item is ${sphereNext?.name || "the first sphere tangent candidate"}. It remains in needs-human-review territory because tangency is established but the ZCR, spectral, gauge, cyclic, and conservation gates are not yet closed.`,
+    `The most actionable next item is ${firstFrontier?.name || "the first queued frontier candidate"}. The sphere s_cross_s_x candidate has moved out of open review and into ${titleCase(sphereSx?.potential_status || "blocked_by_first_potential_gate")} because the supported local-vector gate would need D_x(W) = s cross s_x.`,
     `Known-family discipline is active. The ${heisenberg?.short_name || "Heisenberg-shaped"} candidate has validated ZCR evidence, but it is classified as a known-family collision and recommended discard. This is the intended behavior: validation alone is not enough to keep a candidate alive.`,
   ];
 
@@ -201,11 +202,11 @@ function renderDossiers() {
     }),
     dossierCard({
       eyebrow: "DIS-002",
-      title: "Sphere-valued search has one active next test",
+      title: "Sphere-valued search has explicit blocker evidence",
       tone: "warn",
       paragraphs: [
-        "The sphere lane now contains a meaningful spread: a zero control discarded as fake, a first-order tangent candidate still awaiting ZCR work, a second-order Heisenberg-shaped case validated but discarded as known, and a third-order case blocked by the current ansatz family.",
-        "That distribution is healthy for a serious search process. It shows the system can preserve a frontier candidate while still discarding attractive cases when collision evidence is stronger.",
+        "The sphere lane now contains a meaningful spread: a zero control discarded as fake, a first-order tangent candidate blocked at the first local-potential gate, a second-order Heisenberg-shaped case validated but discarded as known, and a third-order case blocked by the current ansatz family.",
+        "That distribution is healthy for a serious search process. It shows the system can preserve obstruction evidence while still discarding attractive cases when collision evidence is stronger.",
       ],
       stats: [
         ["DIS-002 items", candidateCountByLane("DIS-002")],
@@ -256,7 +257,7 @@ function renderDossiers() {
       title: "The process is coherent enough for another cycle",
       tone: "pass",
       paragraphs: [
-        "ITER-001 keeps three frontier records visible: one active sphere candidate, one algebra-blocked semidirect probe, and the third-order sphere obstruction retained for broader ansatz work.",
+        "ITER-001 keeps the next blockers visible: the non-split semidirect algebra probe, the first-order sphere potential gate, and the third-order sphere obstruction retained for broader ansatz work.",
         "PROC-001 passes its formal audit checks. That does not make any candidate stronger, but it means the search procedure is partitioning frontier and discard states consistently.",
       ],
       stats: [
