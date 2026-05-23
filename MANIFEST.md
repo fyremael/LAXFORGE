@@ -1,5 +1,50 @@
 # MANIFEST.md
 
+## Candidate metadata
+
+- Default LAXCERT export candidate: `LaxforgeAKNSD2TransportZero`.
+- LAXFORGE artifact type: `laxforge.candidate_export`.
+- Target consumer: LAXCERT schema version `0.1.0`.
+- Export helper: `laxforge.core.laxcert_export.write_laxcert_calibration_artifact`.
+- Conservative posture: artifact export is evidence emission, not a novelty claim.
+
+## Algebra and representation
+
+- Scalar ring: rational differential-polynomial expressions.
+- Independent variables: space `x`, time `t`.
+- Fields: `p`, `q`.
+- LAXCERT calibration representation: 2 x 2 formal differential operators with second-order diagonal entries and field-valued off-diagonal entries.
+- Core LAXFORGE algebra support: truncated polynomial coefficient arithmetic, symbolic matrix curvature expansion, and canonical evidence models.
+
+## Zero-curvature validation
+
+- LAXFORGE emits `candidate.json`, `laxforge_manifest.json`, and `source_report.json` for the calibration handoff.
+- LAXFORGE does not certify the LAXCERT proof internally; the trust boundary is explicit in `source_report.json`.
+- LAXCERT is expected to validate coefficient certificates for the exported section-10 calibration candidate.
+
+## Gauge/fake-pair checks
+
+- Gauge/fake-pair checks are tracked in candidate dossiers and dashboard payloads.
+- Calibration export assumptions are explicit and avoid promotion language.
+- Fake-pair and known-family controls remain in the local discovery runs.
+
+## Invariants and classification
+
+- Dashboard and research-report payloads record conservative classifications.
+- Prior-art collision checks stay active for candidate dossiers.
+- Classification fields are evidence states such as calibration, discard, blocked, or needs human review.
+
+## Reproducibility
+
+- Local validation entrypoints:
+  - `python -m ruff check .`
+  - `python -m pytest -q`
+  - `python scripts/run_prompt_pack_validation.py`
+  - `python scripts/run_functional_completeness_audit.py`
+  - `python scripts/export_laxcert_calibration.py runs/laxcert_calibration --overwrite`
+  - `python scripts/check_laxcert_artifacts.py`
+- CI support files live under `.github/workflows/`.
+
 ## Top-level files
 
 - `README.md` — project overview and quick start.

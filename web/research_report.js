@@ -257,7 +257,7 @@ function renderDossiers() {
       title: "The process is coherent enough for another cycle",
       tone: "pass",
       paragraphs: [
-        "ITER-001 keeps the next blockers visible: the non-split semidirect algebra probe, the first-order sphere potential gate, and the third-order sphere obstruction retained for broader ansatz work.",
+        "ITER-001 keeps the next blockers visible: the first-order sphere potential gate, the non-split semidirect residual pass, and the third-order sphere obstruction retained for broader ansatz work.",
         "PROC-001 passes its formal audit checks. That does not make any candidate stronger, but it means the search procedure is partitioning frontier and discard states consistently.",
       ],
       stats: [

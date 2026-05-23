@@ -200,7 +200,7 @@ def _candidate_record(candidate: Any, lane: str, iteration: int) -> FrontierCand
                 priority=42,
                 next_action=(
                     "Route to a nonlocal-potential or alternate-U ansatz after the "
-                    "non-split semidirect blocker is addressed."
+                    "non-split semidirect residual pass."
                 ),
                 gate_gaps=tuple(candidate.failure_reasons),
                 evidence_summary=(
