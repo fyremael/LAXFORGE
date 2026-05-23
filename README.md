@@ -24,6 +24,15 @@ pytest -q
 python scripts/run_mkdv_validation.py
 ```
 
+To emit a LAXCERT-ingestable calibration artifact:
+
+```bash
+python scripts/export_laxcert_calibration.py runs/laxcert_calibration --overwrite
+```
+
+The output directory contains `laxforge_manifest.json`, `candidate.json`, and
+`source_report.json`. LAXCERT can certify that directory directly.
+
 ## First milestone
 
 The first milestone is **not** to claim novelty. It is to calibrate the symbolic engine on a known-valid construction:
