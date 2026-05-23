@@ -50,7 +50,7 @@ with the AKNS/mKdV pair lifted into the truncated algebra \(\mathbb{R}[\epsilon]
 
 ```text
 src/laxforge/
-  algebra/              # coefficient algebras, truncated polynomial arithmetic
+  algebra/              # coefficient algebras, truncated and finite-table arithmetic
   core/                 # curvature, ansatz, gauge, cyclic basis, invariants
   examples/             # verified examples and calibration targets
 tests/                  # pytest suite
@@ -73,4 +73,3 @@ LAXFORGE should act like a mathematical clean room. Every candidate receives a s
 8. Hamiltonian/bi-Hamiltonian attempts.
 9. Known-hierarchy collision search.
 10. Publishability classification.
-

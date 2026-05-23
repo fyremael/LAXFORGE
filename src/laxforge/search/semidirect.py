@@ -9,6 +9,11 @@ from typing import Any
 
 import sympy as sp
 
+from laxforge.algebra.finite import (
+    FiniteAlgebraElement,
+    fa_zero_curvature,
+    upper_triangular_semidirect_algebra,
+)
 from laxforge.algebra.truncated_poly import TruncatedPoly
 from laxforge.core.dossier import CandidateDossier
 from laxforge.core.gauge import analyze_gauge_risk
@@ -88,6 +93,14 @@ def _tp_matrix_to_expr(matrix: list[list[TruncatedPoly]]) -> sp.Matrix:
     return sp.Matrix([[entry.as_expr() for entry in row] for row in matrix])
 
 
+def _fa_matrix_to_expr(matrix: list[list[FiniteAlgebraElement]]) -> sp.Matrix:
+    return sp.Matrix([[entry.as_expr() for entry in row] for row in matrix])
+
+
+def _fa_matrix_as_strings(matrix: list[list[FiniteAlgebraElement]]) -> list[list[str]]:
+    return [[str(entry.as_expr()) for entry in row] for row in matrix]
+
+
 def _zero_curvature_summary() -> dict[str, object]:
     zero = TruncatedPoly.zero(order=1)
     return curvature_report([[zero, zero], [zero, zero]]).as_dict()
@@ -124,6 +137,52 @@ def _split_nilpotent_mkdv_evidence() -> dict[str, Any]:
         "expected_flow_coefficients": [str(component) for component in expected],
         "gauge_report": gauge_report,
         "validated_as_flow_equations": all(checks.values()),
+    }
+
+
+def _non_split_semidirect_evidence() -> dict[str, Any]:
+    x, t, lam = sp.symbols("x t lambda")
+    u = sp.Function("u")(x, t)
+    v = sp.Function("v")(x, t)
+    w = sp.Function("w")(x, t)
+    algebra = upper_triangular_semidirect_algebra()
+    lam_unit = FiniteAlgebraElement.from_coeffs([lam], algebra)
+    q = FiniteAlgebraElement.from_coeffs([u, v, w], algebra)
+    qx = q.diff(x)
+    qxx = qx.diff(x)
+    q2 = q**2
+    q3 = q2 * q
+    diag_a = FiniteAlgebraElement.from_coeffs([-4 * lam**3], algebra) + q2 * (-2 * lam)
+
+    U = [[lam_unit, q], [-q, -lam_unit]]
+    V = [
+        [
+            diag_a,
+            q * (-4 * lam**2) + qx * (-2 * lam) - qxx - q3 * 2,
+        ],
+        [
+            q * (4 * lam**2) + qx * (-2 * lam) + qxx + q3 * 2,
+            -diag_a,
+        ],
+    ]
+    curvature = fa_zero_curvature(U, V, x, t)
+    report = curvature_report(curvature)
+    gauge_report = analyze_gauge_risk(
+        _fa_matrix_to_expr(U),
+        _fa_matrix_to_expr(V),
+        lambda_symbol=lam,
+    ).as_dict()
+    return {
+        "algebra_name": algebra.name,
+        "algebra_basis": list(algebra.basis),
+        "algebra_product_table": algebra.product_table(),
+        "associative": algebra.is_associative(),
+        "U": _fa_matrix_as_strings(U),
+        "V": _fa_matrix_as_strings(V),
+        "curvature_report": report.as_dict(),
+        "gauge_report": gauge_report,
+        "validated_as_flow_equations": False,
+        "matrix_pair_constructed": True,
     }
 
 
@@ -284,23 +343,20 @@ def _build_rescaling_control() -> SemidirectDeformationCandidate:
 
 
 def _build_non_split_probe() -> SemidirectDeformationCandidate:
+    evidence = _non_split_semidirect_evidence()
     collision_report = classify_candidate(
         "semidirect non-split product deformation probe",
         metadata={"non_split_semidirect_probe": True},
     )
     recommendation = "needs_human_review"
     curvature_summary = {
-        "curvature_residual_zero": False,
-        "curvature_terms_total": 0,
-        "curvature_terms_nonzero": None,
-        "basis_split_complete": False,
-        "status": "not_constructed",
-        "reason": "current coefficient algebra supports truncated nilpotent products only",
+        **evidence["curvature_report"],
+        "status": "constructed_non_split_curvature",
     }
     gate_summary = _candidate_gate_summary(
-        "not_constructed",
-        "unsupported_non_split_product",
-        None,
+        "constructed_non_split_curvature",
+        "residuals_unresolved_non_split_product",
+        evidence["gauge_report"],
         "not_mined",
         collision_report.classification.value,
         recommendation,
@@ -309,7 +365,7 @@ def _build_non_split_probe() -> SemidirectDeformationCandidate:
         name="semidirect non-split product deformation probe",
         classification=collision_report.classification,
         curvature_summary=curvature_summary,
-        gauge_report=None,
+        gauge_report=evidence["gauge_report"],
         collision_report=collision_report.as_dict(),
         conservation_report={"status": "not_mined", "num_conservation_laws_found": 0},
         hamiltonian_report={"status": "not_attempted", "verified": False},
@@ -318,19 +374,19 @@ def _build_non_split_probe() -> SemidirectDeformationCandidate:
     )
     return SemidirectDeformationCandidate(
         name="semidirect non-split product deformation probe",
-        algebra_label="non-split semidirect product probe",
+        algebra_label=str(evidence["algebra_name"]),
         order=2,
         ansatz_degree=3,
-        connection_status="not_constructed",
-        solve_status="unsupported_non_split_product",
+        connection_status="constructed_non_split_curvature",
+        solve_status="residuals_unresolved_non_split_product",
         gate_summary=gate_summary,
         dossier=dossier,
         failure_reasons=(
-            "non-split multiplication is not implemented in the current coefficient algebra",
-            "zero-curvature equations were not constructed for this probe",
-            "candidate remains a queued algebra task rather than validated evidence",
+            "non-split multiplication table is implemented and associative for this probe",
+            "zero-curvature equations are constructed but residual terms remain unresolved",
+            "bounded solver, gauge-preserving reductions, and structure evidence remain open",
         ),
-        evidence={"validated_as_flow_equations": False, "required_algebra": "non-split product"},
+        evidence=evidence,
     )
 
 
