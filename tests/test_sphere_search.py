@@ -83,9 +83,14 @@ def test_sx_candidate_records_recursive_nonlocal_tower_gate():
     assert candidate.zcr_report["validated"] is False
     assert candidate.zcr_report["first_potential_opened"] is True
     assert candidate.zcr_report["nonlocal_status"] == "blocked_recursive_nonlocal_tower_gate"
+    assert candidate.zcr_report["recursive_depth"] == 3
+    assert (
+        candidate.zcr_report["recursive_closure_status"]
+        == "unclosed_bounded_recursive_tower"
+    )
     assert candidate.zcr_report["obstruction_basis"]
     assert candidate.gate_summary["zcr_obstruction_basis"]
-    assert any("p1_x" in reason for reason in candidate.failure_reasons)
+    assert any("lambda^4" in reason for reason in candidate.failure_reasons)
 
 
 def test_sxxx_candidate_records_blocked_ansatz_obstruction():

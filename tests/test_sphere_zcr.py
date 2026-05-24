@@ -55,13 +55,25 @@ def test_sx_zcr_ansatz_opens_first_nonlocal_potential_gate():
     assert report.formal_status == "no_formal_solution"
     assert report.first_potential_opened is True
     assert report.nonlocal_status == "blocked_recursive_nonlocal_tower_gate"
+    assert report.recursive_depth == 3
+    assert report.recursive_closure_status == "unclosed_bounded_recursive_tower"
     assert report.covering_equations
     assert all(
         sp.simplify(component) == 0
-        for component in report.nonlocal_residual_basis["lambda_after_covering"]
+        for component in report.nonlocal_residual_basis["lambda^1_after_covering"]
+    )
+    assert all(
+        sp.simplify(component) == 0
+        for component in report.nonlocal_residual_basis["lambda^3_after_covering"]
+    )
+    assert any(
+        sp.simplify(component) != 0
+        for component in report.nonlocal_residual_basis[
+            "lambda^4_finite_tower_closure_residual"
+        ]
     )
     assert report.obstruction_basis
-    assert any("s cross p1" in term for term in report.obstruction_basis)
+    assert any("s cross p3" in term for term in report.obstruction_basis)
     assert report.cyclic_report["fingerprint"]
 
 

@@ -840,15 +840,17 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "curvature_residual_zero": false,
       "curvature_status": "blocked_recursive_nonlocal_tower_gate",
       "curvature_terms_nonzero": 3,
-      "curvature_terms_total": 9,
+      "curvature_terms_total": 21,
       "cyclic_fingerprint": "dim=1;closure_order=1;lambda_dependent=False;coeffs=(('c0', '0'),)",
       "detail": {
         "obstruction_basis": [
           "local lambda^1 residual requires D_x(W) = s cross s_x",
           "formal local-vector ansatz has no W in the current sphere-derivative basis",
           "first nonlocal potential p1 with D_x(p1) = s cross s_x cancels the lambda^1 residual",
-          "finite one-potential truncation leaves lambda^2 residual s cross p1",
-          "next gate requires a recursive p2_x = s cross p1 covering or a different spatial matrix"
+          "bounded recursive tower p1,p2,p3 cancels lambda^1 through lambda^3 residuals",
+          "finite depth-3 tower leaves lambda^4 residual s cross p3",
+          "finite closure would require p3 parallel to s, which is not implied by the covering equations",
+          "alternate spatial matrices remain untested for this flow"
         ],
         "summary": "local-vector ansatz has no local W with D_x(W) = s cross s_x",
         "tangent_condition": "0"
@@ -856,17 +858,17 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "disposition": "blocked",
       "failure_reasons": [
         "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-        "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-        "finite one-potential truncation leaves lambda^2 residual s cross p1",
-        "recursive nonlocal tower or alternate-U closure remains unproved"
+        "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+        "finite depth-3 tower leaves lambda^4 residual s cross p3",
+        "recursive nonlocal tower closure or alternate-U closure remains unproved"
       ],
       "frontier_priority": 42,
       "frontier_status": "blocked_by_recursive_nonlocal_tower",
       "gate_gaps": [
         "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-        "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-        "finite one-potential truncation leaves lambda^2 residual s cross p1",
-        "recursive nonlocal tower or alternate-U closure remains unproved"
+        "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+        "finite depth-3 tower leaves lambda^4 residual s cross p3",
+        "recursive nonlocal tower closure or alternate-U closure remains unproved"
       ],
       "gate_summary": {
         "collision": "needs human review",
@@ -920,7 +922,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "item_type": "candidate",
       "lane": "DIS-002",
       "name": "sphere s_cross_s_x tangent candidate",
-      "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+      "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
       "order": 1,
       "proof_summary": null,
       "recommendation": "blocked",
@@ -942,6 +944,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "s dot s = 1",
         "s dot s_x = 0",
         "D_x(p1) = s cross s_x",
+        "D_x(p2) = s cross p1",
+        "D_x(p3) = s cross p2",
         "[hat(a), hat(b)] = hat(a cross b)",
         "formal local-vector basis over sphere derivative atoms and scalar invariants"
       ],
@@ -949,8 +953,10 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "local lambda^1 residual requires D_x(W) = s cross s_x",
         "formal local-vector ansatz has no W in the current sphere-derivative basis",
         "first nonlocal potential p1 with D_x(p1) = s cross s_x cancels the lambda^1 residual",
-        "finite one-potential truncation leaves lambda^2 residual s cross p1",
-        "next gate requires a recursive p2_x = s cross p1 covering or a different spatial matrix"
+        "bounded recursive tower p1,p2,p3 cancels lambda^1 through lambda^3 residuals",
+        "finite depth-3 tower leaves lambda^4 residual s cross p3",
+        "finite closure would require p3 parallel to s, which is not implied by the covering equations",
+        "alternate spatial matrices remain untested for this flow"
       ],
       "zcr_solution": null,
       "zcr_validated": false
@@ -16921,20 +16927,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "connection_status": "blocked_recursive_nonlocal_tower_gate",
         "evidence_summary": [
           "local first-potential gate has no local-basis witness",
-          "first nonlocal potential p1_x = s cross s_x is explicit",
-          "one-potential truncation leaves lambda^2 residual s cross p1"
+          "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+          "finite depth-3 tower leaves lambda^4 residual s cross p3"
         ],
         "gate_gaps": [
           "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-          "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-          "finite one-potential truncation leaves lambda^2 residual s cross p1",
-          "recursive nonlocal tower or alternate-U closure remains unproved"
+          "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+          "finite depth-3 tower leaves lambda^4 residual s cross p3",
+          "recursive nonlocal tower closure or alternate-U closure remains unproved"
         ],
         "item_id": "sphere-s-cross-s-x-tangent-candidate",
         "iteration": 1,
         "lane": "DIS-002",
         "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+        "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
         "potential_status": "blocked_by_recursive_nonlocal_tower",
         "priority": 42,
         "process_disposition": "frontier",
@@ -17643,20 +17649,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "connection_status": "blocked_recursive_nonlocal_tower_gate",
           "evidence_summary": [
             "local first-potential gate has no local-basis witness",
-            "first nonlocal potential p1_x = s cross s_x is explicit",
-            "one-potential truncation leaves lambda^2 residual s cross p1"
+            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+            "finite depth-3 tower leaves lambda^4 residual s cross p3"
           ],
           "gate_gaps": [
             "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-            "finite one-potential truncation leaves lambda^2 residual s cross p1",
-            "recursive nonlocal tower or alternate-U closure remains unproved"
+            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+            "finite depth-3 tower leaves lambda^4 residual s cross p3",
+            "recursive nonlocal tower closure or alternate-U closure remains unproved"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+          "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
           "potential_status": "blocked_by_recursive_nonlocal_tower",
           "priority": 42,
           "process_disposition": "frontier",
@@ -21125,20 +21131,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "connection_status": "blocked_recursive_nonlocal_tower_gate",
           "evidence_summary": [
             "local first-potential gate has no local-basis witness",
-            "first nonlocal potential p1_x = s cross s_x is explicit",
-            "one-potential truncation leaves lambda^2 residual s cross p1"
+            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+            "finite depth-3 tower leaves lambda^4 residual s cross p3"
           ],
           "gate_gaps": [
             "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-            "finite one-potential truncation leaves lambda^2 residual s cross p1",
-            "recursive nonlocal tower or alternate-U closure remains unproved"
+            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+            "finite depth-3 tower leaves lambda^4 residual s cross p3",
+            "recursive nonlocal tower closure or alternate-U closure remains unproved"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+          "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
           "potential_status": "blocked_by_recursive_nonlocal_tower",
           "priority": 42,
           "process_disposition": "frontier",
@@ -26570,15 +26576,17 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "curvature_residual_zero": false,
       "curvature_status": "blocked_recursive_nonlocal_tower_gate",
       "curvature_terms_nonzero": 3,
-      "curvature_terms_total": 9,
+      "curvature_terms_total": 21,
       "cyclic_fingerprint": "dim=1;closure_order=1;lambda_dependent=False;coeffs=(('c0', '0'),)",
       "detail": {
         "obstruction_basis": [
           "local lambda^1 residual requires D_x(W) = s cross s_x",
           "formal local-vector ansatz has no W in the current sphere-derivative basis",
           "first nonlocal potential p1 with D_x(p1) = s cross s_x cancels the lambda^1 residual",
-          "finite one-potential truncation leaves lambda^2 residual s cross p1",
-          "next gate requires a recursive p2_x = s cross p1 covering or a different spatial matrix"
+          "bounded recursive tower p1,p2,p3 cancels lambda^1 through lambda^3 residuals",
+          "finite depth-3 tower leaves lambda^4 residual s cross p3",
+          "finite closure would require p3 parallel to s, which is not implied by the covering equations",
+          "alternate spatial matrices remain untested for this flow"
         ],
         "summary": "local-vector ansatz has no local W with D_x(W) = s cross s_x",
         "tangent_condition": "0"
@@ -26586,17 +26594,17 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "disposition": "blocked",
       "failure_reasons": [
         "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-        "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-        "finite one-potential truncation leaves lambda^2 residual s cross p1",
-        "recursive nonlocal tower or alternate-U closure remains unproved"
+        "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+        "finite depth-3 tower leaves lambda^4 residual s cross p3",
+        "recursive nonlocal tower closure or alternate-U closure remains unproved"
       ],
       "frontier_priority": 42,
       "frontier_status": "blocked_by_recursive_nonlocal_tower",
       "gate_gaps": [
         "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-        "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-        "finite one-potential truncation leaves lambda^2 residual s cross p1",
-        "recursive nonlocal tower or alternate-U closure remains unproved"
+        "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+        "finite depth-3 tower leaves lambda^4 residual s cross p3",
+        "recursive nonlocal tower closure or alternate-U closure remains unproved"
       ],
       "gate_summary": {
         "collision": "needs human review",
@@ -26650,7 +26658,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "item_type": "candidate",
       "lane": "DIS-002",
       "name": "sphere s_cross_s_x tangent candidate",
-      "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+      "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
       "order": 1,
       "proof_summary": null,
       "recommendation": "blocked",
@@ -26672,6 +26680,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "s dot s = 1",
         "s dot s_x = 0",
         "D_x(p1) = s cross s_x",
+        "D_x(p2) = s cross p1",
+        "D_x(p3) = s cross p2",
         "[hat(a), hat(b)] = hat(a cross b)",
         "formal local-vector basis over sphere derivative atoms and scalar invariants"
       ],
@@ -26679,8 +26689,10 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "local lambda^1 residual requires D_x(W) = s cross s_x",
         "formal local-vector ansatz has no W in the current sphere-derivative basis",
         "first nonlocal potential p1 with D_x(p1) = s cross s_x cancels the lambda^1 residual",
-        "finite one-potential truncation leaves lambda^2 residual s cross p1",
-        "next gate requires a recursive p2_x = s cross p1 covering or a different spatial matrix"
+        "bounded recursive tower p1,p2,p3 cancels lambda^1 through lambda^3 residuals",
+        "finite depth-3 tower leaves lambda^4 residual s cross p3",
+        "finite closure would require p3 parallel to s, which is not implied by the covering equations",
+        "alternate spatial matrices remain untested for this flow"
       ],
       "zcr_solution": null,
       "zcr_validated": false
@@ -42537,20 +42549,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "connection_status": "blocked_recursive_nonlocal_tower_gate",
         "evidence_summary": [
           "local first-potential gate has no local-basis witness",
-          "first nonlocal potential p1_x = s cross s_x is explicit",
-          "one-potential truncation leaves lambda^2 residual s cross p1"
+          "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+          "finite depth-3 tower leaves lambda^4 residual s cross p3"
         ],
         "gate_gaps": [
           "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-          "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-          "finite one-potential truncation leaves lambda^2 residual s cross p1",
-          "recursive nonlocal tower or alternate-U closure remains unproved"
+          "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+          "finite depth-3 tower leaves lambda^4 residual s cross p3",
+          "recursive nonlocal tower closure or alternate-U closure remains unproved"
         ],
         "item_id": "sphere-s-cross-s-x-tangent-candidate",
         "iteration": 1,
         "lane": "DIS-002",
         "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+        "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
         "potential_status": "blocked_by_recursive_nonlocal_tower",
         "priority": 42,
         "process_disposition": "frontier",
@@ -46019,20 +46031,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "connection_status": "blocked_recursive_nonlocal_tower_gate",
         "evidence_summary": [
           "local first-potential gate has no local-basis witness",
-          "first nonlocal potential p1_x = s cross s_x is explicit",
-          "one-potential truncation leaves lambda^2 residual s cross p1"
+          "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+          "finite depth-3 tower leaves lambda^4 residual s cross p3"
         ],
         "gate_gaps": [
           "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-          "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-          "finite one-potential truncation leaves lambda^2 residual s cross p1",
-          "recursive nonlocal tower or alternate-U closure remains unproved"
+          "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+          "finite depth-3 tower leaves lambda^4 residual s cross p3",
+          "recursive nonlocal tower closure or alternate-U closure remains unproved"
         ],
         "item_id": "sphere-s-cross-s-x-tangent-candidate",
         "iteration": 1,
         "lane": "DIS-002",
         "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+        "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
         "potential_status": "blocked_by_recursive_nonlocal_tower",
         "priority": 42,
         "process_disposition": "frontier",
@@ -51870,20 +51882,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "connection_status": "blocked_recursive_nonlocal_tower_gate",
           "evidence_summary": [
             "local first-potential gate has no local-basis witness",
-            "first nonlocal potential p1_x = s cross s_x is explicit",
-            "one-potential truncation leaves lambda^2 residual s cross p1"
+            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+            "finite depth-3 tower leaves lambda^4 residual s cross p3"
           ],
           "gate_gaps": [
             "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-            "finite one-potential truncation leaves lambda^2 residual s cross p1",
-            "recursive nonlocal tower or alternate-U closure remains unproved"
+            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+            "finite depth-3 tower leaves lambda^4 residual s cross p3",
+            "recursive nonlocal tower closure or alternate-U closure remains unproved"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+          "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
           "potential_status": "blocked_by_recursive_nonlocal_tower",
           "priority": 42,
           "process_disposition": "frontier",
@@ -55378,20 +55390,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "connection_status": "blocked_recursive_nonlocal_tower_gate",
           "evidence_summary": [
             "local first-potential gate has no local-basis witness",
-            "first nonlocal potential p1_x = s cross s_x is explicit",
-            "one-potential truncation leaves lambda^2 residual s cross p1"
+            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+            "finite depth-3 tower leaves lambda^4 residual s cross p3"
           ],
           "gate_gaps": [
             "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-            "finite one-potential truncation leaves lambda^2 residual s cross p1",
-            "recursive nonlocal tower or alternate-U closure remains unproved"
+            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+            "finite depth-3 tower leaves lambda^4 residual s cross p3",
+            "recursive nonlocal tower closure or alternate-U closure remains unproved"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+          "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
           "potential_status": "blocked_by_recursive_nonlocal_tower",
           "priority": 42,
           "process_disposition": "frontier",
@@ -60035,20 +60047,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "connection_status": "blocked_recursive_nonlocal_tower_gate",
           "evidence_summary": [
             "local first-potential gate has no local-basis witness",
-            "first nonlocal potential p1_x = s cross s_x is explicit",
-            "one-potential truncation leaves lambda^2 residual s cross p1"
+            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+            "finite depth-3 tower leaves lambda^4 residual s cross p3"
           ],
           "gate_gaps": [
             "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-            "finite one-potential truncation leaves lambda^2 residual s cross p1",
-            "recursive nonlocal tower or alternate-U closure remains unproved"
+            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+            "finite depth-3 tower leaves lambda^4 residual s cross p3",
+            "recursive nonlocal tower closure or alternate-U closure remains unproved"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+          "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
           "potential_status": "blocked_by_recursive_nonlocal_tower",
           "priority": 42,
           "process_disposition": "frontier",
@@ -63517,20 +63529,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "connection_status": "blocked_recursive_nonlocal_tower_gate",
           "evidence_summary": [
             "local first-potential gate has no local-basis witness",
-            "first nonlocal potential p1_x = s cross s_x is explicit",
-            "one-potential truncation leaves lambda^2 residual s cross p1"
+            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+            "finite depth-3 tower leaves lambda^4 residual s cross p3"
           ],
           "gate_gaps": [
             "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-            "finite one-potential truncation leaves lambda^2 residual s cross p1",
-            "recursive nonlocal tower or alternate-U closure remains unproved"
+            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+            "finite depth-3 tower leaves lambda^4 residual s cross p3",
+            "recursive nonlocal tower closure or alternate-U closure remains unproved"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+          "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
           "potential_status": "blocked_by_recursive_nonlocal_tower",
           "priority": 42,
           "process_disposition": "frontier",

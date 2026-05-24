@@ -233,7 +233,15 @@ def _build_candidate(
     elif metadata.get("sx_recursive_tower_gate"):
         connection_status = "blocked_recursive_nonlocal_tower_gate"
         residual_basis = (zcr_report or {}).get("nonlocal_residual_basis", {})
-        recursive_residual = residual_basis.get("lambda^2_after_first_potential", [])
+        closure_key = next(
+            (
+                key
+                for key in residual_basis
+                if key.endswith("_finite_tower_closure_residual")
+            ),
+            "",
+        )
+        recursive_residual = residual_basis.get(closure_key, [])
         curvature_summary = {
             "curvature_residual_zero": False,
             "curvature_terms_total": sum(len(terms) for terms in residual_basis.values()),
@@ -284,9 +292,9 @@ def _build_candidate(
     elif metadata.get("sx_recursive_tower_gate"):
         failure_reasons = (
             "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
-            "finite one-potential truncation leaves lambda^2 residual s cross p1",
-            "recursive nonlocal tower or alternate-U closure remains unproved",
+            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+            "finite depth-3 tower leaves lambda^4 residual s cross p3",
+            "recursive nonlocal tower closure or alternate-U closure remains unproved",
         )
     elif metadata.get("sxxx_ansatz_obstruction"):
         failure_reasons = (

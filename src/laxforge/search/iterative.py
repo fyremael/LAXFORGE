@@ -199,14 +199,14 @@ def _candidate_record(candidate: Any, lane: str, iteration: int) -> FrontierCand
                 potential_status="blocked_by_recursive_nonlocal_tower",
                 priority=42,
                 next_action=(
-                    "Construct a recursive nonlocal tower closure or try an alternate "
-                    "spatial matrix for the s_cross_s_x flow."
+                    "Close the recursive nonlocal tower beyond depth 3 or try an "
+                    "alternate spatial matrix for the s_cross_s_x flow."
                 ),
                 gate_gaps=tuple(candidate.failure_reasons),
                 evidence_summary=(
                     "local first-potential gate has no local-basis witness",
-                    "first nonlocal potential p1_x = s cross s_x is explicit",
-                    "one-potential truncation leaves lambda^2 residual s cross p1",
+                    "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
+                    "finite depth-3 tower leaves lambda^4 residual s cross p3",
                 ),
             )
         if connection_status == "blocked_first_potential_gate":
