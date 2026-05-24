@@ -184,7 +184,12 @@ def _build_candidate(
     if sx_ansatz_attempt:
         sx_report = solve_sx_zcr_ansatz()
         zcr_report = sx_report.as_dict()
-        metadata["sx_potential_obstruction"] = not sx_report.validated
+        metadata["sx_potential_obstruction"] = (
+            not sx_report.validated and not sx_report.first_potential_opened
+        )
+        metadata["sx_recursive_tower_gate"] = (
+            sx_report.first_potential_opened and not sx_report.validated
+        )
         gauge_report = sx_report.gauge_report
     if sxxx_ansatz_attempt:
         sxxx_report = solve_sxxx_zcr_ansatz()
@@ -195,7 +200,7 @@ def _build_candidate(
     collision_report = classify_candidate(name, metadata=metadata)
     if fake_pair or metadata.get("known_heisenberg_zcr"):
         recommendation = "discard"
-    elif metadata.get("sx_potential_obstruction"):
+    elif metadata.get("sx_potential_obstruction") or metadata.get("sx_recursive_tower_gate"):
         recommendation = "blocked"
     elif metadata.get("sxxx_ansatz_obstruction"):
         recommendation = "blocked"
@@ -223,6 +228,20 @@ def _build_candidate(
             "basis_split_complete": True,
             "status": "blocked_first_potential_gate",
             "constraints_used": zcr_report["constraints_used"] if zcr_report else [],
+            "obstruction_basis": zcr_report["obstruction_basis"] if zcr_report else [],
+        }
+    elif metadata.get("sx_recursive_tower_gate"):
+        connection_status = "blocked_recursive_nonlocal_tower_gate"
+        residual_basis = (zcr_report or {}).get("nonlocal_residual_basis", {})
+        recursive_residual = residual_basis.get("lambda^2_after_first_potential", [])
+        curvature_summary = {
+            "curvature_residual_zero": False,
+            "curvature_terms_total": sum(len(terms) for terms in residual_basis.values()),
+            "curvature_terms_nonzero": len(recursive_residual),
+            "basis_split_complete": True,
+            "status": "blocked_recursive_nonlocal_tower_gate",
+            "constraints_used": zcr_report["constraints_used"] if zcr_report else [],
+            "covering_equations": zcr_report["covering_equations"] if zcr_report else [],
             "obstruction_basis": zcr_report["obstruction_basis"] if zcr_report else [],
         }
     elif metadata.get("sxxx_ansatz_obstruction"):
@@ -261,6 +280,13 @@ def _build_candidate(
             "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
             "current local-vector ansatz has no local potential W for that gate",
             "nonlocal potentials or different spatial matrices remain untested",
+        )
+    elif metadata.get("sx_recursive_tower_gate"):
+        failure_reasons = (
+            "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+            "finite one-potential truncation leaves lambda^2 residual s cross p1",
+            "recursive nonlocal tower or alternate-U closure remains unproved",
         )
     elif metadata.get("sxxx_ansatz_obstruction"):
         failure_reasons = (

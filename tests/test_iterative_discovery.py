@@ -48,6 +48,7 @@ def test_iterative_frontier_records_next_gate_gaps():
         assert record.potential_status in {
             "promising_potential",
             "blocked_by_first_potential_gate",
+            "blocked_by_recursive_nonlocal_tower",
             "blocked_by_missing_capability",
             "blocked_by_ansatz_obstruction",
             "needs_review",
@@ -85,7 +86,7 @@ def test_iterative_serious_attempt_blocks_sxxx_and_advances_next_candidate():
         if record.item_id == "sphere-s-cross-s-xxx-exploratory-candidate"
     )
     assert sx.recommendation == "blocked"
-    assert sx.potential_status == "blocked_by_first_potential_gate"
+    assert sx.potential_status == "blocked_by_recursive_nonlocal_tower"
     assert non_split.potential_status == "needs_review"
     assert non_split.connection_status == "constructed_non_split_curvature"
     assert sxxx.recommendation == "blocked"

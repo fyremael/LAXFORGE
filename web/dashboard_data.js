@@ -835,40 +835,43 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "collisions": [
         "Principal chiral model and Heisenberg ferromagnet families"
       ],
-      "connection_status": "blocked_first_potential_gate",
+      "connection_status": "blocked_recursive_nonlocal_tower_gate",
       "conservation_count": 0,
       "curvature_residual_zero": false,
-      "curvature_status": "blocked_first_potential_gate",
-      "curvature_terms_nonzero": 4,
-      "curvature_terms_total": 54,
+      "curvature_status": "blocked_recursive_nonlocal_tower_gate",
+      "curvature_terms_nonzero": 3,
+      "curvature_terms_total": 9,
       "cyclic_fingerprint": "dim=1;closure_order=1;lambda_dependent=False;coeffs=(('c0', '0'),)",
       "detail": {
         "obstruction_basis": [
-          "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
-          "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
-          "current local-vector ansatz has no such local potential W",
-          "nonlocal potentials or different spatial matrices remain untested"
+          "local lambda^1 residual requires D_x(W) = s cross s_x",
+          "formal local-vector ansatz has no W in the current sphere-derivative basis",
+          "first nonlocal potential p1 with D_x(p1) = s cross s_x cancels the lambda^1 residual",
+          "finite one-potential truncation leaves lambda^2 residual s cross p1",
+          "next gate requires a recursive p2_x = s cross p1 covering or a different spatial matrix"
         ],
-        "summary": "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+        "summary": "local-vector ansatz has no local W with D_x(W) = s cross s_x",
         "tangent_condition": "0"
       },
       "disposition": "blocked",
       "failure_reasons": [
-        "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
-        "current local-vector ansatz has no local potential W for that gate",
-        "nonlocal potentials or different spatial matrices remain untested"
+        "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+        "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+        "finite one-potential truncation leaves lambda^2 residual s cross p1",
+        "recursive nonlocal tower or alternate-U closure remains unproved"
       ],
       "frontier_priority": 42,
-      "frontier_status": "blocked_by_first_potential_gate",
+      "frontier_status": "blocked_by_recursive_nonlocal_tower",
       "gate_gaps": [
-        "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
-        "current local-vector ansatz has no local potential W for that gate",
-        "nonlocal potentials or different spatial matrices remain untested"
+        "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+        "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+        "finite one-potential truncation leaves lambda^2 residual s cross p1",
+        "recursive nonlocal tower or alternate-U closure remains unproved"
       ],
       "gate_summary": {
         "collision": "needs human review",
         "conservation": 0,
-        "curvature": "blocked_first_potential_gate",
+        "curvature": "blocked_recursive_nonlocal_tower_gate",
         "gauge": 0.0,
         "spectral": "unresolved",
         "tangent": "tangent"
@@ -884,7 +887,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "key": "curvature",
           "label": "Curvature",
           "status": "fail",
-          "value": "blocked_first_potential_gate"
+          "value": "blocked_recursive_nonlocal_tower_gate"
         },
         {
           "key": "gauge",
@@ -917,7 +920,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "item_type": "candidate",
       "lane": "DIS-002",
       "name": "sphere s_cross_s_x tangent candidate",
-      "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
+      "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
       "order": 1,
       "proof_summary": null,
       "recommendation": "blocked",
@@ -938,14 +941,16 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "s_t = s cross s_x",
         "s dot s = 1",
         "s dot s_x = 0",
+        "D_x(p1) = s cross s_x",
         "[hat(a), hat(b)] = hat(a cross b)",
         "formal local-vector basis over sphere derivative atoms and scalar invariants"
       ],
       "zcr_obstruction_basis": [
-        "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
-        "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
-        "current local-vector ansatz has no such local potential W",
-        "nonlocal potentials or different spatial matrices remain untested"
+        "local lambda^1 residual requires D_x(W) = s cross s_x",
+        "formal local-vector ansatz has no W in the current sphere-derivative basis",
+        "first nonlocal potential p1 with D_x(p1) = s cross s_x cancels the lambda^1 residual",
+        "finite one-potential truncation leaves lambda^2 residual s cross p1",
+        "next gate requires a recursive p2_x = s cross p1 covering or a different spatial matrix"
       ],
       "zcr_solution": null,
       "zcr_validated": false
@@ -16913,23 +16918,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "action_queue": [
       {
         "classification": "needs_human_review",
-        "connection_status": "blocked_first_potential_gate",
+        "connection_status": "blocked_recursive_nonlocal_tower_gate",
         "evidence_summary": [
-          "first local-vector potential gate is obstructed",
-          "D_x(W) = s cross s_x has no current local-basis witness",
-          "nonlocal and different-U families remain open"
+          "local first-potential gate has no local-basis witness",
+          "first nonlocal potential p1_x = s cross s_x is explicit",
+          "one-potential truncation leaves lambda^2 residual s cross p1"
         ],
         "gate_gaps": [
-          "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
-          "current local-vector ansatz has no local potential W for that gate",
-          "nonlocal potentials or different spatial matrices remain untested"
+          "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+          "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+          "finite one-potential truncation leaves lambda^2 residual s cross p1",
+          "recursive nonlocal tower or alternate-U closure remains unproved"
         ],
         "item_id": "sphere-s-cross-s-x-tangent-candidate",
         "iteration": 1,
         "lane": "DIS-002",
         "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
-        "potential_status": "blocked_by_first_potential_gate",
+        "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+        "potential_status": "blocked_by_recursive_nonlocal_tower",
         "priority": 42,
         "process_disposition": "frontier",
         "recommendation": "blocked"
@@ -17634,23 +17640,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "blocked_first_potential_gate",
+          "connection_status": "blocked_recursive_nonlocal_tower_gate",
           "evidence_summary": [
-            "first local-vector potential gate is obstructed",
-            "D_x(W) = s cross s_x has no current local-basis witness",
-            "nonlocal and different-U families remain open"
+            "local first-potential gate has no local-basis witness",
+            "first nonlocal potential p1_x = s cross s_x is explicit",
+            "one-potential truncation leaves lambda^2 residual s cross p1"
           ],
           "gate_gaps": [
-            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
-            "current local-vector ansatz has no local potential W for that gate",
-            "nonlocal potentials or different spatial matrices remain untested"
+            "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+            "finite one-potential truncation leaves lambda^2 residual s cross p1",
+            "recursive nonlocal tower or alternate-U closure remains unproved"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
-          "potential_status": "blocked_by_first_potential_gate",
+          "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+          "potential_status": "blocked_by_recursive_nonlocal_tower",
           "priority": 42,
           "process_disposition": "frontier",
           "recommendation": "blocked"
@@ -21115,23 +21122,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "frontier": [
         {
           "classification": "needs_human_review",
-          "connection_status": "blocked_first_potential_gate",
+          "connection_status": "blocked_recursive_nonlocal_tower_gate",
           "evidence_summary": [
-            "first local-vector potential gate is obstructed",
-            "D_x(W) = s cross s_x has no current local-basis witness",
-            "nonlocal and different-U families remain open"
+            "local first-potential gate has no local-basis witness",
+            "first nonlocal potential p1_x = s cross s_x is explicit",
+            "one-potential truncation leaves lambda^2 residual s cross p1"
           ],
           "gate_gaps": [
-            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
-            "current local-vector ansatz has no local potential W for that gate",
-            "nonlocal potentials or different spatial matrices remain untested"
+            "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+            "finite one-potential truncation leaves lambda^2 residual s cross p1",
+            "recursive nonlocal tower or alternate-U closure remains unproved"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
-          "potential_status": "blocked_by_first_potential_gate",
+          "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+          "potential_status": "blocked_by_recursive_nonlocal_tower",
           "priority": 42,
           "process_disposition": "frontier",
           "recommendation": "blocked"
@@ -26557,40 +26565,43 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "collisions": [
         "Principal chiral model and Heisenberg ferromagnet families"
       ],
-      "connection_status": "blocked_first_potential_gate",
+      "connection_status": "blocked_recursive_nonlocal_tower_gate",
       "conservation_count": 0,
       "curvature_residual_zero": false,
-      "curvature_status": "blocked_first_potential_gate",
-      "curvature_terms_nonzero": 4,
-      "curvature_terms_total": 54,
+      "curvature_status": "blocked_recursive_nonlocal_tower_gate",
+      "curvature_terms_nonzero": 3,
+      "curvature_terms_total": 9,
       "cyclic_fingerprint": "dim=1;closure_order=1;lambda_dependent=False;coeffs=(('c0', '0'),)",
       "detail": {
         "obstruction_basis": [
-          "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
-          "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
-          "current local-vector ansatz has no such local potential W",
-          "nonlocal potentials or different spatial matrices remain untested"
+          "local lambda^1 residual requires D_x(W) = s cross s_x",
+          "formal local-vector ansatz has no W in the current sphere-derivative basis",
+          "first nonlocal potential p1 with D_x(p1) = s cross s_x cancels the lambda^1 residual",
+          "finite one-potential truncation leaves lambda^2 residual s cross p1",
+          "next gate requires a recursive p2_x = s cross p1 covering or a different spatial matrix"
         ],
-        "summary": "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
+        "summary": "local-vector ansatz has no local W with D_x(W) = s cross s_x",
         "tangent_condition": "0"
       },
       "disposition": "blocked",
       "failure_reasons": [
-        "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
-        "current local-vector ansatz has no local potential W for that gate",
-        "nonlocal potentials or different spatial matrices remain untested"
+        "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+        "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+        "finite one-potential truncation leaves lambda^2 residual s cross p1",
+        "recursive nonlocal tower or alternate-U closure remains unproved"
       ],
       "frontier_priority": 42,
-      "frontier_status": "blocked_by_first_potential_gate",
+      "frontier_status": "blocked_by_recursive_nonlocal_tower",
       "gate_gaps": [
-        "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
-        "current local-vector ansatz has no local potential W for that gate",
-        "nonlocal potentials or different spatial matrices remain untested"
+        "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+        "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+        "finite one-potential truncation leaves lambda^2 residual s cross p1",
+        "recursive nonlocal tower or alternate-U closure remains unproved"
       ],
       "gate_summary": {
         "collision": "needs human review",
         "conservation": 0,
-        "curvature": "blocked_first_potential_gate",
+        "curvature": "blocked_recursive_nonlocal_tower_gate",
         "gauge": 0.0,
         "spectral": "unresolved",
         "tangent": "tangent"
@@ -26606,7 +26617,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "key": "curvature",
           "label": "Curvature",
           "status": "fail",
-          "value": "blocked_first_potential_gate"
+          "value": "blocked_recursive_nonlocal_tower_gate"
         },
         {
           "key": "gauge",
@@ -26639,7 +26650,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "item_type": "candidate",
       "lane": "DIS-002",
       "name": "sphere s_cross_s_x tangent candidate",
-      "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
+      "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
       "order": 1,
       "proof_summary": null,
       "recommendation": "blocked",
@@ -26660,14 +26671,16 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "s_t = s cross s_x",
         "s dot s = 1",
         "s dot s_x = 0",
+        "D_x(p1) = s cross s_x",
         "[hat(a), hat(b)] = hat(a cross b)",
         "formal local-vector basis over sphere derivative atoms and scalar invariants"
       ],
       "zcr_obstruction_basis": [
-        "lambda^1 residual contains an irreducible s_cross_sx term with coefficient 1",
-        "supported U=lambda*hat(s) family would require D_x(W) = s cross s_x",
-        "current local-vector ansatz has no such local potential W",
-        "nonlocal potentials or different spatial matrices remain untested"
+        "local lambda^1 residual requires D_x(W) = s cross s_x",
+        "formal local-vector ansatz has no W in the current sphere-derivative basis",
+        "first nonlocal potential p1 with D_x(p1) = s cross s_x cancels the lambda^1 residual",
+        "finite one-potential truncation leaves lambda^2 residual s cross p1",
+        "next gate requires a recursive p2_x = s cross p1 covering or a different spatial matrix"
       ],
       "zcr_solution": null,
       "zcr_validated": false
@@ -42521,23 +42534,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
       },
       {
         "classification": "needs_human_review",
-        "connection_status": "blocked_first_potential_gate",
+        "connection_status": "blocked_recursive_nonlocal_tower_gate",
         "evidence_summary": [
-          "first local-vector potential gate is obstructed",
-          "D_x(W) = s cross s_x has no current local-basis witness",
-          "nonlocal and different-U families remain open"
+          "local first-potential gate has no local-basis witness",
+          "first nonlocal potential p1_x = s cross s_x is explicit",
+          "one-potential truncation leaves lambda^2 residual s cross p1"
         ],
         "gate_gaps": [
-          "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
-          "current local-vector ansatz has no local potential W for that gate",
-          "nonlocal potentials or different spatial matrices remain untested"
+          "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+          "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+          "finite one-potential truncation leaves lambda^2 residual s cross p1",
+          "recursive nonlocal tower or alternate-U closure remains unproved"
         ],
         "item_id": "sphere-s-cross-s-x-tangent-candidate",
         "iteration": 1,
         "lane": "DIS-002",
         "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
-        "potential_status": "blocked_by_first_potential_gate",
+        "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+        "potential_status": "blocked_by_recursive_nonlocal_tower",
         "priority": 42,
         "process_disposition": "frontier",
         "recommendation": "blocked"
@@ -46002,23 +46016,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "frontier": [
       {
         "classification": "needs_human_review",
-        "connection_status": "blocked_first_potential_gate",
+        "connection_status": "blocked_recursive_nonlocal_tower_gate",
         "evidence_summary": [
-          "first local-vector potential gate is obstructed",
-          "D_x(W) = s cross s_x has no current local-basis witness",
-          "nonlocal and different-U families remain open"
+          "local first-potential gate has no local-basis witness",
+          "first nonlocal potential p1_x = s cross s_x is explicit",
+          "one-potential truncation leaves lambda^2 residual s cross p1"
         ],
         "gate_gaps": [
-          "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
-          "current local-vector ansatz has no local potential W for that gate",
-          "nonlocal potentials or different spatial matrices remain untested"
+          "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+          "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+          "finite one-potential truncation leaves lambda^2 residual s cross p1",
+          "recursive nonlocal tower or alternate-U closure remains unproved"
         ],
         "item_id": "sphere-s-cross-s-x-tangent-candidate",
         "iteration": 1,
         "lane": "DIS-002",
         "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
-        "potential_status": "blocked_by_first_potential_gate",
+        "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+        "potential_status": "blocked_by_recursive_nonlocal_tower",
         "priority": 42,
         "process_disposition": "frontier",
         "recommendation": "blocked"
@@ -51852,23 +51867,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "blocked_first_potential_gate",
+          "connection_status": "blocked_recursive_nonlocal_tower_gate",
           "evidence_summary": [
-            "first local-vector potential gate is obstructed",
-            "D_x(W) = s cross s_x has no current local-basis witness",
-            "nonlocal and different-U families remain open"
+            "local first-potential gate has no local-basis witness",
+            "first nonlocal potential p1_x = s cross s_x is explicit",
+            "one-potential truncation leaves lambda^2 residual s cross p1"
           ],
           "gate_gaps": [
-            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
-            "current local-vector ansatz has no local potential W for that gate",
-            "nonlocal potentials or different spatial matrices remain untested"
+            "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+            "finite one-potential truncation leaves lambda^2 residual s cross p1",
+            "recursive nonlocal tower or alternate-U closure remains unproved"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
-          "potential_status": "blocked_by_first_potential_gate",
+          "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+          "potential_status": "blocked_by_recursive_nonlocal_tower",
           "priority": 42,
           "process_disposition": "frontier",
           "recommendation": "blocked"
@@ -55359,23 +55375,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "blocked_first_potential_gate",
+          "connection_status": "blocked_recursive_nonlocal_tower_gate",
           "evidence_summary": [
-            "first local-vector potential gate is obstructed",
-            "D_x(W) = s cross s_x has no current local-basis witness",
-            "nonlocal and different-U families remain open"
+            "local first-potential gate has no local-basis witness",
+            "first nonlocal potential p1_x = s cross s_x is explicit",
+            "one-potential truncation leaves lambda^2 residual s cross p1"
           ],
           "gate_gaps": [
-            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
-            "current local-vector ansatz has no local potential W for that gate",
-            "nonlocal potentials or different spatial matrices remain untested"
+            "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+            "finite one-potential truncation leaves lambda^2 residual s cross p1",
+            "recursive nonlocal tower or alternate-U closure remains unproved"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
-          "potential_status": "blocked_by_first_potential_gate",
+          "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+          "potential_status": "blocked_by_recursive_nonlocal_tower",
           "priority": 42,
           "process_disposition": "frontier",
           "recommendation": "blocked"
@@ -60015,23 +60032,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "blocked_first_potential_gate",
+          "connection_status": "blocked_recursive_nonlocal_tower_gate",
           "evidence_summary": [
-            "first local-vector potential gate is obstructed",
-            "D_x(W) = s cross s_x has no current local-basis witness",
-            "nonlocal and different-U families remain open"
+            "local first-potential gate has no local-basis witness",
+            "first nonlocal potential p1_x = s cross s_x is explicit",
+            "one-potential truncation leaves lambda^2 residual s cross p1"
           ],
           "gate_gaps": [
-            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
-            "current local-vector ansatz has no local potential W for that gate",
-            "nonlocal potentials or different spatial matrices remain untested"
+            "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+            "finite one-potential truncation leaves lambda^2 residual s cross p1",
+            "recursive nonlocal tower or alternate-U closure remains unproved"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
-          "potential_status": "blocked_by_first_potential_gate",
+          "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+          "potential_status": "blocked_by_recursive_nonlocal_tower",
           "priority": 42,
           "process_disposition": "frontier",
           "recommendation": "blocked"
@@ -63496,23 +63514,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "frontier": [
         {
           "classification": "needs_human_review",
-          "connection_status": "blocked_first_potential_gate",
+          "connection_status": "blocked_recursive_nonlocal_tower_gate",
           "evidence_summary": [
-            "first local-vector potential gate is obstructed",
-            "D_x(W) = s cross s_x has no current local-basis witness",
-            "nonlocal and different-U families remain open"
+            "local first-potential gate has no local-basis witness",
+            "first nonlocal potential p1_x = s cross s_x is explicit",
+            "one-potential truncation leaves lambda^2 residual s cross p1"
           ],
           "gate_gaps": [
-            "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
-            "current local-vector ansatz has no local potential W for that gate",
-            "nonlocal potentials or different spatial matrices remain untested"
+            "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+            "first nonlocal potential p1_x = s cross s_x cancels the first residual",
+            "finite one-potential truncation leaves lambda^2 residual s cross p1",
+            "recursive nonlocal tower or alternate-U closure remains unproved"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Route to a nonlocal-potential or alternate-U ansatz after the non-split semidirect residual pass.",
-          "potential_status": "blocked_by_first_potential_gate",
+          "next_action": "Construct a recursive nonlocal tower closure or try an alternate spatial matrix for the s_cross_s_x flow.",
+          "potential_status": "blocked_by_recursive_nonlocal_tower",
           "priority": 42,
           "process_disposition": "frontier",
           "recommendation": "blocked"
