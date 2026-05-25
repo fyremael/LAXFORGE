@@ -30,7 +30,7 @@ def test_research_report_payload_supports_progress_digest():
     assert payload["metrics"]["tracked_items_total"] == 145
     assert payload["metrics"]["dis003_candidate_count"] == 3
     assert payload["metrics"]["dis006_candidate_count"] == 128
-    assert payload["metrics"]["validated_zcr_count"] == 3
+    assert payload["metrics"]["validated_zcr_count"] == 4
     assert payload["metrics"]["serious_cycle_status"] == "blocked"
     assert payload["metrics"]["full_scale_status"] == "frontier_active"
     assert payload["procedure_audit"]["status"] == "pass"

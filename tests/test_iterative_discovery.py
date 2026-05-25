@@ -17,9 +17,9 @@ def test_iterative_discovery_builds_repeatable_frontier():
     assert report.process_status == "frontier_active"
     assert [iteration.index for iteration in report.iterations] == [1, 2]
     assert [record.item_id for record in report.frontier[:3]] == [
-        "semidirect-non-split-product-deformation-probe",
         "sphere-s-cross-s-x-tangent-candidate",
         "scaled-sphere-unit-times-sxxxxx",
+        "semidirect-non-split-product-deformation-probe",
     ]
     assert len(report.all_records) == 143
     assert len(report.frontier) == 134
@@ -53,6 +53,7 @@ def test_iterative_frontier_records_next_gate_gaps():
             "blocked_by_missing_capability",
             "blocked_by_ansatz_obstruction",
             "needs_review",
+            "validated_non_split_flow_equations",
             "density_matrix_pending",
             "nonlocal_covering_pending",
             "cohomology_pending",
@@ -70,7 +71,7 @@ def test_iterative_baseline_freeze_can_leave_sxxx_as_promising_potential():
 def test_iterative_serious_attempt_blocks_sxxx_and_advances_next_candidate():
     report = run_iterative_discovery()
 
-    assert report.frontier[0].item_id == "semidirect-non-split-product-deformation-probe"
+    assert report.frontier[0].item_id == "sphere-s-cross-s-x-tangent-candidate"
     sx = next(
         record
         for record in report.frontier
@@ -89,8 +90,8 @@ def test_iterative_serious_attempt_blocks_sxxx_and_advances_next_candidate():
     assert sx.recommendation == "needs_human_review"
     assert sx.potential_status == "formal_nonlocal_tower_validated"
     assert sx.connection_status == "validated_formal_infinite_nonlocal_tower"
-    assert non_split.potential_status == "needs_review"
-    assert non_split.connection_status == "constructed_non_split_curvature"
+    assert non_split.potential_status == "validated_non_split_flow_equations"
+    assert non_split.connection_status == "validated_non_split_flow_equations"
     assert sxxx.recommendation == "blocked"
     assert sxxx.potential_status == "blocked_by_ansatz_obstruction"
     assert any(record.lane == "DIS-003" for record in report.frontier)

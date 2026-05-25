@@ -68,13 +68,24 @@ def test_non_split_probe_constructs_non_split_curvature_evidence():
 
     assert candidate.dossier.classification == CandidateClassification.NEEDS_HUMAN_REVIEW
     assert candidate.dossier.recommendation == "needs_human_review"
-    assert candidate.connection_status == "constructed_non_split_curvature"
-    assert candidate.solve_status == "residuals_unresolved_non_split_product"
+    assert candidate.connection_status == "validated_non_split_flow_equations"
+    assert candidate.solve_status == "solved_bounded_non_split_diagonal_correction"
     assert candidate.evidence["matrix_pair_constructed"] is True
     assert candidate.evidence["associative"] is True
+    assert candidate.evidence["validated_as_flow_equations"] is True
+    assert candidate.evidence["diagonal_correction"]["solve_report"]["solution"] == {
+        "alpha": "1",
+        "beta": "1",
+    }
+    assert candidate.evidence["diagonal_correction"]["diagonal_zero_after_solve"] is True
+    assert candidate.evidence["flow_equations"]["lower_left_is_negative_upper_right"] is True
     assert candidate.dossier.curvature_summary["basis_split_complete"] is True
-    assert candidate.dossier.curvature_summary["curvature_terms_nonzero"] > 0
-    assert "non-split multiplication table is implemented" in candidate.failure_reasons[0]
+    assert candidate.dossier.curvature_summary["entry_status_grid"] == [
+        ["OK", "NONZERO(3)"],
+        ["NONZERO(3)", "OK"],
+    ]
+    assert candidate.dossier.curvature_summary["curvature_terms_nonzero"] == 6
+    assert "bounded solver fixes the diagonal residual" in candidate.failure_reasons[0]
 
 
 def test_semidirect_search_config_can_limit_orders():

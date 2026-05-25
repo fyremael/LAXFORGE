@@ -140,7 +140,7 @@ def run_full_scale_search(config: FullScaleSearchConfig | None = None) -> FullSc
         "DIS-003 density-matrix ZCR matrices are not constructed in this pass",
         "DIS-004 nonlocal-covering ZCR matrices are not constructed in this pass",
         "DIS-005 cohomology quotient gates are scaffolded but not solved in this pass",
-        "non-split semidirect residual solving remains open after curvature construction",
+        "non-split semidirect gauge, conservation, Hamiltonian, and prior-art gates remain open",
         "s_cross_s_xxx is blocked only for the current low-order so(3) ansatz family",
         "conservation and Hamiltonian mining are not yet run for DIS-006 scaled descriptors",
     )
@@ -149,6 +149,7 @@ def run_full_scale_search(config: FullScaleSearchConfig | None = None) -> FullSc
         "sphere tangent construction",
         "zero-control discard check",
         "finite non-split coefficient multiplication",
+        "bounded non-split diagonal residual solve",
         "known Heisenberg ZCR collision check",
         "s_cross_s_xxx low-order ansatz obstruction",
         "prior-art collision registry",
@@ -159,8 +160,8 @@ def run_full_scale_search(config: FullScaleSearchConfig | None = None) -> FullSc
         f"Full-scale pass evaluated {generated_candidate_count} candidate records across "
         f"{len(lane_counts)} discovery lanes.",
         f"DIS-003 contributes {lane_counts.get('DIS-003', 0)} density-matrix probes.",
-        "DIS-001 now constructs the non-split semidirect product residuals instead of "
-        "blocking on missing multiplication.",
+        "DIS-001 now solves the non-split diagonal residual with a bounded commutator "
+        "correction and keeps downstream gates open.",
         f"DIS-006 contributes {lane_counts.get('DIS-006', 0)} scaled sphere-tangent descriptors.",
         f"The active frontier contains {len(iterative.frontier)} records; "
         f"{len(iterative.discarded)} records are discarded controls or known-family collisions.",

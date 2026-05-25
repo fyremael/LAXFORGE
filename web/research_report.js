@@ -244,8 +244,8 @@ function renderDossiers() {
       title: "Semidirect search has crossed the algebra gate",
       tone: "warn",
       paragraphs: [
-        "The semidirect lane has useful controls, a known split nilpotent lift, and now an associative non-split product table for the deformation probe.",
-        "The blocker moved forward: the matrix pair and curvature split are constructed, while the residual solve, gauge-preserving reductions, and structure evidence remain open gates.",
+        "The semidirect lane has useful controls, a known split nilpotent lift, and now a bounded diagonal correction for the non-split product probe.",
+        "The blocker moved forward again: the corrected matrix pair clears the diagonal residual and leaves gauge-preserving reductions, conservation, Hamiltonian, and prior-art evidence as open gates.",
       ],
       stats: [
         ["DIS-001 items", candidateCountByLane("DIS-001")],
@@ -257,7 +257,7 @@ function renderDossiers() {
       title: "The process is coherent enough for another cycle",
       tone: "pass",
       paragraphs: [
-        "ITER-001 keeps the next blockers visible: the non-split semidirect residual pass, the first-order sphere formal-tower downstream gates, and the third-order sphere obstruction retained for broader ansatz work.",
+        "ITER-001 keeps the next blockers visible: the first-order sphere formal-tower downstream gates, scaled sphere triage, the corrected non-split semidirect downstream gates, and the third-order sphere obstruction retained for broader ansatz work.",
         "PROC-001 passes its formal audit checks. That does not make any candidate stronger, but it means the search procedure is partitioning frontier and discard states consistently.",
       ],
       stats: [
@@ -429,7 +429,7 @@ function renderTimeline() {
   const descriptions = {
     M0: "Pure-gauge flatness report validates residual zero and proof-artifact readiness.",
     "PROMPT-PACK": "mKdV calibration recovers a known mechanism and verifies conservation evidence.",
-    "DIS-001": "Semidirect lane contains controls, a known mechanism lift, and one blocked algebra frontier.",
+    "DIS-001": "Semidirect lane contains controls, a known mechanism lift, and one corrected non-split algebra frontier.",
     "DIS-002": "Sphere lane keeps tangent candidates conservative and marks the Heisenberg case as known.",
     "DIS-003": "Density-matrix lane records commutator and dissipative tangent probes.",
     "DIS-004": "Nonlocal covering lane records pseudopotential probes with open gates.",
