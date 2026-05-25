@@ -30,7 +30,7 @@ def test_dashboard_payload_tracks_m0_calibration_and_discovery_items():
     assert payload["metrics"]["dis006_candidate_count"] == 128
     assert payload["metrics"]["frontier_count"] == 134
     assert payload["metrics"]["promising_potential_count"] == 0
-    assert payload["metrics"]["blocked_frontier_count"] == 2
+    assert payload["metrics"]["blocked_frontier_count"] == 1
     assert payload["metrics"]["ansatz_blocked_count"] == 1
     assert payload["metrics"]["serious_cycle_status"] == "blocked"
     assert payload["metrics"]["full_scale_status"] == "frontier_active"
@@ -39,7 +39,7 @@ def test_dashboard_payload_tracks_m0_calibration_and_discovery_items():
     assert payload["metrics"]["procedure_audit_status"] == "pass"
     assert payload["metrics"]["procedure_check_count"] == 8
     assert payload["metrics"]["procedure_failure_count"] == 0
-    assert payload["metrics"]["validated_zcr_count"] == 2
+    assert payload["metrics"]["validated_zcr_count"] == 3
     assert payload["iterative_process"]["run_id"] == "ITER-001"
     assert payload["procedure_audit"]["procedure_id"] == "PROC-001"
     assert payload["serious_cycle"]["cycle_id"] == "SERIOUS-001"
@@ -156,7 +156,7 @@ def test_dashboard_frontier_process_tracks_queued_next_actions():
     assert all(record["next_action"] for record in frontier)
     assert _item(payload, "sphere-s-cross-s-x-tangent-candidate")[
         "frontier_status"
-    ] == "blocked_by_recursive_nonlocal_tower"
+    ] == "formal_nonlocal_tower_validated"
     assert _item(payload, "sphere-s-cross-s-xxx-exploratory-candidate")[
         "frontier_status"
     ] == "blocked_by_ansatz_obstruction"

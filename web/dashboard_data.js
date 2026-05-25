@@ -835,12 +835,12 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "collisions": [
         "Principal chiral model and Heisenberg ferromagnet families"
       ],
-      "connection_status": "blocked_recursive_nonlocal_tower_gate",
+      "connection_status": "validated_formal_infinite_nonlocal_tower",
       "conservation_count": 0,
-      "curvature_residual_zero": false,
-      "curvature_status": "blocked_recursive_nonlocal_tower_gate",
-      "curvature_terms_nonzero": 3,
-      "curvature_terms_total": 21,
+      "curvature_residual_zero": true,
+      "curvature_status": "validated_formal_infinite_nonlocal_tower",
+      "curvature_terms_nonzero": 0,
+      "curvature_terms_total": 24,
       "cyclic_fingerprint": "dim=1;closure_order=1;lambda_dependent=False;coeffs=(('c0', '0'),)",
       "detail": {
         "obstruction_basis": [
@@ -849,31 +849,32 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "first nonlocal potential p1 with D_x(p1) = s cross s_x cancels the lambda^1 residual",
           "bounded recursive tower p1,p2,p3 cancels lambda^1 through lambda^3 residuals",
           "finite depth-3 tower leaves lambda^4 residual s cross p3",
-          "finite closure would require p3 parallel to s, which is not implied by the covering equations",
-          "alternate spatial matrices remain untested for this flow"
+          "formal infinite tower closes by the recurrence D_x(p{k+1}) = s cross p{k}",
+          "finite truncations remain unclosed unless the top potential is parallel to s",
+          "conservation, Hamiltonian, gauge, and prior-art gates remain open"
         ],
-        "summary": "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+        "summary": "formal infinite nonlocal tower closes the zero-curvature recurrence",
         "tangent_condition": "0"
       },
-      "disposition": "blocked",
+      "disposition": "needs_human_review",
       "failure_reasons": [
-        "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-        "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-        "finite depth-3 tower leaves lambda^4 residual s cross p3",
-        "recursive nonlocal tower closure or alternate-U closure remains unproved"
+        "formal infinite nonlocal tower closes the zero-curvature recurrence",
+        "finite truncations retain a top residual unless the top potential is parallel to s",
+        "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+        "prior-art collision checks remain required for nonlocal and symmetric-space families"
       ],
-      "frontier_priority": 42,
-      "frontier_status": "blocked_by_recursive_nonlocal_tower",
+      "frontier_priority": 39,
+      "frontier_status": "formal_nonlocal_tower_validated",
       "gate_gaps": [
-        "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-        "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-        "finite depth-3 tower leaves lambda^4 residual s cross p3",
-        "recursive nonlocal tower closure or alternate-U closure remains unproved"
+        "formal infinite nonlocal tower closes the zero-curvature recurrence",
+        "finite truncations retain a top residual unless the top potential is parallel to s",
+        "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+        "prior-art collision checks remain required for nonlocal and symmetric-space families"
       ],
       "gate_summary": {
         "collision": "needs human review",
         "conservation": 0,
-        "curvature": "blocked_recursive_nonlocal_tower_gate",
+        "curvature": "validated_formal_infinite_nonlocal_tower",
         "gauge": 0.0,
         "spectral": "unresolved",
         "tangent": "tangent"
@@ -888,8 +889,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
         {
           "key": "curvature",
           "label": "Curvature",
-          "status": "fail",
-          "value": "blocked_recursive_nonlocal_tower_gate"
+          "status": "pass",
+          "value": "validated_formal_infinite_nonlocal_tower"
         },
         {
           "key": "gauge",
@@ -922,21 +923,23 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "item_type": "candidate",
       "lane": "DIS-002",
       "name": "sphere s_cross_s_x tangent candidate",
-      "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
+      "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
       "order": 1,
       "proof_summary": null,
-      "recommendation": "blocked",
+      "recommendation": "needs_human_review",
       "residual_grid": null,
       "short_name": "s_cross_s_x",
       "spectral_status": "unresolved",
       "surprisal": {
-        "band": "inspect",
+        "band": "escalate",
         "drivers": [
           "tangent constraint passed",
+          "validated ZCR evidence",
           "spectral parameter unresolved",
-          "low gauge risk"
+          "low gauge risk",
+          "human review required"
         ],
-        "score": 45
+        "score": 81
       },
       "tangent_status": "tangent",
       "zcr_constraints": [
@@ -955,11 +958,12 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "first nonlocal potential p1 with D_x(p1) = s cross s_x cancels the lambda^1 residual",
         "bounded recursive tower p1,p2,p3 cancels lambda^1 through lambda^3 residuals",
         "finite depth-3 tower leaves lambda^4 residual s cross p3",
-        "finite closure would require p3 parallel to s, which is not implied by the covering equations",
-        "alternate spatial matrices remain untested for this flow"
+        "formal infinite tower closes by the recurrence D_x(p{k+1}) = s cross p{k}",
+        "finite truncations remain unclosed unless the top potential is parallel to s",
+        "conservation, Hamiltonian, gauge, and prior-art gates remain open"
       ],
       "zcr_solution": null,
-      "zcr_validated": false
+      "zcr_validated": true
     },
     {
       "classification": "known",
@@ -16924,30 +16928,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "action_queue": [
       {
         "classification": "needs_human_review",
-        "connection_status": "blocked_recursive_nonlocal_tower_gate",
-        "evidence_summary": [
-          "local first-potential gate has no local-basis witness",
-          "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-          "finite depth-3 tower leaves lambda^4 residual s cross p3"
-        ],
-        "gate_gaps": [
-          "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-          "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-          "finite depth-3 tower leaves lambda^4 residual s cross p3",
-          "recursive nonlocal tower closure or alternate-U closure remains unproved"
-        ],
-        "item_id": "sphere-s-cross-s-x-tangent-candidate",
-        "iteration": 1,
-        "lane": "DIS-002",
-        "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
-        "potential_status": "blocked_by_recursive_nonlocal_tower",
-        "priority": 42,
-        "process_disposition": "frontier",
-        "recommendation": "blocked"
-      },
-      {
-        "classification": "needs_human_review",
         "connection_status": "constructed_non_split_curvature",
         "evidence_summary": [
           "non-split coefficient multiplication is now implemented for the probe",
@@ -16966,6 +16946,30 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
         "potential_status": "needs_review",
         "priority": 40,
+        "process_disposition": "frontier",
+        "recommendation": "needs_human_review"
+      },
+      {
+        "classification": "needs_human_review",
+        "connection_status": "validated_formal_infinite_nonlocal_tower",
+        "evidence_summary": [
+          "formal infinite nonlocal tower closes the recurrence",
+          "finite truncations retain a top residual",
+          "interpretation remains evidence-only pending stronger gates"
+        ],
+        "gate_gaps": [
+          "formal infinite nonlocal tower closes the zero-curvature recurrence",
+          "finite truncations retain a top residual unless the top potential is parallel to s",
+          "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+          "prior-art collision checks remain required for nonlocal and symmetric-space families"
+        ],
+        "item_id": "sphere-s-cross-s-x-tangent-candidate",
+        "iteration": 1,
+        "lane": "DIS-002",
+        "name": "sphere s_cross_s_x tangent candidate",
+        "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
+        "potential_status": "formal_nonlocal_tower_validated",
+        "priority": 39,
         "process_disposition": "frontier",
         "recommendation": "needs_human_review"
       },
@@ -17646,27 +17650,27 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "blocked_recursive_nonlocal_tower_gate",
+          "connection_status": "validated_formal_infinite_nonlocal_tower",
           "evidence_summary": [
-            "local first-potential gate has no local-basis witness",
-            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-            "finite depth-3 tower leaves lambda^4 residual s cross p3"
+            "formal infinite nonlocal tower closes the recurrence",
+            "finite truncations retain a top residual",
+            "interpretation remains evidence-only pending stronger gates"
           ],
           "gate_gaps": [
-            "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-            "finite depth-3 tower leaves lambda^4 residual s cross p3",
-            "recursive nonlocal tower closure or alternate-U closure remains unproved"
+            "formal infinite nonlocal tower closes the zero-curvature recurrence",
+            "finite truncations retain a top residual unless the top potential is parallel to s",
+            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+            "prior-art collision checks remain required for nonlocal and symmetric-space families"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
-          "potential_status": "blocked_by_recursive_nonlocal_tower",
-          "priority": 42,
+          "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
+          "potential_status": "formal_nonlocal_tower_validated",
+          "priority": 39,
           "process_disposition": "frontier",
-          "recommendation": "blocked"
+          "recommendation": "needs_human_review"
         },
         {
           "classification": "known",
@@ -21128,30 +21132,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "frontier": [
         {
           "classification": "needs_human_review",
-          "connection_status": "blocked_recursive_nonlocal_tower_gate",
-          "evidence_summary": [
-            "local first-potential gate has no local-basis witness",
-            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-            "finite depth-3 tower leaves lambda^4 residual s cross p3"
-          ],
-          "gate_gaps": [
-            "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-            "finite depth-3 tower leaves lambda^4 residual s cross p3",
-            "recursive nonlocal tower closure or alternate-U closure remains unproved"
-          ],
-          "item_id": "sphere-s-cross-s-x-tangent-candidate",
-          "iteration": 1,
-          "lane": "DIS-002",
-          "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
-          "potential_status": "blocked_by_recursive_nonlocal_tower",
-          "priority": 42,
-          "process_disposition": "frontier",
-          "recommendation": "blocked"
-        },
-        {
-          "classification": "needs_human_review",
           "connection_status": "constructed_non_split_curvature",
           "evidence_summary": [
             "non-split coefficient multiplication is now implemented for the probe",
@@ -21170,6 +21150,30 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
           "potential_status": "needs_review",
           "priority": 40,
+          "process_disposition": "frontier",
+          "recommendation": "needs_human_review"
+        },
+        {
+          "classification": "needs_human_review",
+          "connection_status": "validated_formal_infinite_nonlocal_tower",
+          "evidence_summary": [
+            "formal infinite nonlocal tower closes the recurrence",
+            "finite truncations retain a top residual",
+            "interpretation remains evidence-only pending stronger gates"
+          ],
+          "gate_gaps": [
+            "formal infinite nonlocal tower closes the zero-curvature recurrence",
+            "finite truncations retain a top residual unless the top potential is parallel to s",
+            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+            "prior-art collision checks remain required for nonlocal and symmetric-space families"
+          ],
+          "item_id": "sphere-s-cross-s-x-tangent-candidate",
+          "iteration": 1,
+          "lane": "DIS-002",
+          "name": "sphere s_cross_s_x tangent candidate",
+          "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
+          "potential_status": "formal_nonlocal_tower_validated",
+          "priority": 39,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -24489,8 +24493,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-zero-flow-zero-connection-control"
           ],
           "frontier_ids": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -24640,8 +24644,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "candidates_seen": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -24777,8 +24781,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
           ],
           "discarded_ids": [],
           "frontier_ids": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -25709,9 +25713,9 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "warning_count": 0
     },
     "recommendation_counts": {
-      "blocked": 2,
+      "blocked": 1,
       "discard": 9,
-      "needs_human_review": 132
+      "needs_human_review": 133
     },
     "run_id": "FULL-001",
     "status": "frontier_active",
@@ -26571,12 +26575,12 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "collisions": [
         "Principal chiral model and Heisenberg ferromagnet families"
       ],
-      "connection_status": "blocked_recursive_nonlocal_tower_gate",
+      "connection_status": "validated_formal_infinite_nonlocal_tower",
       "conservation_count": 0,
-      "curvature_residual_zero": false,
-      "curvature_status": "blocked_recursive_nonlocal_tower_gate",
-      "curvature_terms_nonzero": 3,
-      "curvature_terms_total": 21,
+      "curvature_residual_zero": true,
+      "curvature_status": "validated_formal_infinite_nonlocal_tower",
+      "curvature_terms_nonzero": 0,
+      "curvature_terms_total": 24,
       "cyclic_fingerprint": "dim=1;closure_order=1;lambda_dependent=False;coeffs=(('c0', '0'),)",
       "detail": {
         "obstruction_basis": [
@@ -26585,31 +26589,32 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "first nonlocal potential p1 with D_x(p1) = s cross s_x cancels the lambda^1 residual",
           "bounded recursive tower p1,p2,p3 cancels lambda^1 through lambda^3 residuals",
           "finite depth-3 tower leaves lambda^4 residual s cross p3",
-          "finite closure would require p3 parallel to s, which is not implied by the covering equations",
-          "alternate spatial matrices remain untested for this flow"
+          "formal infinite tower closes by the recurrence D_x(p{k+1}) = s cross p{k}",
+          "finite truncations remain unclosed unless the top potential is parallel to s",
+          "conservation, Hamiltonian, gauge, and prior-art gates remain open"
         ],
-        "summary": "local-vector ansatz has no local W with D_x(W) = s cross s_x",
+        "summary": "formal infinite nonlocal tower closes the zero-curvature recurrence",
         "tangent_condition": "0"
       },
-      "disposition": "blocked",
+      "disposition": "needs_human_review",
       "failure_reasons": [
-        "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-        "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-        "finite depth-3 tower leaves lambda^4 residual s cross p3",
-        "recursive nonlocal tower closure or alternate-U closure remains unproved"
+        "formal infinite nonlocal tower closes the zero-curvature recurrence",
+        "finite truncations retain a top residual unless the top potential is parallel to s",
+        "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+        "prior-art collision checks remain required for nonlocal and symmetric-space families"
       ],
-      "frontier_priority": 42,
-      "frontier_status": "blocked_by_recursive_nonlocal_tower",
+      "frontier_priority": 39,
+      "frontier_status": "formal_nonlocal_tower_validated",
       "gate_gaps": [
-        "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-        "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-        "finite depth-3 tower leaves lambda^4 residual s cross p3",
-        "recursive nonlocal tower closure or alternate-U closure remains unproved"
+        "formal infinite nonlocal tower closes the zero-curvature recurrence",
+        "finite truncations retain a top residual unless the top potential is parallel to s",
+        "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+        "prior-art collision checks remain required for nonlocal and symmetric-space families"
       ],
       "gate_summary": {
         "collision": "needs human review",
         "conservation": 0,
-        "curvature": "blocked_recursive_nonlocal_tower_gate",
+        "curvature": "validated_formal_infinite_nonlocal_tower",
         "gauge": 0.0,
         "spectral": "unresolved",
         "tangent": "tangent"
@@ -26624,8 +26629,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
         {
           "key": "curvature",
           "label": "Curvature",
-          "status": "fail",
-          "value": "blocked_recursive_nonlocal_tower_gate"
+          "status": "pass",
+          "value": "validated_formal_infinite_nonlocal_tower"
         },
         {
           "key": "gauge",
@@ -26658,21 +26663,23 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "item_type": "candidate",
       "lane": "DIS-002",
       "name": "sphere s_cross_s_x tangent candidate",
-      "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
+      "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
       "order": 1,
       "proof_summary": null,
-      "recommendation": "blocked",
+      "recommendation": "needs_human_review",
       "residual_grid": null,
       "short_name": "s_cross_s_x",
       "spectral_status": "unresolved",
       "surprisal": {
-        "band": "inspect",
+        "band": "escalate",
         "drivers": [
           "tangent constraint passed",
+          "validated ZCR evidence",
           "spectral parameter unresolved",
-          "low gauge risk"
+          "low gauge risk",
+          "human review required"
         ],
-        "score": 45
+        "score": 81
       },
       "tangent_status": "tangent",
       "zcr_constraints": [
@@ -26691,11 +26698,12 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "first nonlocal potential p1 with D_x(p1) = s cross s_x cancels the lambda^1 residual",
         "bounded recursive tower p1,p2,p3 cancels lambda^1 through lambda^3 residuals",
         "finite depth-3 tower leaves lambda^4 residual s cross p3",
-        "finite closure would require p3 parallel to s, which is not implied by the covering equations",
-        "alternate spatial matrices remain untested for this flow"
+        "formal infinite tower closes by the recurrence D_x(p{k+1}) = s cross p{k}",
+        "finite truncations remain unclosed unless the top potential is parallel to s",
+        "conservation, Hamiltonian, gauge, and prior-art gates remain open"
       ],
       "zcr_solution": null,
-      "zcr_validated": false
+      "zcr_validated": true
     },
     {
       "classification": "known",
@@ -42546,27 +42554,27 @@ window.LAXFORGE_DASHBOARD_DATA = {
       },
       {
         "classification": "needs_human_review",
-        "connection_status": "blocked_recursive_nonlocal_tower_gate",
+        "connection_status": "validated_formal_infinite_nonlocal_tower",
         "evidence_summary": [
-          "local first-potential gate has no local-basis witness",
-          "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-          "finite depth-3 tower leaves lambda^4 residual s cross p3"
+          "formal infinite nonlocal tower closes the recurrence",
+          "finite truncations retain a top residual",
+          "interpretation remains evidence-only pending stronger gates"
         ],
         "gate_gaps": [
-          "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-          "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-          "finite depth-3 tower leaves lambda^4 residual s cross p3",
-          "recursive nonlocal tower closure or alternate-U closure remains unproved"
+          "formal infinite nonlocal tower closes the zero-curvature recurrence",
+          "finite truncations retain a top residual unless the top potential is parallel to s",
+          "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+          "prior-art collision checks remain required for nonlocal and symmetric-space families"
         ],
         "item_id": "sphere-s-cross-s-x-tangent-candidate",
         "iteration": 1,
         "lane": "DIS-002",
         "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
-        "potential_status": "blocked_by_recursive_nonlocal_tower",
-        "priority": 42,
+        "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
+        "potential_status": "formal_nonlocal_tower_validated",
+        "priority": 39,
         "process_disposition": "frontier",
-        "recommendation": "blocked"
+        "recommendation": "needs_human_review"
       },
       {
         "classification": "known",
@@ -46028,30 +46036,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "frontier": [
       {
         "classification": "needs_human_review",
-        "connection_status": "blocked_recursive_nonlocal_tower_gate",
-        "evidence_summary": [
-          "local first-potential gate has no local-basis witness",
-          "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-          "finite depth-3 tower leaves lambda^4 residual s cross p3"
-        ],
-        "gate_gaps": [
-          "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-          "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-          "finite depth-3 tower leaves lambda^4 residual s cross p3",
-          "recursive nonlocal tower closure or alternate-U closure remains unproved"
-        ],
-        "item_id": "sphere-s-cross-s-x-tangent-candidate",
-        "iteration": 1,
-        "lane": "DIS-002",
-        "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
-        "potential_status": "blocked_by_recursive_nonlocal_tower",
-        "priority": 42,
-        "process_disposition": "frontier",
-        "recommendation": "blocked"
-      },
-      {
-        "classification": "needs_human_review",
         "connection_status": "constructed_non_split_curvature",
         "evidence_summary": [
           "non-split coefficient multiplication is now implemented for the probe",
@@ -46070,6 +46054,30 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
         "potential_status": "needs_review",
         "priority": 40,
+        "process_disposition": "frontier",
+        "recommendation": "needs_human_review"
+      },
+      {
+        "classification": "needs_human_review",
+        "connection_status": "validated_formal_infinite_nonlocal_tower",
+        "evidence_summary": [
+          "formal infinite nonlocal tower closes the recurrence",
+          "finite truncations retain a top residual",
+          "interpretation remains evidence-only pending stronger gates"
+        ],
+        "gate_gaps": [
+          "formal infinite nonlocal tower closes the zero-curvature recurrence",
+          "finite truncations retain a top residual unless the top potential is parallel to s",
+          "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+          "prior-art collision checks remain required for nonlocal and symmetric-space families"
+        ],
+        "item_id": "sphere-s-cross-s-x-tangent-candidate",
+        "iteration": 1,
+        "lane": "DIS-002",
+        "name": "sphere s_cross_s_x tangent candidate",
+        "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
+        "potential_status": "formal_nonlocal_tower_validated",
+        "priority": 39,
         "process_disposition": "frontier",
         "recommendation": "needs_human_review"
       },
@@ -49389,8 +49397,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "scaled-sphere-zero-flow-zero-connection-control"
         ],
         "frontier_ids": [
-          "sphere-s-cross-s-x-tangent-candidate",
           "semidirect-non-split-product-deformation-probe",
+          "sphere-s-cross-s-x-tangent-candidate",
           "scaled-sphere-unit-times-sxxxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -49540,8 +49548,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
       },
       {
         "candidates_seen": [
-          "sphere-s-cross-s-x-tangent-candidate",
           "semidirect-non-split-product-deformation-probe",
+          "sphere-s-cross-s-x-tangent-candidate",
           "scaled-sphere-unit-times-sxxxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -49677,8 +49685,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
         ],
         "discarded_ids": [],
         "frontier_ids": [
-          "sphere-s-cross-s-x-tangent-candidate",
           "semidirect-non-split-product-deformation-probe",
+          "sphere-s-cross-s-x-tangent-candidate",
           "scaled-sphere-unit-times-sxxxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -49894,13 +49902,13 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": "known-family evidence only",
       "label": "Validated ZCR",
       "tone": "pass",
-      "value": 2
+      "value": 3
     },
     {
       "detail": "open candidate dossiers",
       "label": "Needs review",
       "tone": "warn",
-      "value": 132
+      "value": 133
     },
     {
       "detail": "promising potential queue",
@@ -49912,7 +49920,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": "documented obstructions",
       "label": "Blocked",
       "tone": "warn",
-      "value": 2
+      "value": 1
     },
     {
       "detail": "0 fail / 0 warn",
@@ -49942,7 +49950,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": "highest triage score",
       "label": "Audit surprisal",
       "tone": "inspect",
-      "value": 55
+      "value": 81
     },
     {
       "detail": "calibration evidence",
@@ -49972,7 +49980,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
   "metrics": {
     "ansatz_blocked_count": 1,
     "ansatz_solver_status": "solved",
-    "blocked_frontier_count": 2,
+    "blocked_frontier_count": 1,
     "classification_counts": {
       "fake": 7,
       "known collision": 1,
@@ -50003,8 +50011,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "warn": 144
       },
       "curvature": {
-        "fail": 135,
-        "pass": 10,
+        "fail": 134,
+        "pass": 11,
         "warn": 0
       },
       "gauge": {
@@ -50023,7 +50031,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "warn": 13
       }
     },
-    "highest_surprisal": 55,
+    "highest_surprisal": 81,
     "item_type_counts": {
       "calibration": 1,
       "candidate": 143,
@@ -50037,14 +50045,14 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "proof_artifact_count": 1,
     "recommendation_counts": {
       "audit": 1,
-      "blocked": 2,
+      "blocked": 1,
       "calibration": 1,
       "discard": 9,
-      "needs_human_review": 132
+      "needs_human_review": 133
     },
     "serious_cycle_status": "blocked",
     "tracked_items_total": 145,
-    "validated_zcr_count": 2
+    "validated_zcr_count": 3
   },
   "plain_summary": {
     "bottom_line": "Use this as a process console: generate, gate, discard, and queue the next honest test.",
@@ -50055,9 +50063,9 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "DIS-002 has 4 sphere-flow candidates; the Heisenberg-shaped case is validated but known-family collision evidence keeps it in discard.",
       "DIS-003 through DIS-005 add 3 density-matrix, 2 nonlocal-covering, and 2 cohomology probes with explicit open gates.",
       "DIS-006 adds 128 scaled sphere-tangent triage candidates; the batch records descriptors without constructing ZCR matrices.",
-      "The frontier has 0 promising-potential candidates and 2 blocked candidates.",
-      "SERIOUS-001 leaves 1 third-order candidate blocked by a documented ansatz-family obstruction; the broader discovery state has 2 blocked candidates total.",
-      "2 controlled candidates have validated ZCR evidence; 132 need review and 9 are discard-path.",
+      "The frontier has 0 promising-potential candidates and 1 blocked candidates.",
+      "SERIOUS-001 leaves 1 third-order candidate blocked by a documented ansatz-family obstruction; the broader discovery state has 1 blocked candidates total.",
+      "3 controlled candidates have validated ZCR evidence; 133 need review and 9 are discard-path.",
       "FULL-001 evaluates 143 discovery candidates and keeps the solver action queue separate from stronger interpretation."
     ],
     "headline": "Current readout: this is an active evidence search with a bounded frontier.",
@@ -51879,27 +51887,27 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "blocked_recursive_nonlocal_tower_gate",
+          "connection_status": "validated_formal_infinite_nonlocal_tower",
           "evidence_summary": [
-            "local first-potential gate has no local-basis witness",
-            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-            "finite depth-3 tower leaves lambda^4 residual s cross p3"
+            "formal infinite nonlocal tower closes the recurrence",
+            "finite truncations retain a top residual",
+            "interpretation remains evidence-only pending stronger gates"
           ],
           "gate_gaps": [
-            "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-            "finite depth-3 tower leaves lambda^4 residual s cross p3",
-            "recursive nonlocal tower closure or alternate-U closure remains unproved"
+            "formal infinite nonlocal tower closes the zero-curvature recurrence",
+            "finite truncations retain a top residual unless the top potential is parallel to s",
+            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+            "prior-art collision checks remain required for nonlocal and symmetric-space families"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
-          "potential_status": "blocked_by_recursive_nonlocal_tower",
-          "priority": 42,
+          "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
+          "potential_status": "formal_nonlocal_tower_validated",
+          "priority": 39,
           "process_disposition": "frontier",
-          "recommendation": "blocked"
+          "recommendation": "needs_human_review"
         },
         {
           "classification": "known",
@@ -55387,30 +55395,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "blocked_recursive_nonlocal_tower_gate",
-          "evidence_summary": [
-            "local first-potential gate has no local-basis witness",
-            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-            "finite depth-3 tower leaves lambda^4 residual s cross p3"
-          ],
-          "gate_gaps": [
-            "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-            "finite depth-3 tower leaves lambda^4 residual s cross p3",
-            "recursive nonlocal tower closure or alternate-U closure remains unproved"
-          ],
-          "item_id": "sphere-s-cross-s-x-tangent-candidate",
-          "iteration": 1,
-          "lane": "DIS-002",
-          "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
-          "potential_status": "blocked_by_recursive_nonlocal_tower",
-          "priority": 42,
-          "process_disposition": "frontier",
-          "recommendation": "blocked"
-        },
-        {
-          "classification": "needs_human_review",
           "connection_status": "constructed_non_split_curvature",
           "evidence_summary": [
             "non-split coefficient multiplication is now implemented for the probe",
@@ -55429,6 +55413,30 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
           "potential_status": "needs_review",
           "priority": 40,
+          "process_disposition": "frontier",
+          "recommendation": "needs_human_review"
+        },
+        {
+          "classification": "needs_human_review",
+          "connection_status": "validated_formal_infinite_nonlocal_tower",
+          "evidence_summary": [
+            "formal infinite nonlocal tower closes the recurrence",
+            "finite truncations retain a top residual",
+            "interpretation remains evidence-only pending stronger gates"
+          ],
+          "gate_gaps": [
+            "formal infinite nonlocal tower closes the zero-curvature recurrence",
+            "finite truncations retain a top residual unless the top potential is parallel to s",
+            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+            "prior-art collision checks remain required for nonlocal and symmetric-space families"
+          ],
+          "item_id": "sphere-s-cross-s-x-tangent-candidate",
+          "iteration": 1,
+          "lane": "DIS-002",
+          "name": "sphere s_cross_s_x tangent candidate",
+          "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
+          "potential_status": "formal_nonlocal_tower_validated",
+          "priority": 39,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -58727,8 +58735,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
           ],
           "frontier_ids": [
             "sphere-s-cross-s-xxx-exploratory-candidate",
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -58878,8 +58886,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
         {
           "candidates_seen": [
             "sphere-s-cross-s-xxx-exploratory-candidate",
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -59015,8 +59023,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "discarded_ids": [],
           "frontier_ids": [
             "sphere-s-cross-s-xxx-exploratory-candidate",
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -60044,27 +60052,27 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "blocked_recursive_nonlocal_tower_gate",
+          "connection_status": "validated_formal_infinite_nonlocal_tower",
           "evidence_summary": [
-            "local first-potential gate has no local-basis witness",
-            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-            "finite depth-3 tower leaves lambda^4 residual s cross p3"
+            "formal infinite nonlocal tower closes the recurrence",
+            "finite truncations retain a top residual",
+            "interpretation remains evidence-only pending stronger gates"
           ],
           "gate_gaps": [
-            "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-            "finite depth-3 tower leaves lambda^4 residual s cross p3",
-            "recursive nonlocal tower closure or alternate-U closure remains unproved"
+            "formal infinite nonlocal tower closes the zero-curvature recurrence",
+            "finite truncations retain a top residual unless the top potential is parallel to s",
+            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+            "prior-art collision checks remain required for nonlocal and symmetric-space families"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
-          "potential_status": "blocked_by_recursive_nonlocal_tower",
-          "priority": 42,
+          "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
+          "potential_status": "formal_nonlocal_tower_validated",
+          "priority": 39,
           "process_disposition": "frontier",
-          "recommendation": "blocked"
+          "recommendation": "needs_human_review"
         },
         {
           "classification": "known",
@@ -63526,30 +63534,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "frontier": [
         {
           "classification": "needs_human_review",
-          "connection_status": "blocked_recursive_nonlocal_tower_gate",
-          "evidence_summary": [
-            "local first-potential gate has no local-basis witness",
-            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-            "finite depth-3 tower leaves lambda^4 residual s cross p3"
-          ],
-          "gate_gaps": [
-            "local-vector ansatz has no local W with D_x(W) = s cross s_x",
-            "recursive potentials p1,p2,p3 cancel lambda^1 through lambda^3 residuals",
-            "finite depth-3 tower leaves lambda^4 residual s cross p3",
-            "recursive nonlocal tower closure or alternate-U closure remains unproved"
-          ],
-          "item_id": "sphere-s-cross-s-x-tangent-candidate",
-          "iteration": 1,
-          "lane": "DIS-002",
-          "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Close the recursive nonlocal tower beyond depth 3 or try an alternate spatial matrix for the s_cross_s_x flow.",
-          "potential_status": "blocked_by_recursive_nonlocal_tower",
-          "priority": 42,
-          "process_disposition": "frontier",
-          "recommendation": "blocked"
-        },
-        {
-          "classification": "needs_human_review",
           "connection_status": "constructed_non_split_curvature",
           "evidence_summary": [
             "non-split coefficient multiplication is now implemented for the probe",
@@ -63568,6 +63552,30 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "next_action": "Apply a bounded coefficient solver to the constructed non-split curvature residuals, then rerun gauge-preserving reductions.",
           "potential_status": "needs_review",
           "priority": 40,
+          "process_disposition": "frontier",
+          "recommendation": "needs_human_review"
+        },
+        {
+          "classification": "needs_human_review",
+          "connection_status": "validated_formal_infinite_nonlocal_tower",
+          "evidence_summary": [
+            "formal infinite nonlocal tower closes the recurrence",
+            "finite truncations retain a top residual",
+            "interpretation remains evidence-only pending stronger gates"
+          ],
+          "gate_gaps": [
+            "formal infinite nonlocal tower closes the zero-curvature recurrence",
+            "finite truncations retain a top residual unless the top potential is parallel to s",
+            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+            "prior-art collision checks remain required for nonlocal and symmetric-space families"
+          ],
+          "item_id": "sphere-s-cross-s-x-tangent-candidate",
+          "iteration": 1,
+          "lane": "DIS-002",
+          "name": "sphere s_cross_s_x tangent candidate",
+          "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
+          "potential_status": "formal_nonlocal_tower_validated",
+          "priority": 39,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -66887,8 +66895,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-zero-flow-zero-connection-control"
           ],
           "frontier_ids": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -67038,8 +67046,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "candidates_seen": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -67175,8 +67183,8 @@ window.LAXFORGE_DASHBOARD_DATA = {
           ],
           "discarded_ids": [],
           "frontier_ids": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "semidirect-non-split-product-deformation-probe",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",

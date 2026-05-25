@@ -33,7 +33,9 @@ def test_serious_cycle_records_attempt_and_procedure_evidence():
     assert report.attempt_report.obstruction_basis
     assert report.baseline_procedure.status == "pass"
     assert report.refreshed_procedure.status == "pass"
-    assert report.refreshed_process.frontier[0].item_id == "sphere-s-cross-s-x-tangent-candidate"
+    assert report.refreshed_process.frontier[0].item_id == (
+        "semidirect-non-split-product-deformation-probe"
+    )
 
 
 def test_serious_cycle_report_avoids_promotion_language():
