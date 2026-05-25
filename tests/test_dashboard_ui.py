@@ -39,7 +39,7 @@ def test_dashboard_payload_tracks_m0_calibration_and_discovery_items():
     assert payload["metrics"]["procedure_audit_status"] == "pass"
     assert payload["metrics"]["procedure_check_count"] == 8
     assert payload["metrics"]["procedure_failure_count"] == 0
-    assert payload["metrics"]["validated_zcr_count"] == 3
+    assert payload["metrics"]["validated_zcr_count"] == 4
     assert payload["iterative_process"]["run_id"] == "ITER-001"
     assert payload["procedure_audit"]["procedure_id"] == "PROC-001"
     assert payload["serious_cycle"]["cycle_id"] == "SERIOUS-001"
@@ -90,7 +90,7 @@ def test_dashboard_payload_includes_plain_lay_summary():
     assert len(summary["bullets"]) == 10
     assert "pure-gauge proof artifact passes" in summary["bullets"][0]
     assert "formal procedure audit passes" in summary["bullets"][1]
-    assert "non-split product probe now has constructed residual evidence" in summary["bullets"][2]
+    assert "non-split product probe now has corrected flow-equation evidence" in summary["bullets"][2]
     assert "DIS-003 through DIS-005 add 3 density-matrix" in summary["bullets"][4]
     assert "DIS-006 adds 128 scaled sphere-tangent triage candidates" in summary["bullets"][5]
     assert "SERIOUS-001 leaves 1 third-order candidate blocked" in summary["bullets"][7]
@@ -135,9 +135,10 @@ def test_dashboard_semidirect_search_surfaces_started_dis001_lane():
     assert split_control["recommendation"] == "discard"
     assert "semidirect coupling" in split_control["collision_families"]
     assert non_split_probe["recommendation"] == "needs_human_review"
-    assert non_split_probe["connection_status"] == "constructed_non_split_curvature"
-    assert non_split_probe["frontier_status"] == "needs_review"
-    assert non_split_probe["curvature_terms_nonzero"] == 8
+    assert non_split_probe["connection_status"] == "validated_non_split_flow_equations"
+    assert non_split_probe["frontier_status"] == "validated_non_split_flow_equations"
+    assert non_split_probe["curvature_terms_nonzero"] == 6
+    assert non_split_probe["zcr_validated"] is True
 
 
 def test_dashboard_frontier_process_tracks_queued_next_actions():

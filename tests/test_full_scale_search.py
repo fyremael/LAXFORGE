@@ -38,10 +38,11 @@ def test_full_scale_action_queue_is_prioritized_and_conservative():
     report = run_full_scale_search()
 
     assert len(report.action_queue) == 25
-    assert report.action_queue[0].item_id == "semidirect-non-split-product-deformation-probe"
-    assert report.action_queue[1].item_id == "sphere-s-cross-s-x-tangent-candidate"
+    assert report.action_queue[0].item_id == "sphere-s-cross-s-x-tangent-candidate"
+    assert report.action_queue[1].item_id == "scaled-sphere-unit-times-sxxxxx"
+    assert report.action_queue[2].item_id == "semidirect-non-split-product-deformation-probe"
     assert any(record.lane == "DIS-006" for record in report.action_queue)
-    assert any("non-split semidirect residual solving" in item for item in report.blocked_capabilities)
+    assert any("non-split semidirect gauge" in item for item in report.blocked_capabilities)
     assert all(
         record.recommendation in {"needs_human_review", "blocked"}
         for record in report.action_queue

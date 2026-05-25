@@ -18,6 +18,7 @@ FRONTIER_STATUSES = {
     "blocked_by_missing_capability",
     "blocked_by_ansatz_obstruction",
     "needs_review",
+    "validated_non_split_flow_equations",
     "density_matrix_pending",
     "nonlocal_covering_pending",
     "cohomology_pending",

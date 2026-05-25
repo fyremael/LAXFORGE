@@ -18,6 +18,7 @@ from laxforge.algebra.truncated_poly import TruncatedPoly
 from laxforge.core.dossier import CandidateDossier
 from laxforge.core.gauge import analyze_gauge_risk
 from laxforge.core.prior_art import classify_candidate
+from laxforge.core.solver import ConstraintSolveConfig, solve_symbolic_constraints
 from laxforge.core.zero_curvature import curvature_report, zero_curvature
 from laxforge.examples.mkdv_second_jet import build_pair, expected_flow_components
 from laxforge.search.controlled import DiscoveryRunReport
@@ -101,6 +102,21 @@ def _fa_matrix_as_strings(matrix: list[list[FiniteAlgebraElement]]) -> list[list
     return [[str(entry.as_expr()) for entry in row] for row in matrix]
 
 
+def _fa_matrix_subs(
+    matrix: list[list[FiniteAlgebraElement]], substitutions: dict[sp.Symbol, sp.Expr]
+) -> list[list[FiniteAlgebraElement]]:
+    return [
+        [
+            FiniteAlgebraElement.from_coeffs(
+                [sp.simplify(coeff.subs(substitutions)) for coeff in entry.coeffs],
+                entry.algebra,
+            )
+            for entry in row
+        ]
+        for row in matrix
+    ]
+
+
 def _zero_curvature_summary() -> dict[str, object]:
     zero = TruncatedPoly.zero(order=1)
     return curvature_report([[zero, zero], [zero, zero]]).as_dict()
@@ -145,6 +161,7 @@ def _non_split_semidirect_evidence() -> dict[str, Any]:
     u = sp.Function("u")(x, t)
     v = sp.Function("v")(x, t)
     w = sp.Function("w")(x, t)
+    alpha, beta = sp.symbols("alpha beta")
     algebra = upper_triangular_semidirect_algebra()
     lam_unit = FiniteAlgebraElement.from_coeffs([lam], algebra)
     q = FiniteAlgebraElement.from_coeffs([u, v, w], algebra)
@@ -153,20 +170,71 @@ def _non_split_semidirect_evidence() -> dict[str, Any]:
     q2 = q**2
     q3 = q2 * q
     diag_a = FiniteAlgebraElement.from_coeffs([-4 * lam**3], algebra) + q2 * (-2 * lam)
+    diagonal_commutator = q * qx - qx * q
 
     U = [[lam_unit, q], [-q, -lam_unit]]
-    V = [
+    upper_entry = q * (-4 * lam**2) + qx * (-2 * lam) - qxx - q3 * 2
+    lower_entry = q * (4 * lam**2) + qx * (-2 * lam) + qxx + q3 * 2
+    uncorrected_V = [
         [
             diag_a,
-            q * (-4 * lam**2) + qx * (-2 * lam) - qxx - q3 * 2,
+            upper_entry,
         ],
         [
-            q * (4 * lam**2) + qx * (-2 * lam) + qxx + q3 * 2,
+            lower_entry,
             -diag_a,
         ],
     ]
+    uncorrected_curvature = fa_zero_curvature(U, uncorrected_V, x, t)
+    uncorrected_report = curvature_report(uncorrected_curvature)
+    corrected_V_ansatz = [
+        [
+            diag_a + diagonal_commutator * alpha,
+            upper_entry,
+        ],
+        [
+            lower_entry,
+            -diag_a + diagonal_commutator * beta,
+        ],
+    ]
+    corrected_curvature_ansatz = fa_zero_curvature(U, corrected_V_ansatz, x, t)
+    correction_report = curvature_report(corrected_curvature_ansatz)
+    diagonal_equations = tuple(
+        coefficient
+        for key in ("(0,0)", "(1,1)")
+        for coefficient in correction_report.entries[key].simplified_coefficients
+    )
+    solve_report = solve_symbolic_constraints(
+        diagonal_equations,
+        (alpha, beta),
+        ConstraintSolveConfig(
+            max_equations=6,
+            max_unknowns=2,
+            allow_nonlinear=False,
+            allow_groebner=False,
+        ),
+    )
+    correction_solution = solve_report.solution if solve_report.solved else {}
+    V = _fa_matrix_subs(corrected_V_ansatz, correction_solution)
     curvature = fa_zero_curvature(U, V, x, t)
     report = curvature_report(curvature)
+    diagonal_zero = all(
+        term.is_zero
+        for key in ("(0,0)", "(1,1)")
+        for term in report.entries[key].terms
+    )
+    lower_is_negative = all(
+        sp.simplify(upper + lower) == 0
+        for upper, lower in zip(
+            report.entries["(0,1)"].simplified_coefficients,
+            report.entries["(1,0)"].simplified_coefficients,
+        )
+    )
+    flow_equations = tuple(
+        sp.simplify(coefficient)
+        for coefficient in report.entries["(0,1)"].simplified_coefficients
+    )
+    validated_as_flow_equations = solve_report.solved and diagonal_zero and lower_is_negative
     gauge_report = analyze_gauge_risk(
         _fa_matrix_to_expr(U),
         _fa_matrix_to_expr(V),
@@ -179,9 +247,23 @@ def _non_split_semidirect_evidence() -> dict[str, Any]:
         "associative": algebra.is_associative(),
         "U": _fa_matrix_as_strings(U),
         "V": _fa_matrix_as_strings(V),
+        "uncorrected_V": _fa_matrix_as_strings(uncorrected_V),
+        "uncorrected_curvature_report": uncorrected_report.as_dict(),
         "curvature_report": report.as_dict(),
         "gauge_report": gauge_report,
-        "validated_as_flow_equations": False,
+        "diagonal_correction": {
+            "ansatz": "V00 += alpha [q,q_x], V11 += beta [q,q_x]",
+            "commutator": str(diagonal_commutator.as_expr()),
+            "solve_report": solve_report.as_dict(),
+            "diagonal_zero_after_solve": diagonal_zero,
+            "lower_left_is_negative_upper_right": lower_is_negative,
+        },
+        "flow_equations": {
+            "basis": list(algebra.basis),
+            "upper_right": [str(equation) for equation in flow_equations],
+            "lower_left_is_negative_upper_right": lower_is_negative,
+        },
+        "validated_as_flow_equations": validated_as_flow_equations,
         "matrix_pair_constructed": True,
     }
 
@@ -349,13 +431,23 @@ def _build_non_split_probe() -> SemidirectDeformationCandidate:
         metadata={"non_split_semidirect_probe": True},
     )
     recommendation = "needs_human_review"
+    connection_status = (
+        "validated_non_split_flow_equations"
+        if evidence["validated_as_flow_equations"]
+        else "constructed_non_split_curvature"
+    )
+    solve_status = (
+        "solved_bounded_non_split_diagonal_correction"
+        if evidence["validated_as_flow_equations"]
+        else "residuals_unresolved_non_split_product"
+    )
     curvature_summary = {
         **evidence["curvature_report"],
-        "status": "constructed_non_split_curvature",
+        "status": connection_status,
     }
     gate_summary = _candidate_gate_summary(
-        "constructed_non_split_curvature",
-        "residuals_unresolved_non_split_product",
+        connection_status,
+        solve_status,
         evidence["gauge_report"],
         "not_mined",
         collision_report.classification.value,
@@ -377,14 +469,14 @@ def _build_non_split_probe() -> SemidirectDeformationCandidate:
         algebra_label=str(evidence["algebra_name"]),
         order=2,
         ansatz_degree=3,
-        connection_status="constructed_non_split_curvature",
-        solve_status="residuals_unresolved_non_split_product",
+        connection_status=connection_status,
+        solve_status=solve_status,
         gate_summary=gate_summary,
         dossier=dossier,
         failure_reasons=(
-            "non-split multiplication table is implemented and associative for this probe",
-            "zero-curvature equations are constructed but residual terms remain unresolved",
-            "bounded solver, gauge-preserving reductions, and structure evidence remain open",
+            "bounded solver fixes the diagonal residual with V00 += [q,q_x] and V11 += [q,q_x]",
+            "off-diagonal curvature entries define three coupled non-split flow equations",
+            "gauge-preserving reductions, conservation, Hamiltonian, and prior-art gates remain open",
         ),
         evidence=evidence,
     )

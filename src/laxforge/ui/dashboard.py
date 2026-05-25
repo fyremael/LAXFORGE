@@ -96,6 +96,7 @@ def _curvature_gate(connection_status: str, residual_zero: bool | None) -> str:
     if connection_status in {
         "validated_known_zcr",
         "validated_known_semidirect_zcr",
+        "validated_non_split_flow_equations",
         "validated_zero_control",
         "proof_ready",
     }:
@@ -457,7 +458,8 @@ def _semidirect_record(candidate: SemidirectDeformationCandidate) -> dict[str, A
         "gates": gates,
         "gate_summary": _gate_summary(gates),
         "zcr_validated": bool(
-            candidate.connection_status == "validated_known_semidirect_zcr"
+            candidate.connection_status
+            in {"validated_known_semidirect_zcr", "validated_non_split_flow_equations"}
             and candidate.evidence.get("validated_as_flow_equations", False)
         ),
         "zcr_solution": None,
@@ -936,7 +938,7 @@ def _plain_summary(
             "The formal procedure audit passes for the current frontier and discard records.",
             (
                 f"DIS-001 has {len(dis001_records)} semidirect probes; validated controls stay "
-                "in discard and the non-split product probe now has constructed residual evidence."
+                "in discard and the non-split product probe now has corrected flow-equation evidence."
             ),
             (
                 f"DIS-002 has {len(dis002_records)} sphere-flow candidates; the Heisenberg-shaped "
