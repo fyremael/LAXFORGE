@@ -184,6 +184,7 @@ def _build_candidate(
     if sx_ansatz_attempt:
         sx_report = solve_sx_zcr_ansatz()
         zcr_report = sx_report.as_dict()
+        metadata["sx_formal_infinite_tower_zcr"] = sx_report.validated
         metadata["sx_potential_obstruction"] = (
             not sx_report.validated and not sx_report.first_potential_opened
         )
@@ -202,6 +203,8 @@ def _build_candidate(
         recommendation = "discard"
     elif metadata.get("sx_potential_obstruction") or metadata.get("sx_recursive_tower_gate"):
         recommendation = "blocked"
+    elif metadata.get("sx_formal_infinite_tower_zcr"):
+        recommendation = "needs_human_review"
     elif metadata.get("sxxx_ansatz_obstruction"):
         recommendation = "blocked"
     else:
@@ -229,6 +232,30 @@ def _build_candidate(
             "status": "blocked_first_potential_gate",
             "constraints_used": zcr_report["constraints_used"] if zcr_report else [],
             "obstruction_basis": zcr_report["obstruction_basis"] if zcr_report else [],
+        }
+    elif metadata.get("sx_formal_infinite_tower_zcr"):
+        connection_status = "validated_formal_infinite_nonlocal_tower"
+        residual_basis = (zcr_report or {}).get("nonlocal_residual_basis", {})
+        finite_tail_key = next(
+            (
+                key
+                for key in residual_basis
+                if key.endswith("_finite_tower_closure_residual")
+            ),
+            "",
+        )
+        curvature_summary = {
+            "curvature_residual_zero": True,
+            "curvature_terms_total": sum(len(terms) for terms in residual_basis.values()),
+            "curvature_terms_nonzero": 0,
+            "basis_split_complete": True,
+            "status": "validated_formal_infinite_nonlocal_tower",
+            "formal_power_series": True,
+            "finite_truncation_validated": False,
+            "finite_truncation_residual": residual_basis.get(finite_tail_key, []),
+            "constraints_used": zcr_report["constraints_used"] if zcr_report else [],
+            "covering_equations": zcr_report["covering_equations"] if zcr_report else [],
+            "open_gates": zcr_report["obstruction_basis"] if zcr_report else [],
         }
     elif metadata.get("sx_recursive_tower_gate"):
         connection_status = "blocked_recursive_nonlocal_tower_gate"
@@ -288,6 +315,13 @@ def _build_candidate(
             "supported U=lambda*hat(s) family requires D_x(W) = s cross s_x",
             "current local-vector ansatz has no local potential W for that gate",
             "nonlocal potentials or different spatial matrices remain untested",
+        )
+    elif metadata.get("sx_formal_infinite_tower_zcr"):
+        failure_reasons = (
+            "formal infinite nonlocal tower closes the zero-curvature recurrence",
+            "finite truncations retain a top residual unless the top potential is parallel to s",
+            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+            "prior-art collision checks remain required for nonlocal and symmetric-space families",
         )
     elif metadata.get("sx_recursive_tower_gate"):
         failure_reasons = (

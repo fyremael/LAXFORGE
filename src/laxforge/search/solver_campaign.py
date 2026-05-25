@@ -432,8 +432,9 @@ def _attempt_candidate(candidate: OvernightCandidate) -> SolverAttemptRecord:
             spectral_status = _extract_spectral_status(gauge_report)
             gauge_risk_score = _extract_gauge_risk(gauge_report)
             cyclic_fingerprint = str(cyclic_report.get("fingerprint"))
+            validated_zcr = bool(report["validated"])
             attempt_status = str(report.get("nonlocal_status", "blocked_first_potential_gate"))
-            recommendation = "blocked"
+            recommendation = "needs_human_review" if validated_zcr else "blocked"
             obstruction_basis = tuple(str(item) for item in report["obstruction_basis"])
             failure_reasons = tuple(str(item) for item in report["obstruction_basis"])
     elif candidate.family in {"cross_atom_blend", "two_atom_blend", "scalar_weighted_cross"}:

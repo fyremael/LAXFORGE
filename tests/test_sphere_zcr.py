@@ -51,12 +51,14 @@ def test_heisenberg_zcr_records_cyclic_fingerprint_and_known_collision():
 def test_sx_zcr_ansatz_opens_first_nonlocal_potential_gate():
     report = solve_sx_zcr_ansatz()
 
-    assert report.validated is False
+    assert report.validated is True
     assert report.formal_status == "no_formal_solution"
     assert report.first_potential_opened is True
-    assert report.nonlocal_status == "blocked_recursive_nonlocal_tower_gate"
+    assert report.nonlocal_status == "validated_formal_infinite_nonlocal_tower"
     assert report.recursive_depth == 3
-    assert report.recursive_closure_status == "unclosed_bounded_recursive_tower"
+    assert report.recursive_closure_status == "formal_infinite_tower_closes_by_recurrence"
+    assert report.formal_tower_validated is True
+    assert report.finite_truncation_validated is False
     assert report.covering_equations
     assert all(
         sp.simplify(component) == 0
@@ -72,8 +74,12 @@ def test_sx_zcr_ansatz_opens_first_nonlocal_potential_gate():
             "lambda^4_finite_tower_closure_residual"
         ]
     )
+    assert all(
+        sp.simplify(component) == 0
+        for component in report.nonlocal_residual_basis["lambda^k_after_formal_recurrence"]
+    )
     assert report.obstruction_basis
-    assert any("s cross p3" in term for term in report.obstruction_basis)
+    assert any("formal infinite tower closes" in term for term in report.obstruction_basis)
     assert report.cyclic_report["fingerprint"]
 
 

@@ -302,6 +302,30 @@ def _candidate_record(candidate: Any, lane: str, iteration: int) -> FrontierCand
             ),
         )
 
+    if lane == "DIS-002" and connection_status == "validated_formal_infinite_nonlocal_tower":
+        return FrontierCandidate(
+            item_id=_slug(name),
+            name=name,
+            lane=lane,
+            iteration=iteration,
+            recommendation=recommendation,
+            classification=classification,
+            connection_status=connection_status,
+            process_disposition="frontier",
+            potential_status="formal_nonlocal_tower_validated",
+            priority=39,
+            next_action=(
+                "Run conservation, Hamiltonian, gauge, and prior-art gates for the "
+                "formal infinite nonlocal tower."
+            ),
+            gate_gaps=tuple(candidate.failure_reasons),
+            evidence_summary=(
+                "formal infinite nonlocal tower closes the recurrence",
+                "finite truncations retain a top residual",
+                "interpretation remains evidence-only pending stronger gates",
+            ),
+        )
+
     if lane == "DIS-002" and connection_status == "no_validated_zcr":
         order = int(getattr(candidate, "order", 99))
         priority = 68 if order == 3 else 58

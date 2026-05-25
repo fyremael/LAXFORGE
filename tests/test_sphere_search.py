@@ -78,19 +78,19 @@ def test_heisenberg_shaped_candidate_records_collision_warnings():
 def test_sx_candidate_records_recursive_nonlocal_tower_gate():
     candidate = run_sphere_low_order_search().candidates[1]
 
-    assert candidate.dossier.recommendation == "blocked"
-    assert candidate.connection_status == "blocked_recursive_nonlocal_tower_gate"
-    assert candidate.zcr_report["validated"] is False
+    assert candidate.dossier.recommendation == "needs_human_review"
+    assert candidate.connection_status == "validated_formal_infinite_nonlocal_tower"
+    assert candidate.zcr_report["validated"] is True
     assert candidate.zcr_report["first_potential_opened"] is True
-    assert candidate.zcr_report["nonlocal_status"] == "blocked_recursive_nonlocal_tower_gate"
+    assert candidate.zcr_report["nonlocal_status"] == "validated_formal_infinite_nonlocal_tower"
     assert candidate.zcr_report["recursive_depth"] == 3
     assert (
         candidate.zcr_report["recursive_closure_status"]
-        == "unclosed_bounded_recursive_tower"
+        == "formal_infinite_tower_closes_by_recurrence"
     )
     assert candidate.zcr_report["obstruction_basis"]
     assert candidate.gate_summary["zcr_obstruction_basis"]
-    assert any("lambda^4" in reason for reason in candidate.failure_reasons)
+    assert any("finite truncations" in reason for reason in candidate.failure_reasons)
 
 
 def test_sxxx_candidate_records_blocked_ansatz_obstruction():
@@ -116,7 +116,7 @@ def test_sphere_search_config_can_limit_orders():
     report = run_sphere_low_order_search(SphereSearchConfig(max_order=1))
 
     assert tuple(candidate.order for candidate in report.candidates) == (0, 1)
-    assert report.candidates[1].connection_status == "blocked_recursive_nonlocal_tower_gate"
+    assert report.candidates[1].connection_status == "validated_formal_infinite_nonlocal_tower"
 
 
 def test_sphere_search_config_can_freeze_sx_before_attempt():
