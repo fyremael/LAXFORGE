@@ -88,7 +88,7 @@ function renderReadout() {
     `The strongest calibration result is the second-jet nilpotent mKdV lane. It recovers a known mechanism, verifies Hamiltonian structure, and records ${itemById("second-jet-nilpotent-mkdv")?.conservation_count ?? 0} conservation-law signals. That gives the search process a working reference target before frontier candidates are judged.`,
     `The first serious cycle did not produce a validated third-order sphere ZCR. It changed the state of s_cross_s_xxx from open frontier to blocked by the current low-order so(3) ansatz family. That is useful: it narrows the next search without pretending to rule out broader families.`,
     `The next phase is deliberately broader: DIS-006 records 100+ deterministic tangent-flow descriptors, verifies their tangent construction, and leaves ZCR, spectral, gauge, cyclic, conservation, and collision evidence open until candidate-specific solver passes run.`,
-    `The most actionable next item is ${firstFrontier?.name || "the first queued frontier candidate"}. The sphere s_cross_s_x candidate has moved out of the recursive tower blocker and into ${titleCase(sphereSx?.potential_status || "formal_nonlocal_tower_validated")} because the formal recurrence D_x(p{k+1}) = s cross p{k} closes the zero-curvature residual as a power series, while bounded truncations still retain top residuals.`,
+    `The most actionable next item is ${firstFrontier?.name || "the first queued frontier candidate"}. That puts scaled sphere triage at the front of the queue, while the sphere s_cross_s_x candidate has moved out of the recursive tower blocker and into ${titleCase(sphereSx?.potential_status || "formal_tower_downstream_gates_recorded")} because the formal recurrence D_x(p{k+1}) = s cross p{k} closes the zero-curvature residual as a power series, while bounded truncations still retain top residuals.`,
     `Known-family discipline is active. The ${heisenberg?.short_name || "Heisenberg-shaped"} candidate has validated ZCR evidence, but it is classified as a known-family collision and recommended discard. This is the intended behavior: validation alone is not enough to keep a candidate alive.`,
   ];
 
@@ -257,7 +257,7 @@ function renderDossiers() {
       title: "The process is coherent enough for another cycle",
       tone: "pass",
       paragraphs: [
-        "ITER-001 keeps the next blockers visible: the first-order sphere formal-tower downstream gates, scaled sphere triage, the corrected non-split semidirect downstream gates, and the third-order sphere obstruction retained for broader ansatz work.",
+        "ITER-001 keeps the next blockers visible: scaled sphere triage, the corrected non-split semidirect downstream gates, formal-tower human review against nonlocal coverings, and the third-order sphere obstruction retained for broader ansatz work.",
         "PROC-001 passes its formal audit checks. That does not make any candidate stronger, but it means the search procedure is partitioning frontier and discard states consistently.",
       ],
       stats: [

@@ -90,7 +90,19 @@ def test_sx_candidate_records_recursive_nonlocal_tower_gate():
     )
     assert candidate.zcr_report["obstruction_basis"]
     assert candidate.gate_summary["zcr_obstruction_basis"]
+    assert candidate.gate_summary["conservation_evidence"] == "constraint_preservation_only"
+    assert candidate.gate_summary["hamiltonian_evidence"] == "open_gate"
+    assert candidate.dossier.conservation_report["status"] == "constraint_preservation_only"
+    assert candidate.dossier.hamiltonian_report["status"] == "open_gate"
+    assert "sphere_constraint_preservation" in candidate.dossier.conservation_report[
+        "method_evidence"
+    ]
+    assert any(
+        "Nonlocal coverings" in collision
+        for collision in candidate.dossier.collision_report["collisions"]
+    )
     assert any("finite truncations" in reason for reason in candidate.failure_reasons)
+    assert any("conservation-law mining remains open" in reason for reason in candidate.failure_reasons)
 
 
 def test_sxxx_candidate_records_blocked_ansatz_obstruction():

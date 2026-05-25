@@ -15,6 +15,7 @@ FRONTIER_STATUSES = {
     "blocked_by_first_potential_gate",
     "blocked_by_recursive_nonlocal_tower",
     "formal_nonlocal_tower_validated",
+    "formal_tower_downstream_gates_recorded",
     "blocked_by_missing_capability",
     "blocked_by_ansatz_obstruction",
     "needs_review",

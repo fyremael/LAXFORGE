@@ -157,7 +157,7 @@ def test_dashboard_frontier_process_tracks_queued_next_actions():
     assert all(record["next_action"] for record in frontier)
     assert _item(payload, "sphere-s-cross-s-x-tangent-candidate")[
         "frontier_status"
-    ] == "formal_nonlocal_tower_validated"
+    ] == "formal_tower_downstream_gates_recorded"
     assert _item(payload, "sphere-s-cross-s-xxx-exploratory-candidate")[
         "frontier_status"
     ] == "blocked_by_ansatz_obstruction"
