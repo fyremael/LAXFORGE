@@ -80,7 +80,15 @@ def test_sx_zcr_ansatz_opens_first_nonlocal_potential_gate():
     )
     assert report.obstruction_basis
     assert any("formal infinite tower closes" in term for term in report.obstruction_basis)
+    assert report.gauge_report["status"] == "partial_formal_tower_gauge_evidence"
+    assert report.conservation_report["status"] == "constraint_preservation_only"
+    assert "sphere_constraint_preservation" in report.conservation_report["method_evidence"]
+    assert report.hamiltonian_report["status"] == "open_gate"
+    assert report.hamiltonian_report["verified"] is False
     assert report.cyclic_report["fingerprint"]
+    assert any(
+        "Nonlocal coverings" in collision for collision in report.collision_report["collisions"]
+    )
 
 
 def test_sxxx_zcr_ansatz_records_current_family_obstruction():

@@ -227,8 +227,17 @@ def classify_candidate(
         if metadata.get("heisenberg_template"):
             collisions.extend(family.name for family in registry if "heisenberg" in family.fingerprints)
             collisions.extend(family.name for family in registry if "akns" in family.fingerprints)
+        if metadata.get("sx_formal_infinite_tower_zcr"):
+            collisions.extend(family.name for family in registry if "nonlocal" in family.fingerprints)
+            collisions.extend(
+                family.name
+                for family in registry
+                if "symmetric-space" in family.fingerprints
+                or "coadjoint-orbit" in family.fingerprints
+            )
         zcr_note = (
-            "Formal infinite nonlocal tower evidence requires human review against known coverings."
+            "Formal infinite nonlocal tower evidence requires human review against known coverings, "
+            "pseudopotentials, and symmetric-space constructions."
             if metadata.get("sx_formal_infinite_tower_zcr")
             else "No nontrivial zero-curvature representation has been validated here."
         )
@@ -240,7 +249,7 @@ def classify_candidate(
                 "Sphere-valued cross-product flow is tangent by construction.",
                 "Known Heisenberg ferromagnet and symmetric-space collisions must be checked.",
                 zcr_note,
-                "Do not promote without gauge, spectral, conservation, and collision evidence.",
+                "Do not promote without gauge, spectral, conservation, Hamiltonian, and collision evidence.",
             ),
             novelty_status="needs_human_review",
         )

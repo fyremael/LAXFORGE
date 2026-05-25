@@ -829,12 +829,16 @@ window.LAXFORGE_DASHBOARD_DATA = {
     {
       "classification": "needs_human_review",
       "classification_label": "needs human review",
-      "collision_count": 1,
+      "collision_count": 3,
       "collision_families": [
-        "Heisenberg / symmetric-space"
+        "Heisenberg / symmetric-space",
+        "Nonlocal coverings and pseudopotentials",
+        "coadjoint / symmetric-space"
       ],
       "collisions": [
-        "Principal chiral model and Heisenberg ferromagnet families"
+        "Principal chiral model and Heisenberg ferromagnet families",
+        "Nonlocal coverings and pseudopotentials",
+        "Coadjoint-orbit and symmetric-space hierarchies"
       ],
       "connection_status": "validated_formal_infinite_nonlocal_tower",
       "conservation_count": 0,
@@ -852,7 +856,10 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "finite depth-3 tower leaves lambda^4 residual s cross p3",
           "formal infinite tower closes by the recurrence D_x(p{k+1}) = s cross p{k}",
           "finite truncations remain unclosed unless the top potential is parallel to s",
-          "conservation, Hamiltonian, gauge, and prior-art gates remain open"
+          "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+          "constraint preservation is recorded; conservation-law mining remains open",
+          "standard local Hamiltonian witness is not verified for this tower",
+          "prior-art review must include nonlocal coverings and symmetric-space families"
         ],
         "summary": "formal infinite nonlocal tower closes the zero-curvature recurrence",
         "tangent_condition": "0"
@@ -861,15 +868,19 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "failure_reasons": [
         "formal infinite nonlocal tower closes the zero-curvature recurrence",
         "finite truncations retain a top residual unless the top potential is parallel to s",
-        "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+        "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+        "constraint preservation is recorded; conservation-law mining remains open",
+        "standard local Hamiltonian witness is not verified for this tower",
         "prior-art collision checks remain required for nonlocal and symmetric-space families"
       ],
-      "frontier_priority": 39,
-      "frontier_status": "formal_nonlocal_tower_validated",
+      "frontier_priority": 37,
+      "frontier_status": "formal_tower_downstream_gates_recorded",
       "gate_gaps": [
         "formal infinite nonlocal tower closes the zero-curvature recurrence",
         "finite truncations retain a top residual unless the top potential is parallel to s",
-        "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+        "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+        "constraint preservation is recorded; conservation-law mining remains open",
+        "standard local Hamiltonian witness is not verified for this tower",
         "prior-art collision checks remain required for nonlocal and symmetric-space families"
       ],
       "gate_summary": {
@@ -924,7 +935,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "item_type": "candidate",
       "lane": "DIS-002",
       "name": "sphere s_cross_s_x tangent candidate",
-      "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
+      "next_action": "Route the formal tower to human review against nonlocal coverings, then advance scaled sphere triage.",
       "order": 1,
       "proof_summary": null,
       "recommendation": "needs_human_review",
@@ -938,9 +949,10 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "validated ZCR evidence",
           "spectral parameter unresolved",
           "low gauge risk",
+          "multiple known-family collisions",
           "human review required"
         ],
-        "score": 81
+        "score": 85
       },
       "tangent_status": "tangent",
       "zcr_constraints": [
@@ -961,7 +973,10 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "finite depth-3 tower leaves lambda^4 residual s cross p3",
         "formal infinite tower closes by the recurrence D_x(p{k+1}) = s cross p{k}",
         "finite truncations remain unclosed unless the top potential is parallel to s",
-        "conservation, Hamiltonian, gauge, and prior-art gates remain open"
+        "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+        "constraint preservation is recorded; conservation-law mining remains open",
+        "standard local Hamiltonian witness is not verified for this tower",
+        "prior-art review must include nonlocal coverings and symmetric-space families"
       ],
       "zcr_solution": null,
       "zcr_validated": true
@@ -16884,18 +16899,20 @@ window.LAXFORGE_DASHBOARD_DATA = {
       ]
     },
     {
-      "count": 1,
+      "count": 2,
       "family": "Nonlocal coverings and pseudopotentials",
       "item_ids": [
-        "nonlocal-one-pseudopotential-probe"
+        "nonlocal-one-pseudopotential-probe",
+        "sphere-s-cross-s-x-tangent-candidate"
       ]
     },
     {
-      "count": 2,
+      "count": 3,
       "family": "coadjoint / symmetric-space",
       "item_ids": [
         "density-matrix-dissipative-tangent-probe",
-        "density-matrix-isospectral-commutator-probe"
+        "density-matrix-isospectral-commutator-probe",
+        "sphere-s-cross-s-x-tangent-candidate"
       ]
     },
     {
@@ -16927,30 +16944,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
   ],
   "full_scale_search": {
     "action_queue": [
-      {
-        "classification": "needs_human_review",
-        "connection_status": "validated_formal_infinite_nonlocal_tower",
-        "evidence_summary": [
-          "formal infinite nonlocal tower closes the recurrence",
-          "finite truncations retain a top residual",
-          "interpretation remains evidence-only pending stronger gates"
-        ],
-        "gate_gaps": [
-          "formal infinite nonlocal tower closes the zero-curvature recurrence",
-          "finite truncations retain a top residual unless the top potential is parallel to s",
-          "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
-          "prior-art collision checks remain required for nonlocal and symmetric-space families"
-        ],
-        "item_id": "sphere-s-cross-s-x-tangent-candidate",
-        "iteration": 1,
-        "lane": "DIS-002",
-        "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
-        "potential_status": "formal_nonlocal_tower_validated",
-        "priority": 39,
-        "process_disposition": "frontier",
-        "recommendation": "needs_human_review"
-      },
       {
         "classification": "needs_human_review",
         "connection_status": "not_constructed_batch_triage",
@@ -17525,6 +17518,30 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "priority": 38,
         "process_disposition": "frontier",
         "recommendation": "needs_human_review"
+      },
+      {
+        "classification": "needs_human_review",
+        "connection_status": "not_constructed_batch_triage",
+        "evidence_summary": [
+          "scaled DIS-006 descriptor is tangent by construction",
+          "matrix pair is not constructed in the batch pass",
+          "candidate remains review-only until solver gates run"
+        ],
+        "gate_gaps": [
+          "flow is tangent by cross-product construction",
+          "zero-curvature matrix pair has not been constructed in the scaled triage pass",
+          "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+          "sphere, Heisenberg, and symmetric-space collision checks remain active"
+        ],
+        "item_id": "scaled-sphere-sxx-sxxxx-times-sxxxx",
+        "iteration": 1,
+        "lane": "DIS-006",
+        "name": "scaled sphere sxx_sxxxx times sxxxx",
+        "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
+        "potential_status": "batch_triage_pending",
+        "priority": 38,
+        "process_disposition": "frontier",
+        "recommendation": "needs_human_review"
       }
     ],
     "blocked_capabilities": [
@@ -17532,6 +17549,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "DIS-004 nonlocal-covering ZCR matrices are not constructed in this pass",
       "DIS-005 cohomology quotient gates are scaffolded but not solved in this pass",
       "non-split semidirect gauge, conservation, Hamiltonian, and prior-art gates remain open",
+      "sphere formal-tower evidence still requires human review against nonlocal coverings",
       "s_cross_s_xxx is blocked only for the current low-order so(3) ansatz family",
       "conservation and Hamiltonian mining are not yet run for DIS-006 scaled descriptors"
     ],
@@ -17654,22 +17672,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "connection_status": "validated_formal_infinite_nonlocal_tower",
           "evidence_summary": [
             "formal infinite nonlocal tower closes the recurrence",
-            "finite truncations retain a top residual",
-            "interpretation remains evidence-only pending stronger gates"
+            "partial gauge, cyclic, conservation, Hamiltonian, and prior-art evidence is recorded",
+            "interpretation remains evidence-only pending human review"
           ],
           "gate_gaps": [
             "formal infinite nonlocal tower closes the zero-curvature recurrence",
             "finite truncations retain a top residual unless the top potential is parallel to s",
-            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+            "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+            "constraint preservation is recorded; conservation-law mining remains open",
+            "standard local Hamiltonian witness is not verified for this tower",
             "prior-art collision checks remain required for nonlocal and symmetric-space families"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
-          "potential_status": "formal_nonlocal_tower_validated",
-          "priority": 39,
+          "next_action": "Route the formal tower to human review against nonlocal coverings, then advance scaled sphere triage.",
+          "potential_status": "formal_tower_downstream_gates_recorded",
+          "priority": 37,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -21133,30 +21153,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "frontier": [
         {
           "classification": "needs_human_review",
-          "connection_status": "validated_formal_infinite_nonlocal_tower",
-          "evidence_summary": [
-            "formal infinite nonlocal tower closes the recurrence",
-            "finite truncations retain a top residual",
-            "interpretation remains evidence-only pending stronger gates"
-          ],
-          "gate_gaps": [
-            "formal infinite nonlocal tower closes the zero-curvature recurrence",
-            "finite truncations retain a top residual unless the top potential is parallel to s",
-            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
-            "prior-art collision checks remain required for nonlocal and symmetric-space families"
-          ],
-          "item_id": "sphere-s-cross-s-x-tangent-candidate",
-          "iteration": 1,
-          "lane": "DIS-002",
-          "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
-          "potential_status": "formal_nonlocal_tower_validated",
-          "priority": 39,
-          "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
-        },
-        {
-          "classification": "needs_human_review",
           "connection_status": "not_constructed_batch_triage",
           "evidence_summary": [
             "scaled DIS-006 descriptor is tangent by construction",
@@ -21775,6 +21771,32 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
           "potential_status": "batch_triage_pending",
           "priority": 38,
+          "process_disposition": "frontier",
+          "recommendation": "needs_human_review"
+        },
+        {
+          "classification": "needs_human_review",
+          "connection_status": "validated_formal_infinite_nonlocal_tower",
+          "evidence_summary": [
+            "formal infinite nonlocal tower closes the recurrence",
+            "partial gauge, cyclic, conservation, Hamiltonian, and prior-art evidence is recorded",
+            "interpretation remains evidence-only pending human review"
+          ],
+          "gate_gaps": [
+            "formal infinite nonlocal tower closes the zero-curvature recurrence",
+            "finite truncations retain a top residual unless the top potential is parallel to s",
+            "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+            "constraint preservation is recorded; conservation-law mining remains open",
+            "standard local Hamiltonian witness is not verified for this tower",
+            "prior-art collision checks remain required for nonlocal and symmetric-space families"
+          ],
+          "item_id": "sphere-s-cross-s-x-tangent-candidate",
+          "iteration": 1,
+          "lane": "DIS-002",
+          "name": "sphere s_cross_s_x tangent candidate",
+          "next_action": "Route the formal tower to human review against nonlocal coverings, then advance scaled sphere triage.",
+          "potential_status": "formal_tower_downstream_gates_recorded",
+          "priority": 37,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -24494,7 +24516,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-zero-flow-zero-connection-control"
           ],
           "frontier_ids": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
@@ -24521,6 +24542,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-sxx-sxxxx-times-sxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxxx",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxx",
             "sphere-s-cross-s-xxx-exploratory-candidate",
             "scaled-sphere-accel-sq-blend-sx-sxxxxx",
@@ -24645,7 +24667,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "candidates_seen": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
@@ -24672,6 +24693,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-sxx-sxxxx-times-sxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxxx",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxx",
             "sphere-s-cross-s-xxx-exploratory-candidate",
             "scaled-sphere-accel-sq-blend-sx-sxxxxx",
@@ -24782,7 +24804,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
           ],
           "discarded_ids": [],
           "frontier_ids": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
@@ -24809,6 +24830,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-sxx-sxxxx-times-sxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxxx",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxx",
             "sphere-s-cross-s-xxx-exploratory-candidate",
             "scaled-sphere-accel-sq-blend-sx-sxxxxx",
@@ -24943,6 +24965,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "Full-scale pass evaluated 143 candidate records across 6 discovery lanes.",
       "DIS-003 contributes 3 density-matrix probes.",
       "DIS-001 now solves the non-split diagonal residual with a bounded commutator correction and keeps downstream gates open.",
+      "DIS-002 now records downstream gate evidence for the formal sphere tower without promoting the candidate.",
       "DIS-006 contributes 128 scaled sphere-tangent descriptors.",
       "The active frontier contains 134 records; 9 records are discarded controls or known-family collisions.",
       "No DIS-006 scaled batch candidate has a constructed ZCR matrix pair in this pass.",
@@ -26571,12 +26594,16 @@ window.LAXFORGE_DASHBOARD_DATA = {
     {
       "classification": "needs_human_review",
       "classification_label": "needs human review",
-      "collision_count": 1,
+      "collision_count": 3,
       "collision_families": [
-        "Heisenberg / symmetric-space"
+        "Heisenberg / symmetric-space",
+        "Nonlocal coverings and pseudopotentials",
+        "coadjoint / symmetric-space"
       ],
       "collisions": [
-        "Principal chiral model and Heisenberg ferromagnet families"
+        "Principal chiral model and Heisenberg ferromagnet families",
+        "Nonlocal coverings and pseudopotentials",
+        "Coadjoint-orbit and symmetric-space hierarchies"
       ],
       "connection_status": "validated_formal_infinite_nonlocal_tower",
       "conservation_count": 0,
@@ -26594,7 +26621,10 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "finite depth-3 tower leaves lambda^4 residual s cross p3",
           "formal infinite tower closes by the recurrence D_x(p{k+1}) = s cross p{k}",
           "finite truncations remain unclosed unless the top potential is parallel to s",
-          "conservation, Hamiltonian, gauge, and prior-art gates remain open"
+          "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+          "constraint preservation is recorded; conservation-law mining remains open",
+          "standard local Hamiltonian witness is not verified for this tower",
+          "prior-art review must include nonlocal coverings and symmetric-space families"
         ],
         "summary": "formal infinite nonlocal tower closes the zero-curvature recurrence",
         "tangent_condition": "0"
@@ -26603,15 +26633,19 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "failure_reasons": [
         "formal infinite nonlocal tower closes the zero-curvature recurrence",
         "finite truncations retain a top residual unless the top potential is parallel to s",
-        "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+        "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+        "constraint preservation is recorded; conservation-law mining remains open",
+        "standard local Hamiltonian witness is not verified for this tower",
         "prior-art collision checks remain required for nonlocal and symmetric-space families"
       ],
-      "frontier_priority": 39,
-      "frontier_status": "formal_nonlocal_tower_validated",
+      "frontier_priority": 37,
+      "frontier_status": "formal_tower_downstream_gates_recorded",
       "gate_gaps": [
         "formal infinite nonlocal tower closes the zero-curvature recurrence",
         "finite truncations retain a top residual unless the top potential is parallel to s",
-        "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+        "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+        "constraint preservation is recorded; conservation-law mining remains open",
+        "standard local Hamiltonian witness is not verified for this tower",
         "prior-art collision checks remain required for nonlocal and symmetric-space families"
       ],
       "gate_summary": {
@@ -26666,7 +26700,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "item_type": "candidate",
       "lane": "DIS-002",
       "name": "sphere s_cross_s_x tangent candidate",
-      "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
+      "next_action": "Route the formal tower to human review against nonlocal coverings, then advance scaled sphere triage.",
       "order": 1,
       "proof_summary": null,
       "recommendation": "needs_human_review",
@@ -26680,9 +26714,10 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "validated ZCR evidence",
           "spectral parameter unresolved",
           "low gauge risk",
+          "multiple known-family collisions",
           "human review required"
         ],
-        "score": 81
+        "score": 85
       },
       "tangent_status": "tangent",
       "zcr_constraints": [
@@ -26703,7 +26738,10 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "finite depth-3 tower leaves lambda^4 residual s cross p3",
         "formal infinite tower closes by the recurrence D_x(p{k+1}) = s cross p{k}",
         "finite truncations remain unclosed unless the top potential is parallel to s",
-        "conservation, Hamiltonian, gauge, and prior-art gates remain open"
+        "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+        "constraint preservation is recorded; conservation-law mining remains open",
+        "standard local Hamiltonian witness is not verified for this tower",
+        "prior-art review must include nonlocal coverings and symmetric-space families"
       ],
       "zcr_solution": null,
       "zcr_validated": true
@@ -42560,22 +42598,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "connection_status": "validated_formal_infinite_nonlocal_tower",
         "evidence_summary": [
           "formal infinite nonlocal tower closes the recurrence",
-          "finite truncations retain a top residual",
-          "interpretation remains evidence-only pending stronger gates"
+          "partial gauge, cyclic, conservation, Hamiltonian, and prior-art evidence is recorded",
+          "interpretation remains evidence-only pending human review"
         ],
         "gate_gaps": [
           "formal infinite nonlocal tower closes the zero-curvature recurrence",
           "finite truncations retain a top residual unless the top potential is parallel to s",
-          "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+          "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+          "constraint preservation is recorded; conservation-law mining remains open",
+          "standard local Hamiltonian witness is not verified for this tower",
           "prior-art collision checks remain required for nonlocal and symmetric-space families"
         ],
         "item_id": "sphere-s-cross-s-x-tangent-candidate",
         "iteration": 1,
         "lane": "DIS-002",
         "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
-        "potential_status": "formal_nonlocal_tower_validated",
-        "priority": 39,
+        "next_action": "Route the formal tower to human review against nonlocal coverings, then advance scaled sphere triage.",
+        "potential_status": "formal_tower_downstream_gates_recorded",
+        "priority": 37,
         "process_disposition": "frontier",
         "recommendation": "needs_human_review"
       },
@@ -46039,30 +46079,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "frontier": [
       {
         "classification": "needs_human_review",
-        "connection_status": "validated_formal_infinite_nonlocal_tower",
-        "evidence_summary": [
-          "formal infinite nonlocal tower closes the recurrence",
-          "finite truncations retain a top residual",
-          "interpretation remains evidence-only pending stronger gates"
-        ],
-        "gate_gaps": [
-          "formal infinite nonlocal tower closes the zero-curvature recurrence",
-          "finite truncations retain a top residual unless the top potential is parallel to s",
-          "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
-          "prior-art collision checks remain required for nonlocal and symmetric-space families"
-        ],
-        "item_id": "sphere-s-cross-s-x-tangent-candidate",
-        "iteration": 1,
-        "lane": "DIS-002",
-        "name": "sphere s_cross_s_x tangent candidate",
-        "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
-        "potential_status": "formal_nonlocal_tower_validated",
-        "priority": 39,
-        "process_disposition": "frontier",
-        "recommendation": "needs_human_review"
-      },
-      {
-        "classification": "needs_human_review",
         "connection_status": "not_constructed_batch_triage",
         "evidence_summary": [
           "scaled DIS-006 descriptor is tangent by construction",
@@ -46681,6 +46697,32 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
         "potential_status": "batch_triage_pending",
         "priority": 38,
+        "process_disposition": "frontier",
+        "recommendation": "needs_human_review"
+      },
+      {
+        "classification": "needs_human_review",
+        "connection_status": "validated_formal_infinite_nonlocal_tower",
+        "evidence_summary": [
+          "formal infinite nonlocal tower closes the recurrence",
+          "partial gauge, cyclic, conservation, Hamiltonian, and prior-art evidence is recorded",
+          "interpretation remains evidence-only pending human review"
+        ],
+        "gate_gaps": [
+          "formal infinite nonlocal tower closes the zero-curvature recurrence",
+          "finite truncations retain a top residual unless the top potential is parallel to s",
+          "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+          "constraint preservation is recorded; conservation-law mining remains open",
+          "standard local Hamiltonian witness is not verified for this tower",
+          "prior-art collision checks remain required for nonlocal and symmetric-space families"
+        ],
+        "item_id": "sphere-s-cross-s-x-tangent-candidate",
+        "iteration": 1,
+        "lane": "DIS-002",
+        "name": "sphere s_cross_s_x tangent candidate",
+        "next_action": "Route the formal tower to human review against nonlocal coverings, then advance scaled sphere triage.",
+        "potential_status": "formal_tower_downstream_gates_recorded",
+        "priority": 37,
         "process_disposition": "frontier",
         "recommendation": "needs_human_review"
       },
@@ -49400,7 +49442,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "scaled-sphere-zero-flow-zero-connection-control"
         ],
         "frontier_ids": [
-          "sphere-s-cross-s-x-tangent-candidate",
           "scaled-sphere-unit-times-sxxxxx",
           "semidirect-non-split-product-deformation-probe",
           "scaled-sphere-jerk-sq-blend-sx-sxxx",
@@ -49427,6 +49468,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "scaled-sphere-sxx-sxxxx-times-sxxx",
           "scaled-sphere-sxx-sxxxx-times-sxxxx",
           "scaled-sphere-sxx-sxxxx-times-sxxxxx",
+          "sphere-s-cross-s-x-tangent-candidate",
           "scaled-sphere-unit-times-sxxxx",
           "sphere-s-cross-s-xxx-exploratory-candidate",
           "scaled-sphere-accel-sq-blend-sx-sxxxxx",
@@ -49551,7 +49593,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
       },
       {
         "candidates_seen": [
-          "sphere-s-cross-s-x-tangent-candidate",
           "scaled-sphere-unit-times-sxxxxx",
           "semidirect-non-split-product-deformation-probe",
           "scaled-sphere-jerk-sq-blend-sx-sxxx",
@@ -49578,6 +49619,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "scaled-sphere-sxx-sxxxx-times-sxxx",
           "scaled-sphere-sxx-sxxxx-times-sxxxx",
           "scaled-sphere-sxx-sxxxx-times-sxxxxx",
+          "sphere-s-cross-s-x-tangent-candidate",
           "scaled-sphere-unit-times-sxxxx",
           "sphere-s-cross-s-xxx-exploratory-candidate",
           "scaled-sphere-accel-sq-blend-sx-sxxxxx",
@@ -49688,7 +49730,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
         ],
         "discarded_ids": [],
         "frontier_ids": [
-          "sphere-s-cross-s-x-tangent-candidate",
           "scaled-sphere-unit-times-sxxxxx",
           "semidirect-non-split-product-deformation-probe",
           "scaled-sphere-jerk-sq-blend-sx-sxxx",
@@ -49715,6 +49756,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "scaled-sphere-sxx-sxxxx-times-sxxx",
           "scaled-sphere-sxx-sxxxx-times-sxxxx",
           "scaled-sphere-sxx-sxxxx-times-sxxxxx",
+          "sphere-s-cross-s-x-tangent-candidate",
           "scaled-sphere-unit-times-sxxxx",
           "sphere-s-cross-s-xxx-exploratory-candidate",
           "scaled-sphere-accel-sq-blend-sx-sxxxxx",
@@ -49953,7 +49995,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": "highest triage score",
       "label": "Audit surprisal",
       "tone": "inspect",
-      "value": 81
+      "value": 85
     },
     {
       "detail": "calibration evidence",
@@ -50034,7 +50076,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "warn": 13
       }
     },
-    "highest_surprisal": 81,
+    "highest_surprisal": 85,
     "item_type_counts": {
       "calibration": 1,
       "candidate": 143,
@@ -50901,7 +50943,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "Sphere-valued cross-product flow is tangent by construction.",
           "Known Heisenberg ferromagnet and symmetric-space collisions must be checked.",
           "No nontrivial zero-curvature representation has been validated here.",
-          "Do not promote without gauge, spectral, conservation, and collision evidence."
+          "Do not promote without gauge, spectral, conservation, Hamiltonian, and collision evidence."
         ],
         "classification": "needs_human_review",
         "collisions": [
@@ -51893,22 +51935,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "connection_status": "validated_formal_infinite_nonlocal_tower",
           "evidence_summary": [
             "formal infinite nonlocal tower closes the recurrence",
-            "finite truncations retain a top residual",
-            "interpretation remains evidence-only pending stronger gates"
+            "partial gauge, cyclic, conservation, Hamiltonian, and prior-art evidence is recorded",
+            "interpretation remains evidence-only pending human review"
           ],
           "gate_gaps": [
             "formal infinite nonlocal tower closes the zero-curvature recurrence",
             "finite truncations retain a top residual unless the top potential is parallel to s",
-            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+            "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+            "constraint preservation is recorded; conservation-law mining remains open",
+            "standard local Hamiltonian witness is not verified for this tower",
             "prior-art collision checks remain required for nonlocal and symmetric-space families"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
-          "potential_status": "formal_nonlocal_tower_validated",
-          "priority": 39,
+          "next_action": "Route the formal tower to human review against nonlocal coverings, then advance scaled sphere triage.",
+          "potential_status": "formal_tower_downstream_gates_recorded",
+          "priority": 37,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -55398,30 +55442,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "validated_formal_infinite_nonlocal_tower",
-          "evidence_summary": [
-            "formal infinite nonlocal tower closes the recurrence",
-            "finite truncations retain a top residual",
-            "interpretation remains evidence-only pending stronger gates"
-          ],
-          "gate_gaps": [
-            "formal infinite nonlocal tower closes the zero-curvature recurrence",
-            "finite truncations retain a top residual unless the top potential is parallel to s",
-            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
-            "prior-art collision checks remain required for nonlocal and symmetric-space families"
-          ],
-          "item_id": "sphere-s-cross-s-x-tangent-candidate",
-          "iteration": 1,
-          "lane": "DIS-002",
-          "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
-          "potential_status": "formal_nonlocal_tower_validated",
-          "priority": 39,
-          "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
-        },
-        {
-          "classification": "needs_human_review",
           "connection_status": "not_constructed_batch_triage",
           "evidence_summary": [
             "scaled DIS-006 descriptor is tangent by construction",
@@ -56040,6 +56060,32 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
           "potential_status": "batch_triage_pending",
           "priority": 38,
+          "process_disposition": "frontier",
+          "recommendation": "needs_human_review"
+        },
+        {
+          "classification": "needs_human_review",
+          "connection_status": "validated_formal_infinite_nonlocal_tower",
+          "evidence_summary": [
+            "formal infinite nonlocal tower closes the recurrence",
+            "partial gauge, cyclic, conservation, Hamiltonian, and prior-art evidence is recorded",
+            "interpretation remains evidence-only pending human review"
+          ],
+          "gate_gaps": [
+            "formal infinite nonlocal tower closes the zero-curvature recurrence",
+            "finite truncations retain a top residual unless the top potential is parallel to s",
+            "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+            "constraint preservation is recorded; conservation-law mining remains open",
+            "standard local Hamiltonian witness is not verified for this tower",
+            "prior-art collision checks remain required for nonlocal and symmetric-space families"
+          ],
+          "item_id": "sphere-s-cross-s-x-tangent-candidate",
+          "iteration": 1,
+          "lane": "DIS-002",
+          "name": "sphere s_cross_s_x tangent candidate",
+          "next_action": "Route the formal tower to human review against nonlocal coverings, then advance scaled sphere triage.",
+          "potential_status": "formal_tower_downstream_gates_recorded",
+          "priority": 37,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -58738,7 +58784,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
           ],
           "frontier_ids": [
             "sphere-s-cross-s-xxx-exploratory-candidate",
-            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
@@ -58765,6 +58810,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-sxx-sxxxx-times-sxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxxx",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxx",
             "scaled-sphere-accel-sq-blend-sx-sxxxxx",
             "scaled-sphere-accel-sq-blend-sxx-sxxxxx",
@@ -58889,7 +58935,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
         {
           "candidates_seen": [
             "sphere-s-cross-s-xxx-exploratory-candidate",
-            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
@@ -58916,6 +58961,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-sxx-sxxxx-times-sxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxxx",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxx",
             "scaled-sphere-accel-sq-blend-sx-sxxxxx",
             "scaled-sphere-accel-sq-blend-sxx-sxxxxx",
@@ -59026,7 +59072,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "discarded_ids": [],
           "frontier_ids": [
             "sphere-s-cross-s-xxx-exploratory-candidate",
-            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
@@ -59053,6 +59098,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-sxx-sxxxx-times-sxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxxx",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxx",
             "scaled-sphere-accel-sq-blend-sx-sxxxxx",
             "scaled-sphere-accel-sq-blend-sxx-sxxxxx",
@@ -60058,22 +60104,24 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "connection_status": "validated_formal_infinite_nonlocal_tower",
           "evidence_summary": [
             "formal infinite nonlocal tower closes the recurrence",
-            "finite truncations retain a top residual",
-            "interpretation remains evidence-only pending stronger gates"
+            "partial gauge, cyclic, conservation, Hamiltonian, and prior-art evidence is recorded",
+            "interpretation remains evidence-only pending human review"
           ],
           "gate_gaps": [
             "formal infinite nonlocal tower closes the zero-curvature recurrence",
             "finite truncations retain a top residual unless the top potential is parallel to s",
-            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+            "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+            "constraint preservation is recorded; conservation-law mining remains open",
+            "standard local Hamiltonian witness is not verified for this tower",
             "prior-art collision checks remain required for nonlocal and symmetric-space families"
           ],
           "item_id": "sphere-s-cross-s-x-tangent-candidate",
           "iteration": 1,
           "lane": "DIS-002",
           "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
-          "potential_status": "formal_nonlocal_tower_validated",
-          "priority": 39,
+          "next_action": "Route the formal tower to human review against nonlocal coverings, then advance scaled sphere triage.",
+          "potential_status": "formal_tower_downstream_gates_recorded",
+          "priority": 37,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -63537,30 +63585,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "frontier": [
         {
           "classification": "needs_human_review",
-          "connection_status": "validated_formal_infinite_nonlocal_tower",
-          "evidence_summary": [
-            "formal infinite nonlocal tower closes the recurrence",
-            "finite truncations retain a top residual",
-            "interpretation remains evidence-only pending stronger gates"
-          ],
-          "gate_gaps": [
-            "formal infinite nonlocal tower closes the zero-curvature recurrence",
-            "finite truncations retain a top residual unless the top potential is parallel to s",
-            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
-            "prior-art collision checks remain required for nonlocal and symmetric-space families"
-          ],
-          "item_id": "sphere-s-cross-s-x-tangent-candidate",
-          "iteration": 1,
-          "lane": "DIS-002",
-          "name": "sphere s_cross_s_x tangent candidate",
-          "next_action": "Run conservation, Hamiltonian, gauge, and prior-art gates for the formal infinite nonlocal tower.",
-          "potential_status": "formal_nonlocal_tower_validated",
-          "priority": 39,
-          "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
-        },
-        {
-          "classification": "needs_human_review",
           "connection_status": "not_constructed_batch_triage",
           "evidence_summary": [
             "scaled DIS-006 descriptor is tangent by construction",
@@ -64179,6 +64203,32 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
           "potential_status": "batch_triage_pending",
           "priority": 38,
+          "process_disposition": "frontier",
+          "recommendation": "needs_human_review"
+        },
+        {
+          "classification": "needs_human_review",
+          "connection_status": "validated_formal_infinite_nonlocal_tower",
+          "evidence_summary": [
+            "formal infinite nonlocal tower closes the recurrence",
+            "partial gauge, cyclic, conservation, Hamiltonian, and prior-art evidence is recorded",
+            "interpretation remains evidence-only pending human review"
+          ],
+          "gate_gaps": [
+            "formal infinite nonlocal tower closes the zero-curvature recurrence",
+            "finite truncations retain a top residual unless the top potential is parallel to s",
+            "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+            "constraint preservation is recorded; conservation-law mining remains open",
+            "standard local Hamiltonian witness is not verified for this tower",
+            "prior-art collision checks remain required for nonlocal and symmetric-space families"
+          ],
+          "item_id": "sphere-s-cross-s-x-tangent-candidate",
+          "iteration": 1,
+          "lane": "DIS-002",
+          "name": "sphere s_cross_s_x tangent candidate",
+          "next_action": "Route the formal tower to human review against nonlocal coverings, then advance scaled sphere triage.",
+          "potential_status": "formal_tower_downstream_gates_recorded",
+          "priority": 37,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
         },
@@ -66898,7 +66948,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-zero-flow-zero-connection-control"
           ],
           "frontier_ids": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
@@ -66925,6 +66974,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-sxx-sxxxx-times-sxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxxx",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxx",
             "sphere-s-cross-s-xxx-exploratory-candidate",
             "scaled-sphere-accel-sq-blend-sx-sxxxxx",
@@ -67049,7 +67099,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "candidates_seen": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
@@ -67076,6 +67125,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-sxx-sxxxx-times-sxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxxx",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxx",
             "sphere-s-cross-s-xxx-exploratory-candidate",
             "scaled-sphere-accel-sq-blend-sx-sxxxxx",
@@ -67186,7 +67236,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
           ],
           "discarded_ids": [],
           "frontier_ids": [
-            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
@@ -67213,6 +67262,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-sxx-sxxxx-times-sxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxx",
             "scaled-sphere-sxx-sxxxx-times-sxxxxx",
+            "sphere-s-cross-s-x-tangent-candidate",
             "scaled-sphere-unit-times-sxxxx",
             "sphere-s-cross-s-xxx-exploratory-candidate",
             "scaled-sphere-accel-sq-blend-sx-sxxxxx",

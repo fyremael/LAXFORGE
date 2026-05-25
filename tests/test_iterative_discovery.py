@@ -17,9 +17,9 @@ def test_iterative_discovery_builds_repeatable_frontier():
     assert report.process_status == "frontier_active"
     assert [iteration.index for iteration in report.iterations] == [1, 2]
     assert [record.item_id for record in report.frontier[:3]] == [
-        "sphere-s-cross-s-x-tangent-candidate",
         "scaled-sphere-unit-times-sxxxxx",
         "semidirect-non-split-product-deformation-probe",
+        "scaled-sphere-jerk-sq-blend-sx-sxxx",
     ]
     assert len(report.all_records) == 143
     assert len(report.frontier) == 134
@@ -50,6 +50,7 @@ def test_iterative_frontier_records_next_gate_gaps():
             "blocked_by_first_potential_gate",
             "blocked_by_recursive_nonlocal_tower",
             "formal_nonlocal_tower_validated",
+            "formal_tower_downstream_gates_recorded",
             "blocked_by_missing_capability",
             "blocked_by_ansatz_obstruction",
             "needs_review",
@@ -71,7 +72,7 @@ def test_iterative_baseline_freeze_can_leave_sxxx_as_promising_potential():
 def test_iterative_serious_attempt_blocks_sxxx_and_advances_next_candidate():
     report = run_iterative_discovery()
 
-    assert report.frontier[0].item_id == "sphere-s-cross-s-x-tangent-candidate"
+    assert report.frontier[0].item_id == "scaled-sphere-unit-times-sxxxxx"
     sx = next(
         record
         for record in report.frontier
@@ -88,8 +89,9 @@ def test_iterative_serious_attempt_blocks_sxxx_and_advances_next_candidate():
         if record.item_id == "sphere-s-cross-s-xxx-exploratory-candidate"
     )
     assert sx.recommendation == "needs_human_review"
-    assert sx.potential_status == "formal_nonlocal_tower_validated"
+    assert sx.potential_status == "formal_tower_downstream_gates_recorded"
     assert sx.connection_status == "validated_formal_infinite_nonlocal_tower"
+    assert "downstream" in sx.potential_status
     assert non_split.potential_status == "validated_non_split_flow_equations"
     assert non_split.connection_status == "validated_non_split_flow_equations"
     assert sxxx.recommendation == "blocked"

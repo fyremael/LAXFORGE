@@ -336,17 +336,17 @@ def _candidate_record(candidate: Any, lane: str, iteration: int) -> FrontierCand
             classification=classification,
             connection_status=connection_status,
             process_disposition="frontier",
-            potential_status="formal_nonlocal_tower_validated",
-            priority=39,
+            potential_status="formal_tower_downstream_gates_recorded",
+            priority=37,
             next_action=(
-                "Run conservation, Hamiltonian, gauge, and prior-art gates for the "
-                "formal infinite nonlocal tower."
+                "Route the formal tower to human review against nonlocal coverings, then "
+                "advance scaled sphere triage."
             ),
             gate_gaps=tuple(candidate.failure_reasons),
             evidence_summary=(
                 "formal infinite nonlocal tower closes the recurrence",
-                "finite truncations retain a top residual",
-                "interpretation remains evidence-only pending stronger gates",
+                "partial gauge, cyclic, conservation, Hamiltonian, and prior-art evidence is recorded",
+                "interpretation remains evidence-only pending human review",
             ),
         )
 

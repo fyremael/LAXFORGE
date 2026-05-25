@@ -296,7 +296,12 @@ def _build_candidate(
     else:
         connection_status = "no_validated_zcr"
         curvature_summary = _unvalidated_curvature_summary()
-    conservation_status = "not_mined"
+    conservation_report = {"status": "not_mined", "num_conservation_laws_found": 0}
+    hamiltonian_report = {"status": "not_attempted", "verified": False}
+    if metadata.get("sx_formal_infinite_tower_zcr") and zcr_report:
+        conservation_report = dict(zcr_report.get("conservation_report") or conservation_report)
+        hamiltonian_report = dict(zcr_report.get("hamiltonian_report") or hamiltonian_report)
+    conservation_status = str(conservation_report.get("status", "not_mined"))
 
     if fake_pair:
         failure_reasons = (
@@ -320,7 +325,9 @@ def _build_candidate(
         failure_reasons = (
             "formal infinite nonlocal tower closes the zero-curvature recurrence",
             "finite truncations retain a top residual unless the top potential is parallel to s",
-            "conservation and Hamiltonian evidence has not been mined for this nonlocal tower",
+            "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+            "constraint preservation is recorded; conservation-law mining remains open",
+            "standard local Hamiltonian witness is not verified for this tower",
             "prior-art collision checks remain required for nonlocal and symmetric-space families",
         )
     elif metadata.get("sx_recursive_tower_gate"):
@@ -365,6 +372,10 @@ def _build_candidate(
                 "cyclic_fingerprint": zcr_report["cyclic_report"]["fingerprint"],
             }
         )
+        if "conservation_report" in zcr_report:
+            gate_summary["conservation_evidence"] = zcr_report["conservation_report"]["status"]
+        if "hamiltonian_report" in zcr_report:
+            gate_summary["hamiltonian_evidence"] = zcr_report["hamiltonian_report"]["status"]
         if "obstruction_basis" in zcr_report:
             gate_summary["zcr_obstruction_basis"] = zcr_report["obstruction_basis"]
     dossier = CandidateDossier(
@@ -373,8 +384,8 @@ def _build_candidate(
         curvature_summary=curvature_summary,
         gauge_report=gauge_report,
         collision_report=collision_report.as_dict(),
-        conservation_report={"status": conservation_status, "num_conservation_laws_found": 0},
-        hamiltonian_report={"status": "not_attempted", "verified": False},
+        conservation_report=conservation_report,
+        hamiltonian_report=hamiltonian_report,
         recommendation=recommendation,
         novelty_status=collision_report.novelty_status,
     )

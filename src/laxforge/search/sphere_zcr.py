@@ -9,6 +9,12 @@ import sympy as sp
 
 from laxforge.core.cyclic_basis import compute_cyclic_basis
 from laxforge.core.gauge import analyze_gauge_risk
+from laxforge.core.models import (
+    ConservationReportModel,
+    GateEvidence,
+    HamiltonianReportModel,
+    open_gate,
+)
 from laxforge.core.prior_art import classify_candidate
 from laxforge.search.formal_sphere_ansatz import solve_formal_sphere_ansatz
 from laxforge.search.overnight import _candidate
@@ -150,6 +156,8 @@ class SphereSxZCRAttemptReport:
     V: sp.Matrix
     gauge_report: dict[str, object]
     cyclic_report: dict[str, object]
+    conservation_report: dict[str, object]
+    hamiltonian_report: dict[str, object]
     collision_report: dict[str, object]
 
     def as_dict(self) -> dict[str, Any]:
@@ -182,6 +190,8 @@ class SphereSxZCRAttemptReport:
             "V": _matrix_as_strings(self.V),
             "gauge_report": _without_promotion_status(self.gauge_report),
             "cyclic_report": self.cyclic_report,
+            "conservation_report": self.conservation_report,
+            "hamiltonian_report": self.hamiltonian_report,
             "collision_report": self.collision_report,
         }
 
@@ -200,10 +210,12 @@ def _algebraic_spatial_matrix(lambda_symbol: sp.Symbol) -> sp.Matrix:
     return lambda_symbol * cross_product_matrix(sp.Matrix([q1, q2, q3]))
 
 
-def _safe_collision_report(candidate_name: str) -> dict[str, object]:
+def _safe_collision_report(
+    candidate_name: str, metadata: dict[str, object] | None = None
+) -> dict[str, object]:
     collision_report = classify_candidate(
         candidate_name,
-        metadata={"sphere_tangent_flow": True},
+        metadata={"sphere_tangent_flow": True, **(metadata or {})},
     ).as_dict()
     return {
         key: value
@@ -222,6 +234,104 @@ def _recursive_potential_vector(
 
 def _zero_vector() -> tuple[sp.Integer, sp.Integer, sp.Integer]:
     return (sp.Integer(0), sp.Integer(0), sp.Integer(0))
+
+
+def _formal_tower_gauge_report(
+    base_report: dict[str, object], recursive_depth: int
+) -> dict[str, object]:
+    report = dict(base_report)
+    spectral_report = report.get("spectral_report") or {}
+    block_report = report.get("block_report") or {}
+    report.update(
+        {
+            "status": "partial_formal_tower_gauge_evidence",
+            "formal_tower_scope": (
+                f"finite depth-{recursive_depth} truncation inspected; formal infinite "
+                "gauge-preserving reductions remain open"
+            ),
+            "block_decomposition_signature": (
+                "block_reducible"
+                if block_report.get("block_reducible")
+                else "no_common_coordinate_block_split_detected"
+            ),
+            "spectral_parameter_essentiality": (
+                "unresolved_non_scalar_lambda"
+                if spectral_report.get("status") == "unresolved"
+                else spectral_report.get("status", "untested")
+            ),
+            "formal_tower_gate_status": "open_after_partial_gauge_screen",
+        }
+    )
+    return report
+
+
+def _sphere_formal_tower_conservation_report() -> dict[str, object]:
+    return ConservationReportModel(
+        status="constraint_preservation_only",
+        num_conservation_laws_found=0,
+        laws=[],
+        method_evidence={
+            "sphere_constraint_preservation": GateEvidence(
+                name="sphere_constraint_preservation",
+                status="pass",
+                summary="The target flow preserves the unit-sphere constraint pointwise.",
+                details={"calculation": "D_t(s dot s) = 2 s dot (s cross s_x) = 0"},
+            ),
+            "inherited_scalar_hierarchy": GateEvidence(
+                name="inherited_scalar_hierarchy",
+                status="not_applicable",
+                summary="No scalar hierarchy inheritance has been established for this nonlocal tower.",
+            ),
+            "trace_monodromy": open_gate(
+                "trace_monodromy",
+                "Trace/monodromy expansion for the formal nonlocal tower is not implemented.",
+            ),
+            "riccati": open_gate(
+                "riccati",
+                "Riccati expansion for the so(3) nonlocal tower is not implemented.",
+            ),
+            "homotopy": open_gate(
+                "homotopy",
+                "Homotopy-operator mining over the recursive nonlocal potentials is not implemented.",
+            ),
+        },
+    ).model_dump(mode="json")
+
+
+def _sphere_formal_tower_hamiltonian_report() -> dict[str, object]:
+    return HamiltonianReportModel(
+        status="open_gate",
+        verified=False,
+        variational_derivative=GateEvidence(
+            name="variational_derivative",
+            status="warn",
+            summary=(
+                "The standard spin operator s cross would require a local variational "
+                "gradient matching s_x; no local density witness is recorded."
+            ),
+            details={"target": "s_t = s cross s_x"},
+        ),
+        constant_poisson_operator=GateEvidence(
+            name="constant_poisson_operator",
+            status="not_applicable",
+            summary=(
+                "The natural spin operator is field-dependent, so the constant-operator "
+                "gate is not applicable."
+            ),
+        ),
+        jacobi_check=open_gate(
+            "jacobi_check",
+            "Jacobi verification for a field-dependent spin Poisson operator is not implemented.",
+        ),
+        compatibility_attempt=open_gate(
+            "compatibility_attempt",
+            "No compatible Hamiltonian operator pair has been attempted for this nonlocal tower.",
+        ),
+        details={
+            "standard_spin_operator": "J_s(phi) = s cross phi",
+            "local_density_witness": "not_found",
+        },
+    ).model_dump(mode="json")
 
 
 def solve_sx_zcr_ansatz() -> SphereSxZCRAttemptReport:
@@ -284,7 +394,10 @@ def solve_sx_zcr_ansatz() -> SphereSxZCRAttemptReport:
         f"lambda^{recursive_depth + 1}_finite_tower_closure_residual"
     ] = closure_residual
     nonlocal_residual_basis["lambda^k_after_formal_recurrence"] = _zero_vector()
-    gauge_report = analyze_gauge_risk(U, V, lambda_symbol=lam).as_dict()
+    gauge_report = _formal_tower_gauge_report(
+        analyze_gauge_risk(U, V, lambda_symbol=lam).as_dict(),
+        recursive_depth,
+    )
     cyclic_report = compute_cyclic_basis(
         _algebraic_spatial_matrix(lam),
         sp.Symbol("q1"),
@@ -292,6 +405,8 @@ def solve_sx_zcr_ansatz() -> SphereSxZCRAttemptReport:
         lambda_symbol=lam,
         max_steps=4,
     ).as_dict()
+    conservation_report = _sphere_formal_tower_conservation_report()
+    hamiltonian_report = _sphere_formal_tower_hamiltonian_report()
     return SphereSxZCRAttemptReport(
         candidate_name="sphere s_cross_s_x tangent candidate",
         formal_status=formal_report.status,
@@ -319,7 +434,10 @@ def solve_sx_zcr_ansatz() -> SphereSxZCRAttemptReport:
             "finite depth-3 tower leaves lambda^4 residual s cross p3",
             "formal infinite tower closes by the recurrence D_x(p{k+1}) = s cross p{k}",
             "finite truncations remain unclosed unless the top potential is parallel to s",
-            "conservation, Hamiltonian, gauge, and prior-art gates remain open",
+            "partial gauge and cyclic evidence is recorded for the depth-3 truncation",
+            "constraint preservation is recorded; conservation-law mining remains open",
+            "standard local Hamiltonian witness is not verified for this tower",
+            "prior-art review must include nonlocal coverings and symmetric-space families",
         ),
         constraints_used=(
             "s_t = s cross s_x",
@@ -341,7 +459,12 @@ def solve_sx_zcr_ansatz() -> SphereSxZCRAttemptReport:
         V=V,
         gauge_report=gauge_report,
         cyclic_report=cyclic_report,
-        collision_report=_safe_collision_report("sphere s_cross_s_x tangent candidate"),
+        conservation_report=conservation_report,
+        hamiltonian_report=hamiltonian_report,
+        collision_report=_safe_collision_report(
+            "sphere s_cross_s_x tangent candidate",
+            metadata={"sx_formal_infinite_tower_zcr": True},
+        ),
     )
 
 

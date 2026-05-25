@@ -141,6 +141,7 @@ def run_full_scale_search(config: FullScaleSearchConfig | None = None) -> FullSc
         "DIS-004 nonlocal-covering ZCR matrices are not constructed in this pass",
         "DIS-005 cohomology quotient gates are scaffolded but not solved in this pass",
         "non-split semidirect gauge, conservation, Hamiltonian, and prior-art gates remain open",
+        "sphere formal-tower evidence still requires human review against nonlocal coverings",
         "s_cross_s_xxx is blocked only for the current low-order so(3) ansatz family",
         "conservation and Hamiltonian mining are not yet run for DIS-006 scaled descriptors",
     )
@@ -162,6 +163,8 @@ def run_full_scale_search(config: FullScaleSearchConfig | None = None) -> FullSc
         f"DIS-003 contributes {lane_counts.get('DIS-003', 0)} density-matrix probes.",
         "DIS-001 now solves the non-split diagonal residual with a bounded commutator "
         "correction and keeps downstream gates open.",
+        "DIS-002 now records downstream gate evidence for the formal sphere tower without "
+        "promoting the candidate.",
         f"DIS-006 contributes {lane_counts.get('DIS-006', 0)} scaled sphere-tangent descriptors.",
         f"The active frontier contains {len(iterative.frontier)} records; "
         f"{len(iterative.discarded)} records are discarded controls or known-family collisions.",
