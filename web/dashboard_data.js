@@ -2024,6 +2024,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s_t = 0 with U = V = 0",
         "family": "control",
+        "formal_ansatz_status": null,
         "priority_score": 0,
         "summary": "zero flow and zero connection are retained only as a scaled-run control"
       },
@@ -2033,6 +2034,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "control is classified fake and recommended discard",
         "no spectral or conservation evidence is present"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 0,
       "frontier_status": "not_on_frontier",
       "gate_gaps": [],
@@ -2133,6 +2135,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 31,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -2143,6 +2146,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 31,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -2248,6 +2252,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 33,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -2258,6 +2263,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 33,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -2363,6 +2369,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 35,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -2373,6 +2380,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 35,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -2478,6 +2486,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 37,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -2488,6 +2497,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 37,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -2583,38 +2593,138 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "collisions": [
         "Principal chiral model and Heisenberg ferromagnet families"
       ],
-      "connection_status": "not_constructed_batch_triage",
+      "connection_status": "formal_ansatz_obstruction_current_family",
       "conservation_count": 0,
       "curvature_residual_zero": false,
-      "curvature_status": "not_constructed_batch_triage",
-      "curvature_terms_nonzero": null,
-      "curvature_terms_total": 0,
+      "curvature_status": "formal_ansatz_obstruction_current_family",
+      "curvature_terms_nonzero": 4,
+      "curvature_terms_total": 95,
       "cyclic_fingerprint": null,
       "detail": {
         "descriptor": "s x ((1) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": "no_formal_solution",
         "priority_score": 39,
         "summary": "flow is tangent by cross-product construction"
       },
-      "disposition": "needs_human_review",
+      "disposition": "blocked",
       "failure_reasons": [
         "flow is tangent by cross-product construction",
-        "zero-curvature matrix pair has not been constructed in the scaled triage pass",
-        "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+        "degree-3 local-vector formal ansatz with U=lambda*hat(s) has no solution",
+        "obstruction basis is recorded for the supported formal residual equations",
+        "broader matrix, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
-      "frontier_priority": 39,
-      "frontier_status": "batch_triage_pending",
+      "formal_ansatz_report": {
+        "basis_size": 13,
+        "candidate_name": "scaled sphere unit times sxxxxx",
+        "degree": 3,
+        "equation_count": 95,
+        "obstruction_basis": [
+          "lambda^1: {'s_cross_sxx': '-c_1_0', 's_cross_sxxx': '-c_1_1', 's_cross_sxxxx': '-c_1_2', 's_cross_sxxxxx': '1 - c_1_3', 's_cross_sxxxxxx': '-c_1_4', 's_cross_sxxxxxxx': '-c_1_5', 'sx_cross_sxx': '-c_1_1', 'sx_cross_sxxx': '-c_1_2', 'sx_cross_sxxxx': '-c_1_3', 'sx_cross_sxxxxx': '-c_1_4', 'sx_cross_sxxxxxx': '-c_1_5', 'sx': '-c_1_6', 'sxx': '-c_1_7', 'sxxx': '-c_1_8', 'sxxxx': '-c_1_9', 'sxxxxx': '-c_1_10', 'sxxxxxx': '-c_1_11', 'sxxxxxxx': '-c_1_12'}",
+          "lambda^2: {'s_cross_sx': 'c_1_7', 's_cross_sxx': 'c_1_8 - c_2_0', 's_cross_sxxx': 'c_1_9 - c_2_1', 's_cross_sxxxx': 'c_1_10 - c_2_2', 's_cross_sxxxxx': 'c_1_11 - c_2_3', 's_cross_sxxxxxx': 'c_1_12 - c_2_4', 's_cross_sxxxxxxx': '-c_2_5', 'sx_cross_sxx': '-c_2_1', 'sx_cross_sxxx': '-c_2_2', 'sx_cross_sxxxx': '-c_2_3', 'sx_cross_sxxxxx': '-c_2_4', 'sx_cross_sxxxxxx': '-c_2_5', 's': '-I_1_1*c_1_1 - 3*I_1_2*c_1_2 - 4*I_1_3*c_1_3 - 5*I_1_4*c_1_4 - 6*I_1_5*c_1_5 - 3*I_2_2*c_1_3 - 10*I_2_3*c_1_4 - 15*I_2_4*c_1_5 - 10*I_3_3*c_1_5', 'sx': '-c_1_0 - c_2_6', 'sxx': '-c_1_1 - c_2_7', 'sxxx': '-c_1_2 - c_2_8', 'sxxxx': '-c_1_3 - c_2_9', 'sxxxxx': '-c_1_4 - c_2_10', 'sxxxxxx': '-c_1_5 - c_2_11', 'sxxxxxxx': '-c_2_12'}",
+          "lambda^3: {'s_cross_sx': 'c_2_7', 's_cross_sxx': 'c_2_8 - c_3_0', 's_cross_sxxx': 'c_2_9 - c_3_1', 's_cross_sxxxx': 'c_2_10 - c_3_2', 's_cross_sxxxxx': 'c_2_11 - c_3_3', 's_cross_sxxxxxx': 'c_2_12 - c_3_4', 's_cross_sxxxxxxx': '-c_3_5', 'sx_cross_sxx': '-c_3_1', 'sx_cross_sxxx': '-c_3_2', 'sx_cross_sxxxx': '-c_3_3', 'sx_cross_sxxxxx': '-c_3_4', 'sx_cross_sxxxxxx': '-c_3_5', 's': '-I_1_1*c_2_1 - 3*I_1_2*c_2_2 - 4*I_1_3*c_2_3 - 5*I_1_4*c_2_4 - 6*I_1_5*c_2_5 - 3*I_2_2*c_2_3 - 10*I_2_3*c_2_4 - 15*I_2_4*c_2_5 - 10*I_3_3*c_2_5', 'sx': '-c_2_0 - c_3_6', 'sxx': '-c_2_1 - c_3_7', 'sxxx': '-c_2_2 - c_3_8', 'sxxxx': '-c_2_3 - c_3_9', 'sxxxxx': '-c_2_4 - c_3_10', 'sxxxxxx': '-c_2_5 - c_3_11', 'sxxxxxxx': '-c_3_12'}",
+          "lambda^4: {'s_cross_sx': 'c_3_7', 's_cross_sxx': 'c_3_8', 's_cross_sxxx': 'c_3_9', 's_cross_sxxxx': 'c_3_10', 's_cross_sxxxxx': 'c_3_11', 's_cross_sxxxxxx': 'c_3_12', 's': '-I_1_1*c_3_1 - 3*I_1_2*c_3_2 - 4*I_1_3*c_3_3 - 5*I_1_4*c_3_4 - 6*I_1_5*c_3_5 - 3*I_2_2*c_3_3 - 10*I_2_3*c_3_4 - 15*I_2_4*c_3_5 - 10*I_3_3*c_3_5', 'sx': '-c_3_0', 'sxx': '-c_3_1', 'sxxx': '-c_3_2', 'sxxxx': '-c_3_3', 'sxxxxx': '-c_3_4', 'sxxxxxx': '-c_3_5'}"
+        ],
+        "residual_basis": {
+          "lambda^1": {
+            "s_cross_sxx": "-c_1_0",
+            "s_cross_sxxx": "-c_1_1",
+            "s_cross_sxxxx": "-c_1_2",
+            "s_cross_sxxxxx": "1 - c_1_3",
+            "s_cross_sxxxxxx": "-c_1_4",
+            "s_cross_sxxxxxxx": "-c_1_5",
+            "sx": "-c_1_6",
+            "sx_cross_sxx": "-c_1_1",
+            "sx_cross_sxxx": "-c_1_2",
+            "sx_cross_sxxxx": "-c_1_3",
+            "sx_cross_sxxxxx": "-c_1_4",
+            "sx_cross_sxxxxxx": "-c_1_5",
+            "sxx": "-c_1_7",
+            "sxxx": "-c_1_8",
+            "sxxxx": "-c_1_9",
+            "sxxxxx": "-c_1_10",
+            "sxxxxxx": "-c_1_11",
+            "sxxxxxxx": "-c_1_12"
+          },
+          "lambda^2": {
+            "s": "-I_1_1*c_1_1 - 3*I_1_2*c_1_2 - 4*I_1_3*c_1_3 - 5*I_1_4*c_1_4 - 6*I_1_5*c_1_5 - 3*I_2_2*c_1_3 - 10*I_2_3*c_1_4 - 15*I_2_4*c_1_5 - 10*I_3_3*c_1_5",
+            "s_cross_sx": "c_1_7",
+            "s_cross_sxx": "c_1_8 - c_2_0",
+            "s_cross_sxxx": "c_1_9 - c_2_1",
+            "s_cross_sxxxx": "c_1_10 - c_2_2",
+            "s_cross_sxxxxx": "c_1_11 - c_2_3",
+            "s_cross_sxxxxxx": "c_1_12 - c_2_4",
+            "s_cross_sxxxxxxx": "-c_2_5",
+            "sx": "-c_1_0 - c_2_6",
+            "sx_cross_sxx": "-c_2_1",
+            "sx_cross_sxxx": "-c_2_2",
+            "sx_cross_sxxxx": "-c_2_3",
+            "sx_cross_sxxxxx": "-c_2_4",
+            "sx_cross_sxxxxxx": "-c_2_5",
+            "sxx": "-c_1_1 - c_2_7",
+            "sxxx": "-c_1_2 - c_2_8",
+            "sxxxx": "-c_1_3 - c_2_9",
+            "sxxxxx": "-c_1_4 - c_2_10",
+            "sxxxxxx": "-c_1_5 - c_2_11",
+            "sxxxxxxx": "-c_2_12"
+          },
+          "lambda^3": {
+            "s": "-I_1_1*c_2_1 - 3*I_1_2*c_2_2 - 4*I_1_3*c_2_3 - 5*I_1_4*c_2_4 - 6*I_1_5*c_2_5 - 3*I_2_2*c_2_3 - 10*I_2_3*c_2_4 - 15*I_2_4*c_2_5 - 10*I_3_3*c_2_5",
+            "s_cross_sx": "c_2_7",
+            "s_cross_sxx": "c_2_8 - c_3_0",
+            "s_cross_sxxx": "c_2_9 - c_3_1",
+            "s_cross_sxxxx": "c_2_10 - c_3_2",
+            "s_cross_sxxxxx": "c_2_11 - c_3_3",
+            "s_cross_sxxxxxx": "c_2_12 - c_3_4",
+            "s_cross_sxxxxxxx": "-c_3_5",
+            "sx": "-c_2_0 - c_3_6",
+            "sx_cross_sxx": "-c_3_1",
+            "sx_cross_sxxx": "-c_3_2",
+            "sx_cross_sxxxx": "-c_3_3",
+            "sx_cross_sxxxxx": "-c_3_4",
+            "sx_cross_sxxxxxx": "-c_3_5",
+            "sxx": "-c_2_1 - c_3_7",
+            "sxxx": "-c_2_2 - c_3_8",
+            "sxxxx": "-c_2_3 - c_3_9",
+            "sxxxxx": "-c_2_4 - c_3_10",
+            "sxxxxxx": "-c_2_5 - c_3_11",
+            "sxxxxxxx": "-c_3_12"
+          },
+          "lambda^4": {
+            "s": "-I_1_1*c_3_1 - 3*I_1_2*c_3_2 - 4*I_1_3*c_3_3 - 5*I_1_4*c_3_4 - 6*I_1_5*c_3_5 - 3*I_2_2*c_3_3 - 10*I_2_3*c_3_4 - 15*I_2_4*c_3_5 - 10*I_3_3*c_3_5",
+            "s_cross_sx": "c_3_7",
+            "s_cross_sxx": "c_3_8",
+            "s_cross_sxxx": "c_3_9",
+            "s_cross_sxxxx": "c_3_10",
+            "s_cross_sxxxxx": "c_3_11",
+            "s_cross_sxxxxxx": "c_3_12",
+            "sx": "-c_3_0",
+            "sxx": "-c_3_1",
+            "sxxx": "-c_3_2",
+            "sxxxx": "-c_3_3",
+            "sxxxxx": "-c_3_4",
+            "sxxxxxx": "-c_3_5"
+          }
+        },
+        "solution": {},
+        "solved": false,
+        "status": "no_formal_solution",
+        "unknown_count": 39
+      },
+      "frontier_priority": 35,
+      "frontier_status": "blocked_by_ansatz_obstruction",
       "gate_gaps": [
         "flow is tangent by cross-product construction",
-        "zero-curvature matrix pair has not been constructed in the scaled triage pass",
-        "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+        "degree-3 local-vector formal ansatz with U=lambda*hat(s) has no solution",
+        "obstruction basis is recorded for the supported formal residual equations",
+        "broader matrix, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
       "gate_summary": {
         "collision": "needs human review",
         "conservation": 0,
-        "curvature": "not_constructed_batch_triage",
+        "curvature": "formal_ansatz_obstruction_current_family",
         "gauge": null,
         "spectral": "unresolved",
         "tangent": "tangent"
@@ -2630,7 +2740,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "key": "curvature",
           "label": "Curvature",
           "status": "fail",
-          "value": "not_constructed_batch_triage"
+          "value": "formal_ansatz_obstruction_current_family"
         },
         {
           "key": "gauge",
@@ -2663,11 +2773,11 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "item_type": "candidate",
       "lane": "DIS-006",
       "name": "scaled sphere unit times sxxxxx",
-      "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
+      "next_action": "Advance to the next DIS-006 scaled descriptor; revisit this one with a broader spatial matrix or higher-degree formal ansatz.",
       "order": 5,
       "priority_score": 39,
       "proof_summary": null,
-      "recommendation": "needs_human_review",
+      "recommendation": "blocked",
       "residual_grid": null,
       "short_name": "unit times sxxxxx",
       "spectral_status": "unresolved",
@@ -2675,14 +2785,18 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "band": "watch",
         "drivers": [
           "tangent constraint passed",
-          "spectral parameter unresolved",
-          "human review required"
+          "spectral parameter unresolved"
         ],
-        "score": 39
+        "score": 35
       },
       "tangent_status": "tangent",
       "zcr_constraints": [],
-      "zcr_obstruction_basis": [],
+      "zcr_obstruction_basis": [
+        "lambda^1: {'s_cross_sxx': '-c_1_0', 's_cross_sxxx': '-c_1_1', 's_cross_sxxxx': '-c_1_2', 's_cross_sxxxxx': '1 - c_1_3', 's_cross_sxxxxxx': '-c_1_4', 's_cross_sxxxxxxx': '-c_1_5', 'sx_cross_sxx': '-c_1_1', 'sx_cross_sxxx': '-c_1_2', 'sx_cross_sxxxx': '-c_1_3', 'sx_cross_sxxxxx': '-c_1_4', 'sx_cross_sxxxxxx': '-c_1_5', 'sx': '-c_1_6', 'sxx': '-c_1_7', 'sxxx': '-c_1_8', 'sxxxx': '-c_1_9', 'sxxxxx': '-c_1_10', 'sxxxxxx': '-c_1_11', 'sxxxxxxx': '-c_1_12'}",
+        "lambda^2: {'s_cross_sx': 'c_1_7', 's_cross_sxx': 'c_1_8 - c_2_0', 's_cross_sxxx': 'c_1_9 - c_2_1', 's_cross_sxxxx': 'c_1_10 - c_2_2', 's_cross_sxxxxx': 'c_1_11 - c_2_3', 's_cross_sxxxxxx': 'c_1_12 - c_2_4', 's_cross_sxxxxxxx': '-c_2_5', 'sx_cross_sxx': '-c_2_1', 'sx_cross_sxxx': '-c_2_2', 'sx_cross_sxxxx': '-c_2_3', 'sx_cross_sxxxxx': '-c_2_4', 'sx_cross_sxxxxxx': '-c_2_5', 's': '-I_1_1*c_1_1 - 3*I_1_2*c_1_2 - 4*I_1_3*c_1_3 - 5*I_1_4*c_1_4 - 6*I_1_5*c_1_5 - 3*I_2_2*c_1_3 - 10*I_2_3*c_1_4 - 15*I_2_4*c_1_5 - 10*I_3_3*c_1_5', 'sx': '-c_1_0 - c_2_6', 'sxx': '-c_1_1 - c_2_7', 'sxxx': '-c_1_2 - c_2_8', 'sxxxx': '-c_1_3 - c_2_9', 'sxxxxx': '-c_1_4 - c_2_10', 'sxxxxxx': '-c_1_5 - c_2_11', 'sxxxxxxx': '-c_2_12'}",
+        "lambda^3: {'s_cross_sx': 'c_2_7', 's_cross_sxx': 'c_2_8 - c_3_0', 's_cross_sxxx': 'c_2_9 - c_3_1', 's_cross_sxxxx': 'c_2_10 - c_3_2', 's_cross_sxxxxx': 'c_2_11 - c_3_3', 's_cross_sxxxxxx': 'c_2_12 - c_3_4', 's_cross_sxxxxxxx': '-c_3_5', 'sx_cross_sxx': '-c_3_1', 'sx_cross_sxxx': '-c_3_2', 'sx_cross_sxxxx': '-c_3_3', 'sx_cross_sxxxxx': '-c_3_4', 'sx_cross_sxxxxxx': '-c_3_5', 's': '-I_1_1*c_2_1 - 3*I_1_2*c_2_2 - 4*I_1_3*c_2_3 - 5*I_1_4*c_2_4 - 6*I_1_5*c_2_5 - 3*I_2_2*c_2_3 - 10*I_2_3*c_2_4 - 15*I_2_4*c_2_5 - 10*I_3_3*c_2_5', 'sx': '-c_2_0 - c_3_6', 'sxx': '-c_2_1 - c_3_7', 'sxxx': '-c_2_2 - c_3_8', 'sxxxx': '-c_2_3 - c_3_9', 'sxxxxx': '-c_2_4 - c_3_10', 'sxxxxxx': '-c_2_5 - c_3_11', 'sxxxxxxx': '-c_3_12'}",
+        "lambda^4: {'s_cross_sx': 'c_3_7', 's_cross_sxx': 'c_3_8', 's_cross_sxxx': 'c_3_9', 's_cross_sxxxx': 'c_3_10', 's_cross_sxxxxx': 'c_3_11', 's_cross_sxxxxxx': 'c_3_12', 's': '-I_1_1*c_3_1 - 3*I_1_2*c_3_2 - 4*I_1_3*c_3_3 - 5*I_1_4*c_3_4 - 6*I_1_5*c_3_5 - 3*I_2_2*c_3_3 - 10*I_2_3*c_3_4 - 15*I_2_4*c_3_5 - 10*I_3_3*c_3_5', 'sx': '-c_3_0', 'sxx': '-c_3_1', 'sxxx': '-c_3_2', 'sxxxx': '-c_3_3', 'sxxxxx': '-c_3_4', 'sxxxxxx': '-c_3_5'}"
+      ],
       "zcr_solution": null,
       "zcr_validated": false
     },
@@ -2708,6 +2822,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 35,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -2718,6 +2833,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 35,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -2823,6 +2939,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -2833,6 +2950,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -2938,6 +3056,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -2948,6 +3067,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -3053,6 +3173,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -3063,6 +3184,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -3168,6 +3290,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -3178,6 +3301,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -3283,6 +3407,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -3293,6 +3418,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -3398,6 +3524,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -3408,6 +3535,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -3513,6 +3641,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -3523,6 +3652,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -3628,6 +3758,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -3638,6 +3769,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -3743,6 +3875,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -3753,6 +3886,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -3858,6 +3992,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -3868,6 +4003,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -3973,6 +4109,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -3983,6 +4120,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -4088,6 +4226,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -4098,6 +4237,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -4203,6 +4343,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -4213,6 +4354,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -4318,6 +4460,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -4328,6 +4471,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -4433,6 +4577,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -4443,6 +4588,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -4548,6 +4694,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -4558,6 +4705,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -4663,6 +4811,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -4673,6 +4822,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -4778,6 +4928,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -4788,6 +4939,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -4893,6 +5045,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -4903,6 +5056,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -5008,6 +5162,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -5018,6 +5173,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -5123,6 +5279,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -5133,6 +5290,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -5238,6 +5396,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -5248,6 +5407,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -5353,6 +5513,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -5363,6 +5524,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -5468,6 +5630,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -5478,6 +5641,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -5583,6 +5747,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -5593,6 +5758,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -5698,6 +5864,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -5708,6 +5875,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -5813,6 +5981,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -5823,6 +5992,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -5928,6 +6098,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -5938,6 +6109,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -6043,6 +6215,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -6053,6 +6226,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -6158,6 +6332,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -6168,6 +6343,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -6273,6 +6449,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -6283,6 +6460,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -6388,6 +6566,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -6398,6 +6577,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -6503,6 +6683,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -6513,6 +6694,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -6618,6 +6800,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -6628,6 +6811,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -6733,6 +6917,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -6743,6 +6928,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -6848,6 +7034,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -6858,6 +7045,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -6963,6 +7151,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxxx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -6973,6 +7162,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -7078,6 +7268,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxxx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -7088,6 +7279,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -7193,6 +7385,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxxx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -7203,6 +7396,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -7308,6 +7502,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxxx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -7318,6 +7513,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -7423,6 +7619,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxxx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -7433,6 +7630,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -7538,6 +7736,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxxx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -7548,6 +7747,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -7653,6 +7853,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxxx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -7663,6 +7864,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -7768,6 +7970,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxxx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -7778,6 +7981,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -7883,6 +8087,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxxx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -7893,6 +8098,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -7998,6 +8204,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxxx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -8008,6 +8215,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -8113,6 +8321,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxxx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -8123,6 +8332,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -8228,6 +8438,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxxx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -8238,6 +8449,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -8343,6 +8555,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x> + <s_xx,s_xx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -8353,6 +8566,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -8458,6 +8672,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x> + <s_xx,s_xx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -8468,6 +8683,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -8573,6 +8789,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x> + <s_xx,s_xx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -8583,6 +8800,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -8688,6 +8906,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x> + <s_xx,s_xx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -8698,6 +8917,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -8803,6 +9023,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x> + <s_xx,s_xx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -8813,6 +9034,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -8918,6 +9140,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x> + <s_xx,s_xx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -8928,6 +9151,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -9033,6 +9257,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x + s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 28,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -9043,6 +9268,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 28,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -9148,6 +9374,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -9158,6 +9385,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -9263,6 +9491,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -9273,6 +9502,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -9378,6 +9608,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -9388,6 +9619,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -9493,6 +9725,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -9503,6 +9736,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -9608,6 +9842,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xx + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -9618,6 +9853,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -9723,6 +9959,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -9733,6 +9970,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -9838,6 +10076,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -9848,6 +10087,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -9953,6 +10193,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -9963,6 +10204,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -10068,6 +10310,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -10078,6 +10321,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -10183,6 +10427,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -10193,6 +10438,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -10298,6 +10544,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -10308,6 +10555,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -10413,6 +10661,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -10423,6 +10672,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -10528,6 +10778,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -10538,6 +10789,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -10643,6 +10895,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -10653,6 +10906,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -10758,6 +11012,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x + s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 28,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -10768,6 +11023,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 28,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -10873,6 +11129,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -10883,6 +11140,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -10988,6 +11246,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -10998,6 +11257,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -11103,6 +11363,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -11113,6 +11374,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -11218,6 +11480,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -11228,6 +11491,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -11333,6 +11597,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xx + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -11343,6 +11608,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -11448,6 +11714,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -11458,6 +11725,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -11563,6 +11831,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -11573,6 +11842,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -11678,6 +11948,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -11688,6 +11959,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -11793,6 +12065,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -11803,6 +12076,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -11908,6 +12182,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -11918,6 +12193,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -12023,6 +12299,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -12033,6 +12310,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -12138,6 +12416,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -12148,6 +12427,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -12253,6 +12533,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -12263,6 +12544,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -12368,6 +12650,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -12378,6 +12661,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -12483,6 +12767,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x + s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -12493,6 +12778,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -12598,6 +12884,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -12608,6 +12895,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -12713,6 +13001,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -12723,6 +13012,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -12828,6 +13118,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -12838,6 +13129,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -12943,6 +13235,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -12953,6 +13246,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -13058,6 +13352,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xx + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -13068,6 +13363,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -13173,6 +13469,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -13183,6 +13480,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -13288,6 +13586,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -13298,6 +13597,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -13403,6 +13703,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -13413,6 +13714,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -13518,6 +13820,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -13528,6 +13831,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -13633,6 +13937,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -13643,6 +13948,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -13748,6 +14054,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -13758,6 +14065,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -13863,6 +14171,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -13873,6 +14182,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -13978,6 +14288,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -13988,6 +14299,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -14093,6 +14405,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -14103,6 +14416,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -14208,6 +14522,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x + s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -14218,6 +14533,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -14323,6 +14639,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -14333,6 +14650,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -14438,6 +14756,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -14448,6 +14767,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -14553,6 +14873,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -14563,6 +14884,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -14668,6 +14990,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -14678,6 +15001,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -14783,6 +15107,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xx + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -14793,6 +15118,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -14898,6 +15224,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -14908,6 +15235,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -15013,6 +15341,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -15023,6 +15352,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -15128,6 +15458,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -15138,6 +15469,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -15243,6 +15575,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -15253,6 +15586,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -15358,6 +15692,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -15368,6 +15703,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -15473,6 +15809,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -15483,6 +15820,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -15588,6 +15926,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -15598,6 +15937,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -15703,6 +16043,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -15713,6 +16054,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -15818,6 +16160,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -15828,6 +16171,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -15933,6 +16277,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x + s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -15943,6 +16288,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -16048,6 +16394,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -16058,6 +16405,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -16163,6 +16511,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -16173,6 +16522,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -16278,6 +16628,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -16288,6 +16639,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -16393,6 +16745,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -16403,6 +16756,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -16508,6 +16862,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_xx + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -16518,6 +16873,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -16623,6 +16979,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_xx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -16633,6 +16990,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -16944,30 +17302,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
   ],
   "full_scale_search": {
     "action_queue": [
-      {
-        "classification": "needs_human_review",
-        "connection_status": "not_constructed_batch_triage",
-        "evidence_summary": [
-          "scaled DIS-006 descriptor is tangent by construction",
-          "matrix pair is not constructed in the batch pass",
-          "candidate remains review-only until solver gates run"
-        ],
-        "gate_gaps": [
-          "flow is tangent by cross-product construction",
-          "zero-curvature matrix pair has not been constructed in the scaled triage pass",
-          "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
-          "sphere, Heisenberg, and symmetric-space collision checks remain active"
-        ],
-        "item_id": "scaled-sphere-unit-times-sxxxxx",
-        "iteration": 1,
-        "lane": "DIS-006",
-        "name": "scaled sphere unit times sxxxxx",
-        "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
-        "potential_status": "batch_triage_pending",
-        "priority": 39,
-        "process_disposition": "frontier",
-        "recommendation": "needs_human_review"
-      },
       {
         "classification": "needs_human_review",
         "connection_status": "validated_non_split_flow_equations",
@@ -17542,6 +17876,30 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "priority": 38,
         "process_disposition": "frontier",
         "recommendation": "needs_human_review"
+      },
+      {
+        "classification": "needs_human_review",
+        "connection_status": "not_constructed_batch_triage",
+        "evidence_summary": [
+          "scaled DIS-006 descriptor is tangent by construction",
+          "matrix pair is not constructed in the batch pass",
+          "candidate remains review-only until solver gates run"
+        ],
+        "gate_gaps": [
+          "flow is tangent by cross-product construction",
+          "zero-curvature matrix pair has not been constructed in the scaled triage pass",
+          "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+          "sphere, Heisenberg, and symmetric-space collision checks remain active"
+        ],
+        "item_id": "scaled-sphere-sxx-sxxxx-times-sxxxxx",
+        "iteration": 1,
+        "lane": "DIS-006",
+        "name": "scaled sphere sxx_sxxxx times sxxxxx",
+        "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
+        "potential_status": "batch_triage_pending",
+        "priority": 38,
+        "process_disposition": "frontier",
+        "recommendation": "needs_human_review"
       }
     ],
     "blocked_capabilities": [
@@ -18005,27 +18363,28 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "not_constructed_batch_triage",
+          "connection_status": "formal_ansatz_obstruction_current_family",
           "evidence_summary": [
-            "scaled DIS-006 descriptor is tangent by construction",
-            "matrix pair is not constructed in the batch pass",
-            "candidate remains review-only until solver gates run"
+            "scaled descriptor is tangent by construction",
+            "degree-3 local-vector formal ansatz is obstructed for U=lambda*hat(s)",
+            "broader matrix families remain open"
           ],
           "gate_gaps": [
             "flow is tangent by cross-product construction",
-            "zero-curvature matrix pair has not been constructed in the scaled triage pass",
-            "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+            "degree-3 local-vector formal ansatz with U=lambda*hat(s) has no solution",
+            "obstruction basis is recorded for the supported formal residual equations",
+            "broader matrix, gauge, cyclic, conservation, and Hamiltonian gates remain open",
             "sphere, Heisenberg, and symmetric-space collision checks remain active"
           ],
           "item_id": "scaled-sphere-unit-times-sxxxxx",
           "iteration": 1,
           "lane": "DIS-006",
           "name": "scaled sphere unit times sxxxxx",
-          "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
-          "potential_status": "batch_triage_pending",
-          "priority": 39,
+          "next_action": "Advance to the next DIS-006 scaled descriptor; revisit this one with a broader spatial matrix or higher-degree formal ansatz.",
+          "potential_status": "blocked_by_ansatz_obstruction",
+          "priority": 35,
           "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
+          "recommendation": "blocked"
         },
         {
           "classification": "needs_human_review",
@@ -21153,30 +21512,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "frontier": [
         {
           "classification": "needs_human_review",
-          "connection_status": "not_constructed_batch_triage",
-          "evidence_summary": [
-            "scaled DIS-006 descriptor is tangent by construction",
-            "matrix pair is not constructed in the batch pass",
-            "candidate remains review-only until solver gates run"
-          ],
-          "gate_gaps": [
-            "flow is tangent by cross-product construction",
-            "zero-curvature matrix pair has not been constructed in the scaled triage pass",
-            "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
-            "sphere, Heisenberg, and symmetric-space collision checks remain active"
-          ],
-          "item_id": "scaled-sphere-unit-times-sxxxxx",
-          "iteration": 1,
-          "lane": "DIS-006",
-          "name": "scaled sphere unit times sxxxxx",
-          "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
-          "potential_status": "batch_triage_pending",
-          "priority": 39,
-          "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
-        },
-        {
-          "classification": "needs_human_review",
           "connection_status": "validated_non_split_flow_equations",
           "evidence_summary": [
             "bounded diagonal correction solver closes the non-split residual gate",
@@ -22757,6 +23092,31 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "priority": 35,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
+        },
+        {
+          "classification": "needs_human_review",
+          "connection_status": "formal_ansatz_obstruction_current_family",
+          "evidence_summary": [
+            "scaled descriptor is tangent by construction",
+            "degree-3 local-vector formal ansatz is obstructed for U=lambda*hat(s)",
+            "broader matrix families remain open"
+          ],
+          "gate_gaps": [
+            "flow is tangent by cross-product construction",
+            "degree-3 local-vector formal ansatz with U=lambda*hat(s) has no solution",
+            "obstruction basis is recorded for the supported formal residual equations",
+            "broader matrix, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+            "sphere, Heisenberg, and symmetric-space collision checks remain active"
+          ],
+          "item_id": "scaled-sphere-unit-times-sxxxxx",
+          "iteration": 1,
+          "lane": "DIS-006",
+          "name": "scaled sphere unit times sxxxxx",
+          "next_action": "Advance to the next DIS-006 scaled descriptor; revisit this one with a broader spatial matrix or higher-degree formal ansatz.",
+          "potential_status": "blocked_by_ansatz_obstruction",
+          "priority": 35,
+          "process_disposition": "frontier",
+          "recommendation": "blocked"
         },
         {
           "classification": "needs_human_review",
@@ -24516,7 +24876,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-zero-flow-zero-connection-control"
           ],
           "frontier_ids": [
-            "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -24583,6 +24942,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-unit-blend-sxxxxx-sx-sxx-cross",
             "scaled-sphere-unit-times-sx-sxx-cross",
             "scaled-sphere-unit-times-sxxx",
+            "scaled-sphere-unit-times-sxxxxx",
             "density-matrix-dissipative-tangent-probe",
             "density-matrix-isospectral-commutator-probe",
             "scaled-sphere-accel-sq-blend-sx-sxxx",
@@ -24667,7 +25027,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "candidates_seen": [
-            "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -24734,6 +25093,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-unit-blend-sxxxxx-sx-sxx-cross",
             "scaled-sphere-unit-times-sx-sxx-cross",
             "scaled-sphere-unit-times-sxxx",
+            "scaled-sphere-unit-times-sxxxxx",
             "density-matrix-dissipative-tangent-probe",
             "density-matrix-isospectral-commutator-probe",
             "scaled-sphere-accel-sq-blend-sx-sxxx",
@@ -24804,7 +25164,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
           ],
           "discarded_ids": [],
           "frontier_ids": [
-            "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -24871,6 +25230,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-unit-blend-sxxxxx-sx-sxx-cross",
             "scaled-sphere-unit-times-sx-sxx-cross",
             "scaled-sphere-unit-times-sxxx",
+            "scaled-sphere-unit-times-sxxxxx",
             "density-matrix-dissipative-tangent-probe",
             "density-matrix-isospectral-commutator-probe",
             "scaled-sphere-accel-sq-blend-sx-sxxx",
@@ -25737,9 +26097,9 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "warning_count": 0
     },
     "recommendation_counts": {
-      "blocked": 1,
+      "blocked": 2,
       "discard": 9,
-      "needs_human_review": 133
+      "needs_human_review": 132
     },
     "run_id": "FULL-001",
     "status": "frontier_active",
@@ -27789,6 +28149,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s_t = 0 with U = V = 0",
         "family": "control",
+        "formal_ansatz_status": null,
         "priority_score": 0,
         "summary": "zero flow and zero connection are retained only as a scaled-run control"
       },
@@ -27798,6 +28159,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "control is classified fake and recommended discard",
         "no spectral or conservation evidence is present"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 0,
       "frontier_status": "not_on_frontier",
       "gate_gaps": [],
@@ -27898,6 +28260,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 31,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -27908,6 +28271,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 31,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -28013,6 +28377,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 33,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -28023,6 +28388,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 33,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -28128,6 +28494,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 35,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -28138,6 +28505,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 35,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -28243,6 +28611,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 37,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -28253,6 +28622,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 37,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -28348,38 +28718,138 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "collisions": [
         "Principal chiral model and Heisenberg ferromagnet families"
       ],
-      "connection_status": "not_constructed_batch_triage",
+      "connection_status": "formal_ansatz_obstruction_current_family",
       "conservation_count": 0,
       "curvature_residual_zero": false,
-      "curvature_status": "not_constructed_batch_triage",
-      "curvature_terms_nonzero": null,
-      "curvature_terms_total": 0,
+      "curvature_status": "formal_ansatz_obstruction_current_family",
+      "curvature_terms_nonzero": 4,
+      "curvature_terms_total": 95,
       "cyclic_fingerprint": null,
       "detail": {
         "descriptor": "s x ((1) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": "no_formal_solution",
         "priority_score": 39,
         "summary": "flow is tangent by cross-product construction"
       },
-      "disposition": "needs_human_review",
+      "disposition": "blocked",
       "failure_reasons": [
         "flow is tangent by cross-product construction",
-        "zero-curvature matrix pair has not been constructed in the scaled triage pass",
-        "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+        "degree-3 local-vector formal ansatz with U=lambda*hat(s) has no solution",
+        "obstruction basis is recorded for the supported formal residual equations",
+        "broader matrix, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
-      "frontier_priority": 39,
-      "frontier_status": "batch_triage_pending",
+      "formal_ansatz_report": {
+        "basis_size": 13,
+        "candidate_name": "scaled sphere unit times sxxxxx",
+        "degree": 3,
+        "equation_count": 95,
+        "obstruction_basis": [
+          "lambda^1: {'s_cross_sxx': '-c_1_0', 's_cross_sxxx': '-c_1_1', 's_cross_sxxxx': '-c_1_2', 's_cross_sxxxxx': '1 - c_1_3', 's_cross_sxxxxxx': '-c_1_4', 's_cross_sxxxxxxx': '-c_1_5', 'sx_cross_sxx': '-c_1_1', 'sx_cross_sxxx': '-c_1_2', 'sx_cross_sxxxx': '-c_1_3', 'sx_cross_sxxxxx': '-c_1_4', 'sx_cross_sxxxxxx': '-c_1_5', 'sx': '-c_1_6', 'sxx': '-c_1_7', 'sxxx': '-c_1_8', 'sxxxx': '-c_1_9', 'sxxxxx': '-c_1_10', 'sxxxxxx': '-c_1_11', 'sxxxxxxx': '-c_1_12'}",
+          "lambda^2: {'s_cross_sx': 'c_1_7', 's_cross_sxx': 'c_1_8 - c_2_0', 's_cross_sxxx': 'c_1_9 - c_2_1', 's_cross_sxxxx': 'c_1_10 - c_2_2', 's_cross_sxxxxx': 'c_1_11 - c_2_3', 's_cross_sxxxxxx': 'c_1_12 - c_2_4', 's_cross_sxxxxxxx': '-c_2_5', 'sx_cross_sxx': '-c_2_1', 'sx_cross_sxxx': '-c_2_2', 'sx_cross_sxxxx': '-c_2_3', 'sx_cross_sxxxxx': '-c_2_4', 'sx_cross_sxxxxxx': '-c_2_5', 's': '-I_1_1*c_1_1 - 3*I_1_2*c_1_2 - 4*I_1_3*c_1_3 - 5*I_1_4*c_1_4 - 6*I_1_5*c_1_5 - 3*I_2_2*c_1_3 - 10*I_2_3*c_1_4 - 15*I_2_4*c_1_5 - 10*I_3_3*c_1_5', 'sx': '-c_1_0 - c_2_6', 'sxx': '-c_1_1 - c_2_7', 'sxxx': '-c_1_2 - c_2_8', 'sxxxx': '-c_1_3 - c_2_9', 'sxxxxx': '-c_1_4 - c_2_10', 'sxxxxxx': '-c_1_5 - c_2_11', 'sxxxxxxx': '-c_2_12'}",
+          "lambda^3: {'s_cross_sx': 'c_2_7', 's_cross_sxx': 'c_2_8 - c_3_0', 's_cross_sxxx': 'c_2_9 - c_3_1', 's_cross_sxxxx': 'c_2_10 - c_3_2', 's_cross_sxxxxx': 'c_2_11 - c_3_3', 's_cross_sxxxxxx': 'c_2_12 - c_3_4', 's_cross_sxxxxxxx': '-c_3_5', 'sx_cross_sxx': '-c_3_1', 'sx_cross_sxxx': '-c_3_2', 'sx_cross_sxxxx': '-c_3_3', 'sx_cross_sxxxxx': '-c_3_4', 'sx_cross_sxxxxxx': '-c_3_5', 's': '-I_1_1*c_2_1 - 3*I_1_2*c_2_2 - 4*I_1_3*c_2_3 - 5*I_1_4*c_2_4 - 6*I_1_5*c_2_5 - 3*I_2_2*c_2_3 - 10*I_2_3*c_2_4 - 15*I_2_4*c_2_5 - 10*I_3_3*c_2_5', 'sx': '-c_2_0 - c_3_6', 'sxx': '-c_2_1 - c_3_7', 'sxxx': '-c_2_2 - c_3_8', 'sxxxx': '-c_2_3 - c_3_9', 'sxxxxx': '-c_2_4 - c_3_10', 'sxxxxxx': '-c_2_5 - c_3_11', 'sxxxxxxx': '-c_3_12'}",
+          "lambda^4: {'s_cross_sx': 'c_3_7', 's_cross_sxx': 'c_3_8', 's_cross_sxxx': 'c_3_9', 's_cross_sxxxx': 'c_3_10', 's_cross_sxxxxx': 'c_3_11', 's_cross_sxxxxxx': 'c_3_12', 's': '-I_1_1*c_3_1 - 3*I_1_2*c_3_2 - 4*I_1_3*c_3_3 - 5*I_1_4*c_3_4 - 6*I_1_5*c_3_5 - 3*I_2_2*c_3_3 - 10*I_2_3*c_3_4 - 15*I_2_4*c_3_5 - 10*I_3_3*c_3_5', 'sx': '-c_3_0', 'sxx': '-c_3_1', 'sxxx': '-c_3_2', 'sxxxx': '-c_3_3', 'sxxxxx': '-c_3_4', 'sxxxxxx': '-c_3_5'}"
+        ],
+        "residual_basis": {
+          "lambda^1": {
+            "s_cross_sxx": "-c_1_0",
+            "s_cross_sxxx": "-c_1_1",
+            "s_cross_sxxxx": "-c_1_2",
+            "s_cross_sxxxxx": "1 - c_1_3",
+            "s_cross_sxxxxxx": "-c_1_4",
+            "s_cross_sxxxxxxx": "-c_1_5",
+            "sx": "-c_1_6",
+            "sx_cross_sxx": "-c_1_1",
+            "sx_cross_sxxx": "-c_1_2",
+            "sx_cross_sxxxx": "-c_1_3",
+            "sx_cross_sxxxxx": "-c_1_4",
+            "sx_cross_sxxxxxx": "-c_1_5",
+            "sxx": "-c_1_7",
+            "sxxx": "-c_1_8",
+            "sxxxx": "-c_1_9",
+            "sxxxxx": "-c_1_10",
+            "sxxxxxx": "-c_1_11",
+            "sxxxxxxx": "-c_1_12"
+          },
+          "lambda^2": {
+            "s": "-I_1_1*c_1_1 - 3*I_1_2*c_1_2 - 4*I_1_3*c_1_3 - 5*I_1_4*c_1_4 - 6*I_1_5*c_1_5 - 3*I_2_2*c_1_3 - 10*I_2_3*c_1_4 - 15*I_2_4*c_1_5 - 10*I_3_3*c_1_5",
+            "s_cross_sx": "c_1_7",
+            "s_cross_sxx": "c_1_8 - c_2_0",
+            "s_cross_sxxx": "c_1_9 - c_2_1",
+            "s_cross_sxxxx": "c_1_10 - c_2_2",
+            "s_cross_sxxxxx": "c_1_11 - c_2_3",
+            "s_cross_sxxxxxx": "c_1_12 - c_2_4",
+            "s_cross_sxxxxxxx": "-c_2_5",
+            "sx": "-c_1_0 - c_2_6",
+            "sx_cross_sxx": "-c_2_1",
+            "sx_cross_sxxx": "-c_2_2",
+            "sx_cross_sxxxx": "-c_2_3",
+            "sx_cross_sxxxxx": "-c_2_4",
+            "sx_cross_sxxxxxx": "-c_2_5",
+            "sxx": "-c_1_1 - c_2_7",
+            "sxxx": "-c_1_2 - c_2_8",
+            "sxxxx": "-c_1_3 - c_2_9",
+            "sxxxxx": "-c_1_4 - c_2_10",
+            "sxxxxxx": "-c_1_5 - c_2_11",
+            "sxxxxxxx": "-c_2_12"
+          },
+          "lambda^3": {
+            "s": "-I_1_1*c_2_1 - 3*I_1_2*c_2_2 - 4*I_1_3*c_2_3 - 5*I_1_4*c_2_4 - 6*I_1_5*c_2_5 - 3*I_2_2*c_2_3 - 10*I_2_3*c_2_4 - 15*I_2_4*c_2_5 - 10*I_3_3*c_2_5",
+            "s_cross_sx": "c_2_7",
+            "s_cross_sxx": "c_2_8 - c_3_0",
+            "s_cross_sxxx": "c_2_9 - c_3_1",
+            "s_cross_sxxxx": "c_2_10 - c_3_2",
+            "s_cross_sxxxxx": "c_2_11 - c_3_3",
+            "s_cross_sxxxxxx": "c_2_12 - c_3_4",
+            "s_cross_sxxxxxxx": "-c_3_5",
+            "sx": "-c_2_0 - c_3_6",
+            "sx_cross_sxx": "-c_3_1",
+            "sx_cross_sxxx": "-c_3_2",
+            "sx_cross_sxxxx": "-c_3_3",
+            "sx_cross_sxxxxx": "-c_3_4",
+            "sx_cross_sxxxxxx": "-c_3_5",
+            "sxx": "-c_2_1 - c_3_7",
+            "sxxx": "-c_2_2 - c_3_8",
+            "sxxxx": "-c_2_3 - c_3_9",
+            "sxxxxx": "-c_2_4 - c_3_10",
+            "sxxxxxx": "-c_2_5 - c_3_11",
+            "sxxxxxxx": "-c_3_12"
+          },
+          "lambda^4": {
+            "s": "-I_1_1*c_3_1 - 3*I_1_2*c_3_2 - 4*I_1_3*c_3_3 - 5*I_1_4*c_3_4 - 6*I_1_5*c_3_5 - 3*I_2_2*c_3_3 - 10*I_2_3*c_3_4 - 15*I_2_4*c_3_5 - 10*I_3_3*c_3_5",
+            "s_cross_sx": "c_3_7",
+            "s_cross_sxx": "c_3_8",
+            "s_cross_sxxx": "c_3_9",
+            "s_cross_sxxxx": "c_3_10",
+            "s_cross_sxxxxx": "c_3_11",
+            "s_cross_sxxxxxx": "c_3_12",
+            "sx": "-c_3_0",
+            "sxx": "-c_3_1",
+            "sxxx": "-c_3_2",
+            "sxxxx": "-c_3_3",
+            "sxxxxx": "-c_3_4",
+            "sxxxxxx": "-c_3_5"
+          }
+        },
+        "solution": {},
+        "solved": false,
+        "status": "no_formal_solution",
+        "unknown_count": 39
+      },
+      "frontier_priority": 35,
+      "frontier_status": "blocked_by_ansatz_obstruction",
       "gate_gaps": [
         "flow is tangent by cross-product construction",
-        "zero-curvature matrix pair has not been constructed in the scaled triage pass",
-        "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+        "degree-3 local-vector formal ansatz with U=lambda*hat(s) has no solution",
+        "obstruction basis is recorded for the supported formal residual equations",
+        "broader matrix, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
       "gate_summary": {
         "collision": "needs human review",
         "conservation": 0,
-        "curvature": "not_constructed_batch_triage",
+        "curvature": "formal_ansatz_obstruction_current_family",
         "gauge": null,
         "spectral": "unresolved",
         "tangent": "tangent"
@@ -28395,7 +28865,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "key": "curvature",
           "label": "Curvature",
           "status": "fail",
-          "value": "not_constructed_batch_triage"
+          "value": "formal_ansatz_obstruction_current_family"
         },
         {
           "key": "gauge",
@@ -28428,11 +28898,11 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "item_type": "candidate",
       "lane": "DIS-006",
       "name": "scaled sphere unit times sxxxxx",
-      "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
+      "next_action": "Advance to the next DIS-006 scaled descriptor; revisit this one with a broader spatial matrix or higher-degree formal ansatz.",
       "order": 5,
       "priority_score": 39,
       "proof_summary": null,
-      "recommendation": "needs_human_review",
+      "recommendation": "blocked",
       "residual_grid": null,
       "short_name": "unit times sxxxxx",
       "spectral_status": "unresolved",
@@ -28440,14 +28910,18 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "band": "watch",
         "drivers": [
           "tangent constraint passed",
-          "spectral parameter unresolved",
-          "human review required"
+          "spectral parameter unresolved"
         ],
-        "score": 39
+        "score": 35
       },
       "tangent_status": "tangent",
       "zcr_constraints": [],
-      "zcr_obstruction_basis": [],
+      "zcr_obstruction_basis": [
+        "lambda^1: {'s_cross_sxx': '-c_1_0', 's_cross_sxxx': '-c_1_1', 's_cross_sxxxx': '-c_1_2', 's_cross_sxxxxx': '1 - c_1_3', 's_cross_sxxxxxx': '-c_1_4', 's_cross_sxxxxxxx': '-c_1_5', 'sx_cross_sxx': '-c_1_1', 'sx_cross_sxxx': '-c_1_2', 'sx_cross_sxxxx': '-c_1_3', 'sx_cross_sxxxxx': '-c_1_4', 'sx_cross_sxxxxxx': '-c_1_5', 'sx': '-c_1_6', 'sxx': '-c_1_7', 'sxxx': '-c_1_8', 'sxxxx': '-c_1_9', 'sxxxxx': '-c_1_10', 'sxxxxxx': '-c_1_11', 'sxxxxxxx': '-c_1_12'}",
+        "lambda^2: {'s_cross_sx': 'c_1_7', 's_cross_sxx': 'c_1_8 - c_2_0', 's_cross_sxxx': 'c_1_9 - c_2_1', 's_cross_sxxxx': 'c_1_10 - c_2_2', 's_cross_sxxxxx': 'c_1_11 - c_2_3', 's_cross_sxxxxxx': 'c_1_12 - c_2_4', 's_cross_sxxxxxxx': '-c_2_5', 'sx_cross_sxx': '-c_2_1', 'sx_cross_sxxx': '-c_2_2', 'sx_cross_sxxxx': '-c_2_3', 'sx_cross_sxxxxx': '-c_2_4', 'sx_cross_sxxxxxx': '-c_2_5', 's': '-I_1_1*c_1_1 - 3*I_1_2*c_1_2 - 4*I_1_3*c_1_3 - 5*I_1_4*c_1_4 - 6*I_1_5*c_1_5 - 3*I_2_2*c_1_3 - 10*I_2_3*c_1_4 - 15*I_2_4*c_1_5 - 10*I_3_3*c_1_5', 'sx': '-c_1_0 - c_2_6', 'sxx': '-c_1_1 - c_2_7', 'sxxx': '-c_1_2 - c_2_8', 'sxxxx': '-c_1_3 - c_2_9', 'sxxxxx': '-c_1_4 - c_2_10', 'sxxxxxx': '-c_1_5 - c_2_11', 'sxxxxxxx': '-c_2_12'}",
+        "lambda^3: {'s_cross_sx': 'c_2_7', 's_cross_sxx': 'c_2_8 - c_3_0', 's_cross_sxxx': 'c_2_9 - c_3_1', 's_cross_sxxxx': 'c_2_10 - c_3_2', 's_cross_sxxxxx': 'c_2_11 - c_3_3', 's_cross_sxxxxxx': 'c_2_12 - c_3_4', 's_cross_sxxxxxxx': '-c_3_5', 'sx_cross_sxx': '-c_3_1', 'sx_cross_sxxx': '-c_3_2', 'sx_cross_sxxxx': '-c_3_3', 'sx_cross_sxxxxx': '-c_3_4', 'sx_cross_sxxxxxx': '-c_3_5', 's': '-I_1_1*c_2_1 - 3*I_1_2*c_2_2 - 4*I_1_3*c_2_3 - 5*I_1_4*c_2_4 - 6*I_1_5*c_2_5 - 3*I_2_2*c_2_3 - 10*I_2_3*c_2_4 - 15*I_2_4*c_2_5 - 10*I_3_3*c_2_5', 'sx': '-c_2_0 - c_3_6', 'sxx': '-c_2_1 - c_3_7', 'sxxx': '-c_2_2 - c_3_8', 'sxxxx': '-c_2_3 - c_3_9', 'sxxxxx': '-c_2_4 - c_3_10', 'sxxxxxx': '-c_2_5 - c_3_11', 'sxxxxxxx': '-c_3_12'}",
+        "lambda^4: {'s_cross_sx': 'c_3_7', 's_cross_sxx': 'c_3_8', 's_cross_sxxx': 'c_3_9', 's_cross_sxxxx': 'c_3_10', 's_cross_sxxxxx': 'c_3_11', 's_cross_sxxxxxx': 'c_3_12', 's': '-I_1_1*c_3_1 - 3*I_1_2*c_3_2 - 4*I_1_3*c_3_3 - 5*I_1_4*c_3_4 - 6*I_1_5*c_3_5 - 3*I_2_2*c_3_3 - 10*I_2_3*c_3_4 - 15*I_2_4*c_3_5 - 10*I_3_3*c_3_5', 'sx': '-c_3_0', 'sxx': '-c_3_1', 'sxxx': '-c_3_2', 'sxxxx': '-c_3_3', 'sxxxxx': '-c_3_4', 'sxxxxxx': '-c_3_5'}"
+      ],
       "zcr_solution": null,
       "zcr_validated": false
     },
@@ -28473,6 +28947,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 35,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -28483,6 +28958,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 35,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -28588,6 +29064,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -28598,6 +29075,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -28703,6 +29181,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -28713,6 +29192,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -28818,6 +29298,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -28828,6 +29309,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -28933,6 +29415,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -28943,6 +29426,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -29048,6 +29532,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -29058,6 +29543,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -29163,6 +29649,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -29173,6 +29660,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -29278,6 +29766,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -29288,6 +29777,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -29393,6 +29883,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -29403,6 +29894,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -29508,6 +30000,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -29518,6 +30011,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -29623,6 +30117,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -29633,6 +30128,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -29738,6 +30234,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -29748,6 +30245,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -29853,6 +30351,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -29863,6 +30362,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -29968,6 +30468,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -29978,6 +30479,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -30083,6 +30585,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -30093,6 +30596,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -30198,6 +30702,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -30208,6 +30713,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -30313,6 +30819,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -30323,6 +30830,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -30428,6 +30936,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -30438,6 +30947,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -30543,6 +31053,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -30553,6 +31064,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -30658,6 +31170,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -30668,6 +31181,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -30773,6 +31287,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -30783,6 +31298,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -30888,6 +31404,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -30898,6 +31415,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -31003,6 +31521,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -31013,6 +31532,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -31118,6 +31638,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -31128,6 +31649,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -31233,6 +31755,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -31243,6 +31766,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -31348,6 +31872,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -31358,6 +31883,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -31463,6 +31989,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -31473,6 +32000,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -31578,6 +32106,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -31588,6 +32117,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -31693,6 +32223,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -31703,6 +32234,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -31808,6 +32340,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -31818,6 +32351,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -31923,6 +32457,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -31933,6 +32468,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -32038,6 +32574,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -32048,6 +32585,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -32153,6 +32691,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -32163,6 +32702,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -32268,6 +32808,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -32278,6 +32819,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -32383,6 +32925,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -32393,6 +32936,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -32498,6 +33042,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -32508,6 +33053,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -32613,6 +33159,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -32623,6 +33170,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -32728,6 +33276,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxxx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -32738,6 +33287,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -32843,6 +33393,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxxx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -32853,6 +33404,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -32958,6 +33510,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxxx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -32968,6 +33521,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -33073,6 +33627,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxxx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -33083,6 +33638,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -33188,6 +33744,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxxx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -33198,6 +33755,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -33303,6 +33861,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xxxx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -33313,6 +33872,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -33418,6 +33978,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxxx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -33428,6 +33989,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -33533,6 +34095,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxxx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -33543,6 +34106,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -33648,6 +34212,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxxx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -33658,6 +34223,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -33763,6 +34329,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxxx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -33773,6 +34340,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -33878,6 +34446,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxxx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -33888,6 +34457,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -33993,6 +34563,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xxxx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -34003,6 +34574,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -34108,6 +34680,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x> + <s_xx,s_xx>) s_x)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -34118,6 +34691,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -34223,6 +34797,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x> + <s_xx,s_xx>) s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -34233,6 +34808,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -34338,6 +34914,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x> + <s_xx,s_xx>) s_xxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -34348,6 +34925,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -34453,6 +35031,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x> + <s_xx,s_xx>) s_xxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -34463,6 +35042,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -34568,6 +35148,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x> + <s_xx,s_xx>) s_xxxxx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -34578,6 +35159,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -34683,6 +35265,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x> + <s_xx,s_xx>) s_x x s_xx)",
         "family": "single_factor_cross",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -34693,6 +35276,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -34798,6 +35382,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x + s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 28,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -34808,6 +35393,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 28,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -34913,6 +35499,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -34923,6 +35510,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -35028,6 +35616,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -35038,6 +35627,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -35143,6 +35733,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -35153,6 +35744,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -35258,6 +35850,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_x + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -35268,6 +35861,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -35373,6 +35967,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xx + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -35383,6 +35978,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -35488,6 +36084,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -35498,6 +36095,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -35603,6 +36201,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -35613,6 +36212,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -35718,6 +36318,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -35728,6 +36329,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -35833,6 +36435,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -35843,6 +36446,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -35948,6 +36552,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -35958,6 +36563,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -36063,6 +36669,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -36073,6 +36680,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -36178,6 +36786,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -36188,6 +36797,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -36293,6 +36903,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -36303,6 +36914,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -36408,6 +37020,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((1) s_xxxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -36418,6 +37031,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -36523,6 +37137,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x + s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 28,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -36533,6 +37148,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 28,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -36638,6 +37254,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -36648,6 +37265,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -36753,6 +37371,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -36763,6 +37382,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -36868,6 +37488,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -36878,6 +37499,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -36983,6 +37605,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_x + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -36993,6 +37616,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -37098,6 +37722,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xx + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -37108,6 +37733,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -37213,6 +37839,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -37223,6 +37850,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -37328,6 +37956,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -37338,6 +37967,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -37443,6 +38073,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -37453,6 +38084,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -37558,6 +38190,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -37568,6 +38201,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -37673,6 +38307,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -37683,6 +38318,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -37788,6 +38424,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -37798,6 +38435,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -37903,6 +38541,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -37913,6 +38552,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -38018,6 +38658,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -38028,6 +38669,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -38133,6 +38775,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_x>) s_xxxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -38143,6 +38786,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -38248,6 +38892,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x + s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -38258,6 +38903,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -38363,6 +39009,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -38373,6 +39020,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -38478,6 +39126,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -38488,6 +39137,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -38593,6 +39243,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -38603,6 +39254,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -38708,6 +39360,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_x + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -38718,6 +39371,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -38823,6 +39477,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xx + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -38833,6 +39488,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -38938,6 +39594,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -38948,6 +39605,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -39053,6 +39711,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -39063,6 +39722,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -39168,6 +39828,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -39178,6 +39839,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -39283,6 +39945,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -39293,6 +39956,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -39398,6 +40062,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -39408,6 +40073,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -39513,6 +40179,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -39523,6 +40190,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -39628,6 +40296,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -39638,6 +40307,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -39743,6 +40413,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -39753,6 +40424,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -39858,6 +40530,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xx,s_xx>) s_xxxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -39868,6 +40541,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -39973,6 +40647,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x + s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -39983,6 +40658,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -40088,6 +40764,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -40098,6 +40775,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -40203,6 +40881,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -40213,6 +40892,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -40318,6 +40998,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -40328,6 +41009,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -40433,6 +41115,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_x + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -40443,6 +41126,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -40548,6 +41232,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xx + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -40558,6 +41243,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -40663,6 +41349,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -40673,6 +41360,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -40778,6 +41466,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -40788,6 +41477,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -40893,6 +41583,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -40903,6 +41594,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -41008,6 +41700,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -41018,6 +41711,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -41123,6 +41817,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -41133,6 +41828,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -41238,6 +41934,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -41248,6 +41945,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -41353,6 +42051,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxxx + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -41363,6 +42062,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -41468,6 +42168,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -41478,6 +42179,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -41583,6 +42285,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_xxx,s_xxx>) s_xxxxx + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 38,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -41593,6 +42296,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 38,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -41698,6 +42402,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x + s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -41708,6 +42413,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -41813,6 +42519,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -41823,6 +42530,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -41928,6 +42636,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -41938,6 +42647,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -42043,6 +42753,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x + s_xxxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 36,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -42053,6 +42764,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 36,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -42158,6 +42870,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_x + s_x x s_xx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 30,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -42168,6 +42881,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 30,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -42273,6 +42987,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_xx + s_xxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 32,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -42283,6 +42998,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 32,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -42388,6 +43104,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": {
         "descriptor": "s x ((<s_x,s_xx>) s_xx + s_xxxx)",
         "family": "two_atom_blend",
+        "formal_ansatz_status": null,
         "priority_score": 34,
         "summary": "flow is tangent by cross-product construction"
       },
@@ -42398,6 +43115,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
         "sphere, Heisenberg, and symmetric-space collision checks remain active"
       ],
+      "formal_ansatz_report": null,
       "frontier_priority": 34,
       "frontier_status": "batch_triage_pending",
       "gate_gaps": [
@@ -42931,27 +43649,28 @@ window.LAXFORGE_DASHBOARD_DATA = {
       },
       {
         "classification": "needs_human_review",
-        "connection_status": "not_constructed_batch_triage",
+        "connection_status": "formal_ansatz_obstruction_current_family",
         "evidence_summary": [
-          "scaled DIS-006 descriptor is tangent by construction",
-          "matrix pair is not constructed in the batch pass",
-          "candidate remains review-only until solver gates run"
+          "scaled descriptor is tangent by construction",
+          "degree-3 local-vector formal ansatz is obstructed for U=lambda*hat(s)",
+          "broader matrix families remain open"
         ],
         "gate_gaps": [
           "flow is tangent by cross-product construction",
-          "zero-curvature matrix pair has not been constructed in the scaled triage pass",
-          "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+          "degree-3 local-vector formal ansatz with U=lambda*hat(s) has no solution",
+          "obstruction basis is recorded for the supported formal residual equations",
+          "broader matrix, gauge, cyclic, conservation, and Hamiltonian gates remain open",
           "sphere, Heisenberg, and symmetric-space collision checks remain active"
         ],
         "item_id": "scaled-sphere-unit-times-sxxxxx",
         "iteration": 1,
         "lane": "DIS-006",
         "name": "scaled sphere unit times sxxxxx",
-        "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
-        "potential_status": "batch_triage_pending",
-        "priority": 39,
+        "next_action": "Advance to the next DIS-006 scaled descriptor; revisit this one with a broader spatial matrix or higher-degree formal ansatz.",
+        "potential_status": "blocked_by_ansatz_obstruction",
+        "priority": 35,
         "process_disposition": "frontier",
-        "recommendation": "needs_human_review"
+        "recommendation": "blocked"
       },
       {
         "classification": "needs_human_review",
@@ -46079,30 +46798,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "frontier": [
       {
         "classification": "needs_human_review",
-        "connection_status": "not_constructed_batch_triage",
-        "evidence_summary": [
-          "scaled DIS-006 descriptor is tangent by construction",
-          "matrix pair is not constructed in the batch pass",
-          "candidate remains review-only until solver gates run"
-        ],
-        "gate_gaps": [
-          "flow is tangent by cross-product construction",
-          "zero-curvature matrix pair has not been constructed in the scaled triage pass",
-          "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
-          "sphere, Heisenberg, and symmetric-space collision checks remain active"
-        ],
-        "item_id": "scaled-sphere-unit-times-sxxxxx",
-        "iteration": 1,
-        "lane": "DIS-006",
-        "name": "scaled sphere unit times sxxxxx",
-        "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
-        "potential_status": "batch_triage_pending",
-        "priority": 39,
-        "process_disposition": "frontier",
-        "recommendation": "needs_human_review"
-      },
-      {
-        "classification": "needs_human_review",
         "connection_status": "validated_non_split_flow_equations",
         "evidence_summary": [
           "bounded diagonal correction solver closes the non-split residual gate",
@@ -47683,6 +48378,31 @@ window.LAXFORGE_DASHBOARD_DATA = {
         "priority": 35,
         "process_disposition": "frontier",
         "recommendation": "needs_human_review"
+      },
+      {
+        "classification": "needs_human_review",
+        "connection_status": "formal_ansatz_obstruction_current_family",
+        "evidence_summary": [
+          "scaled descriptor is tangent by construction",
+          "degree-3 local-vector formal ansatz is obstructed for U=lambda*hat(s)",
+          "broader matrix families remain open"
+        ],
+        "gate_gaps": [
+          "flow is tangent by cross-product construction",
+          "degree-3 local-vector formal ansatz with U=lambda*hat(s) has no solution",
+          "obstruction basis is recorded for the supported formal residual equations",
+          "broader matrix, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+          "sphere, Heisenberg, and symmetric-space collision checks remain active"
+        ],
+        "item_id": "scaled-sphere-unit-times-sxxxxx",
+        "iteration": 1,
+        "lane": "DIS-006",
+        "name": "scaled sphere unit times sxxxxx",
+        "next_action": "Advance to the next DIS-006 scaled descriptor; revisit this one with a broader spatial matrix or higher-degree formal ansatz.",
+        "potential_status": "blocked_by_ansatz_obstruction",
+        "priority": 35,
+        "process_disposition": "frontier",
+        "recommendation": "blocked"
       },
       {
         "classification": "needs_human_review",
@@ -49442,7 +50162,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "scaled-sphere-zero-flow-zero-connection-control"
         ],
         "frontier_ids": [
-          "scaled-sphere-unit-times-sxxxxx",
           "semidirect-non-split-product-deformation-probe",
           "scaled-sphere-jerk-sq-blend-sx-sxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -49509,6 +50228,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "scaled-sphere-unit-blend-sxxxxx-sx-sxx-cross",
           "scaled-sphere-unit-times-sx-sxx-cross",
           "scaled-sphere-unit-times-sxxx",
+          "scaled-sphere-unit-times-sxxxxx",
           "density-matrix-dissipative-tangent-probe",
           "density-matrix-isospectral-commutator-probe",
           "scaled-sphere-accel-sq-blend-sx-sxxx",
@@ -49593,7 +50313,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
       },
       {
         "candidates_seen": [
-          "scaled-sphere-unit-times-sxxxxx",
           "semidirect-non-split-product-deformation-probe",
           "scaled-sphere-jerk-sq-blend-sx-sxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -49660,6 +50379,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "scaled-sphere-unit-blend-sxxxxx-sx-sxx-cross",
           "scaled-sphere-unit-times-sx-sxx-cross",
           "scaled-sphere-unit-times-sxxx",
+          "scaled-sphere-unit-times-sxxxxx",
           "density-matrix-dissipative-tangent-probe",
           "density-matrix-isospectral-commutator-probe",
           "scaled-sphere-accel-sq-blend-sx-sxxx",
@@ -49730,7 +50450,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
         ],
         "discarded_ids": [],
         "frontier_ids": [
-          "scaled-sphere-unit-times-sxxxxx",
           "semidirect-non-split-product-deformation-probe",
           "scaled-sphere-jerk-sq-blend-sx-sxxx",
           "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -49797,6 +50516,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "scaled-sphere-unit-blend-sxxxxx-sx-sxx-cross",
           "scaled-sphere-unit-times-sx-sxx-cross",
           "scaled-sphere-unit-times-sxxx",
+          "scaled-sphere-unit-times-sxxxxx",
           "density-matrix-dissipative-tangent-probe",
           "density-matrix-isospectral-commutator-probe",
           "scaled-sphere-accel-sq-blend-sx-sxxx",
@@ -49953,7 +50673,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": "open candidate dossiers",
       "label": "Needs review",
       "tone": "warn",
-      "value": 133
+      "value": 132
     },
     {
       "detail": "promising potential queue",
@@ -49965,7 +50685,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "detail": "documented obstructions",
       "label": "Blocked",
       "tone": "warn",
-      "value": 1
+      "value": 2
     },
     {
       "detail": "0 fail / 0 warn",
@@ -50023,9 +50743,9 @@ window.LAXFORGE_DASHBOARD_DATA = {
     }
   ],
   "metrics": {
-    "ansatz_blocked_count": 1,
+    "ansatz_blocked_count": 2,
     "ansatz_solver_status": "solved",
-    "blocked_frontier_count": 1,
+    "blocked_frontier_count": 2,
     "classification_counts": {
       "fake": 7,
       "known collision": 1,
@@ -50090,10 +50810,10 @@ window.LAXFORGE_DASHBOARD_DATA = {
     "proof_artifact_count": 1,
     "recommendation_counts": {
       "audit": 1,
-      "blocked": 1,
+      "blocked": 2,
       "calibration": 1,
       "discard": 9,
-      "needs_human_review": 133
+      "needs_human_review": 132
     },
     "serious_cycle_status": "blocked",
     "tracked_items_total": 145,
@@ -50107,10 +50827,10 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "DIS-001 has 4 semidirect probes; validated controls stay in discard and the non-split product probe now has corrected flow-equation evidence.",
       "DIS-002 has 4 sphere-flow candidates; the Heisenberg-shaped case is validated but known-family collision evidence keeps it in discard.",
       "DIS-003 through DIS-005 add 3 density-matrix, 2 nonlocal-covering, and 2 cohomology probes with explicit open gates.",
-      "DIS-006 adds 128 scaled sphere-tangent triage candidates; the batch records descriptors without constructing ZCR matrices.",
-      "The frontier has 0 promising-potential candidates and 1 blocked candidates.",
-      "SERIOUS-001 leaves 1 third-order candidate blocked by a documented ansatz-family obstruction; the broader discovery state has 1 blocked candidates total.",
-      "4 controlled candidates have validated ZCR evidence; 133 need review and 9 are discard-path.",
+      "DIS-006 adds 128 scaled sphere-tangent triage candidates; the first-priority formal ansatz obstruction is now recorded while the remaining batch keeps descriptor-level gates.",
+      "The frontier has 0 promising-potential candidates and 2 blocked candidates.",
+      "SERIOUS-001 leaves 1 third-order candidate blocked by a documented ansatz-family obstruction; the broader discovery state has 2 blocked candidates total.",
+      "4 controlled candidates have validated ZCR evidence; 132 need review and 9 are discard-path.",
       "FULL-001 evaluates 143 discovery candidates and keeps the solver action queue separate from stronger interpretation."
     ],
     "headline": "Current readout: this is an active evidence search with a bounded frontier.",
@@ -52270,27 +52990,28 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "not_constructed_batch_triage",
+          "connection_status": "formal_ansatz_obstruction_current_family",
           "evidence_summary": [
-            "scaled DIS-006 descriptor is tangent by construction",
-            "matrix pair is not constructed in the batch pass",
-            "candidate remains review-only until solver gates run"
+            "scaled descriptor is tangent by construction",
+            "degree-3 local-vector formal ansatz is obstructed for U=lambda*hat(s)",
+            "broader matrix families remain open"
           ],
           "gate_gaps": [
             "flow is tangent by cross-product construction",
-            "zero-curvature matrix pair has not been constructed in the scaled triage pass",
-            "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+            "degree-3 local-vector formal ansatz with U=lambda*hat(s) has no solution",
+            "obstruction basis is recorded for the supported formal residual equations",
+            "broader matrix, gauge, cyclic, conservation, and Hamiltonian gates remain open",
             "sphere, Heisenberg, and symmetric-space collision checks remain active"
           ],
           "item_id": "scaled-sphere-unit-times-sxxxxx",
           "iteration": 1,
           "lane": "DIS-006",
           "name": "scaled sphere unit times sxxxxx",
-          "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
-          "potential_status": "batch_triage_pending",
-          "priority": 39,
+          "next_action": "Advance to the next DIS-006 scaled descriptor; revisit this one with a broader spatial matrix or higher-degree formal ansatz.",
+          "potential_status": "blocked_by_ansatz_obstruction",
+          "priority": 35,
           "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
+          "recommendation": "blocked"
         },
         {
           "classification": "needs_human_review",
@@ -55442,30 +56163,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "not_constructed_batch_triage",
-          "evidence_summary": [
-            "scaled DIS-006 descriptor is tangent by construction",
-            "matrix pair is not constructed in the batch pass",
-            "candidate remains review-only until solver gates run"
-          ],
-          "gate_gaps": [
-            "flow is tangent by cross-product construction",
-            "zero-curvature matrix pair has not been constructed in the scaled triage pass",
-            "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
-            "sphere, Heisenberg, and symmetric-space collision checks remain active"
-          ],
-          "item_id": "scaled-sphere-unit-times-sxxxxx",
-          "iteration": 1,
-          "lane": "DIS-006",
-          "name": "scaled sphere unit times sxxxxx",
-          "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
-          "potential_status": "batch_triage_pending",
-          "priority": 39,
-          "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
-        },
-        {
-          "classification": "needs_human_review",
           "connection_status": "validated_non_split_flow_equations",
           "evidence_summary": [
             "bounded diagonal correction solver closes the non-split residual gate",
@@ -57024,6 +57721,31 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "priority": 35,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
+        },
+        {
+          "classification": "needs_human_review",
+          "connection_status": "formal_ansatz_obstruction_current_family",
+          "evidence_summary": [
+            "scaled descriptor is tangent by construction",
+            "degree-3 local-vector formal ansatz is obstructed for U=lambda*hat(s)",
+            "broader matrix families remain open"
+          ],
+          "gate_gaps": [
+            "flow is tangent by cross-product construction",
+            "degree-3 local-vector formal ansatz with U=lambda*hat(s) has no solution",
+            "obstruction basis is recorded for the supported formal residual equations",
+            "broader matrix, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+            "sphere, Heisenberg, and symmetric-space collision checks remain active"
+          ],
+          "item_id": "scaled-sphere-unit-times-sxxxxx",
+          "iteration": 1,
+          "lane": "DIS-006",
+          "name": "scaled sphere unit times sxxxxx",
+          "next_action": "Advance to the next DIS-006 scaled descriptor; revisit this one with a broader spatial matrix or higher-degree formal ansatz.",
+          "potential_status": "blocked_by_ansatz_obstruction",
+          "priority": 35,
+          "process_disposition": "frontier",
+          "recommendation": "blocked"
         },
         {
           "classification": "needs_human_review",
@@ -58784,7 +59506,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
           ],
           "frontier_ids": [
             "sphere-s-cross-s-xxx-exploratory-candidate",
-            "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -58850,6 +59571,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-unit-blend-sxxxxx-sx-sxx-cross",
             "scaled-sphere-unit-times-sx-sxx-cross",
             "scaled-sphere-unit-times-sxxx",
+            "scaled-sphere-unit-times-sxxxxx",
             "density-matrix-dissipative-tangent-probe",
             "density-matrix-isospectral-commutator-probe",
             "scaled-sphere-accel-sq-blend-sx-sxxx",
@@ -58935,7 +59657,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
         {
           "candidates_seen": [
             "sphere-s-cross-s-xxx-exploratory-candidate",
-            "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -59001,6 +59722,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-unit-blend-sxxxxx-sx-sxx-cross",
             "scaled-sphere-unit-times-sx-sxx-cross",
             "scaled-sphere-unit-times-sxxx",
+            "scaled-sphere-unit-times-sxxxxx",
             "density-matrix-dissipative-tangent-probe",
             "density-matrix-isospectral-commutator-probe",
             "scaled-sphere-accel-sq-blend-sx-sxxx",
@@ -59072,7 +59794,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "discarded_ids": [],
           "frontier_ids": [
             "sphere-s-cross-s-xxx-exploratory-candidate",
-            "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -59138,6 +59859,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-unit-blend-sxxxxx-sx-sxx-cross",
             "scaled-sphere-unit-times-sx-sxx-cross",
             "scaled-sphere-unit-times-sxxx",
+            "scaled-sphere-unit-times-sxxxxx",
             "density-matrix-dissipative-tangent-probe",
             "density-matrix-isospectral-commutator-probe",
             "scaled-sphere-accel-sq-blend-sx-sxxx",
@@ -60437,27 +61159,28 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "classification": "needs_human_review",
-          "connection_status": "not_constructed_batch_triage",
+          "connection_status": "formal_ansatz_obstruction_current_family",
           "evidence_summary": [
-            "scaled DIS-006 descriptor is tangent by construction",
-            "matrix pair is not constructed in the batch pass",
-            "candidate remains review-only until solver gates run"
+            "scaled descriptor is tangent by construction",
+            "degree-3 local-vector formal ansatz is obstructed for U=lambda*hat(s)",
+            "broader matrix families remain open"
           ],
           "gate_gaps": [
             "flow is tangent by cross-product construction",
-            "zero-curvature matrix pair has not been constructed in the scaled triage pass",
-            "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+            "degree-3 local-vector formal ansatz with U=lambda*hat(s) has no solution",
+            "obstruction basis is recorded for the supported formal residual equations",
+            "broader matrix, gauge, cyclic, conservation, and Hamiltonian gates remain open",
             "sphere, Heisenberg, and symmetric-space collision checks remain active"
           ],
           "item_id": "scaled-sphere-unit-times-sxxxxx",
           "iteration": 1,
           "lane": "DIS-006",
           "name": "scaled sphere unit times sxxxxx",
-          "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
-          "potential_status": "batch_triage_pending",
-          "priority": 39,
+          "next_action": "Advance to the next DIS-006 scaled descriptor; revisit this one with a broader spatial matrix or higher-degree formal ansatz.",
+          "potential_status": "blocked_by_ansatz_obstruction",
+          "priority": 35,
           "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
+          "recommendation": "blocked"
         },
         {
           "classification": "needs_human_review",
@@ -63585,30 +64308,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
       "frontier": [
         {
           "classification": "needs_human_review",
-          "connection_status": "not_constructed_batch_triage",
-          "evidence_summary": [
-            "scaled DIS-006 descriptor is tangent by construction",
-            "matrix pair is not constructed in the batch pass",
-            "candidate remains review-only until solver gates run"
-          ],
-          "gate_gaps": [
-            "flow is tangent by cross-product construction",
-            "zero-curvature matrix pair has not been constructed in the scaled triage pass",
-            "spectral, gauge, cyclic, conservation, and Hamiltonian gates remain open",
-            "sphere, Heisenberg, and symmetric-space collision checks remain active"
-          ],
-          "item_id": "scaled-sphere-unit-times-sxxxxx",
-          "iteration": 1,
-          "lane": "DIS-006",
-          "name": "scaled sphere unit times sxxxxx",
-          "next_action": "Select by priority, then attempt the smallest supported ZCR ansatz with gauge, cyclic, and collision checks.",
-          "potential_status": "batch_triage_pending",
-          "priority": 39,
-          "process_disposition": "frontier",
-          "recommendation": "needs_human_review"
-        },
-        {
-          "classification": "needs_human_review",
           "connection_status": "validated_non_split_flow_equations",
           "evidence_summary": [
             "bounded diagonal correction solver closes the non-split residual gate",
@@ -65189,6 +65888,31 @@ window.LAXFORGE_DASHBOARD_DATA = {
           "priority": 35,
           "process_disposition": "frontier",
           "recommendation": "needs_human_review"
+        },
+        {
+          "classification": "needs_human_review",
+          "connection_status": "formal_ansatz_obstruction_current_family",
+          "evidence_summary": [
+            "scaled descriptor is tangent by construction",
+            "degree-3 local-vector formal ansatz is obstructed for U=lambda*hat(s)",
+            "broader matrix families remain open"
+          ],
+          "gate_gaps": [
+            "flow is tangent by cross-product construction",
+            "degree-3 local-vector formal ansatz with U=lambda*hat(s) has no solution",
+            "obstruction basis is recorded for the supported formal residual equations",
+            "broader matrix, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+            "sphere, Heisenberg, and symmetric-space collision checks remain active"
+          ],
+          "item_id": "scaled-sphere-unit-times-sxxxxx",
+          "iteration": 1,
+          "lane": "DIS-006",
+          "name": "scaled sphere unit times sxxxxx",
+          "next_action": "Advance to the next DIS-006 scaled descriptor; revisit this one with a broader spatial matrix or higher-degree formal ansatz.",
+          "potential_status": "blocked_by_ansatz_obstruction",
+          "priority": 35,
+          "process_disposition": "frontier",
+          "recommendation": "blocked"
         },
         {
           "classification": "needs_human_review",
@@ -66948,7 +67672,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-zero-flow-zero-connection-control"
           ],
           "frontier_ids": [
-            "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -67015,6 +67738,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-unit-blend-sxxxxx-sx-sxx-cross",
             "scaled-sphere-unit-times-sx-sxx-cross",
             "scaled-sphere-unit-times-sxxx",
+            "scaled-sphere-unit-times-sxxxxx",
             "density-matrix-dissipative-tangent-probe",
             "density-matrix-isospectral-commutator-probe",
             "scaled-sphere-accel-sq-blend-sx-sxxx",
@@ -67099,7 +67823,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
         },
         {
           "candidates_seen": [
-            "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -67166,6 +67889,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-unit-blend-sxxxxx-sx-sxx-cross",
             "scaled-sphere-unit-times-sx-sxx-cross",
             "scaled-sphere-unit-times-sxxx",
+            "scaled-sphere-unit-times-sxxxxx",
             "density-matrix-dissipative-tangent-probe",
             "density-matrix-isospectral-commutator-probe",
             "scaled-sphere-accel-sq-blend-sx-sxxx",
@@ -67236,7 +67960,6 @@ window.LAXFORGE_DASHBOARD_DATA = {
           ],
           "discarded_ids": [],
           "frontier_ids": [
-            "scaled-sphere-unit-times-sxxxxx",
             "semidirect-non-split-product-deformation-probe",
             "scaled-sphere-jerk-sq-blend-sx-sxxx",
             "scaled-sphere-jerk-sq-blend-sx-sxxxx",
@@ -67303,6 +68026,7 @@ window.LAXFORGE_DASHBOARD_DATA = {
             "scaled-sphere-unit-blend-sxxxxx-sx-sxx-cross",
             "scaled-sphere-unit-times-sx-sxx-cross",
             "scaled-sphere-unit-times-sxxx",
+            "scaled-sphere-unit-times-sxxxxx",
             "density-matrix-dissipative-tangent-probe",
             "density-matrix-isospectral-commutator-probe",
             "scaled-sphere-accel-sq-blend-sx-sxxx",

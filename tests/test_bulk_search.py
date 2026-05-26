@@ -38,7 +38,7 @@ def test_scaled_candidates_are_conservative_and_auditable():
 
     for candidate in report.candidates:
         assert required_gates <= set(candidate.gate_summary)
-        assert candidate.dossier.recommendation in {"discard", "needs_human_review"}
+        assert candidate.dossier.recommendation in {"discard", "needs_human_review", "blocked"}
         assert candidate.failure_reasons
         assert candidate.dossier.collision_report["checklist"]
 
@@ -50,8 +50,28 @@ def test_scaled_search_zero_control_is_discarded_and_others_remain_review():
 
     assert zero_control.dossier.recommendation == "discard"
     assert zero_control.connection_status == "validated_zero_control"
-    assert all(candidate.dossier.recommendation == "needs_human_review" for candidate in reviewed)
+    assert all(
+        candidate.dossier.recommendation in {"needs_human_review", "blocked"}
+        for candidate in reviewed
+    )
     assert len(reviewed) >= 100
+
+
+def test_scaled_top_priority_candidate_records_formal_ansatz_obstruction():
+    candidate = next(
+        candidate
+        for candidate in run_scaled_candidate_search().candidates
+        if candidate.name == "scaled sphere unit times sxxxxx"
+    )
+
+    assert candidate.dossier.recommendation == "blocked"
+    assert candidate.connection_status == "formal_ansatz_obstruction_current_family"
+    assert candidate.formal_ansatz_report
+    assert candidate.formal_ansatz_report["status"] == "no_formal_solution"
+    assert candidate.gate_summary["formal_ansatz_unknowns"] == 39
+    assert candidate.gate_summary["formal_ansatz_equations"] == 95
+    assert candidate.dossier.curvature_summary["curvature_terms_nonzero"] == 4
+    assert candidate.gate_summary["zcr_obstruction_basis"]
 
 
 def test_scaled_tangent_candidates_have_zero_tangent_condition():

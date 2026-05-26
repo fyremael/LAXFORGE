@@ -27,9 +27,9 @@ def test_full_scale_search_runs_current_scaled_frontier():
         "DIS-006": 128,
     }
     assert report.recommendation_counts == {
-        "blocked": 1,
+        "blocked": 2,
         "discard": 9,
-        "needs_human_review": 133,
+        "needs_human_review": 132,
     }
     assert report.procedure_audit.status == "pass"
 
@@ -38,9 +38,9 @@ def test_full_scale_action_queue_is_prioritized_and_conservative():
     report = run_full_scale_search()
 
     assert len(report.action_queue) == 25
-    assert report.action_queue[0].item_id == "scaled-sphere-unit-times-sxxxxx"
-    assert report.action_queue[1].item_id == "semidirect-non-split-product-deformation-probe"
-    assert report.action_queue[2].item_id == "scaled-sphere-jerk-sq-blend-sx-sxxx"
+    assert report.action_queue[0].item_id == "semidirect-non-split-product-deformation-probe"
+    assert report.action_queue[1].item_id == "scaled-sphere-jerk-sq-blend-sx-sxxx"
+    assert report.action_queue[2].item_id == "scaled-sphere-jerk-sq-blend-sx-sxxxx"
     assert any(record.lane == "DIS-006" for record in report.action_queue)
     assert any("non-split semidirect gauge" in item for item in report.blocked_capabilities)
     assert any("formal-tower evidence" in item for item in report.blocked_capabilities)

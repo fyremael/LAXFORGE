@@ -76,6 +76,7 @@ function renderReadout() {
   const frontier = reportData.iterative_process?.frontier || [];
   const firstFrontier = frontier[0];
   const sphereSx = frontier.find((record) => record.item_id === "sphere-s-cross-s-x-tangent-candidate");
+  const scaledTop = itemById("scaled-sphere-unit-times-sxxxxx");
   const sxxx = itemById("sphere-s-cross-s-xxx-exploratory-candidate");
   const heisenberg = itemById("sphere-s-cross-s-xx-heisenberg-shaped-candidate");
   const dis003Count = candidateCountByLane("DIS-003");
@@ -87,8 +88,8 @@ function renderReadout() {
     `The strongest mathematical infrastructure result is M0: the zero-curvature reporting layer can certify an exact pure-gauge flatness case with the convention U_t - V_x + [U,V], matrix shape, coefficient basis, residual-zero status, and per-entry residual grid exposed for audit.`,
     `The strongest calibration result is the second-jet nilpotent mKdV lane. It recovers a known mechanism, verifies Hamiltonian structure, and records ${itemById("second-jet-nilpotent-mkdv")?.conservation_count ?? 0} conservation-law signals. That gives the search process a working reference target before frontier candidates are judged.`,
     `The first serious cycle did not produce a validated third-order sphere ZCR. It changed the state of s_cross_s_xxx from open frontier to blocked by the current low-order so(3) ansatz family. That is useful: it narrows the next search without pretending to rule out broader families.`,
-    `The next phase is deliberately broader: DIS-006 records 100+ deterministic tangent-flow descriptors, verifies their tangent construction, and leaves ZCR, spectral, gauge, cyclic, conservation, and collision evidence open until candidate-specific solver passes run.`,
-    `The most actionable next item is ${firstFrontier?.name || "the first queued frontier candidate"}. That puts scaled sphere triage at the front of the queue, while the sphere s_cross_s_x candidate has moved out of the recursive tower blocker and into ${titleCase(sphereSx?.potential_status || "formal_tower_downstream_gates_recorded")} because the formal recurrence D_x(p{k+1}) = s cross p{k} closes the zero-curvature residual as a power series, while bounded truncations still retain top residuals.`,
+    `The next phase is deliberately broader: DIS-006 records 100+ deterministic tangent-flow descriptors, verifies their tangent construction, and now carries a first-priority formal ansatz obstruction for ${scaledTop?.short_name || "unit times sxxxxx"}. The remaining scaled descriptors keep open ZCR, spectral, gauge, cyclic, conservation, and collision evidence until candidate-specific solver passes run.`,
+    `The most actionable next item is ${firstFrontier?.name || "the first queued frontier candidate"}. The first scaled sphere priority item is now ${titleCase(scaledTop?.frontier_status || "blocked_by_ansatz_obstruction")}, while the sphere s_cross_s_x candidate has moved out of the recursive tower blocker and into ${titleCase(sphereSx?.potential_status || "formal_tower_downstream_gates_recorded")}.`,
     `Known-family discipline is active. The ${heisenberg?.short_name || "Heisenberg-shaped"} candidate has validated ZCR evidence, but it is classified as a known-family collision and recommended discard. This is the intended behavior: validation alone is not enough to keep a candidate alive.`,
   ];
 
@@ -193,7 +194,7 @@ function renderDossiers() {
       tone: "warn",
       paragraphs: [
         "The full-scale pass runs every current discovery lane through the supported gates, audits the partition into discard and frontier records, and exposes a prioritized action queue for solver work.",
-        "The result is deliberately conservative. DIS-006 provides breadth, while FULL-001 records that no scaled batch candidate has a constructed ZCR matrix pair yet.",
+        "The result is deliberately conservative. DIS-006 provides breadth, and FULL-001 now records that the first scaled priority item is blocked in the supported formal ansatz while the remaining scaled candidates await solver passes.",
       ],
       stats: [
         ["Candidates", fullScale.generated_candidate_count || 0],
@@ -219,11 +220,11 @@ function renderDossiers() {
       tone: "warn",
       paragraphs: [
         "The next phase adds a deterministic batch of sphere-tangent flow descriptors built from cross products, derivative atoms, scalar invariants, and two-term blends. Every non-control candidate is tangent by construction.",
-        "The batch does not claim a ZCR. Its value is coverage: each record is now visible to the dashboard, procedure audit, collision guard, and frontier queue so solver work can be selected systematically.",
+        "The batch does not claim a ZCR. Its first-priority unit-times-sxxxxx item now records a degree-3 formal ansatz obstruction, while the rest of the batch remains visible to the dashboard, procedure audit, collision guard, and frontier queue.",
       ],
       stats: [
         ["Batch size", dis006Count],
-        ["Default", "review"],
+        ["First gate", titleCase(scaledTop?.frontier_status || "pending")],
       ],
     }),
     dossierCard({
@@ -257,7 +258,7 @@ function renderDossiers() {
       title: "The process is coherent enough for another cycle",
       tone: "pass",
       paragraphs: [
-        "ITER-001 keeps the next blockers visible: scaled sphere triage, the corrected non-split semidirect downstream gates, formal-tower human review against nonlocal coverings, and the third-order sphere obstruction retained for broader ansatz work.",
+        "ITER-001 keeps the next blockers visible: corrected non-split semidirect downstream gates, the remaining scaled sphere triage queue, formal-tower human review against nonlocal coverings, and blocked ansatz-family records retained for broader search.",
         "PROC-001 passes its formal audit checks. That does not make any candidate stronger, but it means the search procedure is partitioning frontier and discard states consistently.",
       ],
       stats: [

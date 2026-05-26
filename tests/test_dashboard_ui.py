@@ -30,8 +30,8 @@ def test_dashboard_payload_tracks_m0_calibration_and_discovery_items():
     assert payload["metrics"]["dis006_candidate_count"] == 128
     assert payload["metrics"]["frontier_count"] == 134
     assert payload["metrics"]["promising_potential_count"] == 0
-    assert payload["metrics"]["blocked_frontier_count"] == 1
-    assert payload["metrics"]["ansatz_blocked_count"] == 1
+    assert payload["metrics"]["blocked_frontier_count"] == 2
+    assert payload["metrics"]["ansatz_blocked_count"] == 2
     assert payload["metrics"]["serious_cycle_status"] == "blocked"
     assert payload["metrics"]["full_scale_status"] == "frontier_active"
     assert payload["metrics"]["full_scale_candidate_count"] == 143
@@ -93,6 +93,7 @@ def test_dashboard_payload_includes_plain_lay_summary():
     assert "non-split product probe now has corrected flow-equation evidence" in summary["bullets"][2]
     assert "DIS-003 through DIS-005 add 3 density-matrix" in summary["bullets"][4]
     assert "DIS-006 adds 128 scaled sphere-tangent triage candidates" in summary["bullets"][5]
+    assert "first-priority formal ansatz obstruction" in summary["bullets"][5]
     assert "SERIOUS-001 leaves 1 third-order candidate blocked" in summary["bullets"][7]
     assert "FULL-001 evaluates 143 discovery candidates" in summary["bullets"][-1]
     assert "process console" in summary["bottom_line"]
@@ -161,6 +162,22 @@ def test_dashboard_frontier_process_tracks_queued_next_actions():
     assert _item(payload, "sphere-s-cross-s-xxx-exploratory-candidate")[
         "frontier_status"
     ] == "blocked_by_ansatz_obstruction"
+    assert _item(payload, "scaled-sphere-unit-times-sxxxxx")[
+        "frontier_status"
+    ] == "blocked_by_ansatz_obstruction"
+
+
+def test_dashboard_scaled_top_candidate_surfaces_formal_ansatz_obstruction():
+    payload = build_dashboard_payload()
+    item = _item(payload, "scaled-sphere-unit-times-sxxxxx")
+
+    assert item["recommendation"] == "blocked"
+    assert item["connection_status"] == "formal_ansatz_obstruction_current_family"
+    assert item["formal_ansatz_report"]["status"] == "no_formal_solution"
+    assert item["formal_ansatz_report"]["unknown_count"] == 39
+    assert item["formal_ansatz_report"]["equation_count"] == 95
+    assert item["curvature_terms_nonzero"] == 4
+    assert item["zcr_obstruction_basis"]
 
 
 def test_dashboard_serious_cycle_surfaces_sxxx_obstruction():
