@@ -232,6 +232,29 @@ def _candidate_record(candidate: Any, lane: str, iteration: int) -> FrontierCand
                     "nonlocal and different-U families remain open",
                 ),
             )
+        if lane == "DIS-006" and connection_status == "formal_ansatz_obstruction_current_family":
+            return FrontierCandidate(
+                item_id=_slug(name),
+                name=name,
+                lane=lane,
+                iteration=iteration,
+                recommendation=recommendation,
+                classification=classification,
+                connection_status=connection_status,
+                process_disposition="frontier",
+                potential_status="blocked_by_ansatz_obstruction",
+                priority=35,
+                next_action=(
+                    "Advance to the next DIS-006 scaled descriptor; revisit this one with "
+                    "a broader spatial matrix or higher-degree formal ansatz."
+                ),
+                gate_gaps=tuple(candidate.failure_reasons),
+                evidence_summary=(
+                    "scaled descriptor is tangent by construction",
+                    "degree-3 local-vector formal ansatz is obstructed for U=lambda*hat(s)",
+                    "broader matrix families remain open",
+                ),
+            )
         return FrontierCandidate(
             item_id=_slug(name),
             name=name,

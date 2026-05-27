@@ -34,7 +34,7 @@ def test_serious_cycle_records_attempt_and_procedure_evidence():
     assert report.baseline_procedure.status == "pass"
     assert report.refreshed_procedure.status == "pass"
     assert report.refreshed_process.frontier[0].item_id == (
-        "scaled-sphere-unit-times-sxxxxx"
+        "semidirect-non-split-product-deformation-probe"
     )
 
 

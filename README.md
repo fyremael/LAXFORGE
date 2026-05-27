@@ -13,6 +13,7 @@ This repository scaffold is designed for incremental implementation by Codex-sty
 - Agent prompts for staged implementation.
 - A first calibration example: the second-jet nilpotent mKdV lift.
 - A minimal symbolic validation script and pytest target.
+- A promotional and educational content kit for careful outreach.
 
 The philosophical rule is simple:
 
@@ -39,6 +40,9 @@ The output directory contains `laxforge_manifest.json`, `candidate.json`, and
 `LaxforgeAKNSD2TransportZero` calibration with second-order diagonal operators
 and paired-field off-diagonal entries. LAXCERT can certify that directory
 directly.
+
+For project-page copy, teaching blurbs, LAXCERT introduction text, and
+claim-safe outreach snippets, see `docs/CONTENT_KIT.md`.
 
 ## First milestone
 

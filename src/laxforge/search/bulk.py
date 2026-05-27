@@ -13,6 +13,7 @@ import sympy as sp
 from laxforge.core.dossier import CandidateDossier
 from laxforge.core.prior_art import classify_candidate
 from laxforge.search.controlled import DiscoveryRunReport
+from laxforge.search.formal_sphere_ansatz import solve_formal_sphere_ansatz
 
 
 SCALAR_FACTORS: tuple[tuple[str, str, int], ...] = (
@@ -44,6 +45,7 @@ class BulkSearchConfig:
     target_count: int = 128
     include_zero_control: bool = True
     max_derivative_order: int = 5
+    attempt_first_priority_ansatz: bool = True
 
 
 @dataclass(frozen=True)
@@ -62,6 +64,9 @@ class BulkTriageCandidate:
     dossier: CandidateDossier
     failure_reasons: tuple[str, ...]
     priority_score: int
+    scalar_factor: str | None = None
+    vector_atom: str | None = None
+    formal_ansatz_report: dict[str, object] | None = None
 
     def as_dict(self) -> dict[str, object]:
         """Return a JSON-compatible candidate record."""
@@ -83,6 +88,9 @@ class BulkTriageCandidate:
             "dossier": dossier,
             "failure_reasons": list(self.failure_reasons),
             "priority_score": self.priority_score,
+            "scalar_factor": self.scalar_factor,
+            "vector_atom": self.vector_atom,
+            "formal_ansatz_report": self.formal_ansatz_report,
         }
 
     def to_markdown(self) -> str:
@@ -106,7 +114,28 @@ class BulkTriageCandidate:
             lines.append(f"- `{key}`: `{self.gate_summary[key]}`")
         lines.extend(["", "## Failure Reasons", ""])
         lines.extend(f"- {reason}" for reason in self.failure_reasons)
+        if self.formal_ansatz_report:
+            lines.extend(
+                [
+                    "",
+                    "## Formal Ansatz Evidence",
+                    "",
+                    f"- Status: `{self.formal_ansatz_report['status']}`",
+                    f"- Unknowns: `{self.formal_ansatz_report['unknown_count']}`",
+                    f"- Equations: `{self.formal_ansatz_report['equation_count']}`",
+                ]
+            )
         return "\n".join(lines).rstrip() + "\n"
+
+
+@dataclass(frozen=True)
+class _FormalCandidateAdapter:
+    """Minimal shape required by the formal sphere ansatz solver."""
+
+    name: str
+    order: int
+    scalar_factor: str
+    vector_atom: str
 
 
 def _slug(value: str) -> str:
@@ -141,12 +170,24 @@ def _gauge_report() -> dict[str, object]:
     }
 
 
+def _obstructed_gauge_report() -> dict[str, object]:
+    return {
+        "gauge_risk_score": None,
+        "status": "not_attempted_after_formal_obstruction",
+        "spectral_report": {"status": "unresolved"},
+        "reason": "formal local-vector ansatz did not produce a matrix pair",
+    }
+
+
 def _candidate(
     name: str,
     family: str,
     descriptor: str,
     order: int,
     priority_score: int,
+    scalar_factor: str | None = None,
+    vector_atom: str | None = None,
+    attempt_formal_ansatz: bool = False,
     fake_pair: bool = False,
 ) -> BulkTriageCandidate:
     metadata = {"fake_pair": fake_pair} if fake_pair else {"sphere_tangent_flow": True}
@@ -181,11 +222,82 @@ def _candidate(
         "descriptor": descriptor,
         "priority_score": priority_score,
     }
+    formal_ansatz_report = None
+    curvature_summary = _curvature_summary(connection_status)
+    gauge_report = _gauge_report()
+    if attempt_formal_ansatz and scalar_factor and vector_atom and not fake_pair:
+        formal_report = solve_formal_sphere_ansatz(
+            _FormalCandidateAdapter(
+                name=name,
+                order=order,
+                scalar_factor=scalar_factor,
+                vector_atom=vector_atom,
+            ),
+            degree=3,
+        )
+        formal_ansatz_report = formal_report.as_dict()
+        if formal_report.solved:
+            connection_status = "formal_zcr_candidate_needs_matrix_validation"
+            recommendation = "needs_human_review"
+            curvature_summary = {
+                "curvature_residual_zero": False,
+                "curvature_terms_total": formal_report.equation_count,
+                "curvature_terms_nonzero": None,
+                "basis_split_complete": True,
+                "status": connection_status,
+                "formal_degree": formal_report.degree,
+                "formal_unknowns": formal_report.unknown_count,
+                "formal_basis_size": formal_report.basis_size,
+                "solution": formal_report.solution,
+                "reason": (
+                    "formal local-vector ansatz solved coefficient constraints; matrix "
+                    "reconstruction remains open"
+                ),
+            }
+            failure_reasons = (
+                "flow is tangent by cross-product construction",
+                "degree-3 local-vector formal ansatz solved coefficient constraints",
+                "explicit matrix reconstruction, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+                "sphere, Heisenberg, and symmetric-space collision checks remain active",
+            )
+        else:
+            connection_status = "formal_ansatz_obstruction_current_family"
+            recommendation = "blocked"
+            curvature_summary = {
+                "curvature_residual_zero": False,
+                "curvature_terms_total": formal_report.equation_count,
+                "curvature_terms_nonzero": len(formal_report.obstruction_basis),
+                "basis_split_complete": True,
+                "status": connection_status,
+                "formal_degree": formal_report.degree,
+                "formal_unknowns": formal_report.unknown_count,
+                "formal_basis_size": formal_report.basis_size,
+                "formal_ansatz_status": formal_report.status,
+                "obstruction_basis": list(formal_report.obstruction_basis),
+            }
+            gauge_report = _obstructed_gauge_report()
+            failure_reasons = (
+                "flow is tangent by cross-product construction",
+                "degree-3 local-vector formal ansatz with U=lambda*hat(s) has no solution",
+                "obstruction basis is recorded for the supported formal residual equations",
+                "broader matrix, gauge, cyclic, conservation, and Hamiltonian gates remain open",
+                "sphere, Heisenberg, and symmetric-space collision checks remain active",
+            )
+        gate_summary.update(
+            {
+                "curvature_validation": connection_status,
+                "formal_ansatz_status": formal_report.status,
+                "formal_ansatz_unknowns": formal_report.unknown_count,
+                "formal_ansatz_equations": formal_report.equation_count,
+                "zcr_obstruction_basis": list(formal_report.obstruction_basis),
+                "recommendation": recommendation,
+            }
+        )
     dossier = CandidateDossier(
         name=name,
         classification=collision_report.classification,
-        curvature_summary=_curvature_summary(connection_status),
-        gauge_report=_gauge_report(),
+        curvature_summary=curvature_summary,
+        gauge_report=gauge_report,
         collision_report=collision_report.as_dict(),
         conservation_report={"status": "not_mined", "num_conservation_laws_found": 0},
         hamiltonian_report={"status": "not_attempted", "verified": False},
@@ -205,11 +317,16 @@ def _candidate(
         dossier=dossier,
         failure_reasons=failure_reasons,
         priority_score=priority_score,
+        scalar_factor=scalar_factor,
+        vector_atom=vector_atom,
+        formal_ansatz_report=formal_ansatz_report,
     )
 
 
-def _candidate_specs(config: BulkSearchConfig) -> list[tuple[str, str, str, int, int]]:
-    specs: list[tuple[str, str, str, int, int]] = []
+def _candidate_specs(
+    config: BulkSearchConfig,
+) -> list[tuple[str, str, str, int, int, str, str]]:
+    specs: list[tuple[str, str, str, int, int, str, str]] = []
     for scalar_key, scalar_expr, scalar_order in SCALAR_FACTORS:
         for vector_key, vector_expr, vector_order in VECTOR_ATOMS:
             if vector_order > config.max_derivative_order:
@@ -218,7 +335,9 @@ def _candidate_specs(config: BulkSearchConfig) -> list[tuple[str, str, str, int,
             name = f"scaled sphere {scalar_key} times {vector_key}"
             descriptor = f"s x (({scalar_expr}) {vector_expr})"
             priority = 26 + min(18, order * 2) + (3 if scalar_key == "unit" else 0)
-            specs.append((name, "single_factor_cross", descriptor, order, priority))
+            specs.append(
+                (name, "single_factor_cross", descriptor, order, priority, scalar_key, vector_key)
+            )
 
     blend_scalars = SCALAR_FACTORS[:5]
     for scalar_key, scalar_expr, scalar_order in blend_scalars:
@@ -230,7 +349,17 @@ def _candidate_specs(config: BulkSearchConfig) -> list[tuple[str, str, str, int,
                 name = f"scaled sphere {scalar_key} blend {left_key} {right_key}"
                 descriptor = f"s x (({scalar_expr}) {left_expr} + {right_expr})"
                 priority = 24 + min(20, order * 2) + (2 if "sxxx" in name else 0)
-                specs.append((name, "two_atom_blend", descriptor, order, priority))
+                specs.append(
+                    (
+                        name,
+                        "two_atom_blend",
+                        descriptor,
+                        order,
+                        priority,
+                        scalar_key,
+                        f"{left_key}+{right_key}",
+                    )
+                )
     return specs
 
 
@@ -253,7 +382,10 @@ def run_scaled_candidate_search(config: BulkSearchConfig | None = None) -> Disco
             )
         )
 
-    for name, family, descriptor, order, priority in _candidate_specs(config):
+    top_spec_name = "scaled sphere unit times sxxxxx"
+    for name, family, descriptor, order, priority, scalar_factor, vector_atom in _candidate_specs(
+        config
+    ):
         if len(candidates) >= config.target_count:
             break
         candidates.append(
@@ -263,6 +395,10 @@ def run_scaled_candidate_search(config: BulkSearchConfig | None = None) -> Disco
                 descriptor=descriptor,
                 order=order,
                 priority_score=priority,
+                scalar_factor=scalar_factor,
+                vector_atom=vector_atom,
+                attempt_formal_ansatz=config.attempt_first_priority_ansatz
+                and name == top_spec_name,
             )
         )
 

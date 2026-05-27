@@ -488,6 +488,8 @@ def _bulk_record(candidate: BulkTriageCandidate) -> dict[str, Any]:
     gauge_risk_score = gauge_report.get("gauge_risk_score")
     spectral_status = str(spectral_report.get("status", "unknown"))
     collisions = list(collision_report.get("collisions", ()))
+    formal_report = candidate.formal_ansatz_report or {}
+    zcr_obstruction_basis = formal_report.get("obstruction_basis") or []
     gates = [
         _gate(
             "tangent",
@@ -541,18 +543,20 @@ def _bulk_record(candidate: BulkTriageCandidate) -> dict[str, Any]:
         "zcr_validated": False,
         "zcr_solution": None,
         "zcr_constraints": [],
-        "zcr_obstruction_basis": [],
+        "zcr_obstruction_basis": zcr_obstruction_basis,
         "cyclic_fingerprint": None,
         "residual_grid": curvature_summary.get("entry_status_grid"),
         "proof_summary": None,
         "bulk_descriptor": candidate.descriptor,
         "bulk_family": candidate.family,
         "priority_score": candidate.priority_score,
+        "formal_ansatz_report": formal_report or None,
         "detail": {
             "summary": candidate.failure_reasons[0] if candidate.failure_reasons else "",
             "descriptor": candidate.descriptor,
             "family": candidate.family,
             "priority_score": candidate.priority_score,
+            "formal_ansatz_status": formal_report.get("status"),
         },
     }
     record["surprisal"] = _audit_surprisal(record)
@@ -951,7 +955,8 @@ def _plain_summary(
             ),
             (
                 f"DIS-006 adds {len(dis006_records)} scaled sphere-tangent triage candidates; "
-                "the batch records descriptors without constructing ZCR matrices."
+                "the first-priority formal ansatz obstruction is now recorded while the "
+                "remaining batch keeps descriptor-level gates."
             ),
             (
                 f"The frontier has {promising_count} promising-potential candidates and "
