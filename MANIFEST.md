@@ -61,6 +61,7 @@
 - `docs/METRICS.md` — candidate validation metrics.
 - `docs/PRIOR_ART_REGISTRY.md` — initial known-family collision checklist.
 - `docs/PROCEDURES.md` — formal discovery and procedure-audit checklist.
+- `docs/CONTENT_KIT.md` — promotional and educational copy with LAXCERT intro material.
 
 ## Static UI
 
